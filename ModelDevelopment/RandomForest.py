@@ -5,6 +5,9 @@ import matplotlib.pyplot as plt
 from scipy.special import inv_boxcox
 from sklearn.ensemble import RandomForestRegressor
 import pandas as pd
+import mlflow
+import time
+import mlflow.sklearn
 
 class RandomForestPM25Model:
     def __init__(self, train_file, test_file, lambda_value, model_save_path):
@@ -13,6 +16,8 @@ class RandomForestPM25Model:
         self.lambda_value = lambda_value
         self.model_save_path = model_save_path
         self.model = RandomForestRegressor(n_estimators=100, random_state=42)
+        mlflow.log_param("n_estimators",100)
+        mlflow.log_param("random_state",42)
         self.X_train = None
         self.y_train = None
         self.X_test = None
@@ -43,6 +48,7 @@ class RandomForestPM25Model:
     def train_model(self):
         # Train the model
         self.model.fit(self.X_train, self.y_train)
+        mlflow.sklearn.log_model(self.model,"RandomForest",input_example=self.X_train[:5])
 
     def evaluate(self):
         # Make predictions on the test data
@@ -57,6 +63,8 @@ class RandomForestPM25Model:
 
         # Evaluate the model on the original PM2.5 scale (using inverse-transformed predictions)
         rmse_original = mean_squared_error(self.y_test_original, y_pred_original, squared=False)
+        mlflow.log_metric("RMSE",rmse_original)
+        mlflow.log_metric("RMSE_BoxCOX",rmse_boxcox)
         print(f"RMSE (Original PM2.5 target): {rmse_original}")
 
         return y_pred_original
@@ -66,6 +74,7 @@ class RandomForestPM25Model:
         model_save_path = self.model_save_path
         with open(model_save_path, 'wb') as f:
             pd.to_pickle(self.model, f)
+        mlflow.log_artifact(self.model_save_path)
         print(f"Model saved at {model_save_path}")
 
     def load_weights(self):
@@ -87,50 +96,46 @@ class RandomForestPM25Model:
 
         # Save the plot as a PNG file
         plot_path = os.path.join(os.getcwd(), 'artifacts/pm25_actual_vs_predicted_RandomForest.png')
+        mlflow.log_artifact(plot_path)
         plt.savefig(plot_path)
         print(f"Plot saved at {plot_path}")
 
-# Main function to orchestrate the workflow
 def main():
+    mlflow.set_experiment("PM2.5 Random Forest")
     curr_dir = os.getcwd()
     main_path = os.path.abspath(os.path.join(curr_dir, '.'))
     data_prepocessing_path = os.path.abspath(os.path.join(main_path, 'DataPreprocessing'))
     data_prepocessing_path_pkl = os.path.abspath(os.path.join(main_path, 'DataPreprocessing/src/data_store_pkl_files'))
-
-    # Step 1: Load Data using DataFeatureEngineer
     file_path = os.path.join(data_prepocessing_path_pkl, 'test_data/no_anamoly_test_data.pkl')
     sys.path.append(main_path)
     sys.path.append(data_prepocessing_path)
     sys.path.append(data_prepocessing_path_pkl)
     from DataPreprocessing.src.test.data_preprocessing.feature_eng import DataFeatureEngineer
-    # Initialize DataFeatureEngineer to preprocess the data and fetch the lambda value
     engineer = DataFeatureEngineer(file_path)
     engineer.load_data()
     chosen_column = engineer.handle_skewness(column_name='pm25')
     engineer.feature_engineering(chosen_column)
     fitting_lambda = engineer.get_lambda()
-
-    # Step 2: Define file paths
+    mlflow.log_param("lambda_value", fitting_lambda)
     train_file = os.path.join(data_prepocessing_path_pkl, 'train_data/feature_eng_train_data.pkl')
     test_file = os.path.join(data_prepocessing_path_pkl, 'test_data/feature_eng_test_data.pkl')
     model_save_path = os.path.join(main_path, 'weights/randomforest_pm25_model.pth')  # Save in .pth format
 
-    # Step 3: Initialize the RandomForestPM25Model class
-    rf_model = RandomForestPM25Model(train_file, test_file, fitting_lambda, model_save_path)
+    if mlflow.active_run():
+        mlflow.end_run()
 
-    # Step 4: Load data, train the model, and evaluate it
-    rf_model.load_data()
-    rf_model.train_model()
-    y_pred_original = rf_model.evaluate()
-
-    # Step 5: Save the model weights in .pth format
-    rf_model.save_weights()
-
-    # Step 6: Load the model weights for future prediction
-    rf_model.load_weights()
-
-    # Step 7: Plot the results
-    rf_model.plot_results(y_pred_original)
+    with mlflow.start_run():
+        start_time = time.time()
+        rf_model = RandomForestPM25Model(train_file, test_file, fitting_lambda, model_save_path)
+        rf_model.load_data()
+        rf_model.train_model()
+        train_duration = time.time() - start_time
+        mlflow.log_metric("training_duration", train_duration)
+        y_pred_original = rf_model.evaluate()
+        rf_model.save_weights()
+        rf_model.load_weights()
+        rf_model.plot_results(y_pred_original)
+    mlflow.end_run()
 
 if __name__ == "__main__":
     main()

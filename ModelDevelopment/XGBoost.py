@@ -5,8 +5,9 @@ from sklearn.metrics import mean_squared_error
 from scipy.special import inv_boxcox
 import matplotlib.pyplot as plt
 import pandas as pd
-
-# mlflow
+import mlflow
+import time
+import mlflow.sklearn
 
 class XGBoostPM25Model:
     def __init__(self, train_file, test_file, lambda_value, model_save_path):
@@ -15,6 +16,10 @@ class XGBoostPM25Model:
         self.lambda_value = lambda_value
         self.model_save_path = model_save_path
         self.model = xgb.XGBRegressor(n_estimators=100, learning_rate=0.01, max_depth=5, random_state=42)
+        mlflow.log_param("n_estimators",100)
+        mlflow.log_param("learning_rate",0.01)
+        mlflow.log_param("random_state",42)
+        mlflow.log_param("max_depth",5)
         self.X_train = None
         self.y_train = None
         self.X_test = None
@@ -45,6 +50,7 @@ class XGBoostPM25Model:
     def train_model(self):
         # Train the model
         self.model.fit(self.X_train, self.y_train)
+        mlflow.sklearn.log_model(self.model,"XGBoost",input_example=self.X_train[:5])
 
     def evaluate(self):
         # Make predictions on the test data
@@ -59,6 +65,8 @@ class XGBoostPM25Model:
 
         # Evaluate the model on the original PM2.5 scale (using inverse-transformed predictions)
         rmse_original = mean_squared_error(self.y_test_original, y_pred_original, squared=False)
+        mlflow.log_metric("RMSE",rmse_original)
+        mlflow.log_metric("RMSE_BoxCOX",rmse_boxcox)
         print(f"RMSE (Original PM2.5 target): {rmse_original}")
 
         return y_pred_original
@@ -66,6 +74,7 @@ class XGBoostPM25Model:
     def save_weights(self):
         # Save the model weights to the specified path
         self.model.save_model(self.model_save_path)
+        mlflow.log_artifact(self.model_save_path)
         print(f"Model saved at {self.model_save_path}")
 
     def load_weights(self):
@@ -85,10 +94,12 @@ class XGBoostPM25Model:
 
         # Save the plot as a PNG file
         plot_path = os.path.join(os.getcwd(), 'artifacts/pm25_actual_vs_predicted_XGBoost.png')
+        mlflow.log_artifact(plot_path)
         plt.savefig(plot_path)
         print(f"Plot saved at {plot_path}")
 
 def main():
+    mlflow.set_experiment("PM2.5 XGBoost Prediction")
     curr_dir = os.getcwd()
     main_path = os.path.abspath(os.path.join(curr_dir, '.'))
     data_prepocessing_path = os.path.abspath(os.path.join(main_path, 'DataPreprocessing'))
@@ -108,28 +119,27 @@ def main():
     chosen_column = engineer.handle_skewness(column_name='pm25')
     engineer.feature_engineering(chosen_column)
     fitting_lambda = engineer.get_lambda()
+    mlflow.log_param("lambda_value", fitting_lambda)
 
     # Step 2: Define file paths
     train_file = os.path.join(data_prepocessing_path_pkl, 'train_data/feature_eng_train_data.pkl')
     test_file = os.path.join(data_prepocessing_path_pkl, 'test_data/feature_eng_test_data.pkl')
     model_save_path = os.path.join(main_path, 'weights/xgboost_pm25_model.pth')
 
-    # Step 3: Initialize the XGBoostPM25Model class
-    xgb_model = XGBoostPM25Model(train_file, test_file, fitting_lambda, model_save_path)
+    if mlflow.active_run():
+        mlflow.end_run()
 
-    # Step 4: Load data, train the model, and evaluate it
-    xgb_model.load_data()
-    xgb_model.train_model()
-    y_pred_original = xgb_model.evaluate()
-
-    # Step 5: Save the model weights
-    xgb_model.save_weights()
-
-    # Step 6: Load the model weights for future prediction
-    xgb_model.load_weights()
-
-    # Step 7: Plot the results
-    xgb_model.plot_results(y_pred_original)
-
+    with mlflow.start_run():    
+        start_time = time.time()
+        xgb_model = XGBoostPM25Model(train_file, test_file, fitting_lambda, model_save_path)
+        xgb_model.load_data()
+        xgb_model.train_model()
+        train_duration = time.time() - start_time
+        mlflow.log_metric("training_duration", train_duration)
+        y_pred_original = xgb_model.evaluate()
+        xgb_model.save_weights()
+        xgb_model.load_weights()
+        xgb_model.plot_results(y_pred_original)
+    mlflow.end_run()
 if __name__ == "__main__":
     main()

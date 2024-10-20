@@ -7,6 +7,9 @@ from sklearn.metrics import mean_squared_error
 from scipy.special import inv_boxcox
 from sklearn.preprocessing import MinMaxScaler
 import matplotlib.pyplot as plt
+import mlflow
+import mlflow.keras
+import time
 
 class LSTMPM25Model:
     def __init__(self, train_file, test_file, lambda_value, model_save_path, time_steps=5):
@@ -63,34 +66,34 @@ class LSTMPM25Model:
             tf.keras.layers.Dense(1)
         ])
         self.model.compile(optimizer='adam', loss='mean_squared_error')
+        mlflow.log_param("Activation","Relu")
+        mlflow.log_param("optimizer","adam")
+        mlflow.log_param("loss","mean_squared_error")
 
     def train_model(self):
-        # Prepare sequences
         X_train_seq, y_train_seq = self.create_sequences(self.X_train_scaled, self.y_train.values)
         X_test_seq, y_test_seq = self.create_sequences(self.X_test_scaled, self.y_test.values)
-
-        # Train the model
-        self.model.fit(X_train_seq, y_train_seq, epochs=50, batch_size=64, validation_data=(X_test_seq, y_test_seq))
-
+        history = self.model.fit(X_train_seq, y_train_seq, epochs=50, batch_size=64, validation_data=(X_test_seq, y_test_seq))
+        mlflow.log_param("epochs",50)
+        mlflow.log_param("batch_size",64)
+        mlflow.log_metric("final_loss", history.history['loss'][-1])
+        mlflow.log_metric("final_val_loss", history.history['val_loss'][-1])
+        mlflow.keras.log_model(self.model, "lstm_pm25_model")
+        
     def evaluate_model(self):
         X_test_seq, _ = self.create_sequences(self.X_test_scaled, self.y_test.values)
-
-        # Make predictions
         y_pred_boxcox = self.model.predict(X_test_seq)
-
-        # Inverse Box-Cox transformation to get predictions back to the original PM2.5 scale
         y_pred_original = inv_boxcox(y_pred_boxcox.flatten(), self.lambda_value)
-
-        # Evaluate the model on the original PM2.5 scale
         rmse_original = mean_squared_error(self.y_test_original[self.time_steps:], y_pred_original, squared=False)
         print(f"RMSE (Original PM2.5 target): {rmse_original}")
-
+        mlflow.log_metric("RMSE",rmse_original)
         return y_pred_original
 
     def save_weights(self):
         model_save_path = self.model_save_path
         with open(model_save_path, 'wb') as f:
             pd.to_pickle(self.model, f)
+        mlflow.log_artifact(self.model_save_path)
         print(f"Model saved at {model_save_path}")
     
     def load_weights(self):
@@ -113,6 +116,7 @@ class LSTMPM25Model:
 
         # Save the plot
         plot_path = os.path.join(os.getcwd(), 'artifacts/pm25_actual_vs_predicted_LSTM.png')
+        mlflow.log_artifact(plot_path)
         plt.savefig(plot_path)
         print(f"Plot saved at {plot_path}")
 
@@ -134,29 +138,28 @@ def main():
     chosen_column = engineer.handle_skewness(column_name='pm25')
     engineer.feature_engineering(chosen_column)
     fitting_lambda = engineer.get_lambda()
+    mlflow.log_param("lambda_value", fitting_lambda)
 
     # Define file paths
     train_file = os.path.join(data_prepocessing_path_pkl, 'train_data/feature_eng_train_data.pkl')
     test_file = os.path.join(data_prepocessing_path_pkl, 'test_data/feature_eng_test_data.pkl')
     model_save_path = os.path.join(main_path, 'weights/lstm_pm25_model.pth')
 
-    # Initialize the LSTMPM25Model class
-    lstm_model = LSTMPM25Model(train_file, test_file, fitting_lambda, model_save_path)
-
-    # Load data, train the model, and evaluate it
-    lstm_model.load_data()
-    lstm_model.build_model()
-    lstm_model.train_model()
-    y_pred_original = lstm_model.evaluate_model()
-
-    # Save the model weights
-    lstm_model.save_weights()
-
-    # Load the model weights for future prediction
-    lstm_model.load_weights()
-
-    # Plot the results
-    lstm_model.plot_results(y_pred_original)
+    if mlflow.active_run():
+        mlflow.end_run()
+    with mlflow.start_run():  
+        start_time = time.time()
+        lstm_model = LSTMPM25Model(train_file, test_file, fitting_lambda, model_save_path)
+        lstm_model.load_data()
+        lstm_model.build_model()
+        lstm_model.train_model()
+        train_duration = time.time() - start_time
+        mlflow.log_metric("training_duration", train_duration)
+        y_pred_original = lstm_model.evaluate_model()
+        lstm_model.save_weights()
+        lstm_model.load_weights()
+        lstm_model.plot_results(y_pred_original)
+    mlflow.end_run()
 
 if __name__ == "__main__":
     main()
