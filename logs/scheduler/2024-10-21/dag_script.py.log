@@ -721,3 +721,17 @@ ModuleNotFoundError: No module named 'matplotlib'
 [2024-10-21T23:55:26.249+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:55:26.249+0000] {dag.py:3096} INFO - Sync 1 DAGs
 [2024-10-21T23:55:26.256+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:55:26.256+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
 [2024-10-21T23:55:26.265+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.478 seconds
+[2024-10-21T23:55:56.586+0000] {processor.py:161} INFO - Started process (PID=439) to work on /opt/airflow/dags/dag_script.py
+[2024-10-21T23:55:56.588+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-10-21T23:55:56.593+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:55:56.592+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-10-21T23:55:57.423+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-10-21T23:55:57.438+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:55:57.438+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-10-21T23:55:57.443+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:55:57.443+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-10-21T23:55:57.449+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.874 seconds
+[2024-10-21T23:56:27.796+0000] {processor.py:161} INFO - Started process (PID=454) to work on /opt/airflow/dags/dag_script.py
+[2024-10-21T23:56:27.798+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-10-21T23:56:27.802+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:56:27.802+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-10-21T23:56:28.695+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-10-21T23:56:28.729+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:56:28.728+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-10-21T23:56:28.735+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:56:28.735+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-10-21T23:56:28.744+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.961 seconds
