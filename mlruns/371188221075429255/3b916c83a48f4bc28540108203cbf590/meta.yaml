@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/srilakshmikanagala/Desktop/Air/mlruns/371188221075429255/3b916c83a48f4bc28540108203cbf590/artifacts
+end_time: 1729474376875
+entry_point_name: ''
+experiment_id: '371188221075429255'
+lifecycle_stage: active
+run_id: 3b916c83a48f4bc28540108203cbf590
+run_name: judicious-squid-919
+run_uuid: 3b916c83a48f4bc28540108203cbf590
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729474364134
+status: 3
+tags: []
+user_id: srilakshmikanagala

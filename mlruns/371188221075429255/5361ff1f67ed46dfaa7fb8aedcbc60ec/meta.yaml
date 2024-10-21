@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/srilakshmikanagala/Desktop/Air/mlruns/371188221075429255/5361ff1f67ed46dfaa7fb8aedcbc60ec/artifacts
+end_time: 1729474364133
+entry_point_name: ''
+experiment_id: '371188221075429255'
+lifecycle_stage: active
+run_id: 5361ff1f67ed46dfaa7fb8aedcbc60ec
+run_name: salty-worm-477
+run_uuid: 5361ff1f67ed46dfaa7fb8aedcbc60ec
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729474364128
+status: 3
+tags: []
+user_id: srilakshmikanagala
