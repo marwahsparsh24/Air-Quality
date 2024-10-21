@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import os
 
 class DataCleaner:
     def __init__(self, file_path):
@@ -37,8 +38,8 @@ class DataCleaner:
 
 def main():
     # Path to the input pickle file and output pickle file
-    file_path = 'data_store_pkl_files/train_data/no_null_train_data.pkl'
-    output_pickle_file = 'data_store_pkl_files/train_data/no_anamoly_train_data.pkl'
+    file_path =  os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/train_data/no_null_train_data.pkl")
+    output_pickle_file =os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/train_data/no_anamoly_train_data.pkl")
     cleaner = DataCleaner(file_path)
     cleaner.load_data()
     cleaner.handle_outliers(column_name='pm25')

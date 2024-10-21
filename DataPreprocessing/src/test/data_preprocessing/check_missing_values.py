@@ -5,6 +5,7 @@ import seaborn as sns
 import xgboost as xgb
 color_pal = sns.color_palette()
 plt.style.use('fivethirtyeight')
+import os
 from sklearn.metrics import mean_squared_error
 
 class DataProcessor:
@@ -37,8 +38,8 @@ class DataProcessor:
 
 def main():
     # Path to the input pickle file and output pickle file
-    file_path = 'data_store_pkl_files/test_data/cleaned_test_data.pkl'
-    output_pickle_file = 'data_store_pkl_files/test_data/no_null_test_data.pkl'
+    file_path = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/test_data/cleaned_test_data.pkl")
+    output_pickle_file = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/test_data/no_null_test_data.pkl")
     processor = DataProcessor(file_path)
     processor.load_data()
     processor.handle_missing_values()

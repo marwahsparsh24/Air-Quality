@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/srilakshmikanagala/Desktop/Air/mlruns/0/ce37a6ec49204512892574e6cd1b6077/artifacts
+end_time: 1729474264893
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: ce37a6ec49204512892574e6cd1b6077
+run_name: treasured-finch-401
+run_uuid: ce37a6ec49204512892574e6cd1b6077
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729474233732
+status: 3
+tags: []
+user_id: srilakshmikanagala

@@ -1,6 +1,7 @@
 import requests
 import json
 import pandas as pd
+import os
 
 api_key = "3fbb719154baaed8164cee7d57ba31903cdd19fdd7613e33ace632a0d851894e"
 city = "Miami-Fort Lauderdale-Miami Beach"
@@ -82,7 +83,7 @@ def flatten_data(data):
 def save_to_csv(data, filename):
     flattened_data = flatten_data(data)
     df = pd.DataFrame(flattened_data)
-    df.to_csv(filename, index=False)
+    df.to_csv(os.path.join(os.getcwd(),filename), index=False)
     print(f"Data saved to {filename}")
 
 def get_available_parameters(location_id):
@@ -123,6 +124,6 @@ if __name__ == "__main__":
         air_pollution_data_2 = get_air_pollution_data(location_id, start_date_2, end_date_2)
 
     if air_pollution_data_1:
-        save_to_csv(air_pollution_data_1, "data_store_pkl_files/csv/air_pollution_data_1.csv")
+        save_to_csv(air_pollution_data_1, "DataPreprocessing/src/data_store_pkl_files/csv/air_pollution_data_1.csv")
     if air_pollution_data_2:
-        save_to_csv(air_pollution_data_2, "data_store_pkl_files/csv/air_pollution_data_2.csv")
+        save_to_csv(air_pollution_data_2, "DataPreprocessing/src/data_store_pkl_files/csv/air_pollution_data_2.csv")

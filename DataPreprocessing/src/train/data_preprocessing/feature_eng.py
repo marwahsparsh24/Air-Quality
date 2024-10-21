@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 from scipy import stats
+import os
 
 class DataFeatureEngineer:
     def __init__(self, file_path):
@@ -74,8 +75,8 @@ class DataFeatureEngineer:
 
 def main():
     # Path to the input pickle file and output pickle file
-    file_path = 'data_store_pkl_files/train_data/no_anamoly_train_data.pkl'
-    output_pickle_file = 'data_store_pkl_files/train_data/feature_eng_train_data.pkl'
+    file_path = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/train_data/no_anamoly_train_data.pkl")
+    output_pickle_file = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/train_data/feature_eng_train_data.pkl")
     engineer = DataFeatureEngineer(file_path)
     engineer.load_data()
     chosen_column = engineer.handle_skewness(column_name='pm25')

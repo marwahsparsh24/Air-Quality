@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/srilakshmikanagala/Desktop/Air/mlruns/0/a420577f4e4a43edbae5891f2e14bf8d/artifacts
+end_time: 1729474233731
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: a420577f4e4a43edbae5891f2e14bf8d
+run_name: luminous-mule-541
+run_uuid: a420577f4e4a43edbae5891f2e14bf8d
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729474233725
+status: 3
+tags: []
+user_id: srilakshmikanagala

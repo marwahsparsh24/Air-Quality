@@ -31,8 +31,8 @@ class CSVStacker:
 
 
 def main():
-    folder_path = "data_store_pkl_files/csv"
-    output_pickle_file = "data_store_pkl_files/air_pollution.pkl"
+    folder_path =os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/csv")
+    output_pickle_file = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl")
     csv_stacker = CSVStacker(folder_path)
     csv_stacker.load_csv_files()
     csv_stacker.stack_dataframes()

@@ -1,5 +1,6 @@
 import pandas as pd
 from sklearn.model_selection import train_test_split
+import os
 
 class DataSplitter:
     def __init__(self, pickle_file_path):
@@ -30,9 +31,9 @@ class DataSplitter:
 
 
 def main():
-    pickle_file_path = "data_store_pkl_files/air_pollution.pkl"
-    train_output_pickle_file = "data_store_pkl_files/train_data/train_data.pkl"
-    test_output_pickle_file = "data_store_pkl_files/test_data/test_data.pkl"
+    pickle_file_path = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl")
+    train_output_pickle_file = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/train_data/train_data.pkl")
+    test_output_pickle_file =os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/test_data/test_data.pkl")
     data_splitter = DataSplitter(pickle_file_path)
     data_splitter.load_pickle()
     data_splitter.split_data(test_size=0.2, random_state=42)
