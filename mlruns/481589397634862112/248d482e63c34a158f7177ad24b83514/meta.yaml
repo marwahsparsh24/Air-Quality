@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/srilakshmikanagala/Desktop/Air/mlruns/481589397634862112/248d482e63c34a158f7177ad24b83514/artifacts
+end_time: 1729474318107
+entry_point_name: ''
+experiment_id: '481589397634862112'
+lifecycle_stage: active
+run_id: 248d482e63c34a158f7177ad24b83514
+run_name: valuable-eel-181
+run_uuid: 248d482e63c34a158f7177ad24b83514
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729474318102
+status: 3
+tags: []
+user_id: srilakshmikanagala
