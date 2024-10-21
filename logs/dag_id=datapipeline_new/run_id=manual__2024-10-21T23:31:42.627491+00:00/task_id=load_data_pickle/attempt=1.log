@@ -1,0 +1,43 @@
+[2024-10-21T23:31:51.151+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-21T23:31:51.164+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: datapipeline_new.load_data_pickle manual__2024-10-21T23:31:42.627491+00:00 [queued]>
+[2024-10-21T23:31:51.167+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: datapipeline_new.load_data_pickle manual__2024-10-21T23:31:42.627491+00:00 [queued]>
+[2024-10-21T23:31:51.167+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-10-21T23:31:51.172+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): load_data_pickle> on 2024-10-21 23:31:42.627491+00:00
+[2024-10-21T23:31:51.184+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=91) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-10-21T23:31:51.185+0000] {standard_task_runner.py:63} INFO - Started process 107 to run task
+[2024-10-21T23:31:51.185+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'datapipeline_new', 'load_data_pickle', 'manual__2024-10-21T23:31:42.627491+00:00', '--job-id', '16', '--raw', '--subdir', 'DAGS_FOLDER/dag_script.py', '--cfg-path', '/tmp/tmp7zlfmpr4']
+[2024-10-21T23:31:51.195+0000] {standard_task_runner.py:91} INFO - Job 16: Subtask load_data_pickle
+[2024-10-21T23:31:51.223+0000] {task_command.py:426} INFO - Running <TaskInstance: datapipeline_new.load_data_pickle manual__2024-10-21T23:31:42.627491+00:00 [running]> on host 6fd357fee1dd
+[2024-10-21T23:31:51.437+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='Srilakshmi_P' AIRFLOW_CTX_DAG_ID='datapipeline_new' AIRFLOW_CTX_TASK_ID='load_data_pickle' AIRFLOW_CTX_EXECUTION_DATE='2024-10-21T23:31:42.627491+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-21T23:31:42.627491+00:00'
+[2024-10-21T23:31:51.438+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-21T23:31:51.444+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-21T23:31:51.444+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/DataPreprocessing/src/data_loader.py", line 37, in stack_csvs_to_pickle
+    csv_stacker.load_csv_files()
+  File "/opt/airflow/dags/DataPreprocessing/src/data_loader.py", line 11, in load_csv_files
+    csv_files = [f for f in os.listdir(self.folder_path) if f.endswith('.csv')]
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/DataPreprocessing/src/data_store_pkl_files/csv'
+[2024-10-21T23:31:51.449+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=datapipeline_new, task_id=load_data_pickle, run_id=manual__2024-10-21T23:31:42.627491+00:00, execution_date=20241021T233142, start_date=20241021T233151, end_date=20241021T233151
+[2024-10-21T23:31:51.454+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 16 for task load_data_pickle ([Errno 2] No such file or directory: '/opt/airflow/DataPreprocessing/src/data_store_pkl_files/csv'; 107)
+[2024-10-21T23:31:51.494+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-10-21T23:31:51.618+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-10-21T23:31:51.619+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

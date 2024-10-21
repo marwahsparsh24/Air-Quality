@@ -40,7 +40,7 @@ class DataProcessor:
             print("No pivoted data to save. Please pivot the data first.")
 
 
-def main():
+def pivot_parameters():
     file_path = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/train_data/train_data.pkl")
     output_pickle_file = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/train_data/pivoted_train_data.pkl")
     processor = DataProcessor(file_path)
@@ -50,4 +50,4 @@ def main():
     processor.save_as_pickle(output_pickle_file)
 
 if __name__ == "__main__":
-    main()
+    pivot_parameters()

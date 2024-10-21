@@ -30,7 +30,7 @@ class CSVStacker:
         print(f"Stacked DataFrame saved as '{output_path}'.")
 
 
-def main():
+def stack_csvs_to_pickle():
     folder_path =os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/csv")
     output_pickle_file = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl")
     csv_stacker = CSVStacker(folder_path)
@@ -39,4 +39,4 @@ def main():
     csv_stacker.save_as_pickle(output_pickle_file)
 
 if __name__ == "__main__":
-    main()
+    stack_csvs_to_pickle()

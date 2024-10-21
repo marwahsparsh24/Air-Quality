@@ -37,7 +37,7 @@ class DataCleaner:
         else:
             print("No data available to save. Please load and clean the data first.")
 
-def main():
+def remove_uneccesary_cols():
     # Path to the input pickle file and output pickle file
     file_path = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/test_data/pivoted_test_data.pkl")
     output_pickle_file = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/test_data/cleaned_test_data.pkl")
@@ -48,4 +48,4 @@ def main():
     cleaner.save_as_pickle(output_pickle_file)
 
 if __name__ == "__main__":
-    main()
+    remove_uneccesary_cols()

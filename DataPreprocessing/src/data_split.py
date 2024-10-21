@@ -30,7 +30,7 @@ class DataSplitter:
         print(f"Training DataFrame saved as '{train_output_path}' and Testing DataFrame saved as '{test_output_path}'.")
 
 
-def main():
+def split():
     pickle_file_path = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl")
     train_output_pickle_file = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/train_data/train_data.pkl")
     test_output_pickle_file =os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/test_data/test_data.pkl")
@@ -40,4 +40,4 @@ def main():
     data_splitter.save_as_pickle(train_output_pickle_file, test_output_pickle_file)
 
 if __name__ == "__main__":
-    main()
+    split()

@@ -35,7 +35,7 @@ class DataProcessor:
         else:
             print("No data available to save. Please load and process the data first.")
 
-def main():
+def handle_missing_vals():
     # Path to the input pickle file and output pickle file
     file_path = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/train_data/cleaned_train_data.pkl")
     output_pickle_file = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/train_data/no_null_train_data.pkl")
@@ -45,4 +45,4 @@ def main():
     processor.save_as_pickle(output_pickle_file)
 
 if __name__ == "__main__":
-    main()
+    handle_missing_vals()

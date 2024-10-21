@@ -105,7 +105,7 @@ def get_available_parameters(location_id):
         print(f"Error fetching parameters: {response.status_code}")
         return None
 
-if __name__ == "__main__":
+def download_data_function():
     #location_id = get_location_id(city, country_code)
     location_id = 869
     #155
@@ -127,3 +127,6 @@ if __name__ == "__main__":
         save_to_csv(air_pollution_data_1, "DataPreprocessing/src/data_store_pkl_files/csv/air_pollution_data_1.csv")
     if air_pollution_data_2:
         save_to_csv(air_pollution_data_2, "DataPreprocessing/src/data_store_pkl_files/csv/air_pollution_data_2.csv")
+
+if __name__ == "__main__":
+    download_data_function()
