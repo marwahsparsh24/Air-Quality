@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/srilakshmikanagala/Desktop/Air-Quality/mlruns/869962108090964353/cbba1f4156bd4d449ca061edc507eec2/artifacts
+end_time: 1729466479700
+entry_point_name: ''
+experiment_id: '869962108090964353'
+lifecycle_stage: active
+run_id: cbba1f4156bd4d449ca061edc507eec2
+run_name: caring-vole-669
+run_uuid: cbba1f4156bd4d449ca061edc507eec2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1729466479695
+status: 3
+tags: []
+user_id: srilakshmikanagala

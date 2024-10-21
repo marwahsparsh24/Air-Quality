@@ -1,0 +1,6 @@
+artifact_location: file:///Users/srilakshmikanagala/Desktop/Air-Quality/mlruns/824747845343120551
+creation_time: 1729466281986
+experiment_id: '824747845343120551'
+last_update_time: 1729466281986
+lifecycle_stage: active
+name: PM2.5 Random Forest

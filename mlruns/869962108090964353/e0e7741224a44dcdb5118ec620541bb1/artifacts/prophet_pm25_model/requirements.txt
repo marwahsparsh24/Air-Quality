@@ -1,0 +1,10 @@
+mlflow==2.17.0
+cffi==1.16.0
+cloudpickle==3.0.0
+defusedxml==0.7.1
+matplotlib==3.8.3
+numpy==1.26.4
+pandas==2.2.1
+plotly==5.20.0
+prophet==1.1.6
+ujson==5.9.0

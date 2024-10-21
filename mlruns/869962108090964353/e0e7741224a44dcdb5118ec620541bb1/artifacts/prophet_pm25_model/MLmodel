@@ -1,0 +1,27 @@
+artifact_path: prophet_pm25_model
+flavors:
+  python_function:
+    cloudpickle_version: 3.0.0
+    code: null
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.pyfunc.model
+    python_model: python_model.pkl
+    python_version: 3.11.2
+    streamable: false
+mlflow_version: 2.17.0
+model_size_bytes: 1325610
+model_uuid: c5a9de6f29fa4d39b5302518b075d547
+run_id: e0e7741224a44dcdb5118ec620541bb1
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "datetime", "name": "ds", "required": true}, {"type": "double",
+    "name": "y", "required": true}]'
+  outputs: '[{"type": "double", "name": "yhat", "required": true}]'
+  params: null
+utc_time_created: '2024-10-20 23:21:21.995088'
