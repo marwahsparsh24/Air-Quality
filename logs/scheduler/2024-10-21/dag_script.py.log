@@ -700,3 +700,10 @@ ModuleNotFoundError: No module named 'matplotlib'
 [2024-10-21T23:53:51.935+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:53:51.935+0000] {dag.py:3096} INFO - Sync 1 DAGs
 [2024-10-21T23:53:51.940+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:53:51.940+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
 [2024-10-21T23:53:51.947+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.946 seconds
+[2024-10-21T23:54:22.279+0000] {processor.py:161} INFO - Started process (PID=395) to work on /opt/airflow/dags/dag_script.py
+[2024-10-21T23:54:22.281+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-10-21T23:54:22.284+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:54:22.284+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-10-21T23:54:23.111+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-10-21T23:54:23.142+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:54:23.142+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-10-21T23:54:23.147+0000] {logging_mixin.py:188} INFO - [2024-10-21T23:54:23.147+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-10-21T23:54:23.154+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.888 seconds
