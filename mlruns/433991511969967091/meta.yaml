@@ -1,0 +1,6 @@
+artifact_location: file:///Users/srilakshmikanagala/Desktop/Air/mlruns/433991511969967091
+creation_time: 1729474401492
+experiment_id: '433991511969967091'
+last_update_time: 1729474401492
+lifecycle_stage: active
+name: PM2.5 XGBoost Prediction
