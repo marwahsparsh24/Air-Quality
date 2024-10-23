@@ -57,4 +57,4 @@ crash.log
 .terraform.lock.hcl
 
 # Ignore backup files created by Terraform
-*.backup
+*.backupairquality-key.json
