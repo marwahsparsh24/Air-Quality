@@ -1,5 +1,0 @@
-[core]
-    remote = myremote
-['remote "myremote"']
-    url = gs://airquality-mlops-rg
-    credentialpath = /Users/swapnavippaturi/gcp_airquality/Air-Quality/airquality-key.json
