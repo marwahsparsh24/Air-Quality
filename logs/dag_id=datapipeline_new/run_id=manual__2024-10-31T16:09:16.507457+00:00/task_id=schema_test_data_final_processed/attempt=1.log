@@ -1,0 +1,48 @@
+[2024-10-31T16:09:58.239+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-10-31T16:09:58.250+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: datapipeline_new.schema_test_data_final_processed manual__2024-10-31T16:09:16.507457+00:00 [queued]>
+[2024-10-31T16:09:58.254+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: datapipeline_new.schema_test_data_final_processed manual__2024-10-31T16:09:16.507457+00:00 [queued]>
+[2024-10-31T16:09:58.256+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-10-31T16:09:58.261+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): schema_test_data_final_processed> on 2024-10-31 16:09:16.507457+00:00
+[2024-10-31T16:09:58.269+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=387) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-10-31T16:09:58.270+0000] {standard_task_runner.py:63} INFO - Started process 405 to run task
+[2024-10-31T16:09:58.270+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'datapipeline_new', 'schema_test_data_final_processed', 'manual__2024-10-31T16:09:16.507457+00:00', '--job-id', '132', '--raw', '--subdir', 'DAGS_FOLDER/dag_script.py', '--cfg-path', '/tmp/tmpi5s9dg3v']
+[2024-10-31T16:09:58.274+0000] {standard_task_runner.py:91} INFO - Job 132: Subtask schema_test_data_final_processed
+[2024-10-31T16:09:58.607+0000] {task_command.py:426} INFO - Running <TaskInstance: datapipeline_new.schema_test_data_final_processed manual__2024-10-31T16:09:16.507457+00:00 [running]> on host 8b35fed25b46
+[2024-10-31T16:09:58.649+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='datapipeline_new' AIRFLOW_CTX_TASK_ID='schema_test_data_final_processed' AIRFLOW_CTX_EXECUTION_DATE='2024-10-31T16:09:16.507457+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-10-31T16:09:16.507457+00:00'
+[2024-10-31T16:09:58.650+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-10-31T16:09:58.660+0000] {check_output_data_schema.py:54} INFO - Schema saved to 'data_schema_test.json'.
+[2024-10-31T16:09:58.664+0000] {check_output_data_schema.py:70} INFO - pm25: min = 0.74, max = 11.1
+[2024-10-31T16:09:58.665+0000] {check_output_data_schema.py:70} INFO - pm25_boxcox: min = 0.6206601448944112, max = 4.299035879649449
+[2024-10-31T16:09:58.665+0000] {check_output_data_schema.py:70} INFO - lag_1: min = 0.6206601448944112, max = 4.299035879649449
+[2024-10-31T16:09:58.666+0000] {check_output_data_schema.py:70} INFO - lag_2: min = 0.6206601448944112, max = 4.299035879649449
+[2024-10-31T16:09:58.667+0000] {check_output_data_schema.py:70} INFO - lag_3: min = 0.6206601448944112, max = 4.299035879649449
+[2024-10-31T16:09:58.668+0000] {check_output_data_schema.py:70} INFO - lag_4: min = 0.6206601448944112, max = 4.299035879649449
+[2024-10-31T16:09:58.669+0000] {check_output_data_schema.py:70} INFO - lag_5: min = 0.6206601448944112, max = 4.299035879649449
+[2024-10-31T16:09:58.669+0000] {check_output_data_schema.py:70} INFO - rolling_mean_3: min = 0.6642210435469229, max = 4.234391671348397
+[2024-10-31T16:09:58.670+0000] {check_output_data_schema.py:70} INFO - rolling_mean_6: min = 0.7274582598776366, max = 4.140762031553219
+[2024-10-31T16:09:58.671+0000] {check_output_data_schema.py:70} INFO - rolling_mean_24: min = 1.065765660815235, max = 3.770019874516425
+[2024-10-31T16:09:58.671+0000] {check_output_data_schema.py:70} INFO - rolling_std_3: min = 0.0, max = 1.7896558990746134
+[2024-10-31T16:09:58.672+0000] {check_output_data_schema.py:70} INFO - rolling_std_6: min = 0.0, max = 1.3492891998420038
+[2024-10-31T16:09:58.673+0000] {check_output_data_schema.py:70} INFO - rolling_std_24: min = 0.0, max = 1.0547420334628028
+[2024-10-31T16:09:58.674+0000] {check_output_data_schema.py:70} INFO - ema_3: min = 0.8226453026002167, max = 4.203381422023163
+[2024-10-31T16:09:58.675+0000] {check_output_data_schema.py:70} INFO - ema_6: min = 0.9660567946830545, max = 4.114323693864901
+[2024-10-31T16:09:58.676+0000] {check_output_data_schema.py:70} INFO - ema_24: min = 1.4177783284298044, max = 3.733795325168047
+[2024-10-31T16:09:58.677+0000] {check_output_data_schema.py:70} INFO - diff_1: min = -2.272252668672661, max = 2.1602778363343687
+[2024-10-31T16:09:58.677+0000] {check_output_data_schema.py:70} INFO - diff_2: min = -3.543744480528697, max = 2.1809472000567824
+[2024-10-31T16:09:58.679+0000] {check_output_data_schema.py:70} INFO - hour: min = 0, max = 23
+[2024-10-31T16:09:58.680+0000] {check_output_data_schema.py:70} INFO - day_of_week: min = 0, max = 6
+[2024-10-31T16:09:58.680+0000] {check_output_data_schema.py:70} INFO - day_of_year: min = 1, max = 365
+[2024-10-31T16:09:58.681+0000] {check_output_data_schema.py:70} INFO - month: min = 1, max = 12
+[2024-10-31T16:09:58.681+0000] {check_output_data_schema.py:70} INFO - sin_hour: min = -1.0, max = 1.0
+[2024-10-31T16:09:58.681+0000] {check_output_data_schema.py:70} INFO - cos_hour: min = -1.0, max = 1.0
+[2024-10-31T16:09:58.682+0000] {check_output_data_schema.py:70} INFO - sin_day_of_week: min = -0.9749279121818236, max = 0.9749279121818236
+[2024-10-31T16:09:58.682+0000] {check_output_data_schema.py:70} INFO - cos_day_of_week: min = -0.9009688679024191, max = 1.0
+[2024-10-31T16:09:58.682+0000] {check_output_data_schema.py:106} INFO - Data validation passed.
+[2024-10-31T16:09:58.683+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-10-31T16:09:58.683+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-10-31T16:09:58.690+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=datapipeline_new, task_id=schema_test_data_final_processed, run_id=manual__2024-10-31T16:09:16.507457+00:00, execution_date=20241031T160916, start_date=20241031T160958, end_date=20241031T160958
+[2024-10-31T16:09:58.705+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-10-31T16:09:58.979+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-10-31T16:09:58.981+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -67,7 +67,7 @@ data_Split = PythonOperator(
 
 data_schema_original = PythonOperator(
     task_id = 'check_schema_of_original_air_data',
-    python_callabale = main_check_schema_original,
+    python_callable = main_check_schema_original,
     dag = dag
 )
 
@@ -136,13 +136,13 @@ feature_engineering_train = PythonOperator(
 
 data_schema_train_data_feature_eng = PythonOperator(
     task_id = 'schema_train_data_final_processed',
-    python_callabale = main_train_schema,
+    python_callable = main_train_schema,
     dag = dag
 )
 
 data_schema_test_data_feature_eng = PythonOperator(
     task_id = 'schema_test_data_final_processed',
-    python_callabale = main_test_schema,
+    python_callable = main_test_schema,
     dag = dag
 )
 
@@ -152,13 +152,11 @@ feature_engineering_test = PythonOperator(
     python_callable=feature_eng_test,
     dag=dag
 )
-# >> data_schema_train_data_feature_eng >> data_schema_test_data_feature_eng >>
 # order in which tasks are run
-download_data_api >> data_Loader >> data_Split >> \
-data_schema_original >> \
-data_train_pivot >> data_remove_cols_train >> handle_missing_vals_train \
+download_data_api >> data_Loader >> data_Split >> data_schema_original \
+>> data_train_pivot >> data_remove_cols_train >> handle_missing_vals_train \
 >> anamolies_vals_train >> feature_engineering_train >> data_test_pivot >> data_remove_cols_test >> handle_missing_vals_test \
->> anamolies_vals_test >> feature_engineering_test
+>> anamolies_vals_test >> feature_engineering_test >> data_schema_train_data_feature_eng >> data_schema_test_data_feature_eng
 
 if __name__ == "__main__":
     dag.cli()

@@ -48,3 +48,13 @@
 2024-10-30 22:22:43,210 - INFO - Loaded schema from /Users/srilakshmikanagala/Desktop/Air/custom_schema_original_dataset.json
 2024-10-30 22:22:43,232 - INFO - Dataset is valid according to the schema.
 2024-10-30 22:22:43,232 - INFO - Data validation passed.
+2024-10-31 11:41:10,777 - INFO - Schema saved to /Users/srilakshmikanagala/Desktop/Air/custom_schema_original_dataset.json
+2024-10-31 11:41:10,785 - INFO - Loaded dataset from /Users/srilakshmikanagala/Desktop/Air/DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl
+2024-10-31 11:41:10,786 - INFO - Loaded schema from /Users/srilakshmikanagala/Desktop/Air/custom_schema_original_dataset.json
+2024-10-31 11:41:10,810 - INFO - Dataset is valid according to the schema.
+2024-10-31 11:41:10,810 - INFO - Data validation passed.
+2024-10-31 12:15:47,074 - INFO - Schema saved to /Users/srilakshmikanagala/Desktop/Air/custom_schema_original_dataset.json
+2024-10-31 12:15:47,084 - INFO - Loaded dataset from /Users/srilakshmikanagala/Desktop/Air/DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl
+2024-10-31 12:15:47,085 - INFO - Loaded schema from /Users/srilakshmikanagala/Desktop/Air/custom_schema_original_dataset.json
+2024-10-31 12:15:47,109 - INFO - Dataset is valid according to the schema.
+2024-10-31 12:15:47,109 - INFO - Data validation passed.
