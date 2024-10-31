@@ -21,6 +21,9 @@ from dags.DataPreprocessing.src.test.data_preprocessing.removal_of_uneccesary_co
 from dags.DataPreprocessing.src.test.data_preprocessing.anamoly_detection import anamoly_detection_val as anamoly_detection_test
 from dags.DataPreprocessing.src.test.data_preprocessing.check_missing_values import handle_missing_vals as check_missing_values_test
 from dags.DataPreprocessing.src.test.data_preprocessing.feature_eng import feature_engineering as feature_eng_test
+from dags.DataPreprocessing.src.Schema.check_schema_original_airpollution import  main_check_schema_original
+from dags.DataPreprocessing.src.Schema.test_schema.check_output_data_schema import main_test_schema
+from dags.DataPreprocessing.src.Schema.train_schema.check_output_data_schema import main_train_schema
 
 conf.set('core', 'enable_xcom_pickling', 'True')
 conf.set('core', 'enable_parquet_xcom', 'True')
@@ -60,6 +63,12 @@ data_Split = PythonOperator(
     task_id='split_train_test',
     python_callable=split,
     dag=dag
+)
+
+data_schema_original = PythonOperator(
+    task_id = 'check_schema_of_original_air_data',
+    python_callabale = main_check_schema_original,
+    dag = dag
 )
 
 # pivot the data to contain pm2.5 parameters for train data
@@ -125,15 +134,28 @@ feature_engineering_train = PythonOperator(
     dag=dag
 )
 
+data_schema_train_data_feature_eng = PythonOperator(
+    task_id = 'schema_train_data_final_processed',
+    python_callabale = main_train_schema,
+    dag = dag
+)
+
+data_schema_test_data_feature_eng = PythonOperator(
+    task_id = 'schema_test_data_final_processed',
+    python_callabale = main_test_schema,
+    dag = dag
+)
+
 # feature engineering for test data
 feature_engineering_test = PythonOperator(
     task_id='feature_engineering_test',
     python_callable=feature_eng_test,
     dag=dag
 )
-
+# >> data_schema_train_data_feature_eng >> data_schema_test_data_feature_eng >>
 # order in which tasks are run
 download_data_api >> data_Loader >> data_Split >> \
+data_schema_original >> \
 data_train_pivot >> data_remove_cols_train >> handle_missing_vals_train \
 >> anamolies_vals_train >> feature_engineering_train >> data_test_pivot >> data_remove_cols_test >> handle_missing_vals_test \
 >> anamolies_vals_test >> feature_engineering_test

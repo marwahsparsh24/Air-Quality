@@ -111,7 +111,7 @@ def validate_data(data, schema):
     return all_valid
 
 # Main function to load data and run validation
-def main():
+def main_train_schema():
     file_path = os.path.join(os.getcwd(), 'DataPreprocessing/src/data_store_pkl_files/train_data/feature_eng_train_data.pkl')
     data = pd.read_pickle(file_path)
     schema = get_schema()
@@ -127,4 +127,4 @@ def main():
 
 # Run the main function
 if __name__ == "__main__":
-    main()
+    main_train_schema()

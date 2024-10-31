@@ -1,6 +1,8 @@
 import pandas as pd
 import logging
 import os
+from ml_metadata.metadata_store import metadata_store
+from ml_metadata.proto import metadata_store_pb2
 
 # Set up logging configuration
 def setup_logging():
@@ -9,13 +11,22 @@ def setup_logging():
         level=logging.INFO,
         format='%(asctime)s - %(levelname)s - %(message)s',
         handlers=[
-            logging.FileHandler(log_file_path),  # Log to a file
-            logging.StreamHandler()              # Also log to console
+            logging.FileHandler(log_file_path),
+            logging.StreamHandler()
         ]
     )
     return logging.getLogger(__name__)
 
 logger = setup_logging()
+
+# Initialize MLMD metadata store
+def setup_mlmd_store():
+    connection_config = metadata_store_pb2.ConnectionConfig()
+    connection_config.sqlite.filename_uri = os.path.join(os.getcwd(), 'mlmd_metadata.db')
+    connection_config.sqlite.connection_mode = metadata_store_pb2.SqliteMetadataSourceConfig.READWRITE_OPENCREATE
+    return metadata_store.MetadataStore(connection_config)
+
+mlmd_store = setup_mlmd_store()
 
 # Define schema
 def get_schema():
@@ -48,6 +59,15 @@ def get_schema():
         "sin_day_of_week": {"type": "float", "min": -1.0, "max": 1.0, "required": True},
         "cos_day_of_week": {"type": "float", "min": -1.0, "max": 1.0, "required": True},
     }
+
+# Log schema to MLMD
+def log_schema_to_mlmd(store, schema):
+    schema_artifact_type = metadata_store_pb2.ArtifactType(name="DataSchema")
+    schema_artifact_type_id = store.put_artifact_type(schema_artifact_type)
+    schema_artifact = metadata_store_pb2.Artifact(type_id=schema_artifact_type_id)
+    schema_artifact.uri = "schema.json"  # Could save the schema to a file and reference here
+    store.put_artifacts([schema_artifact])
+    logger.info("Schema logged to MLMD.")
 
 # Validation function for each column
 def validate_column(column_name, column_data, column_schema):
@@ -92,10 +112,14 @@ def validate_data(data, schema):
 
 # Main function to load data and run validation
 def main():
-    file_path = os.path.join(os.getcwd(),'DataPreprocessing/src/data_store_pkl_files/test_data/feature_eng_test_data.pkl')
+    file_path = os.path.join(os.getcwd(), 'DataPreprocessing/src/data_store_pkl_files/test_data/feature_eng_test_data.pkl')
     data = pd.read_pickle(file_path)
     schema = get_schema()
     
+    # Log schema to MLMD
+    log_schema_to_mlmd(mlmd_store, schema)
+    
+    # Run data validation
     if validate_data(data, schema):
         logger.info("Data validation passed.")
     else:
