@@ -27,7 +27,7 @@ conf.set('core', 'enable_parquet_xcom', 'True')
 
 
 default_args = {
-    'owner': 'Srilakshmi_P',
+    'owner': 'MLOPS',
     'start_date': datetime(2024, 10, 21),
     'retries': 1, # Number of retries in case of task failure
     'retry_delay': timedelta(minutes=1), # Delay before retries

@@ -1,0 +1,1 @@
+{"columns": [{"name": "date", "type": "string", "required": true, "format": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\+\\d{2}:\\d{2}$"}, {"name": "parameter", "type": "string", "required": true, "allowed_values": ["pm25", "co", "no", "no2", "o3", "so2", "pm10"]}]}
