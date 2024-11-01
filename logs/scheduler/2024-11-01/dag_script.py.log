@@ -1,0 +1,79 @@
+[2024-11-01T02:56:52.748+0000] {processor.py:161} INFO - Started process (PID=95) to work on /opt/airflow/dags/dag_script.py
+[2024-11-01T02:56:52.749+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-01T02:56:52.751+0000] {logging_mixin.py:188} INFO - [2024-11-01T02:56:52.750+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-01T02:56:54.411+0000] {logging_mixin.py:188} INFO - [2024-11-01T02:56:54.411+0000] {font_manager.py:1584} INFO - generated new fontManager
+[2024-11-01T02:56:54.702+0000] {logging_mixin.py:188} INFO - [2024-11-01T02:56:54.700+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/dag_script.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/dag_script.py", line 24, in <module>
+    from dags.DataPreprocessing.src.Schema.check_schema_original_airpollution import  main_check_schema_original
+ImportError: cannot import name 'main_check_schema_original' from 'dags.DataPreprocessing.src.Schema.check_schema_original_airpollution' (/opt/airflow/dags/DataPreprocessing/src/Schema/check_schema_original_airpollution.py)
+[2024-11-01T02:56:54.703+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-01T02:56:54.787+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 2.048 seconds
+[2024-11-01T02:57:25.102+0000] {processor.py:161} INFO - Started process (PID=112) to work on /opt/airflow/dags/dag_script.py
+[2024-11-01T02:57:25.223+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-01T02:57:25.226+0000] {logging_mixin.py:188} INFO - [2024-11-01T02:57:25.225+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-01T02:57:26.363+0000] {logging_mixin.py:188} INFO - [2024-11-01T02:57:26.362+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/dag_script.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/dag_script.py", line 24, in <module>
+    from dags.DataPreprocessing.src.Schema.check_schema_original_airpollution import  main_check_schema_original
+ImportError: cannot import name 'main_check_schema_original' from 'dags.DataPreprocessing.src.Schema.check_schema_original_airpollution' (/opt/airflow/dags/DataPreprocessing/src/Schema/check_schema_original_airpollution.py)
+[2024-11-01T02:57:26.363+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-01T02:57:26.380+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.294 seconds
+[2024-11-01T02:57:56.429+0000] {processor.py:161} INFO - Started process (PID=127) to work on /opt/airflow/dags/dag_script.py
+[2024-11-01T02:57:56.430+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-01T02:57:56.430+0000] {logging_mixin.py:188} INFO - [2024-11-01T02:57:56.430+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-01T02:57:57.497+0000] {logging_mixin.py:188} INFO - [2024-11-01T02:57:57.496+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/dag_script.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/dag_script.py", line 24, in <module>
+    from dags.DataPreprocessing.src.Schema.check_schema_original_airpollution import  main_check_schema_original
+ImportError: cannot import name 'main_check_schema_original' from 'dags.DataPreprocessing.src.Schema.check_schema_original_airpollution' (/opt/airflow/dags/DataPreprocessing/src/Schema/check_schema_original_airpollution.py)
+[2024-11-01T02:57:57.497+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-01T02:57:57.521+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.097 seconds
+[2024-11-01T03:00:08.991+0000] {processor.py:161} INFO - Started process (PID=94) to work on /opt/airflow/dags/dag_script.py
+[2024-11-01T03:00:08.994+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-01T03:00:09.006+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:00:09.005+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-01T03:00:11.963+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:00:11.962+0000] {font_manager.py:1584} INFO - generated new fontManager
+[2024-11-01T03:00:12.515+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-01T03:00:12.828+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:00:12.827+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-01T03:00:12.842+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:00:12.841+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-01T03:00:13.662+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 4.694 seconds
+[2024-11-01T03:00:43.999+0000] {processor.py:161} INFO - Started process (PID=111) to work on /opt/airflow/dags/dag_script.py
+[2024-11-01T03:00:44.001+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-01T03:00:44.018+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:00:44.014+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-01T03:00:45.721+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-01T03:00:45.736+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:00:45.736+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-01T03:00:45.741+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:00:45.741+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-01T03:00:45.747+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.760 seconds
+[2024-11-01T03:01:16.078+0000] {processor.py:161} INFO - Started process (PID=126) to work on /opt/airflow/dags/dag_script.py
+[2024-11-01T03:01:16.079+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-01T03:01:16.084+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:01:16.083+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-01T03:01:17.402+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-01T03:01:17.416+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:01:17.416+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-01T03:01:17.425+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:01:17.425+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-01T03:01:17.439+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.370 seconds
+[2024-11-01T03:01:47.714+0000] {processor.py:161} INFO - Started process (PID=141) to work on /opt/airflow/dags/dag_script.py
+[2024-11-01T03:01:47.715+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-01T03:01:47.717+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:01:47.717+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-01T03:01:48.677+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-01T03:01:48.712+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:01:48.712+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-01T03:01:48.719+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:01:48.719+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-01T03:01:48.727+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.022 seconds
+[2024-11-01T03:02:19.038+0000] {processor.py:161} INFO - Started process (PID=156) to work on /opt/airflow/dags/dag_script.py
+[2024-11-01T03:02:19.039+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-01T03:02:19.042+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:02:19.042+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-01T03:02:19.964+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-01T03:02:19.985+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:02:19.985+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-01T03:02:19.992+0000] {logging_mixin.py:188} INFO - [2024-11-01T03:02:19.992+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-01T03:02:19.999+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.969 seconds

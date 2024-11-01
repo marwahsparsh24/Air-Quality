@@ -21,9 +21,9 @@ from dags.DataPreprocessing.src.test.data_preprocessing.removal_of_uneccesary_co
 from dags.DataPreprocessing.src.test.data_preprocessing.anamoly_detection import anamoly_detection_val as anamoly_detection_test
 from dags.DataPreprocessing.src.test.data_preprocessing.check_missing_values import handle_missing_vals as check_missing_values_test
 from dags.DataPreprocessing.src.test.data_preprocessing.feature_eng import feature_engineering as feature_eng_test
-from dags.DataPreprocessing.src.Schema.check_schema_original_airpollution import  main_check_schema_original
-from dags.DataPreprocessing.src.Schema.test_schema.check_output_data_schema import main_test_schema
-from dags.DataPreprocessing.src.Schema.train_schema.check_output_data_schema import main_train_schema
+from dags.DataPreprocessing.src.Schema.check_schema_original_airpollution import  main_generate_schema_and_statistics as main_check_schema_original
+from dags.DataPreprocessing.src.Schema.test_schema.check_output_data_schema import main_generate_schema_and_statistics as main_test_schema
+from dags.DataPreprocessing.src.Schema.train_schema.check_output_data_schema import main_generate_schema_and_statistics as main_train_schema
 
 conf.set('core', 'enable_xcom_pickling', 'True')
 conf.set('core', 'enable_parquet_xcom', 'True')

@@ -1,0 +1,54 @@
+{
+    "columns": [
+        {
+            "name": "date",
+            "type": "object",
+            "required": 1,
+            "format": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}\\+\\d{2}:\\d{2}$"
+        },
+        {
+            "name": "location",
+            "type": "object",
+            "required": 1
+        },
+        {
+            "name": "parameter",
+            "type": "object",
+            "required": 1,
+            "allowed_values": [
+                "o3",
+                "pm25"
+            ]
+        },
+        {
+            "name": "value",
+            "type": "float64",
+            "required": 1
+        },
+        {
+            "name": "unit",
+            "type": "object",
+            "required": 1
+        },
+        {
+            "name": "latitude",
+            "type": "float64",
+            "required": 1
+        },
+        {
+            "name": "longitude",
+            "type": "float64",
+            "required": 1
+        },
+        {
+            "name": "city",
+            "type": "float64",
+            "required": 0
+        },
+        {
+            "name": "country",
+            "type": "object",
+            "required": 1
+        }
+    ]
+}

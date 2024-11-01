@@ -1,7 +1,7 @@
 import pandas as pd
+import numpy as np
 import os
 import json
-import re
 import logging
 
 # Set up logging configuration to log to a file and console
@@ -17,66 +17,95 @@ logging.basicConfig(
 logger = logging.getLogger(__name__)
 
 # Constants for file paths
-SCHEMA_FILE_PATH = os.path.join(os.getcwd(), 'custom_schema_original_dataset.json')
-DATASET_FILE_PATH = os.path.join(os.getcwd(), 'DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl')
+SCHEMA_FILE_PATH = os.path.join(os.getcwd(), 'dags/custom_schema_generated_from_api.json')
+DATASET_FILE_PATH = os.path.join(os.getcwd(), 'dags/DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl')
+STATS_FILE_PATH = os.path.join(os.getcwd(), 'dags/air_pollution_stats.json')
 
+# Function to generate schema based on dataset structure
+def generate_schema(data):
+    print(data.dtypes.items())
+    # Check if 'date' and 'parameter' columns are present
+    required_columns = ['date', 'parameter']
+    missing_columns = [col for col in required_columns if col not in data.columns]
+    if missing_columns:
+        logger.error("Missing required columns: %s", missing_columns)
+        raise ValueError(f"Dataset is missing required columns: {missing_columns}")
+    
+    # Schema generation based on data structure
+    schema = {"columns": []}
+    for column_name, dtype in data.dtypes.items():
+        column_info = {
+            "name": column_name,
+            "type": dtype.name,
+            "required": not data[column_name].isnull().any()  # True if no missing values
+        }
 
-#Define the schema and save it as a JSON file
-def define_and_save_schema(file_path):
-    schema = {
-        "columns": [
-            {"name": "date", "type": "string", "required": True, "format": r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}$"},
-            {"name": "parameter", "type": "string", "required": True, "allowed_values": ["pm25", "co", "no", "no2", "o3", "so2", "pm10"]}
-        ]
-    }
+        # Adding specific constraints (e.g., date format for "date" column, allowed values for "parameter" column)
+        if column_name == "date":
+            column_info["format"] = r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}\+\d{2}:\d{2}$"
+        elif column_name == "parameter":
+            column_info["allowed_values"] = list(data[column_name].unique())
+        
+        schema["columns"].append(column_info)
+    
+    return schema
+
+# Function to generate statistics for each column
+def generate_statistics(data):
+    stats = {}
+    for column in data.columns:
+        stats[column] = {
+            "mean": data[column].mean() if pd.api.types.is_numeric_dtype(data[column]) else None,
+            "std_dev": data[column].std() if pd.api.types.is_numeric_dtype(data[column]) else None,
+            "min": data[column].min(),
+            "max": data[column].max(),
+            "missing_values": data[column].isnull().sum(),
+            "unique_values": len(data[column].unique())
+        }
+    return stats
+
+# Save data (schema or statistics) to a JSON file
+def save_to_file(data, file_path):
+    def convert_types(obj):
+        if isinstance(obj, (pd.Series, pd.DataFrame)):
+            return obj.to_dict()
+        elif isinstance(obj, pd.Timestamp):
+            return obj.isoformat()
+        elif isinstance(obj, (np.integer, int)):
+            return int(obj)
+        elif isinstance(obj, (np.floating, float)):
+            return float(obj)
+        elif isinstance(obj, dict):
+            return {k: convert_types(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [convert_types(i) for i in obj]
+        return obj
+
+    # Convert the data for serialization
+    data = convert_types(data)
+
     with open(file_path, 'w') as f:
-        json.dump(schema, f)
-    logger.info("Schema saved to %s", file_path)
+        json.dump(data, f, indent=4)
+    logger.info("Data saved to %s", file_path)
 
-def validate_data(data, schema):
-    # Check if 'parameter' column contains 'pm25'
-    parameter_col = data['parameter'] if 'parameter' in data.columns else None
-    if parameter_col is None or not parameter_col.str.contains('pm25').any():
-        logger.error("Error: 'parameter' column must contain at least one instance of 'pm25'.")
-        return False
-    
-    # Validate 'date' format using regex
-    date_format_regex = schema['columns'][0]['format']
-    date_col = data['date'] if 'date' in data.columns else None
-    if date_col is None or not date_col.astype(str).str.match(date_format_regex).all():
-        logger.error("Error: Some entries in 'date' column do not match the required format %s", date_format_regex)
-        return False
+# Load the dataset, generate schema and statistics, and save them
+def main_generate_schema_and_statistics():
+    data = pd.read_pickle(DATASET_FILE_PATH)
+    logger.info("Loaded dataset from %s", DATASET_FILE_PATH)
 
-    logger.info("Dataset is valid according to the schema.")
-    return True
+    if isinstance(data, pd.Series):
+        data = data.to_frame()
+    elif not isinstance(data, pd.DataFrame):
+        raise ValueError("Loaded data is not a DataFrame or Series.")
 
-# 5. Load the dataset and validate it
-def load_and_validate_dataset(file_path, schema_path):
-    # Load dataset
-    data = pd.read_pickle(file_path)
-    logger.info("Loaded dataset from %s", file_path)
-    
-    # Load schema
-    with open(schema_path, 'r') as f:
-        schema = json.load(f)
-    logger.info("Loaded schema from %s", schema_path)
-    
-    # Validate data
-    is_valid = validate_data(data, schema)
-    return is_valid
+    # Generate schema and statistics
+    schema = generate_schema(data)
+    stats = generate_statistics(data)
 
-# Main function to orchestrate everything
-def main_check_schema_original():
-    # Define and save the schema
-    define_and_save_schema(SCHEMA_FILE_PATH)
-    
-    # Step 4: Load and validate dataset
-    is_valid = load_and_validate_dataset(DATASET_FILE_PATH, SCHEMA_FILE_PATH)
-    if is_valid:
-        logger.info("Data validation passed.")
-    else:
-        logger.error("Data validation failed.")
+    # Save schema and statistics
+    save_to_file(schema, SCHEMA_FILE_PATH)
+    save_to_file(stats, STATS_FILE_PATH)
 
 # Run the main function
 if __name__ == "__main__":
-    main_check_schema_original()
+    main_generate_schema_and_statistics()
