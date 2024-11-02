@@ -4,8 +4,9 @@ import sys
 from airflow import configuration as conf
 import logging
 
-sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from airflow.utils.trigger_rule import TriggerRule
 from airflow.operators.python import PythonOperator, BranchPythonOperator
 from airflow.operators.email import EmailOperator
 from airflow.operators.dummy import DummyOperator
@@ -49,6 +50,32 @@ def check_anomalies_loading_data(**kwargs):
     logging.info("Branching to continue_pipeline")
     return 'continue_pipeline_load_data'
 
+def check_anomalies_split_data(**kwargs):
+    anomalies = kwargs['ti'].xcom_pull(task_ids='split_train_test')
+    logging.info(f"Anomalies detected: {anomalies}")
+    if anomalies:  # If anomalies are detected, trigger the email
+        logging.info("send_anomaly_alert_train_test")
+        return 'send_anomaly_alert_train_test'
+    logging.info("Branching to continue_pipeline")
+    return 'continue_pipeline_train_test'
+
+def check_anomalies_pivoting_data_train(**kwargs):
+    anomalies = kwargs['ti'].xcom_pull(task_ids='pivot_data_train')
+    logging.info(f"Anomalies detected: {anomalies}")
+    if anomalies:  # If anomalies are detected, trigger the email
+        logging.info("send_anomaly_alert_pivot_data_train")
+        return 'send_anomaly_alert_pivot_data_train'
+    logging.info("Branching to continue_pipeline")
+    return 'continue_pipeline_pivot_data_train'
+
+def check_anomalies_pivoting_data_test(**kwargs):
+    anomalies = kwargs['ti'].xcom_pull(task_ids='pivot_data_test')
+    logging.info(f"Anomalies detected: {anomalies}")
+    if anomalies:  # If anomalies are detected, trigger the email
+        logging.info("send_anomaly_alert_pivot_data_test")
+        return 'send_anomaly_alert_pivot_data_test'
+    logging.info("Branching to continue_pipeline")
+    return 'continue_pipeline_pivot_data_test'
 
 default_args = {
     'owner': 'MLOPS',
@@ -86,6 +113,27 @@ branch_task_load_data = BranchPythonOperator(
     dag=dag
 )
 
+branch_task_split = BranchPythonOperator(
+    task_id='check_anomalies_split_data',
+    python_callable=check_anomalies_split_data,
+    provide_context=True,
+    dag=dag
+)
+
+branch_pivot_data_train = BranchPythonOperator(
+    task_id='check_anomalies_pivoting_data_train',
+    python_callable=check_anomalies_pivoting_data_train,
+    provide_context=True,
+    dag=dag
+)
+
+branch_pivot_data_test = BranchPythonOperator(
+    task_id='check_anomalies_pivoting_data_test',
+    python_callable=check_anomalies_pivoting_data_test,
+    provide_context=True,
+    dag=dag
+)
+
 send_anomaly_alert = EmailOperator(
     task_id='send_anomaly_alert_api',
     to='followsrilu345@gmail.com',
@@ -118,13 +166,67 @@ send_anomaly_alert_load_data = EmailOperator(
     dag=dag
 )
 
+send_anomaly_alert_train_test = EmailOperator(
+    task_id='send_anomaly_alert_train_test',
+    to='followsrilu345@gmail.com',
+    subject='Data Anomaly Alert for Splitting Data',
+    html_content="""<p>Anomalies detected in the data pipeline while splitting data. Details:</p>
+                    {% set anomalies = ti.xcom_pull(task_ids='split_train_test') %}
+                    {% if anomalies %}
+                        <ul>{% for item in anomalies %}<li>{{ item }}</li>{% endfor %}</ul>
+                    {% else %}
+                        <p>No specific anomaly details available.</p>
+                    {% endif %}""",
+    dag=dag
+)
+
+send_anomaly_pivot_data_train = EmailOperator(
+    task_id='send_anomaly_pivot_data_train',
+    to='followsrilu345@gmail.com',
+    subject='Data Anomaly Alert for pivoting train Data',
+    html_content="""<p>Anomalies detected in the data pipeline while pivotting data. Details:</p>
+                    {% set anomalies = ti.xcom_pull(task_ids='pivot_data_train') %}
+                    {% if anomalies %}
+                        <ul>{% for item in anomalies %}<li>{{ item }}</li>{% endfor %}</ul>
+                    {% else %}
+                        <p>No specific anomaly details available.</p>
+                    {% endif %}""",
+    dag=dag
+)
+
+send_anomaly_pivot_data_test = EmailOperator(
+    task_id='send_anomaly_pivot_data_test',
+    to='followsrilu345@gmail.com',
+    subject='Data Anomaly Alert for pivoting test Data',
+    html_content="""<p>Anomalies detected in the data pipeline while pivotting data. Details:</p>
+                    {% set anomalies = ti.xcom_pull(task_ids='pivot_data_test') %}
+                    {% if anomalies %}
+                        <ul>{% for item in anomalies %}<li>{{ item }}</li>{% endfor %}</ul>
+                    {% else %}
+                        <p>No specific anomaly details available.</p>
+                    {% endif %}""",
+    dag=dag
+)
+
 continue_pipeline = DummyOperator(task_id='continue_pipeline', dag=dag)
 
 continue_pipeline_load_data = DummyOperator(task_id='continue_pipeline_load_data', dag=dag)
 
+continue_pipeline_train_test = DummyOperator(task_id='continue_pipeline_train_test',dag=dag)
+
+continue_pipeline_pivot_data_train = DummyOperator(task_id='continue_pipeline_pivot_data_train',dag=dag)
+
+continue_pipeline_pivot_data_test = DummyOperator(task_id='continue_pipeline_pivot_data_test',dag=dag)
+
 merge_branch = DummyOperator(task_id='merge_branch', trigger_rule='none_failed_min_one_success',dag=dag)
 
 merge_branch_load_data = DummyOperator(task_id='merge_branch_load_data', trigger_rule='none_failed_min_one_success',dag=dag)
+
+merge_branch_train_test = DummyOperator(task_id='merge_branch_train_test', trigger_rule='none_failed_min_one_success',dag=dag)
+
+merge_branch_pivot_data_train= DummyOperator(task_id='merge_branch_pivot_data_train', trigger_rule='none_failed_min_one_success',dag=dag)
+
+merge_branch_pivot_data_test= DummyOperator(task_id='merge_branch_pivot_data_test', trigger_rule='none_failed_min_one_success',dag=dag)
 
 # load the data and save it in pickle file
 data_Loader = PythonOperator(
@@ -231,10 +333,20 @@ feature_engineering_test = PythonOperator(
 # order in which tasks are run
 download_data_api >> branch_task >> [send_anomaly_alert, continue_pipeline] >> merge_branch \
 >> data_Loader >> branch_task_load_data >> [send_anomaly_alert_load_data,continue_pipeline_load_data] >> merge_branch_load_data \
->> data_Split >> data_schema_original \
->> data_train_pivot >> data_remove_cols_train >> handle_missing_vals_train \
->> anamolies_vals_train >> feature_engineering_train >> data_test_pivot >> data_remove_cols_test >> handle_missing_vals_test \
->> anamolies_vals_test >> feature_engineering_test >> data_schema_train_data_feature_eng >> data_schema_test_data_feature_eng
+>> data_Split >> branch_task_split >> [send_anomaly_alert_train_test,continue_pipeline_train_test] >> merge_branch_train_test \
+>> data_schema_original \
+>> data_train_pivot >> branch_pivot_data_train >> [send_anomaly_pivot_data_train,continue_pipeline_pivot_data_train] >> merge_branch_pivot_data_train \
+>> data_remove_cols_train \
+>> handle_missing_vals_train \
+>> anamolies_vals_train \
+>> feature_engineering_train \
+>> data_test_pivot >> branch_pivot_data_test >> [send_anomaly_pivot_data_test,continue_pipeline_pivot_data_test] >> merge_branch_pivot_data_test \
+>> data_remove_cols_test \
+>> handle_missing_vals_test \
+>> anamolies_vals_test \
+>> feature_engineering_test \
+>> data_schema_train_data_feature_eng \
+>> data_schema_test_data_feature_eng
 
 if __name__ == "__main__":
     dag.cli()
