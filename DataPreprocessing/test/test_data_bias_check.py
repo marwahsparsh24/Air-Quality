@@ -49,8 +49,5 @@ def test_resample_biased_months(pm25_analysis):
     assert len(resampled_data) >= len(pm25_analysis.data_pm25), "Resampled data should have at least as many rows as the original data"
 
 
-# In[ ]:
-
-
 
 

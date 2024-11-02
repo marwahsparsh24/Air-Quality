@@ -165,8 +165,8 @@ def main(filepath, sensitive_feature=None, threshold=0.2, save_path=None):
         print("Final Resampled Data:\n", resampled_data.head())
 
 def bias_main():
-    input_path = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl")
-    save_path = os.path.join(os.getcwd(),"DataPreprocessing/src/data_store_pkl_files/resampled_data.pkl")
+    input_path = os.path.join(os.getcwd(),"dags/DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl")
+    save_path = os.path.join(os.getcwd(),"dags/DataPreprocessing/src/data_store_pkl_files/resampled_data.pkl")
     # Run the main function with the specified file path and save path
     main(
        input_path, 

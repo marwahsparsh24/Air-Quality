@@ -1,0 +1,133 @@
+[2024-11-02T20:13:50.561+0000] {processor.py:161} INFO - Started process (PID=53) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:13:50.565+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:13:50.572+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:13:50.570+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:13:53.581+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:13:53.580+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/dag_script.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/dag_script.py", line 31, in <module>
+    from dags.DataPreprocessing.src.data_bias_check_final import bias_main as data_biasing
+  File "/opt/airflow/dags/DataPreprocessing/src/data_bias_check_final.py", line 8, in <module>
+    from fairlearn.metrics import MetricFrame
+ModuleNotFoundError: No module named 'fairlearn'
+[2024-11-02T20:13:53.582+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:13:53.615+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 3.067 seconds
+[2024-11-02T20:14:23.980+0000] {processor.py:161} INFO - Started process (PID=74) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:14:23.981+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:14:23.984+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:14:23.984+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:14:24.795+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:14:24.794+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/dag_script.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/dag_script.py", line 31, in <module>
+    from dags.DataPreprocessing.src.data_bias_check_final import bias_main as data_biasing
+  File "/opt/airflow/dags/DataPreprocessing/src/data_bias_check_final.py", line 8, in <module>
+    from fairlearn.metrics import MetricFrame
+ModuleNotFoundError: No module named 'fairlearn'
+[2024-11-02T20:14:24.795+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:14:24.803+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.830 seconds
+[2024-11-02T20:15:45.309+0000] {processor.py:161} INFO - Started process (PID=95) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:15:45.309+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:15:45.311+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:15:45.310+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:15:46.592+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:15:46.592+0000] {font_manager.py:1584} INFO - generated new fontManager
+[2024-11-02T20:15:46.799+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-02T20:15:46.803+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:15:46.801+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/dag_script.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/dag_script.py", line 444, in <module>
+    data_Bias = PythonOperator(
+                ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 468, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'python_callable'
+[2024-11-02T20:15:46.804+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:15:46.816+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.510 seconds
+[2024-11-02T20:16:17.173+0000] {processor.py:161} INFO - Started process (PID=112) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:16:17.174+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:16:17.177+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:16:17.176+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:16:18.035+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-02T20:16:18.040+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:16:18.038+0000] {dagbag.py:355} ERROR - Failed to import: /opt/airflow/dags/dag_script.py
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/dagbag.py", line 351, in parse
+    loader.exec_module(new_module)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap>", line 488, in _call_with_frames_removed
+  File "/opt/airflow/dags/dag_script.py", line 444, in <module>
+    data_Bias = PythonOperator(
+                ^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 468, in apply_defaults
+    raise AirflowException(f"missing keyword argument {missing_args.pop()!r}")
+airflow.exceptions.AirflowException: missing keyword argument 'python_callable'
+[2024-11-02T20:16:18.041+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:16:18.064+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.899 seconds
+[2024-11-02T20:16:35.693+0000] {processor.py:161} INFO - Started process (PID=127) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:16:35.694+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:16:35.696+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:16:35.696+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:16:36.658+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-02T20:16:36.678+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:16:36.792+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:16:36.792+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-02T20:16:36.797+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:16:36.797+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-02T20:16:36.817+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.129 seconds
+[2024-11-02T20:16:47.863+0000] {processor.py:161} INFO - Started process (PID=136) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:16:47.864+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:16:47.868+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:16:47.867+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:16:48.729+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-02T20:16:48.735+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:16:48.741+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:16:48.741+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-02T20:16:48.747+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:16:48.747+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-02T20:16:48.755+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.900 seconds
+[2024-11-02T20:17:27.787+0000] {processor.py:161} INFO - Started process (PID=57) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:17:27.792+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:17:27.796+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:17:27.795+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:17:29.502+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-02T20:17:29.510+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:17:29.625+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:17:29.624+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-02T20:17:29.636+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:17:29.636+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-02T20:17:29.654+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.874 seconds
+[2024-11-02T20:18:00.019+0000] {processor.py:161} INFO - Started process (PID=72) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:18:00.020+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:18:00.022+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:18:00.022+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:18:00.933+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-02T20:18:00.939+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:18:00.958+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:18:00.958+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-02T20:18:00.962+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:18:00.962+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-02T20:18:00.969+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.954 seconds
+[2024-11-02T20:18:31.504+0000] {processor.py:161} INFO - Started process (PID=93) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:18:31.505+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:18:31.507+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:18:31.507+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:18:32.487+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-02T20:18:32.493+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:18:32.512+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:18:32.511+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-02T20:18:32.517+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:18:32.517+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-02T20:18:32.532+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.033 seconds
+[2024-11-02T20:19:02.963+0000] {processor.py:161} INFO - Started process (PID=108) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:19:02.968+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:19:02.982+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:19:02.980+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:19:03.970+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-02T20:19:03.977+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:19:04.000+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:19:03.999+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-02T20:19:04.004+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:19:04.004+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-02T20:19:04.011+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.056 seconds
+[2024-11-02T20:19:34.382+0000] {processor.py:161} INFO - Started process (PID=123) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:19:34.384+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:19:34.386+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:19:34.386+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:19:35.197+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-02T20:19:35.204+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:19:35.224+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:19:35.224+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-02T20:19:35.229+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:19:35.229+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-02T20:19:35.239+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.865 seconds
+[2024-11-02T20:20:05.629+0000] {processor.py:161} INFO - Started process (PID=138) to work on /opt/airflow/dags/dag_script.py
+[2024-11-02T20:20:05.631+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-02T20:20:05.640+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:20:05.638+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:20:06.528+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-02T20:20:06.534+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-02T20:20:06.554+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:20:06.554+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-02T20:20:06.559+0000] {logging_mixin.py:188} INFO - [2024-11-02T20:20:06.558+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-02T20:20:06.565+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.945 seconds

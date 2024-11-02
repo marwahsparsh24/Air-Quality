@@ -76,7 +76,7 @@ class DataSplitter:
         return []
 
 def split():
-    pickle_file_path = os.path.join(os.getcwd(), "dags/DataPreprocessing/src/data_store_pkl_files/air_pollution.pkl")
+    pickle_file_path = os.path.join(os.getcwd(), "dags/DataPreprocessing/src/data_store_pkl_files/resampled_data.pkl")
     train_output_pickle_file = os.path.join(os.getcwd(), "dags/DataPreprocessing/src/data_store_pkl_files/train_data/train_data.pkl")
     test_output_pickle_file = os.path.join(os.getcwd(), "dags/DataPreprocessing/src/data_store_pkl_files/test_data/test_data.pkl")
 
