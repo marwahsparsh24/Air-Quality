@@ -41,6 +41,22 @@ def get_location_id(city, country_code):
         print(f"Error: {response.status_code}, {response.text}")
         return None
 
+def detect_anomalies_in_data(flattened_data):
+    anomalies = []
+    for entry in flattened_data:
+        # Check for missing critical values
+        if entry['date'] is None or entry['parameter'] is None or entry['value'] is None:
+            anomalies.append(f"Missing data detected in entry: {entry}")
+            continue
+        # Check for invalid value ranges (e.g., negative pollution values)
+        if entry['parameter'] in ['pm25', 'pm10', 'o3', 'no2', 'so2', 'co'] and entry['value'] < 0:
+            anomalies.append(f"Invalid negative value detected for {entry['parameter']}: {entry['value']} at {entry['date']}")
+        
+        # Check for duplicate records based on (date, location, parameter)
+        if flattened_data.count(entry) > 1:
+            anomalies.append(f"Duplicate entry detected: {entry}")
+    return anomalies  # Return list of anomalies (empty if none detected)
+
 def get_air_pollution_data(location_id, start_date, end_date):
     url = "https://api.openaq.org/v2/measurements"
     headers = {
@@ -108,6 +124,7 @@ def get_available_parameters(location_id):
 def download_data_function():
     #location_id = get_location_id(city, country_code)
     location_id = 869
+    all_anomalies = []
     #155
     #869
     #1341
@@ -122,11 +139,20 @@ def download_data_function():
         print(f"Location ID for {city}: {location_id}")
         air_pollution_data_1 = get_air_pollution_data(location_id, start_date_1, end_date_1)
         air_pollution_data_2 = get_air_pollution_data(location_id, start_date_2, end_date_2)
-
+        
     if air_pollution_data_1:
+        flattened_data_1 = flatten_data(air_pollution_data_1)
+        anomalies_1 = detect_anomalies_in_data(flattened_data_1)
+        if anomalies_1:
+            all_anomalies.extend(anomalies_1)
         save_to_csv(air_pollution_data_1, "dags/DataPreprocessing/src/data_store_pkl_files/csv/air_pollution_data_1.csv")
     if air_pollution_data_2:
+        flattened_data_2 = flatten_data(air_pollution_data_2)
+        anomalies_2 = detect_anomalies_in_data(flattened_data_2)
+        if anomalies_2:
+            all_anomalies.extend(anomalies_2)
         save_to_csv(air_pollution_data_2, "dags/DataPreprocessing/src/data_store_pkl_files/csv/air_pollution_data_2.csv")
+    return all_anomalies
 
 if __name__ == "__main__":
     download_data_function()

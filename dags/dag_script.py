@@ -2,10 +2,13 @@ from airflow import DAG
 import os
 import sys
 from airflow import configuration as conf
+import logging
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
-from airflow.operators.python import PythonOperator
+from airflow.operators.python import PythonOperator, BranchPythonOperator
+from airflow.operators.email import EmailOperator
+from airflow.operators.dummy import DummyOperator
 from datetime import timedelta,datetime
 from airflow.utils.dates import days_ago
 from dags.DataPreprocessing.src.data_air import download_data_function
@@ -27,6 +30,24 @@ from dags.DataPreprocessing.src.Schema.train_schema.check_output_data_schema imp
 
 conf.set('core', 'enable_xcom_pickling', 'True')
 conf.set('core', 'enable_parquet_xcom', 'True')
+
+def check_anomalies_and_send_email(**kwargs):
+    anomalies = kwargs['ti'].xcom_pull(task_ids='download_data_from_api')
+    logging.info(f"Anomalies detected: {anomalies}")
+    if anomalies:  # If anomalies are detected, trigger the email
+        logging.info("Branching to send_anomaly_alert_api")
+        return 'send_anomaly_alert_api'
+    logging.info("Branching to continue_pipeline")
+    return 'continue_pipeline'
+
+def check_anomalies_loading_data(**kwargs):
+    anomalies = kwargs['ti'].xcom_pull(task_ids='load_data_pickle')
+    logging.info(f"Anomalies detected: {anomalies}")
+    if anomalies:  # If anomalies are detected, trigger the email
+        logging.info("send_anomaly_alert_load_data")
+        return 'send_anomaly_alert_load_data'
+    logging.info("Branching to continue_pipeline")
+    return 'continue_pipeline_load_data'
 
 
 default_args = {
@@ -50,6 +71,60 @@ download_data_api = PythonOperator(
     python_callable=download_data_function,
     dag=dag
 )
+
+branch_task = BranchPythonOperator(
+    task_id='check_anomalies_and_send_email',
+    python_callable=check_anomalies_and_send_email,
+    provide_context=True,
+    dag=dag
+)
+
+branch_task_load_data = BranchPythonOperator(
+    task_id='check_anomalies_loading_data',
+    python_callable=check_anomalies_loading_data,
+    provide_context=True,
+    dag=dag
+)
+
+send_anomaly_alert = EmailOperator(
+    task_id='send_anomaly_alert_api',
+    to='followsrilu345@gmail.com',
+    subject='Data Anomaly Alert for API',
+    html_content="""<p>Anomalies detected in the data pipeline while using API. Details:</p>
+                    {% set anomalies = ti.xcom_pull(task_ids='download_data_from_api') %}
+                    {% if anomalies %}
+                        {% if anomalies is string %}
+                            <ul><li>{{ anomalies }}</li></ul>
+                        {% else %}
+                            <ul>{% for item in anomalies %}<li>{{ item }}</li>{% endfor %}</ul>
+                        {% endif %}
+                    {% else %}
+                        <p>No specific anomaly details available.</p>
+                    {% endif %}""",
+    dag=dag
+)
+
+send_anomaly_alert_load_data = EmailOperator(
+    task_id='send_anomaly_alert_load_data',
+    to='followsrilu345@gmail.com',
+    subject='Data Anomaly Alert for Loading Data',
+    html_content="""<p>Anomalies detected in the data pipeline while loading data. Details:</p>
+                    {% set anomalies = ti.xcom_pull(task_ids='load_data_pickle') %}
+                    {% if anomalies %}
+                        <ul>{% for item in anomalies %}<li>{{ item }}</li>{% endfor %}</ul>
+                    {% else %}
+                        <p>No specific anomaly details available.</p>
+                    {% endif %}""",
+    dag=dag
+)
+
+continue_pipeline = DummyOperator(task_id='continue_pipeline', dag=dag)
+
+continue_pipeline_load_data = DummyOperator(task_id='continue_pipeline_load_data', dag=dag)
+
+merge_branch = DummyOperator(task_id='merge_branch', trigger_rule='none_failed_min_one_success',dag=dag)
+
+merge_branch_load_data = DummyOperator(task_id='merge_branch_load_data', trigger_rule='none_failed_min_one_success',dag=dag)
 
 # load the data and save it in pickle file
 data_Loader = PythonOperator(
@@ -152,8 +227,11 @@ feature_engineering_test = PythonOperator(
     python_callable=feature_eng_test,
     dag=dag
 )
+
 # order in which tasks are run
-download_data_api >> data_Loader >> data_Split >> data_schema_original \
+download_data_api >> branch_task >> [send_anomaly_alert, continue_pipeline] >> merge_branch \
+>> data_Loader >> branch_task_load_data >> [send_anomaly_alert_load_data,continue_pipeline_load_data] >> merge_branch_load_data \
+>> data_Split >> data_schema_original \
 >> data_train_pivot >> data_remove_cols_train >> handle_missing_vals_train \
 >> anamolies_vals_train >> feature_engineering_train >> data_test_pivot >> data_remove_cols_test >> handle_missing_vals_test \
 >> anamolies_vals_test >> feature_engineering_test >> data_schema_train_data_feature_eng >> data_schema_test_data_feature_eng
