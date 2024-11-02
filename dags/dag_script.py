@@ -28,6 +28,7 @@ from dags.DataPreprocessing.src.test.data_preprocessing.feature_eng import featu
 from dags.DataPreprocessing.src.Schema.check_schema_original_airpollution import  main_generate_schema_and_statistics as main_check_schema_original
 from dags.DataPreprocessing.src.Schema.test_schema.check_output_data_schema import main_generate_schema_and_statistics as main_test_schema
 from dags.DataPreprocessing.src.Schema.train_schema.check_output_data_schema import main_generate_schema_and_statistics as main_train_schema
+from dags.DataPreprocessing.src.data_bias_check_final import bias_main as data_biasing
 
 conf.set('core', 'enable_xcom_pickling', 'True')
 conf.set('core', 'enable_parquet_xcom', 'True')
@@ -440,6 +441,11 @@ data_Loader = PythonOperator(
     dag=dag
 )
 
+data_Bias = PythonOperator(
+    task_id='bias_detection_and_mitigation',
+    python_callable=data_biasing,
+    dag=dag)
+
 # split data into traning and testing
 data_Split = PythonOperator(
     task_id='split_train_test',
@@ -538,6 +544,7 @@ feature_engineering_test = PythonOperator(
 # order in which tasks are run
 download_data_api >> branch_task >> [send_anomaly_alert, continue_pipeline] >> merge_branch \
 >> data_Loader >> branch_task_load_data >> [send_anomaly_alert_load_data,continue_pipeline_load_data] >> merge_branch_load_data \
+>> data_Bias \
 >> data_Split >> branch_task_split >> [send_anomaly_alert_train_test,continue_pipeline_train_test] >> merge_branch_train_test \
 >> data_schema_original \
 >> data_train_pivot >> branch_pivot_data_train >> [send_anomaly_pivot_data_train,continue_pipeline_pivot_data_train] \
