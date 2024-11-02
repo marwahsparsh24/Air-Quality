@@ -25,6 +25,9 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
 
+    - name: Set PYTHONPATH
+      run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/DataPreprocessing" >> $GITHUB_ENV
+
     - name: Run tests in DataPreprocessing/test/train_data
       run: pytest DataPreprocessing/test --junitxml=pytest-report.xml
       continue-on-error: false
