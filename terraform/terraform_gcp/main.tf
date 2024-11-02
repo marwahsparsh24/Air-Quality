@@ -72,10 +72,13 @@ resource "google_composer_environment" "airquality-composer" {
   config {
     software_config {
       image_version = "composer-2.9.7-airflow-2.9.3"  # Use a valid image version
+      pypi_packages = {
+      "gs://airquality-mlops-rg/composer_requirements/requirements.txt" = ""
+      } 
     }
+       
   }
 }
-
 # Optional: Set up the network and subnetwork (if required)
 resource "google_compute_network" "composer_network" {
   name                    = "composer-network"
