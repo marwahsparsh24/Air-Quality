@@ -77,6 +77,42 @@ def check_anomalies_pivoting_data_test(**kwargs):
     logging.info("Branching to continue_pipeline")
     return 'continue_pipeline_pivot_data_test'
 
+def check_anomalies_removal_data_train(**kwargs):
+    anomalies = kwargs['ti'].xcom_pull(task_ids='data_remove_cols_train')
+    logging.info(f"Anomalies detected: {anomalies}")
+    if anomalies:  # If anomalies are detected, trigger the email
+        logging.info("send_anomaly_alert_remove_cols_train")
+        return 'send_anomaly_alert_remove_cols_train'
+    logging.info("Branching to continue_pipeline")
+    return 'continue_pipeline_remove_cols_train'
+
+def check_anomalies_removal_data_test(**kwargs):
+    anomalies = kwargs['ti'].xcom_pull(task_ids='data_remove_cols_test')
+    logging.info(f"Anomalies detected: {anomalies}")
+    if anomalies:  # If anomalies are detected, trigger the email
+        logging.info("send_anomaly_alert_remove_cols_test")
+        return 'send_anomaly_alert_remove_cols_test'
+    logging.info("Branching to continue_pipeline")
+    return 'continue_pipeline_remove_cols_test'
+
+def check_anomalies_missing_vals_train(**kwargs):
+    anomalies = kwargs['ti'].xcom_pull(task_ids='handle_missing_vals_train')
+    logging.info(f"Anomalies detected: {anomalies}")
+    if anomalies:  # If anomalies are detected, trigger the email
+        logging.info("send_anomaly_alert_remove_cols_train")
+        return 'send_anomaly_alert_remove_cols_train'
+    logging.info("Branching to continue_pipeline")
+    return 'continue_pipeline_handle_missing_vals_train'
+
+def check_anomalies_missing_vals_test(**kwargs):
+    anomalies = kwargs['ti'].xcom_pull(task_ids='handle_missing_vals_test')
+    logging.info(f"Anomalies detected: {anomalies}")
+    if anomalies:  # If anomalies are detected, trigger the email
+        logging.info("send_anomaly_alert_handle_missing_vals_test")
+        return 'send_anomaly_alert_handle_missing_vals_test'
+    logging.info("Branching to continue_pipeline")
+    return 'continue_pipeline_handle_missing_vals_test'
+
 default_args = {
     'owner': 'MLOPS',
     'start_date': datetime(2024, 10, 21),
@@ -92,10 +128,31 @@ dag = DAG(
     catchup=False
 )
 
-# download the data in form of csv using data api 
-download_data_api = PythonOperator(
-    task_id='download_data_from_api',
-    python_callable=download_data_function,
+branch_missing_vals_train = BranchPythonOperator(
+    task_id='check_anomalies_missing_vals_train',
+    python_callable=check_anomalies_missing_vals_train,
+    provide_context=True,
+    dag=dag
+)
+
+branch_missing_vals_test = BranchPythonOperator(
+    task_id='check_anomalies_missing_vals_test',
+    python_callable=check_anomalies_missing_vals_test,
+    provide_context=True,
+    dag=dag
+)
+
+branch_removal_data_train = BranchPythonOperator(
+    task_id='check_anomalies_removal_data_train',
+    python_callable=check_anomalies_removal_data_train,
+    provide_context=True,
+    dag=dag
+)
+
+branch_removal_data_test = BranchPythonOperator(
+    task_id='check_anomalies_removal_data_test',
+    python_callable=check_anomalies_removal_data_test,
+    provide_context=True,
     dag=dag
 )
 
@@ -131,6 +188,62 @@ branch_pivot_data_test = BranchPythonOperator(
     task_id='check_anomalies_pivoting_data_test',
     python_callable=check_anomalies_pivoting_data_test,
     provide_context=True,
+    dag=dag
+)
+
+send_anomaly_alert_handle_missing_vals_test = EmailOperator(
+    task_id='send_anomaly_alert_handle_missing_vals_test',
+    to='followsrilu345@gmail.com',
+    subject='Data Anomaly Alert for handling missing values in test',
+    html_content="""<p>Anomalies detected in the data pipeline while handling missing values in test. Details:</p>
+                    {% set anomalies = ti.xcom_pull(task_ids='handle_missing_vals_test') %}
+                    {% if anomalies %}
+                        <ul>{% for item in anomalies %}<li>{{ item }}</li>{% endfor %}</ul>
+                    {% else %}
+                        <p>No specific anomaly details available.</p>
+                    {% endif %}""",
+    dag=dag
+)
+
+send_anomaly_alert_handle_missing_vals_train = EmailOperator(
+    task_id='send_anomaly_alert_handle_missing_vals_train',
+    to='followsrilu345@gmail.com',
+    subject='Data Anomaly Alert for handling missing values in train',
+    html_content="""<p>Anomalies detected in the data pipeline while handling missing values in train. Details:</p>
+                    {% set anomalies = ti.xcom_pull(task_ids='handle_missing_vals_train') %}
+                    {% if anomalies %}
+                        <ul>{% for item in anomalies %}<li>{{ item }}</li>{% endfor %}</ul>
+                    {% else %}
+                        <p>No specific anomaly details available.</p>
+                    {% endif %}""",
+    dag=dag
+)
+
+send_anomaly_removal_data_test = EmailOperator(
+    task_id='send_anomaly_alert_remove_cols_test',
+    to='followsrilu345@gmail.com',
+    subject='Data Anomaly Alert for removing columns test',
+    html_content="""<p>Anomalies detected in the data pipeline while removing columns test. Details:</p>
+                    {% set anomalies = ti.xcom_pull(task_ids='data_remove_cols_test') %}
+                    {% if anomalies %}
+                        <ul>{% for item in anomalies %}<li>{{ item }}</li>{% endfor %}</ul>
+                    {% else %}
+                        <p>No specific anomaly details available.</p>
+                    {% endif %}""",
+    dag=dag
+)
+
+send_anomaly_removal_data_train = EmailOperator(
+    task_id='send_anomaly_alert_remove_cols_train',
+    to='followsrilu345@gmail.com',
+    subject='Data Anomaly Alert for removing columns train',
+    html_content="""<p>Anomalies detected in the data pipeline removing columns train. Details:</p>
+                    {% set anomalies = ti.xcom_pull(task_ids='data_remove_cols_train') %}
+                    {% if anomalies %}
+                        <ul>{% for item in anomalies %}<li>{{ item }}</li>{% endfor %}</ul>
+                    {% else %}
+                        <p>No specific anomaly details available.</p>
+                    {% endif %}""",
     dag=dag
 )
 
@@ -218,6 +331,14 @@ continue_pipeline_pivot_data_train = DummyOperator(task_id='continue_pipeline_pi
 
 continue_pipeline_pivot_data_test = DummyOperator(task_id='continue_pipeline_pivot_data_test',dag=dag)
 
+continue_pipeline_remove_cols_train = DummyOperator(task_id='continue_pipeline_remove_cols_train',dag=dag)
+
+continue_pipeline_remove_cols_test = DummyOperator(task_id='continue_pipeline_remove_cols_test',dag=dag)
+
+continue_pipeline_handle_missing_vals_test = DummyOperator(task_id='continue_pipeline_handle_missing_vals_test',dag=dag)
+
+continue_pipeline_handle_missing_vals_train = DummyOperator(task_id='continue_pipeline_handle_missing_vals_train',dag=dag)
+
 merge_branch = DummyOperator(task_id='merge_branch', trigger_rule='none_failed_min_one_success',dag=dag)
 
 merge_branch_load_data = DummyOperator(task_id='merge_branch_load_data', trigger_rule='none_failed_min_one_success',dag=dag)
@@ -227,6 +348,21 @@ merge_branch_train_test = DummyOperator(task_id='merge_branch_train_test', trigg
 merge_branch_pivot_data_train= DummyOperator(task_id='merge_branch_pivot_data_train', trigger_rule='none_failed_min_one_success',dag=dag)
 
 merge_branch_pivot_data_test= DummyOperator(task_id='merge_branch_pivot_data_test', trigger_rule='none_failed_min_one_success',dag=dag)
+
+merge_branch_remove_cols_train= DummyOperator(task_id='merge_branch_remove_cols_train', trigger_rule='none_failed_min_one_success',dag=dag)
+
+merge_branch_remove_cols_test= DummyOperator(task_id='merge_branch_remove_cols_test', trigger_rule='none_failed_min_one_success',dag=dag)
+
+merge_branch_handle_missing_vals_train= DummyOperator(task_id='merge_branch_handle_missing_vals_train', trigger_rule='none_failed_min_one_success',dag=dag)
+
+merge_branch_handle_missing_vals_test= DummyOperator(task_id='merge_branch_handle_missing_vals_test', trigger_rule='none_failed_min_one_success',dag=dag)
+
+# download the data in form of csv using data api 
+download_data_api = PythonOperator(
+    task_id='download_data_from_api',
+    python_callable=download_data_function,
+    dag=dag
+)
 
 # load the data and save it in pickle file
 data_Loader = PythonOperator(
@@ -336,13 +472,13 @@ download_data_api >> branch_task >> [send_anomaly_alert, continue_pipeline] >> m
 >> data_Split >> branch_task_split >> [send_anomaly_alert_train_test,continue_pipeline_train_test] >> merge_branch_train_test \
 >> data_schema_original \
 >> data_train_pivot >> branch_pivot_data_train >> [send_anomaly_pivot_data_train,continue_pipeline_pivot_data_train] >> merge_branch_pivot_data_train \
->> data_remove_cols_train \
->> handle_missing_vals_train \
+>> data_remove_cols_train >> branch_removal_data_train >> [send_anomaly_removal_data_train,continue_pipeline_remove_cols_train] >> merge_branch_remove_cols_train \
+>> handle_missing_vals_train >> branch_missing_vals_train >> [send_anomaly_alert_handle_missing_vals_train,continue_pipeline_handle_missing_vals_train] >> merge_branch_handle_missing_vals_train \
 >> anamolies_vals_train \
 >> feature_engineering_train \
 >> data_test_pivot >> branch_pivot_data_test >> [send_anomaly_pivot_data_test,continue_pipeline_pivot_data_test] >> merge_branch_pivot_data_test \
->> data_remove_cols_test \
->> handle_missing_vals_test \
+>> data_remove_cols_test >> branch_removal_data_test >> [send_anomaly_removal_data_test,continue_pipeline_remove_cols_test] >> merge_branch_remove_cols_test \
+>> handle_missing_vals_test >> branch_missing_vals_test >> [send_anomaly_alert_handle_missing_vals_test,continue_pipeline_handle_missing_vals_test] >> merge_branch_handle_missing_vals_test \
 >> anamolies_vals_test \
 >> feature_engineering_test \
 >> data_schema_train_data_feature_eng \
