@@ -6,7 +6,7 @@
 
 import pytest
 import pandas as pd
-from data_bias_check_final import PM25Analysis  # Assuming the class is saved in a module
+from src.data_bias_check_final import PM25Analysis  # Assuming the class is saved in a module
 import tempfile
 
 @pytest.fixture
