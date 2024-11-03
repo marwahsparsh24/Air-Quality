@@ -3,10 +3,10 @@ name: Testing with Pytest (bias data)
 on:
   push:
     branches:
-      - main
+      - test_changes
   pull_request:
     branches:
-      - main
+      - test_changes
 
 jobs:
   build:
