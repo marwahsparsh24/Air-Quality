@@ -227,13 +227,13 @@ DVC is configured when data file is loaded initially in the gcs bucket configure
 
 ## Data Pipeline Steps
 
-The data pipeline for the Air-Quality project consists of a series of steps to preprocess, transform, and model air quality data. Each stage of the pipeline performs a specific function that prepares the data for PM2.5 and PM10 predictions.
+The data pipeline for the Air-Quality project consists of a series of steps to preprocess, transform, and model air quality data. Each stage of the pipeline performs a specific function that prepares the data for PM2.5  predictions.
  
  ### Pipeline Steps
 
 #### 1. Data Collection
 
-This step collects raw air quality data from OpenAQ API and stores it locally. The script is designed to fetch historical PM2.5 and PM10 readings based on specified parameters, such as geographic region and time range. Also stacks csv files
+This step collects raw air quality data from OpenAQ API and stores it locally. The script is designed to fetch historical PM2.5 readings based on specified parameters, such as geographic region and time range. Also stacks csv files
 
  Scripts: 
 
@@ -282,7 +282,7 @@ Scripts:
 
 #### 5.Feature Engineering
 
-This feature engineering step enhances model performance by capturing temporal patterns and environmental influences essential for air quality prediction. Techniques applied include lag and lead features to account for past and immediate future pollutant levels, rolling statistics (mean, sum, min, max) to summarize recent trends, and differencing to highlight rate of change. Cosine similarity with historical patterns is used to identify recurring pollution trends, while time-based features (hour, day, month) help capture cyclical variations providing a robust set of features for effective PM2.5 and PM10 predictions.
+This feature engineering step enhances model performance by capturing temporal patterns and environmental influences essential for air quality prediction. Techniques applied include lag and lead features to account for past and immediate future pollutant levels, rolling statistics (mean, sum, min, max) to summarize recent trends, and differencing to highlight rate of change. Cosine similarity with historical patterns is used to identify recurring pollution trends, while time-based features (hour, day, month) help capture cyclical variations providing a robust set of features for effective PM2.5 prediction.
 
 Script:
 
@@ -302,6 +302,6 @@ The above image shows the entire airflow dag data pipeline workflow.
 
 ## Email-Notification
 
-Email configurations are also included to update about the success and failure of the dags through smtp. Below mentioned email is used as part of configuration.
+Email configurations are also included to update about the success and failure of the dags through smtp. Below mentioned email is used as part of configuration and used same for triggering anomoly alerts. SMTP setup is configured in docker compose file, app code is generated accordingly and used as passcode. Currently recieving and sending mail is same which is mentioned below
 
 Email: anirudhak881@gmail.com
