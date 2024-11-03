@@ -76,6 +76,13 @@ class DataProcessor:
         else:
             logger.error("No pivoted data to save. Please pivot the data first.")
             return ["No pivoted data to save"]
+    
+    def process_dates(self):
+        if 'date' not in self.data.columns:
+            raise ValueError("No 'date' column in the DataFrame.")
+        
+        self.data['date'] = pd.to_datetime(self.data['date'])
+        print("Date column converted to datetime.")
 
 def pivot_parameters():
     file_path = os.path.join(os.getcwd(), "DataPreprocessing/src/data_store_pkl_files/train_data/train_data.pkl")
