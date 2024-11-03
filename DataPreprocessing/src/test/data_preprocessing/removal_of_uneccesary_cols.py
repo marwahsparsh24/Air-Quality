@@ -20,28 +20,49 @@ class DataCleaner:
         logger.info(f"Data loaded from {self.file_path}.")
         return []
 
+    # def drop_columns(self, columns_to_drop):
+    #     if self.data is None:
+    #         logger.error("Data is not loaded. Cannot drop columns.")
+    #         return ["Data not loaded"]
+
+    #     # Identify and drop columns that exist in the DataFrame
+    #     columns_present = [col for col in columns_to_drop if col in self.data.columns]
+    #     if columns_present:
+    #         self.data.drop(columns=columns_present, inplace=True)
+    #         logger.info(f"Successfully dropped columns: {columns_present}")
+    #     else:
+    #         logger.warning(f"None of the specified columns {columns_to_drop} exist in the DataFrame.")
+    #         return [f"None of the columns {columns_to_drop} exist in the DataFrame"]
+
+    #     # Check for an empty DataFrame after dropping columns
+    #     if self.data.empty:
+    #         anomaly = "DataFrame is empty after dropping columns."
+    #         logger.warning(anomaly)
+    #         return [anomaly]
+        
+    #     return []
+
     def drop_columns(self, columns_to_drop):
         if self.data is None:
             logger.error("Data is not loaded. Cannot drop columns.")
             return ["Data not loaded"]
-
-        # Identify and drop columns that exist in the DataFrame
-        columns_present = [col for col in columns_to_drop if col in self.data.columns]
-        if columns_present:
-            self.data.drop(columns=columns_present, inplace=True)
-            logger.info(f"Successfully dropped columns: {columns_present}")
-        else:
-            logger.warning(f"None of the specified columns {columns_to_drop} exist in the DataFrame.")
-            return [f"None of the columns {columns_to_drop} exist in the DataFrame"]
-
-        # Check for an empty DataFrame after dropping columns
+        
+        if self.data is not None:
+            columns_present = [col for col in columns_to_drop if col in self.data.columns]
+        
+            if columns_present:
+                self.data.drop(columns=columns_present, inplace=True)
+                logger.info(f"Successfully dropped columns: {columns_present}")
+            else:
+                logger.warning(f"None of the specified columns {columns_to_drop} exist in the DataFrame.")
+                return [f"None of the columns {columns_to_drop} exist in the DataFrame"]
+            self.data.set_index('date',inplace=True)
         if self.data.empty:
             anomaly = "DataFrame is empty after dropping columns."
             logger.warning(anomaly)
             return [anomaly]
-        
         return []
-
+    
     def set_date_index(self):
         if 'date' not in self.data.columns:
             anomaly = "Missing 'date' column to set as index."
