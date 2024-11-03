@@ -1,0 +1,96 @@
+[2024-11-03T02:35:23.491+0000] {processor.py:161} INFO - Started process (PID=58) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:35:23.493+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:35:23.497+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:35:23.496+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:35:26.487+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:35:26.507+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:35:26.550+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:35:26.549+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:35:26.571+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:35:26.571+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:35:26.586+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 3.101 seconds
+[2024-11-03T02:36:13.153+0000] {processor.py:161} INFO - Started process (PID=59) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:36:13.156+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:36:13.161+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:36:13.160+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:36:16.312+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:36:16.326+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:36:16.464+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:36:16.463+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:36:16.476+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:36:16.475+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:36:16.490+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 3.341 seconds
+[2024-11-03T02:36:46.629+0000] {processor.py:161} INFO - Started process (PID=80) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:36:46.630+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:36:46.637+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:36:46.636+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:36:47.933+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:36:47.940+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:36:47.968+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:36:47.967+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:36:47.975+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:36:47.974+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:36:47.981+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.366 seconds
+[2024-11-03T02:37:18.042+0000] {processor.py:161} INFO - Started process (PID=95) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:37:18.045+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:37:18.054+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:37:18.053+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:37:18.912+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:37:18.920+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:37:18.955+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:37:18.955+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:37:18.969+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:37:18.969+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:37:19.006+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.969 seconds
+[2024-11-03T02:37:49.246+0000] {processor.py:161} INFO - Started process (PID=110) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:37:49.246+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:37:49.249+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:37:49.248+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:37:50.042+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:37:50.049+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:37:50.071+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:37:50.071+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:37:50.076+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:37:50.076+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:37:50.082+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.842 seconds
+[2024-11-03T02:38:20.331+0000] {processor.py:161} INFO - Started process (PID=125) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:38:20.333+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:38:20.336+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:38:20.336+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:38:21.168+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:38:21.177+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:38:21.196+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:38:21.196+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:38:21.202+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:38:21.202+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:38:21.211+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.887 seconds
+[2024-11-03T02:38:51.663+0000] {processor.py:161} INFO - Started process (PID=140) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:38:51.670+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:38:51.676+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:38:51.676+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:38:52.456+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:38:52.461+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:38:52.482+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:38:52.482+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:38:52.486+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:38:52.486+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:38:52.493+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.852 seconds
+[2024-11-03T02:39:22.827+0000] {processor.py:161} INFO - Started process (PID=155) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:39:22.829+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:39:22.832+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:39:22.831+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:39:23.561+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:39:23.566+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:39:23.587+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:39:23.587+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:39:23.593+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:39:23.593+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:39:23.599+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.783 seconds
+[2024-11-03T02:39:53.915+0000] {processor.py:161} INFO - Started process (PID=170) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:39:53.918+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:39:53.922+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:39:53.922+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:39:54.632+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:39:54.638+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:39:54.657+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:39:54.657+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:39:54.662+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:39:54.662+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:39:54.669+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.762 seconds
+[2024-11-03T02:40:24.989+0000] {processor.py:161} INFO - Started process (PID=185) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:40:24.992+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:40:24.996+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:40:24.996+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:40:25.787+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:40:25.796+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:40:25.823+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:40:25.823+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:40:25.828+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:40:25.828+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:40:25.835+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.875 seconds
+[2024-11-03T02:40:56.119+0000] {processor.py:161} INFO - Started process (PID=200) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:40:56.122+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:40:56.126+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:40:56.126+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:40:56.921+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:40:56.926+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:40:56.944+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:40:56.944+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:40:56.949+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:40:56.949+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:40:56.955+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 0.848 seconds
+[2024-11-03T02:41:27.099+0000] {processor.py:161} INFO - Started process (PID=215) to work on /opt/airflow/dags/dag_script.py
+[2024-11-03T02:41:27.102+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script.py for tasks to queue
+[2024-11-03T02:41:27.106+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:41:27.105+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:41:28.079+0000] {logging_mixin.py:188} WARNING - /home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py:485 RemovedInAirflow3Warning: provide_context is deprecated as of 2.0 and is no longer required
+[2024-11-03T02:41:28.088+0000] {processor.py:840} INFO - DAG(s) 'datapipeline_new' retrieved from /opt/airflow/dags/dag_script.py
+[2024-11-03T02:41:28.131+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:41:28.131+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-03T02:41:28.138+0000] {logging_mixin.py:188} INFO - [2024-11-03T02:41:28.138+0000] {dag.py:3954} INFO - Setting next_dagrun for datapipeline_new to None, run_after=None
+[2024-11-03T02:41:28.147+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script.py took 1.063 seconds

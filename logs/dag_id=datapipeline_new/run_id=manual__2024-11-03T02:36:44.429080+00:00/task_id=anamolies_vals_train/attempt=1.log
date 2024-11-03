@@ -1,0 +1,27 @@
+[2024-11-03T02:37:54.090+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-03T02:37:54.100+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: datapipeline_new.anamolies_vals_train manual__2024-11-03T02:36:44.429080+00:00 [queued]>
+[2024-11-03T02:37:54.104+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: datapipeline_new.anamolies_vals_train manual__2024-11-03T02:36:44.429080+00:00 [queued]>
+[2024-11-03T02:37:54.104+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-03T02:37:54.201+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): anamolies_vals_train> on 2024-11-03 02:36:44.429080+00:00
+[2024-11-03T02:37:54.209+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=268) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-03T02:37:54.211+0000] {standard_task_runner.py:63} INFO - Started process 277 to run task
+[2024-11-03T02:37:54.209+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'datapipeline_new', 'anamolies_vals_train', 'manual__2024-11-03T02:36:44.429080+00:00', '--job-id', '722', '--raw', '--subdir', 'DAGS_FOLDER/dag_script.py', '--cfg-path', '/tmp/tmpmnl08wxm']
+[2024-11-03T02:37:54.211+0000] {standard_task_runner.py:91} INFO - Job 722: Subtask anamolies_vals_train
+[2024-11-03T02:37:54.262+0000] {task_command.py:426} INFO - Running <TaskInstance: datapipeline_new.anamolies_vals_train manual__2024-11-03T02:36:44.429080+00:00 [running]> on host 7ffb0854de89
+[2024-11-03T02:37:54.298+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='datapipeline_new' AIRFLOW_CTX_TASK_ID='anamolies_vals_train' AIRFLOW_CTX_EXECUTION_DATE='2024-11-03T02:36:44.429080+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-03T02:36:44.429080+00:00'
+[2024-11-03T02:37:54.299+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-03T02:37:54.309+0000] {anamoly_detection.py:21} INFO - Data loaded from /opt/***/dags/DataPreprocessing/src/data_store_pkl_files/train_data/no_null_train_data.pkl.
+[2024-11-03T02:37:54.314+0000] {anamoly_detection.py:48} INFO - Outliers in 'pm25' replaced with median value 5.7.
+[2024-11-03T02:37:54.315+0000] {anamoly_detection.py:65} INFO - Negative values in 'pm25' replaced with 0.
+[2024-11-03T02:37:54.316+0000] {anamoly_detection.py:70} INFO - Cleaned DataFrame saved as '/opt/***/dags/DataPreprocessing/src/data_store_pkl_files/train_data/no_anamoly_train_data.pkl'.
+[2024-11-03T02:37:54.316+0000] {anamoly_detection.py:87} INFO - Total anomalies: ["870 outliers detected in 'pm25' column."]
+[2024-11-03T02:37:54.316+0000] {anamoly_detection.py:88} INFO - Total outliers replaced: 870
+[2024-11-03T02:37:54.317+0000] {anamoly_detection.py:89} INFO - Total negative values replaced: 0
+[2024-11-03T02:37:54.317+0000] {python.py:237} INFO - Done. Returned value was: ["870 outliers detected in 'pm25' column."]
+[2024-11-03T02:37:54.317+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-03T02:37:54.325+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=datapipeline_new, task_id=anamolies_vals_train, run_id=manual__2024-11-03T02:36:44.429080+00:00, execution_date=20241103T023644, start_date=20241103T023754, end_date=20241103T023754
+[2024-11-03T02:37:54.362+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-03T02:37:54.378+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-03T02:37:54.379+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
