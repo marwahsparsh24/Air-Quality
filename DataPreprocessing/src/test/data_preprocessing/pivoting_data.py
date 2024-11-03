@@ -63,10 +63,18 @@ class DataProcessor:
         return anomalies
 
     def pivot_data(self):
-        # Pivot data
+        if 'date' not in self.data.columns or 'parameter' not in self.data.columns or 'value' not in self.data.columns:
+            raise ValueError("Missing one or more required columns: 'date', 'parameter', 'value'.")
+        
         self.pivoted_data = self.data.pivot_table(index='date', columns='parameter', values='value').reset_index()
         logger.info("Data pivoted successfully.")
         return []
+
+    # def pivot_data(self):
+    #     # Pivot data
+    #     self.pivoted_data = self.data.pivot_table(index='date', columns='parameter', values='value').reset_index()
+    #     logger.info("Data pivoted successfully.")
+    #     return []
 
     def save_as_pickle(self, output_path):
         if self.pivoted_data is not None:
