@@ -14,7 +14,7 @@ class PM25Analysis:
     def __init__(self, data_source):
         if isinstance(data_source, str):
             self.filepath = data_source
-            self.data_pm25 = None  # Data will be loaded from the file later
+            self.data_pm25 = None  # Data will be loaded from the file ater
         elif isinstance(data_source, pd.DataFrame):
             self.data_pm25 = data_source  # Directly assign the DataFrame
             self.filepath = None  # No file path needed
