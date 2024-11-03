@@ -1,0 +1,13 @@
+# Apache Airflow
+apache-airflow-providers-google==8.12.0
+
+# TensorFlow
+tensorflow====2.12.0
+
+# Scientific Computing
+scipy==1.10.1
+numpy==1.24.3
+pandas==2.0.3
+
+# Google Cloud Libraries
+google-cloud-storage==2.7.0
