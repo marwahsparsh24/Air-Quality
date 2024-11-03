@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main
-    #  - test  # Run the tests on both the main and test branches
   pull_request:
     branches:
       - main
