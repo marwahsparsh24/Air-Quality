@@ -267,6 +267,7 @@ send_anomaly_removal_data_test = EmailOperator(
     dag=dag
 )
 
+# removal cols anomalies
 send_anomaly_removal_data_train = EmailOperator(
     task_id='send_anomaly_alert_remove_cols_train',
     to='anirudhak881@gmail.com',
