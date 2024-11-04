@@ -1,0 +1,26 @@
+[2024-11-04T05:07:47.528+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-04T05:07:47.538+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: datapipeline_new.check_anomalies_anamoly_detection_val_test manual__2024-11-04T05:06:12.986905+00:00 [queued]>
+[2024-11-04T05:07:47.607+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: datapipeline_new.check_anomalies_anamoly_detection_val_test manual__2024-11-04T05:06:12.986905+00:00 [queued]>
+[2024-11-04T05:07:47.607+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-04T05:07:47.612+0000] {taskinstance.py:2330} INFO - Executing <Task(BranchPythonOperator): check_anomalies_anamoly_detection_val_test> on 2024-11-04 05:06:12.986905+00:00
+[2024-11-04T05:07:47.616+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=397) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-04T05:07:47.616+0000] {standard_task_runner.py:63} INFO - Started process 406 to run task
+[2024-11-04T05:07:47.617+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'datapipeline_new', 'check_anomalies_anamoly_detection_val_test', 'manual__2024-11-04T05:06:12.986905+00:00', '--job-id', '771', '--raw', '--subdir', 'DAGS_FOLDER/dag_script.py', '--cfg-path', '/tmp/tmpqftyqs8g']
+[2024-11-04T05:07:47.618+0000] {standard_task_runner.py:91} INFO - Job 771: Subtask check_anomalies_anamoly_detection_val_test
+[2024-11-04T05:07:47.633+0000] {task_command.py:426} INFO - Running <TaskInstance: datapipeline_new.check_anomalies_anamoly_detection_val_test manual__2024-11-04T05:06:12.986905+00:00 [running]> on host 7ffb0854de89
+[2024-11-04T05:07:47.662+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='datapipeline_new' AIRFLOW_CTX_TASK_ID='check_anomalies_anamoly_detection_val_test' AIRFLOW_CTX_EXECUTION_DATE='2024-11-04T05:06:12.986905+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-04T05:06:12.986905+00:00'
+[2024-11-04T05:07:47.662+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-04T05:07:47.668+0000] {baseoperator.py:400} WARNING - BranchPythonOperator.execute cannot be called outside TaskInstance!
+[2024-11-04T05:07:47.672+0000] {dag_script.py:128} INFO - Anomalies detected: ["380 outliers detected in 'pm25' column."]
+[2024-11-04T05:07:47.672+0000] {dag_script.py:130} INFO - send_anomaly_alert_anamolies_vals_test
+[2024-11-04T05:07:47.672+0000] {python.py:237} INFO - Done. Returned value was: send_anomaly_alert_anamolies_vals_test
+[2024-11-04T05:07:47.673+0000] {branch.py:36} INFO - Branch into send_anomaly_alert_anamolies_vals_test
+[2024-11-04T05:07:47.673+0000] {skipmixin.py:178} INFO - Following branch send_anomaly_alert_anamolies_vals_test
+[2024-11-04T05:07:47.678+0000] {skipmixin.py:246} INFO - Skipping tasks [('continue_pipeline_anamolies_vals_test', -1)]
+[2024-11-04T05:07:47.685+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-04T05:07:47.691+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=datapipeline_new, task_id=check_anomalies_anamoly_detection_val_test, run_id=manual__2024-11-04T05:06:12.986905+00:00, execution_date=20241104T050612, start_date=20241104T050747, end_date=20241104T050747
+[2024-11-04T05:07:47.717+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-04T05:07:47.730+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-04T05:07:47.731+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

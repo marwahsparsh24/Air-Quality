@@ -1,0 +1,24 @@
+[2024-11-04T05:06:59.661+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-04T05:06:59.756+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: datapipeline_new.send_anomaly_alert_remove_cols_train manual__2024-11-04T05:06:12.986905+00:00 [queued]>
+[2024-11-04T05:06:59.761+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: datapipeline_new.send_anomaly_alert_remove_cols_train manual__2024-11-04T05:06:12.986905+00:00 [queued]>
+[2024-11-04T05:06:59.762+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-04T05:06:59.767+0000] {taskinstance.py:2330} INFO - Executing <Task(EmailOperator): send_anomaly_alert_remove_cols_train> on 2024-11-04 05:06:12.986905+00:00
+[2024-11-04T05:06:59.776+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=213) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-04T05:06:59.777+0000] {standard_task_runner.py:63} INFO - Started process 229 to run task
+[2024-11-04T05:06:59.777+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'datapipeline_new', 'send_anomaly_alert_remove_cols_train', 'manual__2024-11-04T05:06:12.986905+00:00', '--job-id', '754', '--raw', '--subdir', 'DAGS_FOLDER/dag_script.py', '--cfg-path', '/tmp/tmpht65jqp9']
+[2024-11-04T05:06:59.781+0000] {standard_task_runner.py:91} INFO - Job 754: Subtask send_anomaly_alert_remove_cols_train
+[2024-11-04T05:06:59.810+0000] {task_command.py:426} INFO - Running <TaskInstance: datapipeline_new.send_anomaly_alert_remove_cols_train manual__2024-11-04T05:06:12.986905+00:00 [running]> on host 7ffb0854de89
+[2024-11-04T05:06:59.850+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='datapipeline_new' AIRFLOW_CTX_TASK_ID='send_anomaly_alert_remove_cols_train' AIRFLOW_CTX_EXECUTION_DATE='2024-11-04T05:06:12.986905+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-04T05:06:12.986905+00:00'
+[2024-11-04T05:06:59.850+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-04T05:06:59.861+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/utils/email.py:154: RemovedInAirflow3Warning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+  send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+
+[2024-11-04T05:06:59.861+0000] {email.py:271} INFO - Email alerting: attempt 1
+[2024-11-04T05:07:00.579+0000] {email.py:282} INFO - Sent an alert email to ['anirudhak881@gmail.com']
+[2024-11-04T05:07:02.757+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-04T05:07:02.780+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=datapipeline_new, task_id=send_anomaly_alert_remove_cols_train, run_id=manual__2024-11-04T05:06:12.986905+00:00, execution_date=20241104T050612, start_date=20241104T050659, end_date=20241104T050702
+[2024-11-04T05:07:02.846+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-04T05:07:02.878+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-04T05:07:02.879+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

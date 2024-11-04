@@ -1,0 +1,71 @@
+[2024-11-04T05:06:44.189+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-04T05:06:44.199+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: datapipeline_new.bias_detection_and_mitigation manual__2024-11-04T05:06:12.986905+00:00 [queued]>
+[2024-11-04T05:06:44.202+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: datapipeline_new.bias_detection_and_mitigation manual__2024-11-04T05:06:12.986905+00:00 [queued]>
+[2024-11-04T05:06:44.202+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-04T05:06:44.274+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): bias_detection_and_mitigation> on 2024-11-04 05:06:12.986905+00:00
+[2024-11-04T05:06:44.278+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=126) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-04T05:06:44.279+0000] {standard_task_runner.py:63} INFO - Started process 135 to run task
+[2024-11-04T05:06:44.279+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'datapipeline_new', 'bias_detection_and_mitigation', 'manual__2024-11-04T05:06:12.986905+00:00', '--job-id', '746', '--raw', '--subdir', 'DAGS_FOLDER/dag_script.py', '--cfg-path', '/tmp/tmpt1htjk9o']
+[2024-11-04T05:06:44.281+0000] {standard_task_runner.py:91} INFO - Job 746: Subtask bias_detection_and_mitigation
+[2024-11-04T05:06:44.300+0000] {task_command.py:426} INFO - Running <TaskInstance: datapipeline_new.bias_detection_and_mitigation manual__2024-11-04T05:06:12.986905+00:00 [running]> on host 7ffb0854de89
+[2024-11-04T05:06:44.330+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='datapipeline_new' AIRFLOW_CTX_TASK_ID='bias_detection_and_mitigation' AIRFLOW_CTX_EXECUTION_DATE='2024-11-04T05:06:12.986905+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-04T05:06:12.986905+00:00'
+[2024-11-04T05:06:44.330+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-04T05:06:44.384+0000] {logging_mixin.py:188} INFO - Preprocessed Data with Time-related Columns:
+[2024-11-04T05:06:44.388+0000] {logging_mixin.py:188} INFO -                            date  hour day_of_week  month  season
+7737 2022-01-01 01:00:00+00:00     1    Saturday      1  Winter
+7738 2022-01-01 02:00:00+00:00     2    Saturday      1  Winter
+7739 2022-01-01 03:00:00+00:00     3    Saturday      1  Winter
+7740 2022-01-01 04:00:00+00:00     4    Saturday      1  Winter
+7741 2022-01-01 05:00:00+00:00     5    Saturday      1  Winter
+[2024-11-04T05:06:44.411+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-04T05:06:44.417+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-04T05:06:44.463+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-04T05:06:44.473+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-04T05:06:44.500+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-04T05:06:44.510+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-04T05:06:44.571+0000] {logging_mixin.py:188} INFO - All Groups with Bias Flag for month (Threshold=0.2):
+[2024-11-04T05:06:44.572+0000] {logging_mixin.py:188} INFO -         count  bias_flag
+month                  
+1       1283      False
+2        688       True
+3        866       True
+4       1271      False
+5       1408      False
+6       1393      False
+7       1422      False
+8       1460      False
+9       1203      False
+10      1262      False
+11      1406      False
+12      1314      False
+[2024-11-04T05:06:44.585+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-04T05:06:44.589+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-04T05:06:44.620+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-04T05:06:44.624+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-04T05:06:44.639+0000] {logging_mixin.py:188} INFO - Resampled Data based on biased months:
+[2024-11-04T05:06:44.643+0000] {logging_mixin.py:188} INFO -                         date location parameter  ...  day_of_week month  season
+0 2022-02-05 14:00:00+00:00   V_VIEW      pm25  ...     Saturday     2  Winter
+1 2022-02-20 03:00:00+00:00   V_VIEW      pm25  ...       Sunday     2  Winter
+2 2022-02-13 01:00:00+00:00   V_VIEW      pm25  ...       Sunday     2  Winter
+3 2022-02-05 18:00:00+00:00   V_VIEW      pm25  ...     Saturday     2  Winter
+4 2022-02-04 04:00:00+00:00   V_VIEW      pm25  ...       Friday     2  Winter
+
+[5 rows x 13 columns]
+[2024-11-04T05:06:44.648+0000] {logging_mixin.py:188} INFO - Resampled data saved to /opt/***/dags/DataPreprocessing/src/data_store_pkl_files/resampled_data.pkl
+[2024-11-04T05:06:44.649+0000] {logging_mixin.py:188} INFO - Final Resampled Data:
+[2024-11-04T05:06:44.652+0000] {logging_mixin.py:188} INFO -                         date location parameter  ...  day_of_week month  season
+0 2022-02-05 14:00:00+00:00   V_VIEW      pm25  ...     Saturday     2  Winter
+1 2022-02-20 03:00:00+00:00   V_VIEW      pm25  ...       Sunday     2  Winter
+2 2022-02-13 01:00:00+00:00   V_VIEW      pm25  ...       Sunday     2  Winter
+3 2022-02-05 18:00:00+00:00   V_VIEW      pm25  ...     Saturday     2  Winter
+4 2022-02-04 04:00:00+00:00   V_VIEW      pm25  ...       Friday     2  Winter
+
+[5 rows x 13 columns]
+[2024-11-04T05:06:44.653+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-04T05:06:44.653+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-04T05:06:44.658+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=datapipeline_new, task_id=bias_detection_and_mitigation, run_id=manual__2024-11-04T05:06:12.986905+00:00, execution_date=20241104T050612, start_date=20241104T050644, end_date=20241104T050644
+[2024-11-04T05:06:44.708+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-04T05:06:44.727+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-04T05:06:44.728+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
