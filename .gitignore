@@ -58,4 +58,3 @@ crash.log
 
 # Ignore backup files created by Terraform
 *.backupairquality-key.json
-/preprocessed_file.pkl

@@ -1,6 +1,4 @@
 [core]
-    remote = gcs_remote
+    remote = myremote
 ['remote "myremote"']
     url = gs://airquality-mlops-rg
-['remote "gcs_remote"']
-    url = gs://airquality-mlops-rg/processed_data/
