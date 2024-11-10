@@ -93,7 +93,7 @@ class LSTMPM25Model:
         model_save_path = self.model_save_path
         with open(model_save_path, 'wb') as f:
             pd.to_pickle(self.model, f)
-        mlflow.log_artifact(self.model_save_path)
+        mlflow.log_artifact(self.model_save_path,artifact_path = 'weights')
         print(f"Model saved at {model_save_path}")
     
     def load_weights(self):
@@ -122,6 +122,7 @@ class LSTMPM25Model:
 
 # Main function to orchestrate the workflow
 def main():
+    mlflow.set_experiment("PM 2.5 LSTM Predict")
     curr_dir = os.getcwd()
     # main_path = os.path.abspath(os.path.join(curr_dir, '.'))
     # data_prepocessing_path_pkl = os.path.abspath(os.path.join(main_path, 'DataPreprocessing/src/data_store_pkl_files'))
