@@ -52,10 +52,18 @@ def get_best_model_and_load_weights(experiment_names):
         print("No valid models found across experiments.")
         return None, None, None, None
 
-# Usage
-experiment_names = ["PM2.5 Random Forest", "PM2.5 XGBoost Prediction", "PM2.5 Prophet", "PM 2.5 LSTM Predict"]
-best_model, best_rmse, best_experiment_name, best_run_id = get_best_model_and_load_weights(experiment_names)
+def main():
+    # Usage
+    experiment_names = ["PM2.5 Random Forest", "PM2.5 XGBoost Prediction", "PM2.5 Prophet", "PM 2.5 LSTM Predict"]
+    best_model, best_rmse, best_experiment_name, best_run_id = get_best_model_and_load_weights(experiment_names)
+    print(best_experiment_name)
+    print(best_run_id)
+    print(best_rmse)
+    print(best_model)
 
-if best_model:
-    print(f"Loaded best model with weights from experiment '{best_experiment_name}' and RMSE: {best_rmse}")
+    if best_model:
+        print(f"Loaded best model with weights from experiment '{best_experiment_name}' and RMSE: {best_rmse}")
+
+if __name__ == "__main__":
+    main()
 

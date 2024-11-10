@@ -25,6 +25,8 @@ class LSTMPM25Model:
         self.y_test = None
         self.y_train_original = None
         self.y_test_original = None
+        self.y__original = None
+        self.y_test_original = None
         self.scaler_X = MinMaxScaler()
 
     def load_data(self):
