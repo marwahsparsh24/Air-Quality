@@ -1,0 +1,69 @@
+[2024-11-11T18:19:41.161+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-11T18:19:41.169+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Prophet_model manual__2024-11-11T18:19:38.872202+00:00 [queued]>
+[2024-11-11T18:19:41.172+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Prophet_model manual__2024-11-11T18:19:38.872202+00:00 [queued]>
+[2024-11-11T18:19:41.172+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-11T18:19:41.177+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Prophet_model> on 2024-11-11 18:19:38.872202+00:00
+[2024-11-11T18:19:41.183+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=89) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-11T18:19:41.184+0000] {standard_task_runner.py:63} INFO - Started process 98 to run task
+[2024-11-11T18:19:41.184+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Prophet_model', 'manual__2024-11-11T18:19:38.872202+00:00', '--job-id', '906', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmptm8_cfqw']
+[2024-11-11T18:19:41.186+0000] {standard_task_runner.py:91} INFO - Job 906: Subtask Prophet_model
+[2024-11-11T18:19:41.214+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Prophet_model manual__2024-11-11T18:19:38.872202+00:00 [running]> on host 5039cd089413
+[2024-11-11T18:19:41.247+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Prophet_model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-11T18:19:38.872202+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-11T18:19:38.872202+00:00'
+[2024-11-11T18:19:41.248+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-11T18:19:41.261+0000] {logging_mixin.py:188} INFO - /opt/***
+[2024-11-11T18:19:41.267+0000] {logging_mixin.py:188} INFO - Data loaded from /opt/***/dags/DataPreprocessing/src/data_store_pkl_files/test_data/no_anamoly_test_data.pkl.
+[2024-11-11T18:19:41.269+0000] {logging_mixin.py:188} INFO - Original Skewness: 0.5082849280995185
+[2024-11-11T18:19:41.270+0000] {logging_mixin.py:188} INFO - Log Transformed Skewness: -0.38788987353405835
+[2024-11-11T18:19:41.279+0000] {logging_mixin.py:188} INFO - Box-Cox Transformed Skewness: 0.011851083745351043
+[2024-11-11T18:19:41.280+0000] {logging_mixin.py:188} INFO - Choosing Box-Cox transformed column.
+[2024-11-11T18:19:41.289+0000] {logging_mixin.py:188} INFO - Feature engineering completed and NaN values dropped.
+[2024-11-11T18:19:41.323+0000] {logging_mixin.py:188} WARNING - 2024/11/11 18:19:41 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-11-11T18:19:41.379+0000] {forecaster.py:961} INFO - Disabling yearly seasonality. Run prophet with yearly_seasonality=True to override this.
+[2024-11-11T18:19:41.402+0000] {filesystem.py:118} DEBUG - input tempfile: /tmp/tmp9n90qd1c/7qmy5h55.json
+[2024-11-11T18:19:41.943+0000] {filesystem.py:118} DEBUG - input tempfile: /tmp/tmp9n90qd1c/rqxewdsg.json
+[2024-11-11T18:19:41.946+0000] {model.py:2042} DEBUG - idx 0
+[2024-11-11T18:19:41.946+0000] {model.py:2043} DEBUG - running CmdStan, num_threads: None
+[2024-11-11T18:19:41.946+0000] {model.py:2055} DEBUG - CmdStan args: ['/home/***/.local/lib/python3.12/site-packages/prophet/stan_model/prophet_model.bin', 'random', 'seed=9093', 'data', 'file=/tmp/tmp9n90qd1c/7qmy5h55.json', 'init=/tmp/tmp9n90qd1c/rqxewdsg.json', 'output', 'file=/tmp/tmp9n90qd1c/prophet_modeldg0t4737/prophet_model-20241111181941.csv', 'method=optimize', 'algorithm=lbfgs', 'iter=10000']
+[2024-11-11T18:19:41.947+0000] {logging_mixin.py:188} WARNING - 18:19:41 - cmdstanpy - INFO - Chain [1] start processing
+[2024-11-11T18:19:41.947+0000] {model.py:2058} INFO - Chain [1] start processing
+[2024-11-11T18:19:45.231+0000] {logging_mixin.py:188} WARNING - 18:19:45 - cmdstanpy - INFO - Chain [1] done processing
+[2024-11-11T18:19:45.229+0000] {model.py:2115} INFO - Chain [1] done processing
+[2024-11-11T18:19:49.113+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:   0%|          | 0/7 [00:00<?, ?it/s]
+[2024-11-11T18:19:49.114+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  14%|#4        | 1/7 [00:00<00:00, 6232.25it/s]
+[2024-11-11T18:19:49.114+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  29%|##8       | 2/7 [00:00<00:00, 5380.76it/s]
+[2024-11-11T18:19:49.114+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  43%|####2     | 3/7 [00:00<00:00, 5915.80it/s]
+[2024-11-11T18:19:49.115+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  57%|#####7    | 4/7 [00:00<00:00, 6350.20it/s]
+[2024-11-11T18:19:49.115+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  71%|#######1  | 5/7 [00:00<00:00, 6702.31it/s]
+[2024-11-11T18:19:49.115+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  86%|########5 | 6/7 [00:00<00:00, 7073.03it/s]
+[2024-11-11T18:19:49.115+0000] {logging_mixin.py:188} WARNING - Downloading artifacts: 100%|##########| 7/7 [00:00<00:00, 7338.20it/s]
+[2024-11-11T18:19:49.115+0000] {logging_mixin.py:188} WARNING - Downloading artifacts: 100%|##########| 7/7 [00:00<00:00, 6445.69it/s]
+[2024-11-11T18:19:51.287+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-11T18:19:51.291+0000] {logging_mixin.py:188} INFO - RMSE (Original PM2.5 target): 4.997330810283877
+[2024-11-11T18:19:51.298+0000] {logging_mixin.py:188} INFO - Model saved at /opt/***/dags/weights/prophet_pm25_model.pth
+[2024-11-11T18:19:51.301+0000] {logging_mixin.py:188} INFO - Model loaded from /opt/***/dags/weights/prophet_pm25_model.pth
+[2024-11-11T18:19:51.454+0000] {logging_mixin.py:188} INFO - Plot saved at /opt/***/dags/artifacts/pm25_actual_vs_predicted_Prophet.png
+[2024-11-11T18:19:51.461+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-11T18:19:51.462+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-11T18:19:51.474+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=modeling_pipeline, task_id=Prophet_model, run_id=manual__2024-11-11T18:19:38.872202+00:00, execution_date=20241111T181938, start_date=20241111T181941, end_date=20241111T181951
+[2024-11-11T18:19:51.546+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-11T18:19:51.566+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-11T18:19:51.567+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
