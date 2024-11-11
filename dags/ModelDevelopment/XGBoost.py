@@ -1,4 +1,5 @@
 import xgboost as xgb
+import shap
 import sys
 import os
 from sklearn.metrics import mean_squared_error
@@ -8,6 +9,7 @@ import pandas as pd
 import mlflow
 import time
 import mlflow.sklearn
+from sklearn.model_selection import GridSearchCV
 
 class XGBoostPM25Model:
     def __init__(self, train_file, test_file, lambda_value, model_save_path):
@@ -15,17 +17,97 @@ class XGBoostPM25Model:
         self.test_file = test_file
         self.lambda_value = lambda_value
         self.model_save_path = model_save_path
-        self.model = xgb.XGBRegressor(n_estimators=100, learning_rate=0.01, max_depth=5, random_state=42)
-        mlflow.log_param("n_estimators",100)
-        mlflow.log_param("learning_rate",0.01)
-        mlflow.log_param("random_state",42)
-        mlflow.log_param("max_depth",5)
+        self.param_grid = {
+            'n_estimators': [100, 200],
+            'learning_rate': [0.01, 0.1],
+            'max_depth': [3, 5, 7],
+            'subsample': [0.8, 1.0],
+            'colsample_bytree': [0.8, 1.0]
+        }
+        self.model_save_path = model_save_path
+        self.model = xgb.XGBRegressor(random_state=42)
+        #self.model = xgb.XGBRegressor(n_estimators=100, learning_rate=0.01, max_depth=5, random_state=42)
+        # mlflow.log_param("n_estimators",100)
+        # mlflow.log_param("learning_rate",0.01)
+        # mlflow.log_param("random_state",42)
+        # mlflow.log_param("max_depth",5)
         self.X_train = None
         self.y_train = None
         self.X_test = None
         self.y_test = None
         self.y_train_original = None
         self.y_test_original = None
+    
+    def hyperparameter_sensitivity(self, param_name, param_values):
+        """Analyzes sensitivity of model performance to a specified hyperparameter.
+        
+        Parameters:
+            param_name (str): The hyperparameter to vary.
+            param_values (list): List of values to test for the specified hyperparameter.
+        """
+        sensitivity_results = []
+
+        for value in param_values:
+            # Set the hyperparameter to the current value
+            self.model.set_params(**{param_name: value})
+            
+            # Train and evaluate the model
+            self.model.fit(self.X_train, self.y_train)
+            y_pred = self.model.predict(self.X_test)
+            rmse = mean_squared_error(self.y_test, y_pred, squared=False)
+            
+            # Log the RMSE and the hyperparameter value
+            mlflow.log_metric(f"{param_name}_{value}_RMSE", rmse)
+            sensitivity_results.append((value, rmse))
+            print(f"RMSE for {param_name}={value}: {rmse}")
+
+        # Optionally, plot results to visualize the sensitivity
+        self.plot_sensitivity(param_name, sensitivity_results)
+
+    def plot_sensitivity(self, param_name, results):
+        """Plots hyperparameter sensitivity results."""
+        values, rmses = zip(*results)
+        plt.figure(figsize=(10, 6))
+        plt.plot(values, rmses, marker='o')
+        plt.xlabel(param_name)
+        plt.ylabel("RMSE")
+        plt.title(f"Hyperparameter Sensitivity: {param_name}")
+        
+        # Save plot and log it as an artifact
+        plot_path = os.path.join(os.getcwd(), f'dags/artifacts/{param_name}_sensitivity_xgboost.png')
+        plt.savefig(plot_path)
+        mlflow.log_artifact(plot_path)
+        print(f"Sensitivity plot saved at {plot_path}")
+    
+    def grid_search_cv(self):
+        # Perform grid search with cross-validation
+        grid_search = GridSearchCV(estimator=self.model, param_grid=self.param_grid, cv=3, scoring='neg_mean_squared_error')
+        grid_search.fit(self.X_train, self.y_train)
+
+        # Log the best parameters and best RMSE
+        best_params = grid_search.best_params_
+        mlflow.log_params(best_params)
+        print("Best parameters:", best_params)
+        
+        # Set the model to the best estimator
+        self.model = grid_search.best_estimator_
+
+        # Log the best model in MLflow
+        mlflow.sklearn.log_model(self.model, "XGBoost", input_example=self.X_train[:5])
+
+    def shap_analysis(self):
+        # Initialize SHAP explainer for XGBoost
+        explainer = shap.Explainer(self.model, self.X_train)
+        
+        # Calculate SHAP values for the test set
+        shap_values = explainer(self.X_test)
+        
+        # Plot SHAP summary plot and save it as an artifact
+        shap.summary_plot(shap_values, self.X_test, show=False)
+        shap_plot_path = os.path.join(os.getcwd(), 'dags/artifacts/shap_summary_plot_xgboost.png')
+        plt.savefig(shap_plot_path)
+        mlflow.log_artifact(shap_plot_path)
+        print(f"SHAP summary plot saved at {shap_plot_path}")
     
     def load_data(self):
         # Load training and test data
@@ -134,11 +216,16 @@ def main():
         start_time = time.time()
         xgb_model = XGBoostPM25Model(train_file, test_file, fitting_lambda, model_save_path)
         xgb_model.load_data()
-        xgb_model.train_model()
+        xgb_model.grid_search_cv()
+        #xgb_model.train_model()
         train_duration = time.time() - start_time
         mlflow.log_metric("training_duration", train_duration)
         y_pred_original = xgb_model.evaluate()
+        xgb_model.shap_analysis()
         xgb_model.save_weights()
+        xgb_model.hyperparameter_sensitivity("n_estimators", [50, 100, 200, 300])
+        xgb_model.hyperparameter_sensitivity("learning_rate", [0.01, 0.05, 0.1, 0.2])
+        xgb_model.hyperparameter_sensitivity("max_depth", [3, 5, 7, 10])
         xgb_model.load_weights()
         xgb_model.plot_results(y_pred_original)
     mlflow.end_run()
