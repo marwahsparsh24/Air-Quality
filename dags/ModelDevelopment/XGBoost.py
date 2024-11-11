@@ -74,7 +74,7 @@ class XGBoostPM25Model:
     def save_weights(self):
         # Save the model weights to the specified path
         self.model.save_model(self.model_save_path)
-        mlflow.log_artifact(self.model_save_path,artifact_path="weights")
+        mlflow.log_artifact(self.model_save_path)
         print(f"Model saved at {self.model_save_path}")
 
     def load_weights(self):
@@ -143,4 +143,5 @@ def main():
         xgb_model.plot_results(y_pred_original)
     mlflow.end_run()
 if __name__ == "__main__":
+    # mlflow.set_tracking_uri("file:///opt/airflow/dags/mlruns")
     main()

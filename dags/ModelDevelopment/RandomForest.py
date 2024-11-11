@@ -74,7 +74,7 @@ class RandomForestPM25Model:
         model_save_path = self.model_save_path
         with open(model_save_path, 'wb') as f:
             pd.to_pickle(self.model, f)
-        mlflow.log_artifact(self.model_save_path,artifact_path="weights")
+        mlflow.log_artifact(self.model_save_path)
         print(f"Model saved at {model_save_path}")
 
     def load_weights(self):
@@ -139,4 +139,5 @@ def main():
     mlflow.end_run()
 
 if __name__ == "__main__":
+    # mlflow.set_tracking_uri("file:///opt/airflow/dags/mlruns")
     main()

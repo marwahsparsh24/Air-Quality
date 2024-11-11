@@ -1,9 +1,10 @@
 import mlflow
 import os
 import pickle
-
 def get_best_model_and_load_weights(experiment_names):
-    mlflow.set_tracking_uri("http://localhost:5000")  # Set to your MLflow tracking URI
+
+    # Set the tracking URI to log locally
+    #mlflow.set_tracking_uri("file:///opt/airflow/dags/mlruns")
 
     best_rmse = float('inf')
     best_model_uri = None
@@ -17,6 +18,7 @@ def get_best_model_and_load_weights(experiment_names):
             print(f"Experiment '{experiment_name}' not found.")
             continue
         experiment_id = experiment.experiment_id
+        print(experiment_id)
 
         # Get all runs for the current experiment
         runs = mlflow.search_runs(experiment_ids=[experiment_id])
@@ -25,12 +27,11 @@ def get_best_model_and_load_weights(experiment_names):
             continue
 
         # Identify the run with the lowest RMSE in this experiment
-        best_run_in_experiment = runs.loc[runs['metrics.validation_rmse'].idxmin()]
-        current_rmse = best_run_in_experiment['metrics.validation_rmse']
+        best_run_in_experiment = runs.loc[runs['metrics.RMSE'].idxmin()]
+        current_rmse = best_run_in_experiment['metrics.RMSE']
 
         if current_rmse < best_rmse:
             best_rmse = current_rmse
-            best_model_uri = f"runs:/{best_run_in_experiment['run_id']}/model.pth"
             best_experiment_name = experiment_name
             best_run_id = best_run_in_experiment['run_id']
 
@@ -53,7 +54,7 @@ def get_best_model_and_load_weights(experiment_names):
 
 def main():
     # Usage
-    experiment_names = ["PM2.5 Random Forest", "PM2.5 XGBoost Prediction", "PM2.5 Prophet", "PM 2.5 LSTM Predict"]
+    experiment_names = ["PM2.5 Random Forest", "PM2.5 XGBoost Prediction", "PM2.5 Prophet"]
     best_model_data, best_rmse, best_experiment_name, best_run_id = get_best_model_and_load_weights(experiment_names)
     print(best_experiment_name)
     print(best_run_id)

@@ -15,7 +15,7 @@ from airflow.utils.dates import days_ago
 from dags.ModelDevelopment.Prophet import main as prophet
 from dags.ModelDevelopment.RandomForest import main as randomforest
 from dags.ModelDevelopment.XGBoost import main as xgboost
-# from dags.bestmodel import main as bestmodel
+from dags.bestmodel import main as bestmodel
 
 conf.set('core', 'enable_xcom_pickling', 'True')
 conf.set('core', 'enable_parquet_xcom', 'True')
@@ -59,15 +59,15 @@ run_random_forest = PythonOperator(
     dag=dag
 )
 
-# run_bestmodel = PythonOperator(
-#      task_id = 'Best Model',
-#     python_callable = bestmodel,
-#     dag=dag
-# )
+run_bestmodel = PythonOperator(
+     task_id = 'Best_Model',
+    python_callable = bestmodel,
+    dag=dag
+)
 
 
 # order in which tasks are run
-run_Prophet >> run_xgboost >> run_random_forest 
+run_Prophet >> run_xgboost >> run_random_forest >> run_bestmodel
 
 if __name__ == "__main__":
     dag.cli()
