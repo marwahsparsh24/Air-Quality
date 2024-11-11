@@ -1,0 +1,30 @@
+[2024-11-11T04:15:53.705+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-11T04:15:53.720+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Best_Model manual__2024-11-11T04:15:08.395932+00:00 [queued]>
+[2024-11-11T04:15:53.725+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Best_Model manual__2024-11-11T04:15:08.395932+00:00 [queued]>
+[2024-11-11T04:15:53.725+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-11T04:15:53.731+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Best_Model> on 2024-11-11 04:15:08.395932+00:00
+[2024-11-11T04:15:53.780+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=239) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-11T04:15:53.782+0000] {standard_task_runner.py:63} INFO - Started process 248 to run task
+[2024-11-11T04:15:53.781+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Best_Model', 'manual__2024-11-11T04:15:08.395932+00:00', '--job-id', '894', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmpn5cow9p7']
+[2024-11-11T04:15:53.784+0000] {standard_task_runner.py:91} INFO - Job 894: Subtask Best_Model
+[2024-11-11T04:15:53.812+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Best_Model manual__2024-11-11T04:15:08.395932+00:00 [running]> on host b8673e06ac58
+[2024-11-11T04:15:53.873+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Best_Model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-11T04:15:08.395932+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-11T04:15:08.395932+00:00'
+[2024-11-11T04:15:53.874+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-11T04:15:53.905+0000] {logging_mixin.py:188} INFO - 398881520144716488
+[2024-11-11T04:15:53.930+0000] {logging_mixin.py:188} INFO - 136957305003693022
+[2024-11-11T04:15:53.962+0000] {logging_mixin.py:188} INFO - 642998723086820843
+[2024-11-11T04:15:53.995+0000] {logging_mixin.py:188} INFO - Best model found in experiment 'PM2.5 Random Forest' with run ID '014083b8941a43579eed2eb0f9d6ab22'
+[2024-11-11T04:15:53.996+0000] {logging_mixin.py:188} INFO - Validation RMSE: 1.0012990872806014
+[2024-11-11T04:15:54.031+0000] {logging_mixin.py:188} INFO - PM2.5 Random Forest
+[2024-11-11T04:15:54.032+0000] {logging_mixin.py:188} INFO - 014083b8941a43579eed2eb0f9d6ab22
+[2024-11-11T04:15:54.032+0000] {logging_mixin.py:188} INFO - 1.0012990872806014
+[2024-11-11T04:15:54.033+0000] {logging_mixin.py:188} INFO - RandomForestRegressor(random_state=42)
+[2024-11-11T04:15:54.034+0000] {logging_mixin.py:188} INFO - Loaded best model data from experiment 'PM2.5 Random Forest' with RMSE: 1.0012990872806014
+[2024-11-11T04:15:54.034+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-11T04:15:54.034+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-11T04:15:54.039+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=modeling_pipeline, task_id=Best_Model, run_id=manual__2024-11-11T04:15:08.395932+00:00, execution_date=20241111T041508, start_date=20241111T041553, end_date=20241111T041554
+[2024-11-11T04:15:54.090+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-11T04:15:54.100+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-11T04:15:54.101+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

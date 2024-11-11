@@ -34,6 +34,13 @@ def get_best_model_and_load_weights(experiment_names):
             best_rmse = current_rmse
             best_experiment_name = experiment_name
             best_run_id = best_run_in_experiment['run_id']
+            if best_experiment_name == "PM2.5 Prophet":
+                best_model_uri = f"runs:/{best_run_in_experiment['run_id']}/prophet_pm25_model.pth"
+            elif best_experiment_name == "PM2.5 Random Forest":
+                best_model_uri = f"runs:/{best_run_in_experiment['run_id']}/randomforest_pm25_model.pth"
+            elif best_experiment_name == "PM2.5 XGBoost Prediction":
+                best_model_uri = f"runs:/{best_run_in_experiment['run_id']}/xgboost_pm25_model.pth"
+            
 
     if best_model_uri:
         # Load the best model as a .pth file

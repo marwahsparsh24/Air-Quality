@@ -1,0 +1,53 @@
+[2024-11-11T04:14:50.582+0000] {processor.py:161} INFO - Started process (PID=66) to work on /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:14:50.586+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/XGBoost.py for tasks to queue
+[2024-11-11T04:14:50.602+0000] {logging_mixin.py:188} INFO - [2024-11-11T04:14:50.602+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:14:55.842+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:14:55.920+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/XGBoost.py took 5.346 seconds
+[2024-11-11T04:15:26.325+0000] {processor.py:161} INFO - Started process (PID=129) to work on /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:15:26.328+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/XGBoost.py for tasks to queue
+[2024-11-11T04:15:26.331+0000] {logging_mixin.py:188} INFO - [2024-11-11T04:15:26.330+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:15:28.687+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:15:28.706+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/XGBoost.py took 2.407 seconds
+[2024-11-11T04:15:59.530+0000] {processor.py:161} INFO - Started process (PID=198) to work on /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:15:59.532+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/XGBoost.py for tasks to queue
+[2024-11-11T04:15:59.535+0000] {logging_mixin.py:188} INFO - [2024-11-11T04:15:59.535+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:16:00.698+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:16:00.731+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/XGBoost.py took 1.235 seconds
+[2024-11-11T04:16:30.894+0000] {processor.py:161} INFO - Started process (PID=260) to work on /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:16:30.896+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/XGBoost.py for tasks to queue
+[2024-11-11T04:16:30.899+0000] {logging_mixin.py:188} INFO - [2024-11-11T04:16:30.898+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:16:31.784+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:16:31.793+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/XGBoost.py took 0.907 seconds
+[2024-11-11T04:17:01.852+0000] {processor.py:161} INFO - Started process (PID=322) to work on /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:17:01.853+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/XGBoost.py for tasks to queue
+[2024-11-11T04:17:01.855+0000] {logging_mixin.py:188} INFO - [2024-11-11T04:17:01.855+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:17:04.042+0000] {logging_mixin.py:188} WARNING - Exception ignored in: <function WeakKeyDictionary.__init__.<locals>.remove at 0xffffb47d1ee0>
+[2024-11-11T04:17:04.043+0000] {logging_mixin.py:188} WARNING - Traceback (most recent call last):
+[2024-11-11T04:17:04.043+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/weakref.py", line 369, in remove
+[2024-11-11T04:17:04.043+0000] {logging_mixin.py:188} WARNING -     def remove(k, selfref=ref(self)):
+[2024-11-11T04:17:04.043+0000] {logging_mixin.py:188} WARNING -   File "/home/airflow/.local/lib/python3.12/site-packages/airflow/dag_processing/manager.py", line 453, in _exit_gracefully
+[2024-11-11T04:17:04.044+0000] {logging_mixin.py:188} WARNING -     self.log.debug("Current Stacktrace is: %s", "\n".join(map(str, inspect.stack())))
+[2024-11-11T04:17:04.044+0000] {logging_mixin.py:188} WARNING -                                                                    ^^^^^^^^^^^^^^^
+[2024-11-11T04:17:04.044+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/inspect.py", line 1771, in stack
+[2024-11-11T04:17:04.044+0000] {logging_mixin.py:188} WARNING -     return getouterframes(sys._getframe(1), context)
+[2024-11-11T04:17:04.045+0000] {logging_mixin.py:188} WARNING -            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-11T04:17:04.045+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/inspect.py", line 1746, in getouterframes
+[2024-11-11T04:17:04.045+0000] {logging_mixin.py:188} WARNING -     traceback_info = getframeinfo(frame, context)
+[2024-11-11T04:17:04.045+0000] {logging_mixin.py:188} WARNING -                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-11T04:17:04.045+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/inspect.py", line 1708, in getframeinfo
+[2024-11-11T04:17:04.046+0000] {logging_mixin.py:188} WARNING -     lines, lnum = findsource(frame)
+[2024-11-11T04:17:04.046+0000] {logging_mixin.py:188} WARNING -                   ^^^^^^^^^^^^^^^^^
+[2024-11-11T04:17:04.046+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/inspect.py", line 1072, in findsource
+[2024-11-11T04:17:04.046+0000] {logging_mixin.py:188} WARNING -     file = getsourcefile(object)
+[2024-11-11T04:17:04.046+0000] {logging_mixin.py:188} WARNING -            ^^^^^^^^^^^^^^^^^^^^^
+[2024-11-11T04:17:04.046+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/inspect.py", line 964, in getsourcefile
+[2024-11-11T04:17:04.047+0000] {logging_mixin.py:188} WARNING -     module = getmodule(object, filename)
+[2024-11-11T04:17:04.047+0000] {logging_mixin.py:188} WARNING -              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-11T04:17:04.047+0000] {logging_mixin.py:188} WARNING -   File "/usr/local/lib/python3.12/inspect.py", line 1003, in getmodule
+[2024-11-11T04:17:04.047+0000] {logging_mixin.py:188} WARNING -     if f == _filesbymodname.get(modname, None):
+[2024-11-11T04:17:04.047+0000] {logging_mixin.py:188} WARNING -             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[2024-11-11T04:17:04.047+0000] {logging_mixin.py:188} WARNING -   File "/home/airflow/.local/lib/python3.12/site-packages/airflow/dag_processing/manager.py", line 457, in _exit_gracefully
+[2024-11-11T04:17:04.047+0000] {logging_mixin.py:188} WARNING -     sys.exit(os.EX_OK)
+[2024-11-11T04:17:04.048+0000] {logging_mixin.py:188} WARNING - SystemExit: 0
+[2024-11-11T04:17:08.471+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/XGBoost.py
+[2024-11-11T04:17:08.569+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/XGBoost.py took 6.724 seconds

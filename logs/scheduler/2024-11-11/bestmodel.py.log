@@ -1,0 +1,25 @@
+[2024-11-11T04:14:50.545+0000] {processor.py:161} INFO - Started process (PID=65) to work on /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:14:50.556+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bestmodel.py for tasks to queue
+[2024-11-11T04:14:50.571+0000] {logging_mixin.py:188} INFO - [2024-11-11T04:14:50.569+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:14:53.387+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:14:53.461+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bestmodel.py took 2.967 seconds
+[2024-11-11T04:15:23.745+0000] {processor.py:161} INFO - Started process (PID=127) to work on /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:15:23.746+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bestmodel.py for tasks to queue
+[2024-11-11T04:15:23.758+0000] {logging_mixin.py:188} INFO - [2024-11-11T04:15:23.754+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:15:27.114+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:15:27.177+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bestmodel.py took 3.443 seconds
+[2024-11-11T04:15:57.608+0000] {processor.py:161} INFO - Started process (PID=189) to work on /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:15:57.613+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bestmodel.py for tasks to queue
+[2024-11-11T04:15:57.616+0000] {logging_mixin.py:188} INFO - [2024-11-11T04:15:57.615+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:15:58.352+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:15:58.375+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bestmodel.py took 0.784 seconds
+[2024-11-11T04:16:28.829+0000] {processor.py:161} INFO - Started process (PID=251) to work on /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:16:28.841+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bestmodel.py for tasks to queue
+[2024-11-11T04:16:28.847+0000] {logging_mixin.py:188} INFO - [2024-11-11T04:16:28.846+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:16:29.639+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:16:29.650+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bestmodel.py took 0.852 seconds
+[2024-11-11T04:17:00.140+0000] {processor.py:161} INFO - Started process (PID=313) to work on /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:17:00.141+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/bestmodel.py for tasks to queue
+[2024-11-11T04:17:00.145+0000] {logging_mixin.py:188} INFO - [2024-11-11T04:17:00.144+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:17:00.790+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/bestmodel.py
+[2024-11-11T04:17:00.799+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/bestmodel.py took 0.678 seconds
