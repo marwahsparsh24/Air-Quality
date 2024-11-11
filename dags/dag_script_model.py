@@ -68,7 +68,6 @@ run_bestmodel = PythonOperator(
 
 # order in which tasks are run
 run_Prophet >> run_xgboost >> run_random_forest >> run_bestmodel
-
 if __name__ == "__main__":
     dag.cli()
 

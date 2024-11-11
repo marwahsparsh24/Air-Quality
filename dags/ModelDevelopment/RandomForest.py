@@ -8,6 +8,8 @@ import pandas as pd
 import mlflow
 import time
 import mlflow.sklearn
+import shap
+from sklearn.model_selection import GridSearchCV
 
 class RandomForestPM25Model:
     def __init__(self, train_file, test_file, lambda_value, model_save_path):
@@ -15,9 +17,13 @@ class RandomForestPM25Model:
         self.test_file = test_file
         self.lambda_value = lambda_value
         self.model_save_path = model_save_path
-        self.model = RandomForestRegressor(n_estimators=100, random_state=42)
-        mlflow.log_param("n_estimators",100)
-        mlflow.log_param("random_state",42)
+        self.param_grid = {
+            'n_estimators': [100, 200]
+        }
+        #self.model = RandomForestRegressor(n_estimators=100, random_state=42)
+        self.model = RandomForestRegressor(random_state=42)
+        # mlflow.log_param("n_estimators",100)
+        # mlflow.log_param("random_state",42)
         self.X_train = None
         self.y_train = None
         self.X_test = None
@@ -45,6 +51,77 @@ class RandomForestPM25Model:
         self.y_test_original = test_data['pm25']
         self.X_test = test_data.drop(columns=['pm25'])
 
+    def hyperparameter_sensitivity(self, param_name, param_values):
+        """Analyzes sensitivity of model performance to a specified hyperparameter.
+        
+        Parameters:
+            param_name (str): The hyperparameter to vary.
+            param_values (list): List of values to test for the specified hyperparameter.
+        """
+        sensitivity_results = []
+
+        for value in param_values:
+            # Set the hyperparameter to the current value
+            self.model.set_params(**{param_name: value})
+            
+            # Train and evaluate the model
+            self.model.fit(self.X_train, self.y_train)
+            y_pred = self.model.predict(self.X_test)
+            rmse = mean_squared_error(self.y_test, y_pred, squared=False)
+            
+            # Log the RMSE and the hyperparameter value
+            mlflow.log_metric(f"{param_name}_{value}_RMSE", rmse)
+            sensitivity_results.append((value, rmse))
+            print(f"RMSE for {param_name}={value}: {rmse}")
+
+        # Optionally, plot results to visualize the sensitivity
+        self.plot_sensitivity(param_name, sensitivity_results)
+    
+    def plot_sensitivity(self, param_name, results):
+        """Plots hyperparameter sensitivity results."""
+        values, rmses = zip(*results)
+        plt.figure(figsize=(10, 6))
+        plt.plot(values, rmses, marker='o')
+        plt.xlabel(param_name)
+        plt.ylabel("RMSE")
+        plt.title(f"Hyperparameter Sensitivity: {param_name}")
+        
+        # Save plot and log it as an artifact
+        plot_path = os.path.join(os.getcwd(), f'dags/artifacts/{param_name}_sensitivity_randomforest.png')
+        plt.savefig(plot_path)
+        mlflow.log_artifact(plot_path)
+        print(f"Sensitivity plot saved at {plot_path}")
+
+    def grid_search_cv(self):
+        # Perform grid search with cross-validation
+        grid_search = GridSearchCV(estimator=self.model, param_grid=self.param_grid, cv=3, scoring='neg_mean_squared_error')
+        grid_search.fit(self.X_train, self.y_train)
+
+        # Log the best parameters and best RMSE
+        best_params = grid_search.best_params_
+        mlflow.log_params(best_params)
+        print("Best parameters:", best_params)
+        
+        # Set the model to the best estimator
+        self.model = grid_search.best_estimator_
+
+        # Log the best model in MLflow
+        mlflow.sklearn.log_model(self.model, "XGBoost", input_example=self.X_train[:5])
+    
+    def shap_analysis(self):
+        # Initialize SHAP explainer for XGBoost
+        explainer = shap.Explainer(self.model, self.X_train)
+        
+        # Calculate SHAP values for the test set
+        shap_values = explainer(self.X_test)
+        
+        # Plot SHAP summary plot and save it as an artifact
+        shap.summary_plot(shap_values, self.X_test, show=False)
+        shap_plot_path = os.path.join(os.getcwd(), 'dags/artifacts/shap_summary_plot_randomforest.png')
+        plt.savefig(shap_plot_path)
+        mlflow.log_artifact(shap_plot_path)
+        print(f"SHAP summary plot saved at {shap_plot_path}")
+    
     def train_model(self):
         # Train the model
         self.model.fit(self.X_train, self.y_train)
@@ -129,11 +206,14 @@ def main():
         start_time = time.time()
         rf_model = RandomForestPM25Model(train_file, test_file, fitting_lambda, model_save_path)
         rf_model.load_data()
-        rf_model.train_model()
+        rf_model.grid_search_cv()
+        #rf_model.train_model()
         train_duration = time.time() - start_time
         mlflow.log_metric("training_duration", train_duration)
         y_pred_original = rf_model.evaluate()
+        rf_model.shap_analysis()
         rf_model.save_weights()
+        rf_model.hyperparameter_sensitivity("n_estimators", [100, 200])
         rf_model.load_weights()
         rf_model.plot_results(y_pred_original)
     mlflow.end_run()

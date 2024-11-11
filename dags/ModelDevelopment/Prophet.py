@@ -11,6 +11,7 @@ import mlflow
 import mlflow.prophet
 import mlflow.pyfunc
 import time
+import shap
 
 
 class ProphetWrapper(mlflow.pyfunc.PythonModel):
@@ -54,6 +55,30 @@ class ProphetPM25Model:
                 break
         self.y_test_original = test_data['pm25']
         self.X_test = test_data.drop(columns=['pm25'])
+
+    def shap_analysis(self):
+        # Custom predict function for SHAP that works with Prophet
+        def prophet_predict(df):
+            future = pd.DataFrame({'ds': df['ds']})
+            forecast = self.model.predict(future)
+            return forecast['yhat'].values
+
+        # Prepare the dataset for SHAP
+        # Convert 'ds' to a numeric format (e.g., Unix timestamp)
+        shap_data = pd.DataFrame({'ds': self.X_test.index.astype(np.int64) // 10**9})  # Convert to seconds
+
+        # Initialize SHAP Explainer with the custom predict function
+        explainer = shap.Explainer(prophet_predict, shap_data)
+
+        # Calculate SHAP values for the test set
+        shap_values = explainer(shap_data)
+
+        # Plot SHAP summary and save it as an artifact
+        shap.summary_plot(shap_values, shap_data, show=False)
+        shap_plot_path = os.path.join(os.getcwd(), 'dags/artifacts/shap_summary_plot_prophet.png')
+        plt.savefig(shap_plot_path)
+        mlflow.log_artifact(shap_plot_path)
+        print(f"SHAP summary plot saved at {shap_plot_path}")
 
     def preprocess_data(self):
         # Prepare training data in Prophet format
@@ -161,6 +186,7 @@ def main():
         train_duration = time.time() - start_time
         mlflow.log_metric("training_duration", train_duration)
         y_pred_original = prophet_model.evaluate()
+        prophet_model.shap_analysis()
         prophet_model.save_weights()
         prophet_model.load_weights()
         prophet_model.plot_results(y_pred_original)
