@@ -1,9 +1,6 @@
-# check the mlruns
-# get the best results
-# load that model 
-# push to gcp registry
 import mlflow
-from tensorflow.keras.models import load_model
+import os
+import pickle
 
 def get_best_model_and_load_weights(experiment_names):
     mlflow.set_tracking_uri("http://localhost:5000")  # Set to your MLflow tracking URI
@@ -33,19 +30,21 @@ def get_best_model_and_load_weights(experiment_names):
 
         if current_rmse < best_rmse:
             best_rmse = current_rmse
-            best_model_uri = f"runs:/{best_run_in_experiment['run_id']}/model"
+            best_model_uri = f"runs:/{best_run_in_experiment['run_id']}/model.pkl"
             best_experiment_name = experiment_name
             best_run_id = best_run_in_experiment['run_id']
 
     if best_model_uri:
-        # Load the best model architecture
+        # Load the best model as a pickle file
         print(f"Best model found in experiment '{best_experiment_name}' with run ID '{best_run_id}'")
         print(f"Validation RMSE: {best_rmse}")
-        model = mlflow.keras.load_model(best_model_uri)
-
-        # Download weights from MLflow and load into the model
-        weights_path = mlflow.artifacts.download_artifacts(f"runs:/{best_run_id}/model_weights.h5")
-        model.load_weights(weights_path)
+        
+        # Download model artifact as a pickle file from MLflow
+        model_path = mlflow.artifacts.download_artifacts(best_model_uri)
+        
+        # Load the model using pickle
+        with open(model_path, 'rb') as f:
+            model = pickle.load(f)
         
         return model, best_rmse, best_experiment_name, best_run_id
     else:
@@ -66,4 +65,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
