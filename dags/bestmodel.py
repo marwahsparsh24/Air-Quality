@@ -30,23 +30,23 @@ def get_best_model_and_load_weights(experiment_names):
 
         if current_rmse < best_rmse:
             best_rmse = current_rmse
-            best_model_uri = f"runs:/{best_run_in_experiment['run_id']}/model.pkl"
+            best_model_uri = f"runs:/{best_run_in_experiment['run_id']}/model.pth"
             best_experiment_name = experiment_name
             best_run_id = best_run_in_experiment['run_id']
 
     if best_model_uri:
-        # Load the best model as a pickle file
+        # Load the best model as a .pth file
         print(f"Best model found in experiment '{best_experiment_name}' with run ID '{best_run_id}'")
         print(f"Validation RMSE: {best_rmse}")
         
-        # Download model artifact as a pickle file from MLflow
+        # Download model artifact as a .pth file from MLflow
         model_path = mlflow.artifacts.download_artifacts(best_model_uri)
         
-        # Load the model using pickle
+        # Attempt to load the .pth file using pickle
         with open(model_path, 'rb') as f:
-            model = pickle.load(f)
+            model_data = pickle.load(f)  # This assumes the .pth file can be read by pickle
         
-        return model, best_rmse, best_experiment_name, best_run_id
+        return model_data, best_rmse, best_experiment_name, best_run_id
     else:
         print("No valid models found across experiments.")
         return None, None, None, None
@@ -54,14 +54,14 @@ def get_best_model_and_load_weights(experiment_names):
 def main():
     # Usage
     experiment_names = ["PM2.5 Random Forest", "PM2.5 XGBoost Prediction", "PM2.5 Prophet", "PM 2.5 LSTM Predict"]
-    best_model, best_rmse, best_experiment_name, best_run_id = get_best_model_and_load_weights(experiment_names)
+    best_model_data, best_rmse, best_experiment_name, best_run_id = get_best_model_and_load_weights(experiment_names)
     print(best_experiment_name)
     print(best_run_id)
     print(best_rmse)
-    print(best_model)
+    print(best_model_data)
 
-    if best_model:
-        print(f"Loaded best model with weights from experiment '{best_experiment_name}' and RMSE: {best_rmse}")
+    if best_model_data:
+        print(f"Loaded best model data from experiment '{best_experiment_name}' with RMSE: {best_rmse}")
 
 if __name__ == "__main__":
     main()

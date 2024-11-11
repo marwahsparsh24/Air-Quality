@@ -93,9 +93,10 @@ class XGBoostPM25Model:
         plt.legend()
 
         # Save the plot as a PNG file
-        plot_path = os.path.join(os.getcwd(), 'artifacts/pm25_actual_vs_predicted_XGBoost.png')
-        mlflow.log_artifact(plot_path)
+        plot_path = os.path.join(os.getcwd(), 'dags/artifacts/pm25_actual_vs_predicted_XGBoost.png')
         plt.savefig(plot_path)
+        mlflow.log_artifact(plot_path)
+        
         print(f"Plot saved at {plot_path}")
 
 def main():
@@ -125,7 +126,7 @@ def main():
     # Step 2: Define file paths
     train_file = os.path.join(data_prepocessing_path_pkl, 'train_data/feature_eng_train_data.pkl')
     test_file = os.path.join(data_prepocessing_path_pkl, 'test_data/feature_eng_test_data.pkl')
-    model_save_path = os.path.join(curr_dir, 'weights/xgboost_pm25_model.pth')
+    model_save_path = os.path.join(curr_dir, 'dags/weights/xgboost_pm25_model.pth')
 
     if mlflow.active_run():
         mlflow.end_run()

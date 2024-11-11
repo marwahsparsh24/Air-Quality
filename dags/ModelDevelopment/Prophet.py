@@ -115,7 +115,7 @@ class ProphetPM25Model:
         plt.legend()
 
         # Save the plot as a PNG file
-        plot_path = os.path.join(os.getcwd(), 'artifacts/pm25_actual_vs_predicted_Prophet.png')
+        plot_path = os.path.join(os.getcwd(), 'dags/artifacts/pm25_actual_vs_predicted_Prophet.png')
         plt.savefig(plot_path)
         mlflow.log_artifact(plot_path)
         print(f"Plot saved at {plot_path}")
@@ -124,6 +124,7 @@ class ProphetPM25Model:
 def main():
     mlflow.set_experiment("PM2.5 Prophet")
     curr_dir = os.getcwd()
+    print(curr_dir)
     # main_path = os.path.abspath(os.path.join(curr_dir, '.'))
     # data_prepocessing_path = os.path.abspath(os.path.join(main_path, 'DataPreprocessing'))
     # data_prepocessing_path_pkl = os.path.abspath(os.path.join(data_prepocessing_path, 'src/data_store_pkl_files'))
@@ -146,7 +147,7 @@ def main():
     # Step 2: Define file paths
     train_file = os.path.join(data_prepocessing_path_pkl, 'train_data/feature_eng_train_data.pkl')
     test_file = os.path.join(data_prepocessing_path_pkl, 'test_data/feature_eng_test_data.pkl')
-    model_save_path = os.path.join(curr_dir, 'weights/prophet_pm25_model.pth')
+    model_save_path = os.path.join(curr_dir, 'dags/weights/prophet_pm25_model.pth')
     
     if mlflow.active_run():
         mlflow.end_run()

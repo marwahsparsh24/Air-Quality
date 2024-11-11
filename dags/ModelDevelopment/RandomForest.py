@@ -95,9 +95,9 @@ class RandomForestPM25Model:
         plt.legend()
 
         # Save the plot as a PNG file
-        plot_path = os.path.join(os.getcwd(), 'artifacts/pm25_actual_vs_predicted_RandomForest.png')
-        mlflow.log_artifact(plot_path)
+        plot_path = os.path.join(os.getcwd(), 'dags/artifacts/pm25_actual_vs_predicted_RandomForest.png')
         plt.savefig(plot_path)
+        mlflow.log_artifact(plot_path)
         print(f"Plot saved at {plot_path}")
 
 def main():
@@ -120,7 +120,7 @@ def main():
     mlflow.log_param("lambda_value", fitting_lambda)
     train_file = os.path.join(data_prepocessing_path_pkl, 'train_data/feature_eng_train_data.pkl')
     test_file = os.path.join(data_prepocessing_path_pkl, 'test_data/feature_eng_test_data.pkl')
-    model_save_path = os.path.join(curr_dir, 'weights/randomforest_pm25_model.pth')  # Save in .pth format
+    model_save_path = os.path.join(curr_dir, 'dags/weights/randomforest_pm25_model.pth')  # Save in .pth format
 
     if mlflow.active_run():
         mlflow.end_run()

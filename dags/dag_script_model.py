@@ -11,11 +11,11 @@ from airflow.operators.email import EmailOperator
 from airflow.operators.dummy import DummyOperator
 from datetime import timedelta,datetime
 from airflow.utils.dates import days_ago
-from dags.ModelDevelopment.LSTM import main as LSTM
+# from dags.ModelDevelopment.LSTM import main as LSTM
 from dags.ModelDevelopment.Prophet import main as prophet
 from dags.ModelDevelopment.RandomForest import main as randomforest
 from dags.ModelDevelopment.XGBoost import main as xgboost
-from dags.bestmodel import main as bestmodel
+# from dags.bestmodel import main as bestmodel
 
 conf.set('core', 'enable_xcom_pickling', 'True')
 conf.set('core', 'enable_parquet_xcom', 'True')
@@ -35,39 +35,39 @@ dag = DAG(
     catchup=False
 )
 
-run_LSTM = PythonOperator(
-    task_id = 'LSTM model',
-    python_callable = LSTM,
-    dag=dag
-)
+# run_LSTM = PythonOperator(
+#     task_id = 'LSTM model',
+#     python_callable = LSTM,
+#     dag=dag
+# )
 
 run_Prophet = PythonOperator(
-    task_id = 'Prophet model',
+    task_id = 'Prophet_model',
     python_callable = prophet,
     dag=dag
 )
 
 run_xgboost = PythonOperator(
-     task_id = 'XGBoost model',
+    task_id = 'XGBoost_model',
     python_callable = xgboost,
     dag=dag
 )
 
 run_random_forest = PythonOperator(
-     task_id = 'Random Forest model',
+     task_id = 'Random_Forest_model',
     python_callable = randomforest,
     dag=dag
 )
 
-run_bestmodel = PythonOperator(
-     task_id = 'Best Model',
-    python_callable = bestmodel,
-    dag=dag
-)
+# run_bestmodel = PythonOperator(
+#      task_id = 'Best Model',
+#     python_callable = bestmodel,
+#     dag=dag
+# )
 
 
 # order in which tasks are run
-run_LSTM >> run_Prophet >> run_xgboost >> run_random_forest >> run_bestmodel
+run_Prophet >> run_xgboost >> run_random_forest 
 
 if __name__ == "__main__":
     dag.cli()
