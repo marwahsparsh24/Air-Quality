@@ -96,7 +96,6 @@ class XGBoostPM25Model:
         plot_path = os.path.join(os.getcwd(), 'dags/artifacts/pm25_actual_vs_predicted_XGBoost.png')
         plt.savefig(plot_path)
         mlflow.log_artifact(plot_path)
-        
         print(f"Plot saved at {plot_path}")
 
 def main():
