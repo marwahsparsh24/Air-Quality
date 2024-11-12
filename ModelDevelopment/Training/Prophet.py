@@ -60,7 +60,7 @@ class ProphetPM25Model:
         wrapped_model = ProphetWrapper(self.model)
 
 
-        local_artifact_path = os.path.join("mlruns", "prophet_pm25_model")
+        local_artifact_path = os.path.join(os.getcwd(), "mlruns", "prophet_pm25_model")
         os.makedirs(local_artifact_path, exist_ok=True)
         
         # Log the model using the local path
