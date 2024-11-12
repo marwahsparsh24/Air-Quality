@@ -89,6 +89,8 @@ def main():
     # if not os.path.exists(mlruns_dir):
     #     os.makedirs(mlruns_dir)
     # mlflow.set_tracking_uri(f"file://{mlruns_dir}")
+
+    mlflow.set_tracking_uri("./mlruns")
     mlflow.set_experiment("PM2.5 Prophet")
 
 
