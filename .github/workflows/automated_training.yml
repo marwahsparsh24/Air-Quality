@@ -24,8 +24,10 @@ jobs:
       - name: Set PYTHONPATH
         run: echo "PYTHONPATH=${PYTHONPATH}:$(pwd)/ModelDevelopment" >> $GITHUB_ENV
 
-      - name: Set MLflow artifact URI
-        run: echo "MLFLOW_ARTIFACT_URI=./mlruns" >> $GITHUB_ENV
+      - name: Set MLflow tracking and artifact URI
+        run: |
+          echo "MLFLOW_TRACKING_URI=file://$(pwd)/mlruns" >> $GITHUB_ENV
+          echo "MLFLOW_ARTIFACT_URI=$(pwd)/mlruns" >> $GITHUB_ENV
         
       - name: Install dependencies
         run: |
