@@ -36,8 +36,15 @@ jobs:
           mkdir -p $GITHUB_WORKSPACE/mlruns
           chmod -R 777 $GITHUB_WORKSPACE/mlruns
 
+      - name: Debug Environment Variables
+        run: |
+          echo "MLFLOW_TRACKING_URI is set to $MLFLOW_TRACKING_URI"
+          echo "MLFLOW_ARTIFACT_URI is set to $MLFLOW_ARTIFACT_URI"
+
       - name: Run Prophet Model Training Script
-        run: python ModelDevelopment/Training/Prophet.py
+        run: |
+          chmod -R 777 $GITHUB_WORKSPACE  # Ensure full permissions for workspace files
+          python ModelDevelopment/Training/Prophet.py
 
       - name: Upload MLflow Artifacts
         if: always()
