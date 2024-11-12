@@ -32,6 +32,14 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
 
+      - name: Create and verify mlruns directory
+        run: |
+          mkdir -p ./mlruns
+          echo "Directory structure before running scripts:"
+          ls -R
+          echo "Checking write permissions for ./mlruns directory"
+          touch ./mlruns/test_file.txt
+
       - name: List directory structure
         run: |
           echo "Current directory structure:"
