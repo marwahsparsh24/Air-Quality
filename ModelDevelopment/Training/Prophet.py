@@ -58,7 +58,18 @@ class ProphetPM25Model:
         # Train the Prophet model
         self.model.fit(self.df_train)
         wrapped_model = ProphetWrapper(self.model)
-        mlflow.pyfunc.log_model(artifact_path="prophet_pm25_model", python_model= wrapped_model,input_example=self.df_train.head(1))
+
+
+        local_artifact_path = os.path.join("mlruns", "prophet_pm25_model")
+        os.makedirs(local_artifact_path, exist_ok=True)
+        
+        # Log the model using the local path
+        mlflow.pyfunc.log_model(
+            artifact_path=local_artifact_path,
+            python_model=wrapped_model,
+            input_example=self.df_train.head(1)
+        )
+        # mlflow.pyfunc.log_model(artifact_path="prophet_pm25_model", python_model= wrapped_model,input_example=self.df_train.head(1))
 
     
 
@@ -71,8 +82,12 @@ class ProphetPM25Model:
 # Main function to orchestrate the workflow
 def main():
     mlruns_dir = os.path.join(os.getcwd(), "mlruns")
+    if not os.path.exists(mlruns_dir):
+        os.makedirs(mlruns_dir)
     mlflow.set_tracking_uri(f"file://{mlruns_dir}")
     mlflow.set_experiment("PM2.5 Prophet")
+
+    
     curr_dir = os.getcwd()
     print(curr_dir)
     data_prepocessing_path_pkl = os.path.join(curr_dir,'DataPreprocessing/src/data_store_pkl_files')
