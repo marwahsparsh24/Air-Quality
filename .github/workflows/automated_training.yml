@@ -26,22 +26,19 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
 
-      - name: Configure MLflow Environment Variables
+      - name: Configure MLflow Tracking URI and Create mlruns Directory
         run: |
-          echo "MLFLOW_TRACKING_URI=file://${{ github.workspace }}/mlruns" >> $GITHUB_ENV
-          echo "MLFLOW_ARTIFACT_URI=${{ github.workspace }}/mlruns" >> $GITHUB_ENV
-
-      - name: Create and set permissions for mlruns directory
-        run: |
+          # Define MLFLOW_TRACKING_URI in the environment
+          echo "MLFLOW_TRACKING_URI=${{ github.workspace }}/mlruns" >> $GITHUB_ENV
+          
+          # Create the mlruns directory in GITHUB_WORKSPACE
           mkdir -p "${{ github.workspace }}/mlruns"
+          # Set permissions to prevent permission errors
           chmod -R 777 "${{ github.workspace }}/mlruns"
 
       - name: Run Prophet Model Training Script
         run: |
           python ModelDevelopment/Training/Prophet.py
-        env:
-          MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/mlruns"
-          MLFLOW_ARTIFACT_URI: "${{ github.workspace }}/mlruns"
 
       - name: Upload MLflow Artifacts
         if: always()
