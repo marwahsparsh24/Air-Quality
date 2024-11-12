@@ -28,9 +28,9 @@ jobs:
 
       - name: Configure MLflow Environment Variables
         run: |
-          # Set environment variables for MLflow tracking and artifact paths within the GitHub workspace
-          echo "MLFLOW_TRACKING_URI=file://$GITHUB_WORKSPACE/mlruns" >> $GITHUB_ENV
-          echo "MLFLOW_ARTIFACT_URI=$GITHUB_WORKSPACE/mlruns" >> $GITHUB_ENV
+          # Set MLflow tracking URI and artifact path to use the GitHub workspace
+          echo "MLFLOW_TRACKING_URI=file://${{ github.workspace }}/mlruns" >> $GITHUB_ENV
+          echo "MLFLOW_ARTIFACT_URI=${{ github.workspace }}/mlruns" >> $GITHUB_ENV
 
       - name: Create mlruns directory for MLflow artifacts
         run: mkdir -p $GITHUB_WORKSPACE/mlruns
@@ -40,8 +40,8 @@ jobs:
           # Run your Python script
           python ModelDevelopment/Training/Prophet.py
         env:
-          MLFLOW_TRACKING_URI: "file://$GITHUB_WORKSPACE/mlruns"
-          MLFLOW_ARTIFACT_URI: "$GITHUB_WORKSPACE/mlruns"
+          MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/mlruns"
+          MLFLOW_ARTIFACT_URI: "${{ github.workspace }}/mlruns"
 
       - name: Upload MLflow Artifacts
         if: always()
