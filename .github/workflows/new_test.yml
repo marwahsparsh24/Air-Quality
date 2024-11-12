@@ -1,4 +1,4 @@
-name: new_test
+name: Run Prophet Model Training with MLflow Logging
 
 on:
   push:
@@ -31,18 +31,13 @@ jobs:
           echo "MLFLOW_TRACKING_URI=file://${{ github.workspace }}/mlruns" >> $GITHUB_ENV
           echo "MLFLOW_ARTIFACT_URI=${{ github.workspace }}/mlruns" >> $GITHUB_ENV
 
-      - name: Set permissions for GitHub workspace
-        run: chmod -R 777 $GITHUB_WORKSPACE
-
-      - name: Create mlruns directory
-        run: mkdir -p $GITHUB_WORKSPACE/mlruns
+      - name: Create and Set Permissions for mlruns Directory
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/mlruns
+          chmod -R 777 $GITHUB_WORKSPACE/mlruns
 
       - name: Run Prophet Model Training Script
-        run: |
-          python ModelDevelopment/Training/Prophet.py
-        env:
-          MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/mlruns"
-          MLFLOW_ARTIFACT_URI: "${{ github.workspace }}/mlruns"
+        run: python ModelDevelopment/Training/Prophet.py
 
       - name: Upload MLflow Artifacts
         if: always()
