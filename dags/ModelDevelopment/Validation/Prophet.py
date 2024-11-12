@@ -29,6 +29,8 @@ class ProphetPM25Model:
         self.lambda_value = lambda_value
         self.model_save_path = model_save_path
         self.model = Prophet()
+        with open(self.model_save_path, 'rb') as f:
+            self.model = pickle.load(f)
         self.X_train = None
         self.y_train = None
         self.X_test = None
@@ -87,12 +89,6 @@ class ProphetPM25Model:
             'y': self.y_train  # Use Box-Cox transformed target
         })
 
-    def train_model(self):
-        # Train the Prophet model
-        self.model.fit(self.df_train)
-        wrapped_model = ProphetWrapper(self.model)
-        mlflow.pyfunc.log_model(artifact_path="prophet_pm25_model", python_model= wrapped_model,input_example=self.df_train.head(1))
-
     def evaluate(self):
         # Make future dataframe
         future = self.model.make_future_dataframe(periods=len(self.X_test))
@@ -117,12 +113,6 @@ class ProphetPM25Model:
 
         return y_pred_original_valid
 
-    def save_weights(self):
-        with open(self.model_save_path, 'wb') as f:
-            pickle.dump(self.model, f)
-        mlflow.log_artifact(self.model_save_path)
-        print(f"Model saved at {self.model_save_path}")
-
     def load_weights(self):
         # Load the Prophet model from the specified path
         with open(self.model_save_path, 'rb') as f:
@@ -144,24 +134,16 @@ class ProphetPM25Model:
         plt.savefig(plot_path)
         mlflow.log_artifact(plot_path)
         print(f"Plot saved at {plot_path}")
-
 # Main function to orchestrate the workflow
 def main():
     mlflow.set_experiment("PM2.5 Prophet")
     curr_dir = os.getcwd()
     print(curr_dir)
-    # main_path = os.path.abspath(os.path.join(curr_dir, '.'))
-    # data_prepocessing_path = os.path.abspath(os.path.join(main_path, 'DataPreprocessing'))
-    # data_prepocessing_path_pkl = os.path.abspath(os.path.join(data_prepocessing_path, 'src/data_store_pkl_files'))
     data_prepocessing_path_pkl = os.path.join(curr_dir,'dags/DataPreprocessing/src/data_store_pkl_files')
     # Step 1: Load Data using DataFeatureEngineer
     file_path = os.path.join(data_prepocessing_path_pkl, 'test_data/no_anamoly_test_data.pkl')
-    # sys.path.append(main_path)
-    # sys.path.append(data_prepocessing_path)
     sys.path.append(data_prepocessing_path_pkl)
     from DataPreprocessing.src.test.data_preprocessing.feature_eng import DataFeatureEngineer
-
-    # Initialize DataFeatureEngineer to preprocess the data and fetch the lambda value
     engineer = DataFeatureEngineer(file_path)
     engineer.load_data()
     chosen_column = engineer.handle_skewness(column_name='pm25')
@@ -178,16 +160,11 @@ def main():
         mlflow.end_run()
     
     with mlflow.start_run() as run:
-        start_time = time.time()
         prophet_model = ProphetPM25Model(train_file, test_file, fitting_lambda, model_save_path)
         prophet_model.load_data()
         prophet_model.preprocess_data()
-        prophet_model.train_model()
-        train_duration = time.time() - start_time
-        mlflow.log_metric("training_duration", train_duration)
         y_pred_original = prophet_model.evaluate()
         prophet_model.shap_analysis()
-        prophet_model.save_weights()
         prophet_model.load_weights()
         prophet_model.plot_results(y_pred_original)
     mlflow.end_run()

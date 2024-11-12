@@ -1,0 +1,50 @@
+[2024-11-12T03:51:41.372+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T03:51:41.421+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Bias_Model manual__2024-11-12T03:31:11.749538+00:00 [queued]>
+[2024-11-12T03:51:41.430+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Bias_Model manual__2024-11-12T03:31:11.749538+00:00 [queued]>
+[2024-11-12T03:51:41.431+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T03:51:41.448+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Bias_Model> on 2024-11-12 03:31:11.749538+00:00
+[2024-11-12T03:51:41.541+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=687) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T03:51:41.547+0000] {standard_task_runner.py:63} INFO - Started process 706 to run task
+[2024-11-12T03:51:41.554+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Bias_Model', 'manual__2024-11-12T03:31:11.749538+00:00', '--job-id', '1049', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmp83i7o_hd']
+[2024-11-12T03:51:41.566+0000] {standard_task_runner.py:91} INFO - Job 1049: Subtask Bias_Model
+[2024-11-12T03:51:41.855+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Bias_Model manual__2024-11-12T03:31:11.749538+00:00 [running]> on host 5039cd089413
+[2024-11-12T03:51:42.263+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Bias_Model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T03:31:11.749538+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T03:31:11.749538+00:00'
+[2024-11-12T03:51:42.276+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T03:51:42.370+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T03:51:42.378+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/ModelDevelopment/ModelBias/Model_bias.py", line 332, in main_pipeline
+    feature_data = load_feature_data()
+                   ^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/ModelDevelopment/ModelBias/Model_bias.py", line 34, in load_feature_data
+    feature_data = pd.read_pickle(feature_data_path)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/pickle.py", line 189, in read_pickle
+    with get_handle(
+         ^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/io/common.py", line 872, in get_handle
+    handle = open(handle, ioargs.mode)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/DataPreprocessing/src/data_store_pkl_files/test_data/feature_eng_test_data.pkl'
+[2024-11-12T03:51:42.459+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=modeling_pipeline, task_id=Bias_Model, run_id=manual__2024-11-12T03:31:11.749538+00:00, execution_date=20241112T033111, start_date=20241112T035141, end_date=20241112T035142
+[2024-11-12T03:51:42.639+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 1049 for task Bias_Model ([Errno 2] No such file or directory: '/opt/airflow/DataPreprocessing/src/data_store_pkl_files/test_data/feature_eng_test_data.pkl'; 706)
+[2024-11-12T03:51:42.859+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-12T03:51:42.989+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T03:51:42.999+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

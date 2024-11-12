@@ -1,0 +1,63 @@
+[2024-11-12T03:25:24.193+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T03:25:24.226+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Random_Forest_model_Validation manual__2024-11-12T03:22:11.859265+00:00 [queued]>
+[2024-11-12T03:25:24.242+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Random_Forest_model_Validation manual__2024-11-12T03:22:11.859265+00:00 [queued]>
+[2024-11-12T03:25:24.244+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-11-12T03:25:24.262+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Random_Forest_model_Validation> on 2024-11-12 03:22:11.859265+00:00
+[2024-11-12T03:25:24.295+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=233) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T03:25:24.296+0000] {standard_task_runner.py:63} INFO - Started process 242 to run task
+[2024-11-12T03:25:24.297+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Random_Forest_model_Validation', 'manual__2024-11-12T03:22:11.859265+00:00', '--job-id', '1032', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmpquk9vo74']
+[2024-11-12T03:25:24.308+0000] {standard_task_runner.py:91} INFO - Job 1032: Subtask Random_Forest_model_Validation
+[2024-11-12T03:25:24.418+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Random_Forest_model_Validation manual__2024-11-12T03:22:11.859265+00:00 [running]> on host 5039cd089413
+[2024-11-12T03:25:24.745+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Random_Forest_model_Validation' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T03:22:11.859265+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T03:22:11.859265+00:00'
+[2024-11-12T03:25:24.750+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T03:25:24.885+0000] {logging_mixin.py:188} INFO - Data loaded from /opt/***/dags/DataPreprocessing/src/data_store_pkl_files/test_data/no_anamoly_test_data.pkl.
+[2024-11-12T03:25:24.891+0000] {logging_mixin.py:188} INFO - Original Skewness: 0.5082849280995185
+[2024-11-12T03:25:24.904+0000] {logging_mixin.py:188} INFO - Log Transformed Skewness: -0.38788987353405835
+[2024-11-12T03:25:24.953+0000] {logging_mixin.py:188} INFO - Box-Cox Transformed Skewness: 0.011851083745351043
+[2024-11-12T03:25:24.958+0000] {logging_mixin.py:188} INFO - Choosing Box-Cox transformed column.
+[2024-11-12T03:25:24.997+0000] {logging_mixin.py:188} INFO - Feature engineering completed and NaN values dropped.
+[2024-11-12T03:25:25.154+0000] {logging_mixin.py:188} WARNING - 2024/11/12 03:25:25 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-11-12T03:25:25.545+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T03:25:25.555+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py", line 188, in main
+    y_pred_original = rf_model.evaluate()
+                      ^^^^^^^^^^^^^^^^^
+AttributeError: 'RandomForestRegressor' object has no attribute 'evaluate'
+[2024-11-12T03:25:25.623+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=modeling_pipeline, task_id=Random_Forest_model_Validation, run_id=manual__2024-11-12T03:22:11.859265+00:00, execution_date=20241112T032211, start_date=20241112T032524, end_date=20241112T032525
+[2024-11-12T03:25:25.660+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 1032 for task Random_Forest_model_Validation ('RandomForestRegressor' object has no attribute 'evaluate'; 242)
+[2024-11-12T03:25:25.747+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-12T03:25:25.834+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T03:25:25.853+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

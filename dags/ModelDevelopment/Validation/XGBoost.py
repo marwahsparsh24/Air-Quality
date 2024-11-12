@@ -26,6 +26,7 @@ class XGBoostPM25Model:
         }
         self.model_save_path = model_save_path
         self.model = xgb.XGBRegressor(random_state=42)
+        self.model.load_model(self.model_save_path)
         #self.model = xgb.XGBRegressor(n_estimators=100, learning_rate=0.01, max_depth=5, random_state=42)
         # mlflow.log_param("n_estimators",100)
         # mlflow.log_param("learning_rate",0.01)
@@ -39,12 +40,6 @@ class XGBoostPM25Model:
         self.y_test_original = None
     
     def hyperparameter_sensitivity(self, param_name, param_values):
-        """Analyzes sensitivity of model performance to a specified hyperparameter.
-        
-        Parameters:
-            param_name (str): The hyperparameter to vary.
-            param_values (list): List of values to test for the specified hyperparameter.
-        """
         sensitivity_results = []
 
         for value in param_values:
@@ -79,21 +74,6 @@ class XGBoostPM25Model:
         mlflow.log_artifact(plot_path)
         print(f"Sensitivity plot saved at {plot_path}")
     
-    def grid_search_cv(self):
-        # Perform grid search with cross-validation
-        grid_search = GridSearchCV(estimator=self.model, param_grid=self.param_grid, cv=3, scoring='neg_mean_squared_error')
-        grid_search.fit(self.X_train, self.y_train)
-
-        # Log the best parameters and best RMSE
-        best_params = grid_search.best_params_
-        mlflow.log_params(best_params)
-        print("Best parameters:", best_params)
-        
-        # Set the model to the best estimator
-        self.model = grid_search.best_estimator_
-
-        # Log the best model in MLflow
-        mlflow.sklearn.log_model(self.model, "XGBoost", input_example=self.X_train[:5])
 
     def shap_analysis(self):
         # Initialize SHAP explainer for XGBoost
@@ -129,11 +109,6 @@ class XGBoostPM25Model:
         self.y_test_original = test_data['pm25']
         self.X_test = test_data.drop(columns=['pm25'])
 
-    def train_model(self):
-        # Train the model
-        self.model.fit(self.X_train, self.y_train)
-        mlflow.sklearn.log_model(self.model,"XGBoost",input_example=self.X_train[:5])
-
     def evaluate(self):
         # Make predictions on the test data
         y_pred_boxcox = self.model.predict(self.X_test)
@@ -152,12 +127,6 @@ class XGBoostPM25Model:
         print(f"RMSE (Original PM2.5 target): {rmse_original}")
 
         return y_pred_original
-
-    def save_weights(self):
-        # Save the model weights to the specified path
-        self.model.save_model(self.model_save_path)
-        mlflow.log_artifact(self.model_save_path)
-        print(f"Model saved at {self.model_save_path}")
 
     def load_weights(self):
         # Load the model weights from the specified path
@@ -183,19 +152,11 @@ class XGBoostPM25Model:
 def main():
     mlflow.set_experiment("PM2.5 XGBoost Prediction")
     curr_dir = os.getcwd()
-    # main_path = os.path.abspath(os.path.join(curr_dir, '.'))
-    # data_prepocessing_path = os.path.abspath(os.path.join(main_path, 'DataPreprocessing'))
-    #data_prepocessing_path_pkl = os.path.abspath(os.path.join(main_path, 'DataPreprocessing/src/data_store_pkl_files'))
     data_prepocessing_path_pkl = os.path.join(curr_dir,'dags/DataPreprocessing/src/data_store_pkl_files')
-
-    # sys.path.append(main_path)
-    # sys.path.append(data_prepocessing_path)
     sys.path.append(data_prepocessing_path_pkl)
     from dags.DataPreprocessing.src.test.data_preprocessing.feature_eng import DataFeatureEngineer
-
     # Step 1: Load Data using DataFeatureEngineer
     file_path = os.path.join(data_prepocessing_path_pkl, 'test_data/no_anamoly_test_data.pkl')
-    
     # Initialize DataFeatureEngineer to preprocess the data and fetch the lambda value
     engineer = DataFeatureEngineer(file_path)
     engineer.load_data()
@@ -213,16 +174,11 @@ def main():
         mlflow.end_run()
 
     with mlflow.start_run():    
-        start_time = time.time()
         xgb_model = XGBoostPM25Model(train_file, test_file, fitting_lambda, model_save_path)
         xgb_model.load_data()
-        xgb_model.grid_search_cv()
         #xgb_model.train_model()
-        train_duration = time.time() - start_time
-        mlflow.log_metric("training_duration", train_duration)
         y_pred_original = xgb_model.evaluate()
         xgb_model.shap_analysis()
-        xgb_model.save_weights()
         xgb_model.hyperparameter_sensitivity("n_estimators", [50, 100, 200, 300])
         xgb_model.hyperparameter_sensitivity("learning_rate", [0.01, 0.05, 0.1, 0.2])
         xgb_model.hyperparameter_sensitivity("max_depth", [3, 5, 7, 10])

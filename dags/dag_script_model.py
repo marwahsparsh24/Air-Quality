@@ -12,9 +12,14 @@ from airflow.operators.dummy import DummyOperator
 from datetime import timedelta,datetime
 from airflow.utils.dates import days_ago
 # from dags.ModelDevelopment.LSTM import main as LSTM
-from dags.ModelDevelopment.Prophet import main as prophet
-from dags.ModelDevelopment.RandomForest import main as randomforest
-from dags.ModelDevelopment.XGBoost import main as xgboost
+
+from dags.ModelDevelopment.Training.RandomForest import main as Training_randomforest
+from dags.ModelDevelopment.Validation.RandomForest import main as Validation_randomforest
+from dags.ModelDevelopment.Training.Prophet import main as Training_prophet
+from dags.ModelDevelopment.Validation.Prophet import main as Validation_prophet
+from dags.ModelDevelopment.Training.XGBoost import main as Training_xgboost
+from dags.ModelDevelopment.Validation.XGBoost import main as Validation_xgboost
+from dags.ModelDevelopment.ModelBias.Model_bias import main_pipeline as Bias_check
 from dags.bestmodel import main as bestmodel
 
 conf.set('core', 'enable_xcom_pickling', 'True')
@@ -35,39 +40,59 @@ dag = DAG(
     catchup=False
 )
 
-# run_LSTM = PythonOperator(
-#     task_id = 'LSTM model',
-#     python_callable = LSTM,
+# run_Prophet_train = PythonOperator(
+#     task_id = 'Prophet_model_training',
+#     python_callable = Training_prophet,
+#     dag=dag
+# )
+# run_Prophet_validation = PythonOperator(
+#     task_id = 'Prophet_model_validation',
+#     python_callable = Validation_prophet,
 #     dag=dag
 # )
 
-run_Prophet = PythonOperator(
-    task_id = 'Prophet_model',
-    python_callable = prophet,
-    dag=dag
-)
+# run_xgboost_Training = PythonOperator(
+#     task_id = 'XGBoost_model_Train',
+#     python_callable = Training_xgboost,
+#     dag=dag
+# )
 
-run_xgboost = PythonOperator(
-    task_id = 'XGBoost_model',
-    python_callable = xgboost,
-    dag=dag
-)
+# run_xgboost_Validation = PythonOperator(
+#     task_id = 'XGBoost_model_Validation',
+#     python_callable = Validation_xgboost,
+#     dag=dag
+# )
 
-run_random_forest = PythonOperator(
-     task_id = 'Random_Forest_model',
-    python_callable = randomforest,
-    dag=dag
-)
+# run_random_forest_Training = PythonOperator(
+#     task_id = 'Random_Forest_model_Train',
+#     python_callable = Training_randomforest,
+#     dag=dag
+# )
+
+# run_random_forest_validation = PythonOperator(
+#     task_id = 'Random_Forest_model_Validation',
+#     python_callable = Validation_randomforest,
+#     dag=dag
+# )
 
 run_bestmodel = PythonOperator(
-     task_id = 'Best_Model',
+    task_id = 'Best_Model',
     python_callable = bestmodel,
     dag=dag
 )
 
+# run_bias_check = PythonOperator(
+#     task_id = 'Bias_Model',
+#     python_callable = Bias_check,
+#     dag=dag
+# )
 
-# order in which tasks are run
-run_Prophet >> run_xgboost >> run_random_forest >> run_bestmodel
+# run_Prophet_train >> run_Prophet_validation
+# run_xgboost_Training >> run_xgboost_Validation
+# run_random_forest_Training >> run_random_forest_validation
+# [run_Prophet_validation, run_xgboost_Validation, run_random_forest_validation] >> run_bias_check >> run_bestmodel
+run_bestmodel
+
 if __name__ == "__main__":
     dag.cli()
 

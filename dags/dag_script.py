@@ -12,9 +12,6 @@ from airflow.operators.email import EmailOperator
 from airflow.operators.dummy import DummyOperator
 from datetime import timedelta,datetime
 from airflow.utils.dates import days_ago
-from dags.ModelDevelopment.XGBoost import XGBoostPM25Model
-from dags.ModelDevelopment.Prophet import ProphetPM25Model
-from dags.ModelDevelopment.RandomForest import RandomForestPM25Model
 from dags.DataPreprocessing.src.data_air import download_data_function
 from dags.DataPreprocessing.src.data_loader import stack_csvs_to_pickle
 from dags.DataPreprocessing.src.data_split import split

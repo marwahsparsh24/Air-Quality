@@ -4,9 +4,9 @@ import pandas as pd
 import pickle
 import numpy as np
 import xgboost as xgb
-from dags.ModelDevelopment.XGBoost import XGBoostPM25Model
-from dags.ModelDevelopment.Prophet import ProphetPM25Model
-from dags.ModelDevelopment.RandomForest import RandomForestPM25Model
+from dags.ModelDevelopment.Validation.XGBoost import XGBoostPM25Model
+from dags.ModelDevelopment.Validation.Prophet import ProphetPM25Model
+from dags.ModelDevelopment.Validation.RandomForest import RandomForestPM25Model
 
 # Model Loading Functions
 def load_randomforest_model(filepath):
@@ -82,9 +82,15 @@ def get_best_model_and_load_weights(experiment_names):
     best_model = None
     best_experiment_name = None
     best_run_id = None
-
+    rmse_results = {}
     for experiment_name in experiment_names:
         run_id, rmse, exp_name = find_best_model_run(experiment_name)
+        if experiment_name == "PM2.5 Prophet":
+            rmse_results["Prophet"] = rmse
+        if experiment_name == "PM2.5 Random Forest":
+            rmse_results["Random"] = rmse
+        if experiment_name == "PM2.5 XGBoost Prediction":
+            rmse_results["XGBoost"] = rmse
         if run_id is not None and rmse < best_rmse:
             best_rmse = rmse
             best_experiment_name = exp_name
@@ -101,10 +107,48 @@ def get_best_model_and_load_weights(experiment_names):
     
     return best_model, best_rmse, best_experiment_name, best_run_id
 
+def get_bias_results(experiment_names):
+    best_metrics = {}
+    for experiment_name in experiment_names:
+        # Get the experiment ID
+        experiment = mlflow.get_experiment_by_name(experiment_name)
+        if experiment is None:
+            print(f"Experiment '{experiment_name}' not found.")
+            continue
+        experiment_id = experiment.experiment_id
+
+        # Query all runs in the experiment
+        runs = mlflow.search_runs(experiment_ids=[experiment_id])
+
+        # Ensure there are runs to process
+        if runs.empty:
+            print(f"No runs found for experiment '{experiment_name}'.")
+            continue
+
+        # Find the minimum and maximum values for each metric
+        best_mae_run = runs.loc[runs['metrics.MAE'].idxmin()]
+        best_rmse_run = runs.loc[runs['metrics.RMSE'].idxmin()]
+        best_r2_run = runs.loc[runs['metrics.R²'].idxmax()]
+        best_mbe_run = runs.loc[runs['metrics.MBE'].idxmin()]
+
+        # Record the best values and corresponding run IDs
+        best_metrics[experiment_name] = {
+            "Best MAE": (best_mae_run['metrics.MAE'], best_mae_run['run_id']),
+            "Best RMSE": (best_rmse_run['metrics.RMSE'], best_rmse_run['run_id']),
+            "Best R²": (best_r2_run['metrics.R²'], best_r2_run['run_id']),
+            "Best MBE": (best_mbe_run['metrics.MBE'], best_mbe_run['run_id']),
+        }
+    return best_metrics
+
 # Entry Point Function
 def main():
     experiment_names = ["PM2.5 Random Forest", "PM2.5 XGBoost Prediction", "PM2.5 Prophet"]
-    model, best_rmse, best_experiment_name, best_run_id = get_best_model_and_load_weights(experiment_names)
+    experiment_names_2 = ["Random Forest Bias Evaluation", "XGBoost Bias Evaluation", "Prophet Bias Evaluation"]
+    model, best_rmse, best_experiment_name, best_run_id,rmse_results  = get_best_model_and_load_weights(experiment_names)
+    bias_results = get_bias_results(experiment_names_2)
+    print(rmse_results)
+    print(bias_results)
+
 
     if model:
         print(f"Best Experiment: {best_experiment_name}")

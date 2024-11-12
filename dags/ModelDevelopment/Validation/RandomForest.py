@@ -22,6 +22,8 @@ class RandomForestPM25Model:
         }
         #self.model = RandomForestRegressor(n_estimators=100, random_state=42)
         self.model = RandomForestRegressor(random_state=42)
+        with open(model_save_path, 'rb') as f:
+            self.model = pd.read_pickle(f)
         # mlflow.log_param("n_estimators",100)
         # mlflow.log_param("random_state",42)
         self.X_train = None
@@ -91,22 +93,6 @@ class RandomForestPM25Model:
         plt.savefig(plot_path)
         mlflow.log_artifact(plot_path)
         print(f"Sensitivity plot saved at {plot_path}")
-
-    def grid_search_cv(self):
-        # Perform grid search with cross-validation
-        grid_search = GridSearchCV(estimator=self.model, param_grid=self.param_grid, cv=3, scoring='neg_mean_squared_error')
-        grid_search.fit(self.X_train, self.y_train)
-
-        # Log the best parameters and best RMSE
-        best_params = grid_search.best_params_
-        mlflow.log_params(best_params)
-        print("Best parameters:", best_params)
-        
-        # Set the model to the best estimator
-        self.model = grid_search.best_estimator_
-
-        # Log the best model in MLflow
-        mlflow.sklearn.log_model(self.model, "XGBoost", input_example=self.X_train[:5])
     
     def shap_analysis(self):
         # Initialize SHAP explainer for XGBoost
@@ -121,11 +107,6 @@ class RandomForestPM25Model:
         plt.savefig(shap_plot_path)
         mlflow.log_artifact(shap_plot_path)
         print(f"SHAP summary plot saved at {shap_plot_path}")
-    
-    def train_model(self):
-        # Train the model
-        self.model.fit(self.X_train, self.y_train)
-        mlflow.sklearn.log_model(self.model,"RandomForest",input_example=self.X_train[:5])
 
     def evaluate(self):
         # Make predictions on the test data
@@ -145,14 +126,6 @@ class RandomForestPM25Model:
         print(f"RMSE (Original PM2.5 target): {rmse_original}")
 
         return y_pred_original
-
-    def save_weights(self):
-        # Save the model weights to the specified path
-        model_save_path = self.model_save_path
-        with open(model_save_path, 'wb') as f:
-            pd.to_pickle(self.model, f)
-        mlflow.log_artifact(self.model_save_path)
-        print(f"Model saved at {model_save_path}")
 
     def load_weights(self):
         # Load the model weights from the specified path
@@ -203,16 +176,10 @@ def main():
         mlflow.end_run()
 
     with mlflow.start_run():
-        start_time = time.time()
         rf_model = RandomForestPM25Model(train_file, test_file, fitting_lambda, model_save_path)
         rf_model.load_data()
-        rf_model.grid_search_cv()
-        #rf_model.train_model()
-        train_duration = time.time() - start_time
-        mlflow.log_metric("training_duration", train_duration)
         y_pred_original = rf_model.evaluate()
         rf_model.shap_analysis()
-        rf_model.save_weights()
         rf_model.hyperparameter_sensitivity("n_estimators", [100, 200])
         rf_model.load_weights()
         rf_model.plot_results(y_pred_original)

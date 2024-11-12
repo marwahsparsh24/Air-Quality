@@ -1,0 +1,56 @@
+[2024-11-12T04:00:30.271+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T04:00:30.281+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Bias_Model manual__2024-11-12T03:59:23.636385+00:00 [queued]>
+[2024-11-12T04:00:30.284+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Bias_Model manual__2024-11-12T03:59:23.636385+00:00 [queued]>
+[2024-11-12T04:00:30.284+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-11-12T04:00:30.290+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Bias_Model> on 2024-11-12 03:59:23.636385+00:00
+[2024-11-12T04:00:30.312+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=119) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T04:00:30.316+0000] {standard_task_runner.py:63} INFO - Started process 128 to run task
+[2024-11-12T04:00:30.316+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Bias_Model', 'manual__2024-11-12T03:59:23.636385+00:00', '--job-id', '1055', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmp9mfcdmb0']
+[2024-11-12T04:00:30.321+0000] {standard_task_runner.py:91} INFO - Job 1055: Subtask Bias_Model
+[2024-11-12T04:00:30.345+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Bias_Model manual__2024-11-12T03:59:23.636385+00:00 [running]> on host 5039cd089413
+[2024-11-12T04:00:30.385+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Bias_Model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T03:59:23.636385+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T03:59:23.636385+00:00'
+[2024-11-12T04:00:30.387+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T04:00:30.400+0000] {logging_mixin.py:188} INFO - Loaded feature-engineered test data successfully.
+[2024-11-12T04:00:30.407+0000] {logging_mixin.py:188} INFO - Warning: 'timestamp' column is missing. Creating a synthetic timestamp column.
+[2024-11-12T04:00:30.407+0000] {logging_mixin.py:188} INFO - Feature Data Columns: Index(['pm25', 'pm25_boxcox', 'lag_1', 'lag_2', 'lag_3', 'lag_4', 'lag_5',
+       'rolling_mean_3', 'rolling_mean_6', 'rolling_mean_24', 'rolling_std_3',
+       'rolling_std_6', 'rolling_std_24', 'ema_3', 'ema_6', 'ema_24', 'diff_1',
+       'diff_2', 'hour', 'day_of_week', 'day_of_year', 'month', 'sin_hour',
+       'cos_hour', 'sin_day_of_week', 'cos_day_of_week', 'season',
+       'timestamp'],
+      dtype='object', name='parameter')
+[2024-11-12T04:00:30.407+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T04:00:30.408+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/ModelDevelopment/ModelBias/Model_bias.py", line 333, in main_pipeline
+    rf_model, xgb_model, prophet_model = load_models()
+                                         ^^^^^^^^^^^^^
+  File "/opt/airflow/dags/ModelDevelopment/ModelBias/Model_bias.py", line 73, in load_models
+    rf_model = load_random_forest_model(model_paths["random_forest"])
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/ModelDevelopment/ModelBias/Model_bias.py", line 55, in load_random_forest_model
+    with open(filepath, 'rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/opt/airflow/weights/randomforest_pm25_model.pth'
+[2024-11-12T04:00:30.414+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=modeling_pipeline, task_id=Bias_Model, run_id=manual__2024-11-12T03:59:23.636385+00:00, execution_date=20241112T035923, start_date=20241112T040030, end_date=20241112T040030
+[2024-11-12T04:00:30.419+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 1055 for task Bias_Model ([Errno 2] No such file or directory: '/opt/airflow/weights/randomforest_pm25_model.pth'; 128)
+[2024-11-12T04:00:30.457+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-12T04:00:30.464+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T04:00:30.465+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
