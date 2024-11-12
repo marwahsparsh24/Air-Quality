@@ -1,4 +1,4 @@
-name: Run Training Scripts
+name: Run Prophet Model Training with MLflow Logging
 
 on:
   push:
@@ -9,7 +9,7 @@ on:
       - main
 
 jobs:
-  run_training_scripts:
+  train_prophet_model:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,51 +21,39 @@ jobs:
         with:
           python-version: '3.8'
 
-      - name: Set PYTHONPATH
-        run: echo "PYTHONPATH=${PYTHONPATH}:$(pwd)/ModelDevelopment" >> $GITHUB_ENV
-
-      - name: Set MLflow tracking and artifact URI
-        run: |
-          echo "MLFLOW_TRACKING_URI=file://$(pwd)/mlruns" >> $GITHUB_ENV
-          echo "MLFLOW_ARTIFACT_URI=$(pwd)/mlruns" >> $GITHUB_ENV
-        
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
           if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
 
-      - name: Set environment variables for MLflow
+      - name: Configure MLflow Environment Variables
         run: |
-          echo "PYTHONPATH=${PYTHONPATH}:$GITHUB_WORKSPACE/ModelDevelopment" >> $GITHUB_ENV
+          # Set environment variables for MLflow tracking and artifact paths within the GitHub workspace
           echo "MLFLOW_TRACKING_URI=file://$GITHUB_WORKSPACE/mlruns" >> $GITHUB_ENV
           echo "MLFLOW_ARTIFACT_URI=$GITHUB_WORKSPACE/mlruns" >> $GITHUB_ENV
-        
-      - name: Create mlruns directory and verify permissions
-        run: |
-          mkdir -p $GITHUB_WORKSPACE/mlruns
-          echo "Checking write permissions for mlruns directory"
-          touch $GITHUB_WORKSPACE/mlruns/test_file.txt
-          rm $GITHUB_WORKSPACE/mlruns/test_file.txt
 
-      - name: List directory structure
-        run: |
-          echo "Current directory structure:"
-          ls -R  # List all files and directories
+      - name: Create mlruns directory for MLflow artifacts
+        run: mkdir -p $GITHUB_WORKSPACE/mlruns
 
-      - name: Run all training scripts
+      - name: Run Prophet Model Training Script
         run: |
-          for script in ModelDevelopment/Training/*.py; do  # Adjust path based on actual structure
-            echo "Running $script"
-            if ! python "$script"; then
-              echo "❌ $script failed. Exiting."
-              exit 1
-            fi
-          done
+          # Run your Python script
+          python ModelDevelopment/Training/Prophet.py
+        env:
+          MLFLOW_TRACKING_URI: "file://$GITHUB_WORKSPACE/mlruns"
+          MLFLOW_ARTIFACT_URI: "$GITHUB_WORKSPACE/mlruns"
 
-      - name: Notify on success
+      - name: Upload MLflow Artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: mlflow-artifacts
+          path: $GITHUB_WORKSPACE/mlruns
+
+      - name: Notify on Success
         if: success()
-        run: echo "✅ All training scripts completed successfully!"
+        run: echo "✅ Model training and logging completed successfully!"
 
-      - name: Notify on failure
+      - name: Notify on Failure
         if: failure()
-        run: echo "❌ Some training scripts failed. Please check the logs for details."
+        run: echo "❌ Model training failed. Please check the logs for details."
