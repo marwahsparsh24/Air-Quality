@@ -64,12 +64,12 @@ class ProphetPM25Model:
         os.makedirs(local_artifact_path, exist_ok=True)
         
         # Log the model using the local path
-        mlflow.pyfunc.log_model(
-            artifact_path=local_artifact_path,
-            python_model=wrapped_model,
-            input_example=self.df_train.head(1)
-        )
-        # mlflow.pyfunc.log_model(artifact_path="prophet_pm25_model", python_model= wrapped_model,input_example=self.df_train.head(1))
+        # mlflow.pyfunc.log_model(
+        #     artifact_path=local_artifact_path,
+        #     python_model=wrapped_model,
+        #     input_example=self.df_train.head(1)
+        # )
+        mlflow.pyfunc.log_model(artifact_path="prophet_pm25_model", python_model= wrapped_model,input_example=self.df_train.head(1))
 
     
 
