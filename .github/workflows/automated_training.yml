@@ -29,11 +29,19 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
 
+      - name: List directory structure
+        run: |
+          echo "Current directory structure:"
+          ls -R  # List all files and directories
+
       - name: Run all training scripts
         run: |
-          for script in $(ls ModelDevelopment/training/*.py); do
-            echo "Running $ script"
-            python "$script"
+          for script in ModelDevelopment/Training/*.py; do  # Adjust path based on actual structure
+            echo "Running $script"
+            if ! python "$script"; then
+              echo "❌ $script failed. Exiting."
+              exit 1
+            fi
           done
 
       - name: Notify on success
