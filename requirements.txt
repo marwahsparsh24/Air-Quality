@@ -8,3 +8,6 @@ seaborn
 xgboost
 scipy
 fairlearn
+mlflow
+prophet
+shap
