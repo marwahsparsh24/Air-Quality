@@ -15707,3 +15707,450 @@ File Path                                                        PID  Runtime   
 /opt/airflow/dags/dag_script.py                                                         1           0  0.94s           2024-11-12T09:20:30
 ================================================================================
 [2024-11-12T09:21:04.989+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-11-12T18:56:00.063+0000] {manager.py:470} INFO - Processing files using up to 2 processes at a time 
+[2024-11-12T18:56:00.064+0000] {manager.py:471} INFO - Process each file at most once every 30 seconds
+[2024-11-12T18:56:00.066+0000] {manager.py:472} INFO - Checking for new files in /opt/airflow/dags every 300 seconds
+[2024-11-12T18:56:00.066+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-11-12T18:56:00.293+0000] {manager.py:740} INFO - There are 8 files in /opt/airflow/dags
+[2024-11-12T18:56:16.548+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/dag_script_model.py                                                   1           0  6.46s           2024-11-12T18:56:06
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  6.09s           2024-11-12T18:56:06
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.64s           2024-11-12T18:56:08
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.63s           2024-11-12T18:56:08
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.39s           2024-11-12T18:56:09
+/opt/airflow/dags/dag_script.py                                                         1           0  1.31s           2024-11-12T18:56:09
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.04s           2024-11-12T18:56:10
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  0.95s           2024-11-12T18:56:10
+================================================================================
+[2024-11-12T18:56:46.744+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  2.12s           2024-11-12T18:56:41
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.77s           2024-11-12T18:56:40
+/opt/airflow/dags/dag_script.py                                                         1           0  1.59s           2024-11-12T18:56:41
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.29s           2024-11-12T18:56:42
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.27s           2024-11-12T18:56:38
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.18s           2024-11-12T18:56:37
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.06s           2024-11-12T18:56:42
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  0.93s           2024-11-12T18:56:43
+================================================================================
+[2024-11-12T18:57:17.258+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.58s           2024-11-12T18:57:10
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.44s           2024-11-12T18:57:09
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.32s           2024-11-12T18:57:14
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.27s           2024-11-12T18:57:13
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.22s           2024-11-12T18:57:14
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.00s           2024-11-12T18:57:15
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  0.99s           2024-11-12T18:57:11
+/opt/airflow/dags/dag_script.py                                                         1           0  0.92s           2024-11-12T18:57:12
+================================================================================
+[2024-11-12T18:57:47.886+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.53s           2024-11-12T18:57:41
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.36s           2024-11-12T18:57:45
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.26s           2024-11-12T18:57:41
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.16s           2024-11-12T18:57:46
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.13s           2024-11-12T18:57:45
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.10s           2024-11-12T18:57:46
+/opt/airflow/dags/dag_script.py                                                         1           0  1.08s           2024-11-12T18:57:44
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.05s           2024-11-12T18:57:42
+================================================================================
+[2024-11-12T18:58:18.476+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.61s           2024-11-12T18:58:13
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.27s           2024-11-12T18:58:13
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.21s           2024-11-12T18:58:17
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.19s           2024-11-12T18:58:16
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.17s           2024-11-12T18:58:14
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.13s           2024-11-12T18:58:17
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.09s           2024-11-12T18:58:18
+/opt/airflow/dags/dag_script.py                                                         1           0  0.94s           2024-11-12T18:58:16
+================================================================================
+[2024-11-12T18:58:48.679+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                        PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.61s           2024-11-12T18:58:48
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.52s           2024-11-12T18:58:45
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.40s           2024-11-12T18:58:45
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py      527  0.01s             0           0  1.21s           2024-11-12T18:58:17
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.20s           2024-11-12T18:58:46
+/opt/airflow/dags/dag_script.py                                                         1           0  1.18s           2024-11-12T18:58:48
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py           519  0.43s             0           0  1.13s           2024-11-12T18:58:17
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.09s           2024-11-12T18:58:18
+================================================================================
+[2024-11-12T18:59:19.471+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                        PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.77s           2024-11-12T18:58:50
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py         589  0.00s             0           0  1.61s           2024-11-12T18:58:48
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.59s           2024-11-12T18:58:50
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.46s           2024-11-12T18:59:17
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.22s           2024-11-12T18:59:16
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.17s           2024-11-12T18:59:17
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.16s           2024-11-12T18:58:51
+/opt/airflow/dags/dag_script.py                                                         1           0  0.92s           2024-11-12T18:59:19
+================================================================================
+[2024-11-12T18:59:49.511+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                        PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.80s           2024-11-12T18:59:22
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.79s           2024-11-12T18:59:22
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.48s           2024-11-12T18:59:23
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.48s           2024-11-12T18:59:20
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.48s           2024-11-12T18:59:49
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.38s           2024-11-12T18:59:48
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.19s           2024-11-12T18:59:49
+/opt/airflow/dags/dag_script.py                                  661  0.00s             1           0  0.92s           2024-11-12T18:59:19
+================================================================================
+[2024-11-12T19:00:19.683+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                        PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/dag_script_model.py                            723  0.01s             1           0  1.48s           2024-11-12T18:59:49
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py    714  1.02s             0           0  1.38s           2024-11-12T18:59:48
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.30s           2024-11-12T18:59:52
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.19s           2024-11-12T18:59:49
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.18s           2024-11-12T18:59:54
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.13s           2024-11-12T18:59:53
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.05s           2024-11-12T18:59:55
+/opt/airflow/dags/dag_script.py                                                         1           0  0.86s           2024-11-12T18:59:50
+================================================================================
+[2024-11-12T19:00:49.815+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.72s           2024-11-12T19:00:24
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.65s           2024-11-12T19:00:21
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.50s           2024-11-12T19:00:27
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.48s           2024-11-12T19:00:20
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.48s           2024-11-12T19:00:26
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.47s           2024-11-12T19:00:25
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.30s           2024-11-12T19:00:21
+/opt/airflow/dags/dag_script.py                                                         1           0  0.84s           2024-11-12T19:00:22
+================================================================================
+[2024-11-12T19:01:00.089+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-11-12T19:01:00.400+0000] {manager.py:740} INFO - There are 8 files in /opt/airflow/dags
+[2024-11-12T19:01:20.552+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  2.10s           2024-11-12T19:00:57
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.78s           2024-11-12T19:00:57
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.76s           2024-11-12T19:00:53
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.74s           2024-11-12T19:00:52
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.52s           2024-11-12T19:00:59
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.44s           2024-11-12T19:00:53
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.42s           2024-11-12T19:00:59
+/opt/airflow/dags/dag_script.py                                                         1           0  1.21s           2024-11-12T19:00:54
+================================================================================
+[2024-11-12T19:01:50.634+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.79s           2024-11-12T19:01:29
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.69s           2024-11-12T19:01:29
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.65s           2024-11-12T19:01:31
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.65s           2024-11-12T19:01:25
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.63s           2024-11-12T19:01:31
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.50s           2024-11-12T19:01:25
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.43s           2024-11-12T19:01:24
+/opt/airflow/dags/dag_script.py                                                         1           0  1.04s           2024-11-12T19:01:26
+================================================================================
+[2024-11-12T19:02:20.686+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.79s           2024-11-12T19:01:56
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.73s           2024-11-12T19:01:57
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.47s           2024-11-12T19:01:57
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.41s           2024-11-12T19:02:01
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.32s           2024-11-12T19:02:03
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.27s           2024-11-12T19:02:03
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.18s           2024-11-12T19:02:01
+/opt/airflow/dags/dag_script.py                                                         1           0  0.79s           2024-11-12T19:01:58
+================================================================================
+[2024-11-12T19:02:51.308+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.46s           2024-11-12T19:02:32
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.39s           2024-11-12T19:02:36
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.35s           2024-11-12T19:02:32
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.33s           2024-11-12T19:02:35
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.32s           2024-11-12T19:02:35
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.32s           2024-11-12T19:02:28
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.30s           2024-11-12T19:02:29
+/opt/airflow/dags/dag_script.py                                                         1           0  0.93s           2024-11-12T19:02:29
+================================================================================
+[2024-11-12T19:03:21.644+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.76s           2024-11-12T19:03:07
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.75s           2024-11-12T19:03:07
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.61s           2024-11-12T19:03:09
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.42s           2024-11-12T19:03:05
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.40s           2024-11-12T19:03:05
+/opt/airflow/dags/dag_script.py                                                         1           0  1.27s           2024-11-12T19:03:01
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.23s           2024-11-12T19:03:00
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.16s           2024-11-12T19:02:59
+================================================================================
+[2024-11-12T19:03:51.932+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.51s           2024-11-12T19:03:40
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.50s           2024-11-12T19:03:39
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.41s           2024-11-12T19:03:39
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.36s           2024-11-12T19:03:36
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.30s           2024-11-12T19:03:36
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.15s           2024-11-12T19:03:30
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  0.99s           2024-11-12T19:03:31
+/opt/airflow/dags/dag_script.py                                                         1           0  0.79s           2024-11-12T19:03:32
+================================================================================
+[2024-11-12T19:04:22.397+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  2.54s           2024-11-12T19:04:10
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  2.51s           2024-11-12T19:04:10
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.79s           2024-11-12T19:04:02
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.79s           2024-11-12T19:04:11
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.71s           2024-11-12T19:04:11
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.56s           2024-11-12T19:04:13
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.46s           2024-11-12T19:04:03
+/opt/airflow/dags/dag_script.py                                                         1           0  0.88s           2024-11-12T19:04:03
+================================================================================
+[2024-11-12T19:04:53.169+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.70s           2024-11-12T19:04:42
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.67s           2024-11-12T19:04:42
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.58s           2024-11-12T19:04:34
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.58s           2024-11-12T19:04:43
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.55s           2024-11-12T19:04:44
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.49s           2024-11-12T19:04:45
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.46s           2024-11-12T19:04:35
+/opt/airflow/dags/dag_script.py                                                         1           0  0.99s           2024-11-12T19:04:35
+================================================================================
+[2024-11-12T19:05:23.565+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.54s           2024-11-12T19:05:14
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.54s           2024-11-12T19:05:14
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.49s           2024-11-12T19:05:06
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.43s           2024-11-12T19:05:07
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.24s           2024-11-12T19:05:16
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.24s           2024-11-12T19:05:15
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.23s           2024-11-12T19:05:15
+/opt/airflow/dags/dag_script.py                                                         1           0  1.00s           2024-11-12T19:05:07
+================================================================================
+[2024-11-12T19:05:54.082+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  2.48s           2024-11-12T19:05:49
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  2.47s           2024-11-12T19:05:49
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  2.21s           2024-11-12T19:05:47
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  2.16s           2024-11-12T19:05:47
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.99s           2024-11-12T19:05:39
+/opt/airflow/dags/dag_script.py                                                         1           0  1.59s           2024-11-12T19:05:39
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.55s           2024-11-12T19:05:51
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.34s           2024-11-12T19:05:38
+================================================================================
+[2024-11-12T19:06:00.106+0000] {manager.py:737} INFO - Searching for files in /opt/airflow/dags
+[2024-11-12T19:06:00.320+0000] {manager.py:740} INFO - There are 8 files in /opt/airflow/dags
+[2024-11-12T19:06:24.291+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.54s           2024-11-12T19:06:12
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.45s           2024-11-12T19:06:18
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.43s           2024-11-12T19:06:18
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.41s           2024-11-12T19:06:21
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.37s           2024-11-12T19:06:09
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.37s           2024-11-12T19:06:20
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.29s           2024-11-12T19:06:23
+/opt/airflow/dags/dag_script.py                                                         1           0  1.20s           2024-11-12T19:06:11
+================================================================================
+[2024-11-12T19:06:54.574+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                        PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.74s           2024-11-12T19:06:50
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.72s           2024-11-12T19:06:50
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.58s           2024-11-12T19:06:53
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.56s           2024-11-12T19:06:53
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.46s           2024-11-12T19:06:41
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.41s           2024-11-12T19:06:43
+/opt/airflow/dags/dag_script_model.py                           1769  1.01s             1           0  1.29s           2024-11-12T19:06:23
+/opt/airflow/dags/dag_script.py                                                         1           0  1.04s           2024-11-12T19:06:43
+================================================================================
+[2024-11-12T19:07:24.610+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.52s           2024-11-12T19:07:22
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.52s           2024-11-12T19:07:22
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.44s           2024-11-12T19:07:15
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.30s           2024-11-12T19:07:12
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.28s           2024-11-12T19:07:24
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.27s           2024-11-12T19:07:24
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.23s           2024-11-12T19:06:54
+/opt/airflow/dags/dag_script.py                                                         1           0  1.08s           2024-11-12T19:07:14
+================================================================================
+[2024-11-12T19:07:54.678+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                        PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.63s           2024-11-12T19:07:54
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py        1893  1.65s             0           0  1.52s           2024-11-12T19:07:22
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.41s           2024-11-12T19:07:45
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.35s           2024-11-12T19:07:26
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.35s           2024-11-12T19:07:47
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py     1913  0.00s             0           0  1.28s           2024-11-12T19:07:24
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.27s           2024-11-12T19:07:24
+/opt/airflow/dags/dag_script.py                                                         1           0  0.89s           2024-11-12T19:07:46
+================================================================================
+[2024-11-12T19:08:25.365+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                        PID  Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/dag_script_model.py                                                   1           0  2.23s           2024-11-12T19:07:59
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.93s           2024-11-12T19:08:19
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py        1974  0.01s             0           0  1.65s           2024-11-12T19:07:54
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py          1975  0.00s             0           0  1.63s           2024-11-12T19:07:54
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.62s           2024-11-12T19:08:16
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.39s           2024-11-12T19:07:56
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.39s           2024-11-12T19:07:56
+/opt/airflow/dags/dag_script.py                                                         1           0  1.35s           2024-11-12T19:08:17
+================================================================================
+[2024-11-12T19:08:55.484+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  2.23s           2024-11-12T19:08:49
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.85s           2024-11-12T19:08:27
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.85s           2024-11-12T19:08:27
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.75s           2024-11-12T19:08:29
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.71s           2024-11-12T19:08:31
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.71s           2024-11-12T19:08:28
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.65s           2024-11-12T19:08:51
+/opt/airflow/dags/dag_script.py                                                         1           0  1.36s           2024-11-12T19:08:49
+================================================================================
+[2024-11-12T19:09:26.031+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  2.09s           2024-11-12T19:08:59
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  2.08s           2024-11-12T19:08:59
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.84s           2024-11-12T19:09:02
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.69s           2024-11-12T19:09:02
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.63s           2024-11-12T19:09:01
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.53s           2024-11-12T19:09:21
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.43s           2024-11-12T19:09:23
+/opt/airflow/dags/dag_script.py                                                         1           0  1.15s           2024-11-12T19:09:20
+================================================================================
+[2024-11-12T19:09:56.855+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.54s           2024-11-12T19:09:31
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.53s           2024-11-12T19:09:31
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  1.18s           2024-11-12T19:09:52
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.14s           2024-11-12T19:09:32
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.12s           2024-11-12T19:09:34
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.08s           2024-11-12T19:09:33
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  1.02s           2024-11-12T19:09:54
+/opt/airflow/dags/dag_script.py                                                         1           0  0.99s           2024-11-12T19:09:51
+================================================================================
+[2024-11-12T19:10:27.203+0000] {manager.py:878} INFO - 
+================================================================================
+DAG File Processing Stats
+
+File Path                                                      PID    Runtime      # DAGs    # Errors  Last Runtime    Last Run
+-------------------------------------------------------------  -----  ---------  --------  ----------  --------------  -------------------
+/opt/airflow/dags/ModelDevelopment/Validation/Prophet.py                                0           0  1.38s           2024-11-12T19:10:03
+/opt/airflow/dags/ModelDevelopment/Training/Prophet.py                                  0           0  1.36s           2024-11-12T19:10:03
+/opt/airflow/dags/dag_script_model.py                                                   1           0  1.21s           2024-11-12T19:10:06
+/opt/airflow/dags/ModelDevelopment/Training/RandomForest.py                             0           0  1.09s           2024-11-12T19:10:04
+/opt/airflow/dags/ModelDevelopment/Training/XGBoost.py                                  0           0  1.04s           2024-11-12T19:10:04
+/opt/airflow/dags/dag_script.py                                                         1           0  1.00s           2024-11-12T19:10:23
+/opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py                                0           0  0.99s           2024-11-12T19:10:26
+/opt/airflow/dags/ModelDevelopment/Validation/RandomForest.py                           0           0  0.99s           2024-11-12T19:10:24
+================================================================================
+[2024-11-12T19:10:55.538+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-11-12T19:10:55.536+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15
+[2024-11-12T19:10:56.209+0000] {manager.py:452} INFO - Exiting gracefully upon receiving signal 15

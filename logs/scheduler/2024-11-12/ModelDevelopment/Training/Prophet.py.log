@@ -4462,3 +4462,171 @@
 [2024-11-12T09:20:39.325+0000] {logging_mixin.py:188} INFO - [2024-11-12T09:20:39.325+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
 [2024-11-12T09:20:39.924+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
 [2024-11-12T09:20:39.940+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.840 seconds
+[2024-11-12T18:56:08.477+0000] {processor.py:161} INFO - Started process (PID=104) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:56:08.480+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T18:56:08.490+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:08.489+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:56:09.445+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:09.445+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:56:09.822+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:56:09.830+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.367 seconds
+[2024-11-12T18:56:41.089+0000] {processor.py:161} INFO - Started process (PID=192) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:56:41.092+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T18:56:41.103+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:41.102+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:56:41.973+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:41.972+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:56:42.347+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:56:42.355+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.273 seconds
+[2024-11-12T18:57:12.929+0000] {processor.py:161} INFO - Started process (PID=277) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:57:12.929+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T18:57:12.931+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:12.930+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:57:13.817+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:13.816+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:57:14.214+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:57:14.229+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.305 seconds
+[2024-11-12T18:57:44.746+0000] {processor.py:161} INFO - Started process (PID=358) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:57:44.747+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T18:57:44.749+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:44.749+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:57:45.492+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:45.492+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:57:45.839+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:57:45.849+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.109 seconds
+[2024-11-12T18:58:16.254+0000] {processor.py:161} INFO - Started process (PID=439) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:58:16.255+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T18:58:16.256+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:16.256+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:58:17.012+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:17.012+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:58:17.354+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:58:17.367+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.118 seconds
+[2024-11-12T18:58:48.264+0000] {processor.py:161} INFO - Started process (PID=519) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:58:48.266+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T18:58:48.269+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:48.269+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:58:49.446+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:49.446+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:58:49.979+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:58:49.992+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.734 seconds
+[2024-11-12T18:59:20.500+0000] {processor.py:161} INFO - Started process (PID=599) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:59:20.501+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T18:59:20.504+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:20.503+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:59:21.510+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:21.510+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:59:22.237+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:59:22.253+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.758 seconds
+[2024-11-12T18:59:52.391+0000] {processor.py:161} INFO - Started process (PID=680) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:59:52.393+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T18:59:52.394+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:52.394+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:59:53.143+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:53.143+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:59:53.480+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T18:59:53.492+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.108 seconds
+[2024-11-12T19:00:24.216+0000] {processor.py:161} INFO - Started process (PID=761) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:00:24.217+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:00:24.220+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:24.220+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:00:25.223+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:25.223+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:00:25.631+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:00:25.644+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.433 seconds
+[2024-11-12T19:00:55.772+0000] {processor.py:161} INFO - Started process (PID=840) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:00:55.779+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:00:55.780+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:55.780+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:00:56.819+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:56.819+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:00:57.454+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:00:57.470+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.701 seconds
+[2024-11-12T19:01:28.145+0000] {processor.py:161} INFO - Started process (PID=913) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:01:28.149+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:01:28.150+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:28.150+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:01:29.276+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:29.276+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:01:29.776+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:01:29.797+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.655 seconds
+[2024-11-12T19:01:59.883+0000] {processor.py:161} INFO - Started process (PID=993) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:01:59.885+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:01:59.887+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:59.887+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:02:00.734+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:00.734+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:02:01.252+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:02:01.266+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.389 seconds
+[2024-11-12T19:02:31.534+0000] {processor.py:161} INFO - Started process (PID=1075) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:02:31.536+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:02:31.537+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:31.537+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:02:32.302+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:32.302+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:02:32.839+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:02:32.853+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.322 seconds
+[2024-11-12T19:03:03.685+0000] {processor.py:161} INFO - Started process (PID=1156) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:03:03.688+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:03:03.690+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:03.690+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:03:04.572+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:04.572+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:03:05.047+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:03:05.055+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.374 seconds
+[2024-11-12T19:03:35.603+0000] {processor.py:161} INFO - Started process (PID=1243) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:03:35.605+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:03:35.608+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:35.607+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:03:36.439+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:36.439+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:03:36.913+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:03:36.922+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.328 seconds
+[2024-11-12T19:04:07.553+0000] {processor.py:161} INFO - Started process (PID=1328) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:04:07.556+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:04:07.558+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:07.558+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:04:08.882+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:08.882+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:04:09.963+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:04:10.002+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 2.459 seconds
+[2024-11-12T19:04:40.521+0000] {processor.py:161} INFO - Started process (PID=1408) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:04:40.523+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:04:40.525+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:40.524+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:04:41.505+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:41.505+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:04:42.140+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:04:42.154+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.639 seconds
+[2024-11-12T19:05:12.777+0000] {processor.py:161} INFO - Started process (PID=1489) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:05:12.781+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:05:12.784+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:12.783+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:05:13.757+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:13.757+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:05:14.273+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:05:14.284+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.513 seconds
+[2024-11-12T19:05:44.890+0000] {processor.py:161} INFO - Started process (PID=1570) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:05:44.891+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:05:44.893+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:44.892+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:05:46.056+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:46.056+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:05:46.975+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:05:46.987+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 2.104 seconds
+[2024-11-12T19:06:17.180+0000] {processor.py:161} INFO - Started process (PID=1651) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:06:17.185+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:06:17.187+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:17.187+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:06:18.055+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:18.055+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:06:18.572+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:06:18.587+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.410 seconds
+[2024-11-12T19:06:48.844+0000] {processor.py:161} INFO - Started process (PID=1732) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:06:48.845+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:06:48.848+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:48.847+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:06:49.916+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:49.916+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:06:50.500+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:06:50.518+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.686 seconds
+[2024-11-12T19:07:20.999+0000] {processor.py:161} INFO - Started process (PID=1813) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:07:21.000+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:07:21.005+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:21.005+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:07:21.957+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:21.957+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:07:22.474+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:07:22.489+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.497 seconds
+[2024-11-12T19:07:53.053+0000] {processor.py:161} INFO - Started process (PID=1894) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:07:53.055+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:07:53.058+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:53.058+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:07:54.058+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:54.057+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:07:54.636+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:07:54.653+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.607 seconds
+[2024-11-12T19:08:25.375+0000] {processor.py:161} INFO - Started process (PID=1975) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:08:25.376+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:08:25.377+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:08:25.377+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:08:26.446+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:08:26.445+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:08:27.162+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:08:27.176+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.807 seconds
+[2024-11-12T19:08:57.530+0000] {processor.py:161} INFO - Started process (PID=2056) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:08:57.532+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:08:57.534+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:08:57.534+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:08:58.823+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:08:58.823+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:08:59.551+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:08:59.572+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 2.049 seconds
+[2024-11-12T19:09:30.083+0000] {processor.py:161} INFO - Started process (PID=2137) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:09:30.086+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:09:30.089+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:09:30.089+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:09:31.024+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:09:31.024+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:09:31.565+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:09:31.574+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.507 seconds
+[2024-11-12T19:10:01.926+0000] {processor.py:161} INFO - Started process (PID=2218) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:10:01.931+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:10:01.938+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:01.938+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:10:02.799+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:02.799+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:10:03.249+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:10:03.257+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.338 seconds
+[2024-11-12T19:10:33.362+0000] {processor.py:161} INFO - Started process (PID=2299) to work on /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:10:33.363+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Training/Prophet.py for tasks to queue
+[2024-11-12T19:10:33.365+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:33.365+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:10:34.224+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:34.224+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:10:34.839+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Training/Prophet.py
+[2024-11-12T19:10:34.899+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Training/Prophet.py took 1.542 seconds

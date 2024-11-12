@@ -8057,3 +8057,264 @@ NameError: name 'run_bias_check' is not defined. Did you mean: 'Bias_check'?
 [2024-11-12T09:20:44.032+0000] {logging_mixin.py:188} INFO - [2024-11-12T09:20:44.032+0000] {dag.py:3096} INFO - Sync 1 DAGs
 [2024-11-12T09:20:44.039+0000] {logging_mixin.py:188} INFO - [2024-11-12T09:20:44.038+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
 [2024-11-12T09:20:44.049+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 2.043 seconds
+[2024-11-12T18:56:00.371+0000] {processor.py:161} INFO - Started process (PID=58) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:56:00.374+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T18:56:00.381+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:00.380+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:56:06.472+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:06.471+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:56:06.666+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T18:56:06.675+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:56:06.770+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:06.769+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T18:56:06.783+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:06.783+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T18:56:06.795+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 6.431 seconds
+[2024-11-12T18:56:37.006+0000] {processor.py:161} INFO - Started process (PID=153) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:56:37.007+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T18:56:37.010+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:37.009+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:56:38.031+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:38.031+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:56:38.078+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T18:56:38.099+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:56:38.121+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:38.120+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T18:56:38.140+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:56:38.139+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T18:56:38.255+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.254 seconds
+[2024-11-12T18:57:08.530+0000] {processor.py:161} INFO - Started process (PID=230) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:57:08.532+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T18:57:08.536+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:08.535+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:57:09.971+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:09.971+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:57:10.009+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T18:57:10.014+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:57:10.033+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:10.033+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T18:57:10.040+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:10.040+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T18:57:10.051+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.532 seconds
+[2024-11-12T18:57:40.363+0000] {processor.py:161} INFO - Started process (PID=311) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:57:40.365+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T18:57:40.368+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:40.367+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:57:41.604+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:41.604+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:57:41.645+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T18:57:41.652+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:57:41.842+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:41.842+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T18:57:41.852+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:57:41.851+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T18:57:41.861+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.503 seconds
+[2024-11-12T18:58:12.003+0000] {processor.py:161} INFO - Started process (PID=392) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:58:12.004+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T18:58:12.006+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:12.006+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:58:13.278+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:13.278+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:58:13.339+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T18:58:13.345+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:58:13.381+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:13.380+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T18:58:13.560+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:13.560+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T18:58:13.581+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.582 seconds
+[2024-11-12T18:58:43.831+0000] {processor.py:161} INFO - Started process (PID=480) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:58:43.832+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T18:58:43.833+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:43.833+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:58:45.080+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:45.076+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:58:45.278+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T18:58:45.287+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:58:45.304+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:45.303+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T18:58:45.312+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:58:45.312+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T18:58:45.325+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.498 seconds
+[2024-11-12T18:59:16.164+0000] {processor.py:161} INFO - Started process (PID=561) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:59:16.166+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T18:59:16.168+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:16.167+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:59:17.504+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:17.504+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:59:17.552+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T18:59:17.558+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:59:17.577+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:17.577+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T18:59:17.583+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:17.583+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T18:59:17.597+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.437 seconds
+[2024-11-12T18:59:47.945+0000] {processor.py:161} INFO - Started process (PID=642) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:59:47.947+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T18:59:47.950+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:47.950+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:59:49.193+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:49.193+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T18:59:49.243+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T18:59:49.248+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T18:59:49.370+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:49.272+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T18:59:49.380+0000] {logging_mixin.py:188} INFO - [2024-11-12T18:59:49.379+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T18:59:49.392+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.451 seconds
+[2024-11-12T19:00:19.694+0000] {processor.py:161} INFO - Started process (PID=723) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:00:19.695+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:00:19.700+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:19.698+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:00:21.047+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:21.047+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:00:21.228+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:00:21.236+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:00:21.274+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:21.273+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:00:21.284+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:21.283+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:00:21.299+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.610 seconds
+[2024-11-12T19:00:51.865+0000] {processor.py:161} INFO - Started process (PID=804) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:00:51.868+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:00:51.870+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:51.870+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:00:53.496+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:53.496+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:00:53.543+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:00:53.550+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:00:53.568+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:53.568+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:00:53.574+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:00:53.574+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:00:53.589+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.729 seconds
+[2024-11-12T19:01:24.027+0000] {processor.py:161} INFO - Started process (PID=893) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:01:24.029+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:01:24.030+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:24.030+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:01:25.520+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:25.520+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:01:25.604+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:01:25.616+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:01:25.634+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:25.634+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:01:25.641+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:25.640+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:01:25.649+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.626 seconds
+[2024-11-12T19:01:56.408+0000] {processor.py:161} INFO - Started process (PID=974) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:01:56.409+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:01:56.412+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:56.412+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:01:57.657+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:57.657+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:01:57.811+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:01:57.817+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:01:57.830+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:57.830+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:01:57.836+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:01:57.836+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:01:57.842+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.446 seconds
+[2024-11-12T19:02:28.063+0000] {processor.py:161} INFO - Started process (PID=1055) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:02:28.064+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:02:28.066+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:28.066+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:02:29.320+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:29.320+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:02:29.387+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:02:29.395+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:02:29.456+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:29.456+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:02:29.472+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:29.472+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:02:29.486+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.429 seconds
+[2024-11-12T19:02:35.213+0000] {processor.py:161} INFO - Started process (PID=1118) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:02:35.214+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:02:35.215+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:35.215+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:02:36.485+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:36.485+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:02:36.518+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:02:36.525+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:02:36.575+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:36.575+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:02:36.580+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:02:36.580+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:02:36.588+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.378 seconds
+[2024-11-12T19:03:07.523+0000] {processor.py:161} INFO - Started process (PID=1199) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:03:07.524+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:03:07.529+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:07.528+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:03:09.024+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:09.024+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:03:09.057+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:03:09.063+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:03:09.077+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:09.077+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:03:09.082+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:09.082+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:03:09.095+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.577 seconds
+[2024-11-12T19:03:39.307+0000] {processor.py:161} INFO - Started process (PID=1280) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:03:39.309+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:03:39.313+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:39.313+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:03:40.702+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:40.702+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:03:40.735+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:03:40.739+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:03:40.775+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:40.775+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:03:40.781+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:03:40.781+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:03:40.792+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.493 seconds
+[2024-11-12T19:04:11.829+0000] {processor.py:161} INFO - Started process (PID=1365) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:04:11.830+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:04:11.832+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:11.832+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:04:13.279+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:13.279+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:04:13.317+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:04:13.322+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:04:13.340+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:13.340+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:04:13.346+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:13.345+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:04:13.355+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.533 seconds
+[2024-11-12T19:04:43.784+0000] {processor.py:161} INFO - Started process (PID=1445) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:04:43.785+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:04:43.788+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:43.787+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:04:45.059+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:45.059+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:04:45.154+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:04:45.162+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:04:45.201+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:45.199+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:04:45.229+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:04:45.228+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:04:45.243+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.465 seconds
+[2024-11-12T19:05:15.536+0000] {processor.py:161} INFO - Started process (PID=1526) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:05:15.537+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:05:15.538+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:15.538+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:05:16.680+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:16.680+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:05:16.716+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:05:16.721+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:05:16.737+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:16.737+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:05:16.742+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:16.742+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:05:16.753+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.221 seconds
+[2024-11-12T19:05:49.548+0000] {processor.py:161} INFO - Started process (PID=1607) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:05:49.550+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:05:49.553+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:49.553+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:05:50.951+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:50.951+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:05:51.008+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:05:51.015+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:05:51.034+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:51.033+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:05:51.040+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:05:51.040+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:05:51.052+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.511 seconds
+[2024-11-12T19:06:22.003+0000] {processor.py:161} INFO - Started process (PID=1688) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:06:22.004+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:06:22.006+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:22.005+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:06:23.188+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:23.188+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:06:23.228+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:06:23.232+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:06:23.254+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:23.253+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:06:23.260+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:23.260+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:06:23.272+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.273 seconds
+[2024-11-12T19:06:53.574+0000] {processor.py:161} INFO - Started process (PID=1769) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:06:53.575+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:06:53.576+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:53.576+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:06:54.688+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:54.688+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:06:54.731+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:06:54.738+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:06:54.760+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:54.759+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:06:54.769+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:06:54.768+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:06:54.784+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.212 seconds
+[2024-11-12T19:07:25.538+0000] {processor.py:161} INFO - Started process (PID=1850) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:07:25.540+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:07:25.541+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:25.541+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:07:26.789+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:26.789+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:07:26.829+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:07:26.835+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:07:26.852+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:26.852+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:07:26.858+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:26.858+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:07:26.869+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.335 seconds
+[2024-11-12T19:07:57.095+0000] {processor.py:161} INFO - Started process (PID=1931) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:07:57.096+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:07:57.099+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:57.099+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:07:59.106+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:59.105+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:07:59.205+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:07:59.215+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:07:59.242+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:59.241+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:07:59.251+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:07:59.251+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:07:59.267+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 2.178 seconds
+[2024-11-12T19:08:29.435+0000] {processor.py:161} INFO - Started process (PID=2012) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:08:29.436+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:08:29.437+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:08:29.437+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:08:31.044+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:08:31.044+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:08:31.086+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:08:31.092+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:08:31.111+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:08:31.110+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:08:31.116+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:08:31.116+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:08:31.123+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.694 seconds
+[2024-11-12T19:09:01.258+0000] {processor.py:161} INFO - Started process (PID=2093) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:09:01.259+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:09:01.260+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:09:01.260+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:09:02.829+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:09:02.829+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:09:02.875+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:09:02.882+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:09:02.901+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:09:02.900+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:09:02.909+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:09:02.909+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:09:02.919+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.666 seconds
+[2024-11-12T19:09:33.619+0000] {processor.py:161} INFO - Started process (PID=2174) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:09:33.620+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:09:33.621+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:09:33.621+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:09:34.661+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:09:34.661+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:09:34.692+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:09:34.696+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:09:34.708+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:09:34.708+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:09:34.712+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:09:34.712+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:09:34.718+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.102 seconds
+[2024-11-12T19:10:04.988+0000] {processor.py:161} INFO - Started process (PID=2255) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:10:04.989+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:10:04.991+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:04.990+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:10:06.116+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:06.116+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:10:06.149+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:10:06.154+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:10:06.167+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:06.167+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:10:06.172+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:06.172+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:10:06.179+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.195 seconds
+[2024-11-12T19:10:36.973+0000] {processor.py:161} INFO - Started process (PID=2342) to work on /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:10:36.974+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/dag_script_model.py for tasks to queue
+[2024-11-12T19:10:36.976+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:36.976+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:10:38.670+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:38.669+0000] {plot.py:39} ERROR - Importing plotly failed. Interactive plots will not work.
+[2024-11-12T19:10:38.710+0000] {logging_mixin.py:188} INFO - /opt/airflow
+[2024-11-12T19:10:38.716+0000] {processor.py:840} INFO - DAG(s) 'modeling_pipeline' retrieved from /opt/airflow/dags/dag_script_model.py
+[2024-11-12T19:10:38.734+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:38.733+0000] {dag.py:3096} INFO - Sync 1 DAGs
+[2024-11-12T19:10:38.739+0000] {logging_mixin.py:188} INFO - [2024-11-12T19:10:38.739+0000] {dag.py:3954} INFO - Setting next_dagrun for modeling_pipeline to None, run_after=None
+[2024-11-12T19:10:38.747+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/dag_script_model.py took 1.783 seconds
