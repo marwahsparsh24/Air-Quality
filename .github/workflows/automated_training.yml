@@ -22,17 +22,33 @@ jobs:
           python-version: '3.8'
 
       - name: Install dependencies
-      run: pip install -r requirements.txt
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
 
-      - name: Set PYTHONPATH
-      run: echo "PYTHONPATH=$PYTHONPATH:$(pwd)/ModelDevelopment/Training" >> $GITHUB_ENV
+      - name: Configure MLflow Environment Variables
+        run: |
+          echo "MLFLOW_TRACKING_URI=file://${{ github.workspace }}/mlruns" >> $GITHUB_ENV
+          echo "MLFLOW_ARTIFACT_URI=${{ github.workspace }}/mlruns" >> $GITHUB_ENV
 
-      - name: Set File permissions
-        run: chmod +x ./ModelDevelopment/Training/train_model.py
+      - name: Create and set permissions for mlruns directory
+        run: |
+          mkdir -p "${{ github.workspace }}/mlruns"
+          chmod -R 777 "${{ github.workspace }}/mlruns"
 
       - name: Run Prophet Model Training Script
         run: |
-          python Prophet.py
+          python ModelDevelopment/Training/Prophet.py
+        env:
+          MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/mlruns"
+          MLFLOW_ARTIFACT_URI: "${{ github.workspace }}/mlruns"
+
+      - name: Upload MLflow Artifacts
+        if: always()
+        uses: actions/upload-artifact@v3
+        with:
+          name: mlflow-artifacts
+          path: "${{ github.workspace }}/mlruns"
 
       - name: Notify on Success
         if: success()

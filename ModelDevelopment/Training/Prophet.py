@@ -91,8 +91,9 @@ def main():
     # mlflow.set_tracking_uri(f"file://{mlruns_dir}")
 
     #mlflow.set_tracking_uri("./mlruns")
+    print(os.environ["MLFLOW_TRACKING_URI"])
     mlruns_path = os.path.join(os.getcwd(), "mlruns")
-    mlflow.set_tracking_uri(f"file://{mlruns_path}")
+    mlflow.set_tracking_uri(os.environ["MLFLOW_TRACKING_URI"])
     mlflow.set_experiment("PM2.5 Prophet")
 
 
