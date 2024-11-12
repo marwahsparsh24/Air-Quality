@@ -81,11 +81,16 @@ class ProphetPM25Model:
 
 # Main function to orchestrate the workflow
 def main():
+
+    os.environ["MLFLOW_TRACKING_URI"] = f"file://{os.path.join(os.getcwd(), 'mlruns')}"
+    os.environ["MLFLOW_ARTIFACT_URI"] = os.path.join(os.getcwd(), "mlruns")
+    os.environ["HOME"] = os.getcwd() 
     mlruns_dir = os.path.join(os.getcwd(), "mlruns")
     if not os.path.exists(mlruns_dir):
         os.makedirs(mlruns_dir)
     mlflow.set_tracking_uri(f"file://{mlruns_dir}")
     mlflow.set_experiment("PM2.5 Prophet")
+
 
     
     curr_dir = os.getcwd()
