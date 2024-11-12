@@ -28,16 +28,17 @@ jobs:
 
       - name: Configure MLflow Environment Variables
         run: |
-          # Set MLflow tracking URI and artifact path to use the GitHub workspace
           echo "MLFLOW_TRACKING_URI=file://${{ github.workspace }}/mlruns" >> $GITHUB_ENV
           echo "MLFLOW_ARTIFACT_URI=${{ github.workspace }}/mlruns" >> $GITHUB_ENV
 
-      - name: Create mlruns directory for MLflow artifacts
+      - name: Set permissions for GitHub workspace
+        run: chmod -R 777 $GITHUB_WORKSPACE
+
+      - name: Create mlruns directory
         run: mkdir -p $GITHUB_WORKSPACE/mlruns
 
       - name: Run Prophet Model Training Script
         run: |
-          # Run your Python script
           python ModelDevelopment/Training/Prophet.py
         env:
           MLFLOW_TRACKING_URI: "file://${{ github.workspace }}/mlruns"
