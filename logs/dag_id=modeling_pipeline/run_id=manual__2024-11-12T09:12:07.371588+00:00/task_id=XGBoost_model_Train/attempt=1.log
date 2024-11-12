@@ -1,0 +1,53 @@
+[2024-11-12T09:12:14.670+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T09:12:14.737+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.XGBoost_model_Train manual__2024-11-12T09:12:07.371588+00:00 [queued]>
+[2024-11-12T09:12:14.751+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.XGBoost_model_Train manual__2024-11-12T09:12:07.371588+00:00 [queued]>
+[2024-11-12T09:12:14.752+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T09:12:14.789+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): XGBoost_model_Train> on 2024-11-12 09:12:07.371588+00:00
+[2024-11-12T09:12:14.868+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=1878) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T09:12:14.875+0000] {standard_task_runner.py:63} INFO - Started process 1905 to run task
+[2024-11-12T09:12:14.877+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'XGBoost_model_Train', 'manual__2024-11-12T09:12:07.371588+00:00', '--job-id', '1144', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmpcytnyoef']
+[2024-11-12T09:12:14.898+0000] {standard_task_runner.py:91} INFO - Job 1144: Subtask XGBoost_model_Train
+[2024-11-12T09:12:15.027+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.XGBoost_model_Train manual__2024-11-12T09:12:07.371588+00:00 [running]> on host 9919a500f6fd
+[2024-11-12T09:12:15.249+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='XGBoost_model_Train' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T09:12:07.371588+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T09:12:07.371588+00:00'
+[2024-11-12T09:12:15.258+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T09:12:15.531+0000] {logging_mixin.py:188} WARNING - 2024/11/12 09:12:15 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-11-12T09:17:49.625+0000] {logging_mixin.py:188} INFO - Best parameters: {'colsample_bytree': 1.0, 'learning_rate': 0.1, 'max_depth': 3, 'n_estimators': 100, 'subsample': 0.8}
+[2024-11-12T09:17:49.677+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/mlflow/types/utils.py:407: UserWarning: Hint: Inferred schema contains integer column(s). Integer columns in Python cannot represent missing values. If your input data contains missing values at inference time, it will be encoded as floats and will cause a schema enforcement error. The best way to avoid this problem is to infer the model schema based on a realistic data sample (training dataset) that includes missing values. Alternatively, you can declare integer columns as doubles (float64) whenever these columns may have missing values. See `Handling Integers With Missing Values <https://www.mlflow.org/docs/latest/models.html#handling-integers-with-missing-values>`_ for more details.
+  warnings.warn(
+
+[2024-11-12T09:17:53.475+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:   0%|          | 0/7 [00:00<?, ?it/s]
+[2024-11-12T09:17:53.480+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  14%|#4        | 1/7 [00:00<00:00, 803.04it/s]
+[2024-11-12T09:17:53.482+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  29%|##8       | 2/7 [00:00<00:00, 513.76it/s]
+[2024-11-12T09:17:53.483+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  43%|####2     | 3/7 [00:00<00:00, 663.20it/s]
+[2024-11-12T09:17:53.483+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  57%|#####7    | 4/7 [00:00<00:00, 786.59it/s]
+[2024-11-12T09:17:53.484+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  71%|#######1  | 5/7 [00:00<00:00, 906.95it/s]
+[2024-11-12T09:17:53.484+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  86%|########5 | 6/7 [00:00<00:00, 1012.34it/s]
+[2024-11-12T09:17:53.485+0000] {logging_mixin.py:188} WARNING - Downloading artifacts: 100%|##########| 7/7 [00:00<00:00, 1122.84it/s]
+[2024-11-12T09:17:53.486+0000] {logging_mixin.py:188} WARNING - Downloading artifacts: 100%|##########| 7/7 [00:00<00:00, 872.80it/s] 
+[2024-11-12T09:17:53.568+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/xgboost/core.py:158: UserWarning: [09:17:53] WARNING: /workspace/src/c_api/c_api.cc:1374: Saving model in the UBJSON format as default.  You can use file extension: `json`, `ubj` or `deprecated` to choose between formats.
+  warnings.warn(smsg, UserWarning)
+
+[2024-11-12T09:17:53.571+0000] {logging_mixin.py:188} INFO - Model saved at /opt/***/dags/weights/xgboost_pm25_model.pth
+[2024-11-12T09:17:53.573+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-12T09:17:53.588+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T09:17:53.607+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=modeling_pipeline, task_id=XGBoost_model_Train, run_id=manual__2024-11-12T09:12:07.371588+00:00, execution_date=20241112T091207, start_date=20241112T091214, end_date=20241112T091753
+[2024-11-12T09:17:53.690+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-12T09:17:53.760+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T09:17:53.761+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

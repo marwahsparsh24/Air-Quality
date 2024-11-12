@@ -1,0 +1,58 @@
+[2024-11-12T05:56:05.717+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T05:56:05.728+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Best_Model manual__2024-11-12T05:53:47.665698+00:00 [queued]>
+[2024-11-12T05:56:05.732+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Best_Model manual__2024-11-12T05:53:47.665698+00:00 [queued]>
+[2024-11-12T05:56:05.732+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-11-12T05:56:05.737+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Best_Model> on 2024-11-12 05:53:47.665698+00:00
+[2024-11-12T05:56:05.751+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=240) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T05:56:05.752+0000] {standard_task_runner.py:63} INFO - Started process 249 to run task
+[2024-11-12T05:56:05.752+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Best_Model', 'manual__2024-11-12T05:53:47.665698+00:00', '--job-id', '1088', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmpgsnuh1vg']
+[2024-11-12T05:56:05.754+0000] {standard_task_runner.py:91} INFO - Job 1088: Subtask Best_Model
+[2024-11-12T05:56:05.776+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Best_Model manual__2024-11-12T05:53:47.665698+00:00 [running]> on host 5039cd089413
+[2024-11-12T05:56:05.809+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Best_Model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T05:53:47.665698+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T05:53:47.665698+00:00'
+[2024-11-12T05:56:05.810+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T05:56:05.934+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T05:56:05.935+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/bestmodel.py", line 97, in main
+    model, best_rmse, best_experiment_name, best_run_id = get_best_model_and_load_weights(experiment_names)
+                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/bestmodel.py", line 89, in get_best_model_and_load_weights
+    best_model = download_and_load_model(model_uri, model_loader)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/bestmodel.py", line 71, in download_and_load_model
+    model_path = mlflow.artifacts.download_artifacts(model_uri)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/mlflow/artifacts/__init__.py", line 64, in download_artifacts
+    return _download_artifact_from_uri(artifact_uri, output_path=dst_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/mlflow/tracking/artifact_utils.py", line 116, in _download_artifact_from_uri
+    return repo.download_artifacts(artifact_path=artifact_path, dst_path=output_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/mlflow/store/artifact/runs_artifact_repo.py", line 131, in download_artifacts
+    return self.repo.download_artifacts(artifact_path, dst_path)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/mlflow/store/artifact/local_artifact_repo.py", line 91, in download_artifacts
+    raise OSError(f"No such file or directory: '{local_artifact_path}'")
+OSError: No such file or directory: '/opt/***/mlruns/467240330939740349/7a9cd99b217e4b8b843f6ea96cce2047/artifacts/xgboost_pm25_model.pth'
+[2024-11-12T05:56:05.942+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=modeling_pipeline, task_id=Best_Model, run_id=manual__2024-11-12T05:53:47.665698+00:00, execution_date=20241112T055347, start_date=20241112T055605, end_date=20241112T055605
+[2024-11-12T05:56:05.947+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 1088 for task Best_Model (No such file or directory: '/opt/***/mlruns/467240330939740349/7a9cd99b217e4b8b843f6ea96cce2047/artifacts/xgboost_pm25_model.pth'; 249)
+[2024-11-12T05:56:05.980+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-12T05:56:05.987+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T05:56:05.988+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

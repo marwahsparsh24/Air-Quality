@@ -178,10 +178,10 @@ def evaluate_model_bias(feature_data, y_true):
                     avg_mbe = metrics_df["MBE"].mean()
 
                     # Log the average metrics
-                    mlflow.log_metric(f"{feature}_Avg_MAE", avg_mae)
-                    mlflow.log_metric(f"{feature}_Avg_RMSE", avg_rmse)
-                    mlflow.log_metric(f"{feature}_Avg_R2", avg_r2)
-                    mlflow.log_metric(f"{feature}_Avg_MBE", avg_mbe)
+                    mlflow.log_metric(f"{feature}_{experiment_name}_Avg_MAE", avg_mae)
+                    mlflow.log_metric(f"{feature}_{experiment_name}_Avg_RMSE", avg_rmse)
+                    mlflow.log_metric(f"{feature}_{experiment_name}_Avg_R2", avg_r2)
+                    mlflow.log_metric(f"{feature}_{experiment_name}_Avg_MBE", avg_mbe)
 
                     # Calculate deviations and bias flags
                     metrics_df['MAE Deviation'] = abs(metrics_df['MAE'] - avg_mae) / avg_mae
