@@ -58,7 +58,7 @@ class ProphetPM25Model:
         # Train the Prophet model
         self.model.fit(self.df_train)
         wrapped_model = ProphetWrapper(self.model)
-        #mlflow.pyfunc.log_model(artifact_path="prophet_pm25_model", python_model= wrapped_model,input_example=self.df_train.head(1))
+        mlflow.pyfunc.log_model(artifact_path="prophet_pm25_model", python_model= wrapped_model,input_example=self.df_train.head(1))
 
     
 
