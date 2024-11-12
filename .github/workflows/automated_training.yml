@@ -34,13 +34,18 @@ jobs:
           python -m pip install --upgrade pip
           if [ -f "requirements.txt" ]; then pip install -r requirements.txt; fi
 
-      - name: Create and verify mlruns directory
+      - name: Set environment variables for MLflow
         run: |
-          mkdir -p ./mlruns
-          echo "Directory structure before running scripts:"
-          ls -R
-          echo "Checking write permissions for ./mlruns directory"
-          touch ./mlruns/test_file.txt
+          echo "PYTHONPATH=${PYTHONPATH}:$GITHUB_WORKSPACE/ModelDevelopment" >> $GITHUB_ENV
+          echo "MLFLOW_TRACKING_URI=file://$GITHUB_WORKSPACE/mlruns" >> $GITHUB_ENV
+          echo "MLFLOW_ARTIFACT_URI=$GITHUB_WORKSPACE/mlruns" >> $GITHUB_ENV
+        
+      - name: Create mlruns directory and verify permissions
+        run: |
+          mkdir -p $GITHUB_WORKSPACE/mlruns
+          echo "Checking write permissions for mlruns directory"
+          touch $GITHUB_WORKSPACE/mlruns/test_file.txt
+          rm $GITHUB_WORKSPACE/mlruns/test_file.txt
 
       - name: List directory structure
         run: |
