@@ -1,0 +1,680 @@
+[2024-11-12T09:09:20.089+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T09:09:20.109+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Bias_Model manual__2024-11-12T09:08:09.992486+00:00 [queued]>
+[2024-11-12T09:09:20.116+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Bias_Model manual__2024-11-12T09:08:09.992486+00:00 [queued]>
+[2024-11-12T09:09:20.116+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T09:09:20.128+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Bias_Model> on 2024-11-12 09:08:09.992486+00:00
+[2024-11-12T09:09:20.148+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=1801) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T09:09:20.149+0000] {standard_task_runner.py:63} INFO - Started process 1810 to run task
+[2024-11-12T09:09:20.150+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Bias_Model', 'manual__2024-11-12T09:08:09.992486+00:00', '--job-id', '1142', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmpgh_x1q_3']
+[2024-11-12T09:09:20.153+0000] {standard_task_runner.py:91} INFO - Job 1142: Subtask Bias_Model
+[2024-11-12T09:09:20.196+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Bias_Model manual__2024-11-12T09:08:09.992486+00:00 [running]> on host 9919a500f6fd
+[2024-11-12T09:09:20.246+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Bias_Model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T09:08:09.992486+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T09:08:09.992486+00:00'
+[2024-11-12T09:09:20.247+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T09:09:20.259+0000] {logging_mixin.py:188} INFO - Loaded feature-engineered test data successfully.
+[2024-11-12T09:09:20.275+0000] {logging_mixin.py:188} INFO - Warning: 'timestamp' column is missing. Creating a synthetic timestamp column.
+[2024-11-12T09:09:20.276+0000] {logging_mixin.py:188} INFO - Feature Data Columns: Index(['pm25', 'pm25_boxcox', 'lag_1', 'lag_2', 'lag_3', 'lag_4', 'lag_5',
+       'rolling_mean_3', 'rolling_mean_6', 'rolling_mean_24', 'rolling_std_3',
+       'rolling_std_6', 'rolling_std_24', 'ema_3', 'ema_6', 'ema_24', 'diff_1',
+       'diff_2', 'hour', 'day_of_week', 'day_of_year', 'month', 'sin_hour',
+       'cos_hour', 'sin_day_of_week', 'cos_day_of_week', 'season',
+       'timestamp'],
+      dtype='object', name='parameter')
+[2024-11-12T09:09:20.325+0000] {logging_mixin.py:188} INFO - Random Forest model loaded successfully.
+[2024-11-12T09:09:20.335+0000] {logging_mixin.py:188} INFO - XGBoost model loaded successfully.
+[2024-11-12T09:09:20.372+0000] {logging_mixin.py:188} INFO - Prophet model loaded successfully.
+[2024-11-12T09:09:20.374+0000] {logging_mixin.py:188} INFO - Starting Predictions...
+[2024-11-12T09:09:20.454+0000] {logging_mixin.py:188} INFO - Random Forest predictions: date
+2022-01-03 21:00:00+00:00    3.451829
+2022-01-03 22:00:00+00:00    3.402023
+2022-01-03 23:00:00+00:00    3.564661
+2022-01-04 00:00:00+00:00    3.670949
+2022-01-04 05:00:00+00:00    1.943444
+Name: y_pred_rf, dtype: float64
+[2024-11-12T09:09:20.479+0000] {logging_mixin.py:188} INFO - XGBoost predictions: date
+2022-01-03 21:00:00+00:00    3.444933
+2022-01-03 22:00:00+00:00    3.380944
+2022-01-03 23:00:00+00:00    3.549302
+2022-01-04 00:00:00+00:00    3.670970
+2022-01-04 05:00:00+00:00    1.940380
+Name: y_pred_xgb, dtype: float32
+[2024-11-12T09:09:21.163+0000] {logging_mixin.py:188} INFO - Prophet predictions: date
+2022-01-03 21:00:00+00:00    3.200325
+2022-01-03 22:00:00+00:00    3.220295
+2022-01-03 23:00:00+00:00    3.233682
+2022-01-04 00:00:00+00:00    3.235273
+2022-01-04 05:00:00+00:00    3.227202
+Name: y_pred_prophet, dtype: float64
+[2024-11-12T09:09:21.168+0000] {logging_mixin.py:188} INFO - Predictions made for all models.
+[2024-11-12T09:09:21.235+0000] {logging_mixin.py:188} WARNING - 2024/11/12 09:09:21 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-11-12T09:09:21.242+0000] {logging_mixin.py:188} INFO - 
+Evaluating bias and metrics for model: y_pred_rf
+[2024-11-12T09:09:21.246+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: hour for model: y_pred_rf
+[2024-11-12T09:09:21.251+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.254+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.256+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.258+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.260+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.262+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.264+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.266+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.269+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.271+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.273+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.274+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.276+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.279+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.281+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.284+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.287+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.292+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.296+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.299+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.301+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.303+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.305+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.308+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:21.314+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_rf, feature hour
+[2024-11-12T09:09:21.334+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:21.337+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:21.906+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_rf - hour at /opt/***/dags/artifacts/y_pred_rf_hour_MAE.png
+[2024-11-12T09:09:21.916+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:21.918+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.049+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_rf - hour at /opt/***/dags/artifacts/y_pred_rf_hour_RMSE.png
+[2024-11-12T09:09:22.057+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.060+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.250+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_rf - hour at /opt/***/dags/artifacts/y_pred_rf_hour_R².png
+[2024-11-12T09:09:22.280+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.285+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.401+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_rf - hour at /opt/***/dags/artifacts/y_pred_rf_hour_MBE.png
+[2024-11-12T09:09:22.408+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: day_of_week for model: y_pred_rf
+[2024-11-12T09:09:22.412+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.414+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.417+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.419+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.421+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.423+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.425+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.430+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_rf, feature day_of_week
+[2024-11-12T09:09:22.437+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.439+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.647+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_rf - day_of_week at /opt/***/dags/artifacts/y_pred_rf_day_of_week_MAE.png
+[2024-11-12T09:09:22.660+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.663+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.768+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_rf - day_of_week at /opt/***/dags/artifacts/y_pred_rf_day_of_week_RMSE.png
+[2024-11-12T09:09:22.776+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.778+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.854+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_rf - day_of_week at /opt/***/dags/artifacts/y_pred_rf_day_of_week_R².png
+[2024-11-12T09:09:22.863+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.865+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.937+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_rf - day_of_week at /opt/***/dags/artifacts/y_pred_rf_day_of_week_MBE.png
+[2024-11-12T09:09:22.943+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: month for model: y_pred_rf
+[2024-11-12T09:09:22.945+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.948+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.950+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.952+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.955+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.957+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.960+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.962+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.964+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.966+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.968+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.971+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:22.977+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_rf, feature month
+[2024-11-12T09:09:22.985+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:22.986+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:23.071+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_rf - month at /opt/***/dags/artifacts/y_pred_rf_month_MAE.png
+[2024-11-12T09:09:23.079+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:23.081+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:23.170+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_rf - month at /opt/***/dags/artifacts/y_pred_rf_month_RMSE.png
+[2024-11-12T09:09:23.179+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:23.181+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:23.258+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_rf - month at /opt/***/dags/artifacts/y_pred_rf_month_R².png
+[2024-11-12T09:09:23.266+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:23.268+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:23.369+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_rf - month at /opt/***/dags/artifacts/y_pred_rf_month_MBE.png
+[2024-11-12T09:09:23.374+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: season for model: y_pred_rf
+[2024-11-12T09:09:23.375+0000] {warnings.py:112} WARNING - /opt/***/dags/ModelDevelopment/ModelBias/Model_bias.py:147: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  for name, group in feature_data.groupby(feature):
+
+[2024-11-12T09:09:23.378+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.381+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.383+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.385+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.391+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_rf, feature season
+[2024-11-12T09:09:23.465+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_rf - season at /opt/***/dags/artifacts/y_pred_rf_season_MAE.png
+[2024-11-12T09:09:23.538+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_rf - season at /opt/***/dags/artifacts/y_pred_rf_season_RMSE.png
+[2024-11-12T09:09:23.619+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_rf - season at /opt/***/dags/artifacts/y_pred_rf_season_R².png
+[2024-11-12T09:09:23.694+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_rf - season at /opt/***/dags/artifacts/y_pred_rf_season_MBE.png
+[2024-11-12T09:09:23.703+0000] {logging_mixin.py:188} INFO - 
+Evaluating bias and metrics for model: y_pred_xgb
+[2024-11-12T09:09:23.708+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: hour for model: y_pred_xgb
+[2024-11-12T09:09:23.710+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.712+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.715+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.718+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.720+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.723+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.726+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.728+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.730+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.732+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.734+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.737+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.739+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.742+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.746+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.748+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.751+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.755+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.757+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.760+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.763+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.772+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.775+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.777+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:23.787+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_xgb, feature hour
+[2024-11-12T09:09:23.797+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:23.800+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:23.925+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_xgb - hour at /opt/***/dags/artifacts/y_pred_xgb_hour_MAE.png
+[2024-11-12T09:09:23.933+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:23.934+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.059+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_xgb - hour at /opt/***/dags/artifacts/y_pred_xgb_hour_RMSE.png
+[2024-11-12T09:09:24.068+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.070+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.181+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_xgb - hour at /opt/***/dags/artifacts/y_pred_xgb_hour_R².png
+[2024-11-12T09:09:24.189+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.191+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.333+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_xgb - hour at /opt/***/dags/artifacts/y_pred_xgb_hour_MBE.png
+[2024-11-12T09:09:24.340+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: day_of_week for model: y_pred_xgb
+[2024-11-12T09:09:24.344+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:24.347+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:24.350+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:24.355+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:24.358+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:24.362+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:24.365+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:24.374+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_xgb, feature day_of_week
+[2024-11-12T09:09:24.383+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.385+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.455+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_xgb - day_of_week at /opt/***/dags/artifacts/y_pred_xgb_day_of_week_MAE.png
+[2024-11-12T09:09:24.462+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.464+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.535+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_xgb - day_of_week at /opt/***/dags/artifacts/y_pred_xgb_day_of_week_RMSE.png
+[2024-11-12T09:09:24.542+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.544+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.609+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_xgb - day_of_week at /opt/***/dags/artifacts/y_pred_xgb_day_of_week_R².png
+[2024-11-12T09:09:24.617+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:24.619+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:25.161+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_xgb - day_of_week at /opt/***/dags/artifacts/y_pred_xgb_day_of_week_MBE.png
+[2024-11-12T09:09:25.177+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: month for model: y_pred_xgb
+[2024-11-12T09:09:25.184+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.189+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.195+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.200+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.203+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.206+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.211+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.214+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.217+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.220+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.224+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.226+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.232+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_xgb, feature month
+[2024-11-12T09:09:25.241+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:25.242+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:25.336+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_xgb - month at /opt/***/dags/artifacts/y_pred_xgb_month_MAE.png
+[2024-11-12T09:09:25.344+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:25.346+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:25.436+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_xgb - month at /opt/***/dags/artifacts/y_pred_xgb_month_RMSE.png
+[2024-11-12T09:09:25.446+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:25.448+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:25.524+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_xgb - month at /opt/***/dags/artifacts/y_pred_xgb_month_R².png
+[2024-11-12T09:09:25.531+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:25.533+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:25.615+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_xgb - month at /opt/***/dags/artifacts/y_pred_xgb_month_MBE.png
+[2024-11-12T09:09:25.622+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: season for model: y_pred_xgb
+[2024-11-12T09:09:25.622+0000] {warnings.py:112} WARNING - /opt/***/dags/ModelDevelopment/ModelBias/Model_bias.py:147: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  for name, group in feature_data.groupby(feature):
+
+[2024-11-12T09:09:25.625+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.630+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.633+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.638+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:25.645+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_xgb, feature season
+[2024-11-12T09:09:25.784+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_xgb - season at /opt/***/dags/artifacts/y_pred_xgb_season_MAE.png
+[2024-11-12T09:09:25.902+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_xgb - season at /opt/***/dags/artifacts/y_pred_xgb_season_RMSE.png
+[2024-11-12T09:09:25.998+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_xgb - season at /opt/***/dags/artifacts/y_pred_xgb_season_R².png
+[2024-11-12T09:09:26.080+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_xgb - season at /opt/***/dags/artifacts/y_pred_xgb_season_MBE.png
+[2024-11-12T09:09:26.088+0000] {logging_mixin.py:188} INFO - 
+Evaluating bias and metrics for model: y_pred_prophet
+[2024-11-12T09:09:26.092+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: hour for model: y_pred_prophet
+[2024-11-12T09:09:26.094+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.096+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.099+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.101+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.104+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.106+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.108+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.111+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.113+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.116+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.118+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.121+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.123+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.125+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.127+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.130+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.132+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.134+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.136+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.139+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.141+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.143+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.146+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.149+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.155+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_prophet, feature hour
+[2024-11-12T09:09:26.162+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.163+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.276+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_prophet - hour at /opt/***/dags/artifacts/y_pred_prophet_hour_MAE.png
+[2024-11-12T09:09:26.284+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.285+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.407+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_prophet - hour at /opt/***/dags/artifacts/y_pred_prophet_hour_RMSE.png
+[2024-11-12T09:09:26.416+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.417+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.576+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_prophet - hour at /opt/***/dags/artifacts/y_pred_prophet_hour_R².png
+[2024-11-12T09:09:26.585+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.586+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.703+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_prophet - hour at /opt/***/dags/artifacts/y_pred_prophet_hour_MBE.png
+[2024-11-12T09:09:26.709+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: day_of_week for model: y_pred_prophet
+[2024-11-12T09:09:26.711+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.714+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.716+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.719+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.721+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.724+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.726+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:26.732+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_prophet, feature day_of_week
+[2024-11-12T09:09:26.739+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.741+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.815+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_prophet - day_of_week at /opt/***/dags/artifacts/y_pred_prophet_day_of_week_MAE.png
+[2024-11-12T09:09:26.824+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.825+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.896+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_prophet - day_of_week at /opt/***/dags/artifacts/y_pred_prophet_day_of_week_RMSE.png
+[2024-11-12T09:09:26.904+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.905+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.974+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_prophet - day_of_week at /opt/***/dags/artifacts/y_pred_prophet_day_of_week_R².png
+[2024-11-12T09:09:26.982+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:26.983+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:27.047+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_prophet - day_of_week at /opt/***/dags/artifacts/y_pred_prophet_day_of_week_MBE.png
+[2024-11-12T09:09:27.054+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: month for model: y_pred_prophet
+[2024-11-12T09:09:27.056+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.059+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.062+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.064+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.066+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.069+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.071+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.074+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.076+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.078+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.081+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.085+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.091+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_prophet, feature month
+[2024-11-12T09:09:27.098+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:27.100+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:27.183+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_prophet - month at /opt/***/dags/artifacts/y_pred_prophet_month_MAE.png
+[2024-11-12T09:09:27.191+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:27.192+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:27.278+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_prophet - month at /opt/***/dags/artifacts/y_pred_prophet_month_RMSE.png
+[2024-11-12T09:09:27.285+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:27.287+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:27.366+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_prophet - month at /opt/***/dags/artifacts/y_pred_prophet_month_R².png
+[2024-11-12T09:09:27.374+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:27.376+0000] {category.py:223} INFO - Using categorical units to plot a list of strings that are all parsable as floats or dates. If these strings should be plotted as numbers, cast to the appropriate data type before plotting.
+[2024-11-12T09:09:27.460+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_prophet - month at /opt/***/dags/artifacts/y_pred_prophet_month_MBE.png
+[2024-11-12T09:09:27.466+0000] {logging_mixin.py:188} INFO - 
+Evaluating feature: season for model: y_pred_prophet
+[2024-11-12T09:09:27.466+0000] {warnings.py:112} WARNING - /opt/***/dags/ModelDevelopment/ModelBias/Model_bias.py:147: FutureWarning: The default of observed=False is deprecated and will be changed to True in a future version of pandas. Pass observed=False to retain current behavior or observed=True to adopt the future default and silence this warning.
+  for name, group in feature_data.groupby(feature):
+
+[2024-11-12T09:09:27.468+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.470+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.473+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.475+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:09:27.482+0000] {logging_mixin.py:188} INFO - Logged metrics and bias flags for model y_pred_prophet, feature season
+[2024-11-12T09:09:27.552+0000] {logging_mixin.py:188} INFO - Saved MAE distribution plot for y_pred_prophet - season at /opt/***/dags/artifacts/y_pred_prophet_season_MAE.png
+[2024-11-12T09:09:27.623+0000] {logging_mixin.py:188} INFO - Saved RMSE distribution plot for y_pred_prophet - season at /opt/***/dags/artifacts/y_pred_prophet_season_RMSE.png
+[2024-11-12T09:09:27.696+0000] {logging_mixin.py:188} INFO - Saved R² distribution plot for y_pred_prophet - season at /opt/***/dags/artifacts/y_pred_prophet_season_R².png
+[2024-11-12T09:09:27.766+0000] {logging_mixin.py:188} INFO - Saved MBE distribution plot for y_pred_prophet - season at /opt/***/dags/artifacts/y_pred_prophet_season_MBE.png
+[2024-11-12T09:09:27.770+0000] {logging_mixin.py:188} INFO - 
+Model Bias Analysis Complete.
+[2024-11-12T09:09:27.773+0000] {python.py:237} INFO - Done. Returned value was:               Model Feature   Slice  ...  Biased RMSE  Biased R²  Biased MBE
+0         y_pred_rf    hour       0  ...        False      False       False
+1         y_pred_rf    hour       1  ...        False      False       False
+2         y_pred_rf    hour       2  ...        False      False       False
+3         y_pred_rf    hour       3  ...        False      False       False
+4         y_pred_rf    hour       4  ...        False      False       False
+..              ...     ...     ...  ...          ...        ...         ...
+136  y_pred_prophet   month      12  ...        False      False       False
+137  y_pred_prophet  season    Fall  ...        False      False       False
+138  y_pred_prophet  season  Spring  ...        False      False       False
+139  y_pred_prophet  season  Summer  ...        False      False       False
+140  y_pred_prophet  season  Winter  ...        False      False       False
+
+[141 rows x 15 columns]
+[2024-11-12T09:09:27.785+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T09:09:27.805+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=modeling_pipeline, task_id=Bias_Model, run_id=manual__2024-11-12T09:08:09.992486+00:00, execution_date=20241112T090809, start_date=20241112T090920, end_date=20241112T090927
+[2024-11-12T09:09:27.837+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-12T09:09:27.875+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T09:09:27.876+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

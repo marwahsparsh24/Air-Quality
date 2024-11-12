@@ -1,0 +1,65 @@
+[2024-11-12T07:57:48.983+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T07:57:48.994+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Best_Model manual__2024-11-12T07:56:35.101009+00:00 [queued]>
+[2024-11-12T07:57:48.997+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Best_Model manual__2024-11-12T07:56:35.101009+00:00 [queued]>
+[2024-11-12T07:57:48.998+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T07:57:49.002+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Best_Model> on 2024-11-12 07:56:35.101009+00:00
+[2024-11-12T07:57:49.035+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=399) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T07:57:49.036+0000] {standard_task_runner.py:63} INFO - Started process 408 to run task
+[2024-11-12T07:57:49.036+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Best_Model', 'manual__2024-11-12T07:56:35.101009+00:00', '--job-id', '1126', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmpq1mygxa2']
+[2024-11-12T07:57:49.038+0000] {standard_task_runner.py:91} INFO - Job 1126: Subtask Best_Model
+[2024-11-12T07:57:49.059+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Best_Model manual__2024-11-12T07:56:35.101009+00:00 [running]> on host 9919a500f6fd
+[2024-11-12T07:57:49.108+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Best_Model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T07:56:35.101009+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T07:56:35.101009+00:00'
+[2024-11-12T07:57:49.109+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T07:57:49.141+0000] {logging_mixin.py:188} INFO - Experiment 'PM2.5 Random Forest' not found.
+[2024-11-12T07:57:49.159+0000] {logging_mixin.py:188} INFO - Experiment 'PM2.5 Prophet' not found.
+[2024-11-12T07:57:49.164+0000] {logging_mixin.py:188} INFO - Best model found in experiment 'PM2.5 XGBoost Prediction' with run ID 'd7ef6b85c75347e68e1de8d869c0504c'
+[2024-11-12T07:57:49.164+0000] {logging_mixin.py:188} INFO - Validation RMSE: 0.9685765167761742
+[2024-11-12T07:57:49.175+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T07:57:49.175+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3791, in get_loc
+    return self._engine.get_loc(casted_key)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "index.pyx", line 152, in pandas._libs.index.IndexEngine.get_loc
+  File "index.pyx", line 181, in pandas._libs.index.IndexEngine.get_loc
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7080, in pandas._libs.hashtable.PyObjectHashTable.get_item
+  File "pandas/_libs/hashtable_class_helper.pxi", line 7088, in pandas._libs.hashtable.PyObjectHashTable.get_item
+KeyError: 'metrics.MAE'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/bestmodel.py", line 431, in main
+    bias_results = get_bias_results(experiment_names_2)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/bestmodel.py", line 365, in get_bias_results
+    best_mae_run = runs.loc[runs['metrics.MAE'].idxmin()]
+                            ~~~~^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/frame.py", line 3893, in __getitem__
+    indexer = self.columns.get_loc(key)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/pandas/core/indexes/base.py", line 3798, in get_loc
+    raise KeyError(key) from err
+KeyError: 'metrics.MAE'
+[2024-11-12T07:57:49.186+0000] {taskinstance.py:1206} INFO - Marking task as UP_FOR_RETRY. dag_id=modeling_pipeline, task_id=Best_Model, run_id=manual__2024-11-12T07:56:35.101009+00:00, execution_date=20241112T075635, start_date=20241112T075748, end_date=20241112T075749
+[2024-11-12T07:57:49.192+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 1126 for task Best_Model ('metrics.MAE'; 408)
+[2024-11-12T07:57:49.218+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-12T07:57:49.225+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T07:57:49.225+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

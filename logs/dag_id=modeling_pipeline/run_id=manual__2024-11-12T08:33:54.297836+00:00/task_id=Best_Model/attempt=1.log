@@ -1,0 +1,161 @@
+[2024-11-12T08:35:29.108+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T08:35:29.133+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Best_Model manual__2024-11-12T08:33:54.297836+00:00 [queued]>
+[2024-11-12T08:35:29.141+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Best_Model manual__2024-11-12T08:33:54.297836+00:00 [queued]>
+[2024-11-12T08:35:29.141+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T08:35:29.149+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Best_Model> on 2024-11-12 08:33:54.297836+00:00
+[2024-11-12T08:35:29.221+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=1028) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T08:35:29.223+0000] {standard_task_runner.py:63} INFO - Started process 1037 to run task
+[2024-11-12T08:35:29.224+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Best_Model', 'manual__2024-11-12T08:33:54.297836+00:00', '--job-id', '1131', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmp3fcripg9']
+[2024-11-12T08:35:29.227+0000] {standard_task_runner.py:91} INFO - Job 1131: Subtask Best_Model
+[2024-11-12T08:35:29.280+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Best_Model manual__2024-11-12T08:33:54.297836+00:00 [running]> on host 9919a500f6fd
+[2024-11-12T08:35:29.374+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Best_Model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T08:33:54.297836+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T08:33:54.297836+00:00'
+[2024-11-12T08:35:29.376+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T08:35:29.435+0000] {logging_mixin.py:188} INFO - Experiment 'PM2.5 Random Forest' not found.
+[2024-11-12T08:35:29.477+0000] {logging_mixin.py:188} INFO - Experiment 'PM2.5 Prophet' not found.
+[2024-11-12T08:35:29.497+0000] {logging_mixin.py:188} INFO - Best model found in experiment 'PM2.5 XGBoost Prediction' with run ID '5b8cfa97b16641cd8902951a83559bc2'
+[2024-11-12T08:35:29.497+0000] {logging_mixin.py:188} INFO - Validation RMSE: 0.9685765167761742
+[2024-11-12T08:35:29.637+0000] {logging_mixin.py:188} INFO - {'Random Forest Bias Evaluation': {'MAE_{feature}': run_id                                      6caa33bd34464e41b77af32cfad8e87d
+experiment_id                                             991777295034360577
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/991777295034360577/...
+start_time                                  2024-11-12 08:35:16.549000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                                 y_pred_rf_season_Feature
+tags.mlflow.parentRunId                     f19ca2b369cd4e7db9b2dd3cfe6179b4
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object, 'RMSE_{feature}': run_id                                      6caa33bd34464e41b77af32cfad8e87d
+experiment_id                                             991777295034360577
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/991777295034360577/...
+start_time                                  2024-11-12 08:35:16.549000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                                 y_pred_rf_season_Feature
+tags.mlflow.parentRunId                     f19ca2b369cd4e7db9b2dd3cfe6179b4
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object, 'R2_{feature}': run_id                                      6caa33bd34464e41b77af32cfad8e87d
+experiment_id                                             991777295034360577
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/991777295034360577/...
+start_time                                  2024-11-12 08:35:16.549000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                                 y_pred_rf_season_Feature
+tags.mlflow.parentRunId                     f19ca2b369cd4e7db9b2dd3cfe6179b4
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object, 'MBE_{feature}': run_id                                      6caa33bd34464e41b77af32cfad8e87d
+experiment_id                                             991777295034360577
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/991777295034360577/...
+start_time                                  2024-11-12 08:35:16.549000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                                 y_pred_rf_season_Feature
+tags.mlflow.parentRunId                     f19ca2b369cd4e7db9b2dd3cfe6179b4
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object}, 'XGBoost Bias Evaluation': {'MAE_{feature}': run_id                                      54166e23081d4076b7627c1f589396c1
+experiment_id                                             302582495101133055
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/302582495101133055/...
+start_time                                  2024-11-12 08:35:22.365000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                                y_pred_xgb_season_Feature
+tags.mlflow.parentRunId                     13418cc90ebd4354a6c12e43dffb5875
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object, 'RMSE_{feature}': run_id                                      54166e23081d4076b7627c1f589396c1
+experiment_id                                             302582495101133055
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/302582495101133055/...
+start_time                                  2024-11-12 08:35:22.365000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                                y_pred_xgb_season_Feature
+tags.mlflow.parentRunId                     13418cc90ebd4354a6c12e43dffb5875
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object, 'R2_{feature}': run_id                                      54166e23081d4076b7627c1f589396c1
+experiment_id                                             302582495101133055
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/302582495101133055/...
+start_time                                  2024-11-12 08:35:22.365000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                                y_pred_xgb_season_Feature
+tags.mlflow.parentRunId                     13418cc90ebd4354a6c12e43dffb5875
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object, 'MBE_{feature}': run_id                                      54166e23081d4076b7627c1f589396c1
+experiment_id                                             302582495101133055
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/302582495101133055/...
+start_time                                  2024-11-12 08:35:22.365000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                                y_pred_xgb_season_Feature
+tags.mlflow.parentRunId                     13418cc90ebd4354a6c12e43dffb5875
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object}, 'Prophet Bias Evaluation': {'MAE_{feature}': run_id                                      be31e01569314acb89dc0dd52e315a44
+experiment_id                                             584373873980451182
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/584373873980451182/...
+start_time                                  2024-11-12 08:35:25.129000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                            y_pred_prophet_season_Feature
+tags.mlflow.parentRunId                     8bf7993c516d4d6890e7d5cc95755f83
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object, 'RMSE_{feature}': run_id                                      be31e01569314acb89dc0dd52e315a44
+experiment_id                                             584373873980451182
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/584373873980451182/...
+start_time                                  2024-11-12 08:35:25.129000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                            y_pred_prophet_season_Feature
+tags.mlflow.parentRunId                     8bf7993c516d4d6890e7d5cc95755f83
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object, 'R2_{feature}': run_id                                      be31e01569314acb89dc0dd52e315a44
+experiment_id                                             584373873980451182
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/584373873980451182/...
+start_time                                  2024-11-12 08:35:25.129000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                            y_pred_prophet_season_Feature
+tags.mlflow.parentRunId                     8bf7993c516d4d6890e7d5cc95755f83
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object, 'MBE_{feature}': run_id                                      be31e01569314acb89dc0dd52e315a44
+experiment_id                                             584373873980451182
+status                                                              FINISHED
+artifact_uri               file:///opt/***/mlruns/584373873980451182/...
+start_time                                  2024-11-12 08:35:25.129000+00:00
+                                                 ...                        
+tags.mlflow.source.name                     /home/***/.local/bin/***
+tags.mlflow.source.type                                                LOCAL
+tags.mlflow.runName                            y_pred_prophet_season_Feature
+tags.mlflow.parentRunId                     8bf7993c516d4d6890e7d5cc95755f83
+tags.mlflow.user                                                     default
+Name: 0, Length: 236, dtype: object}}
+[2024-11-12T08:35:29.638+0000] {logging_mixin.py:188} INFO - {'Random': None, 'XGBoost': 0.9685765167761742, 'Prophet': None}
+[2024-11-12T08:35:29.638+0000] {logging_mixin.py:188} INFO - Best Experiment: PM2.5 XGBoost Prediction
+[2024-11-12T08:35:29.638+0000] {logging_mixin.py:188} INFO - Best Run ID: 5b8cfa97b16641cd8902951a83559bc2
+[2024-11-12T08:35:29.639+0000] {logging_mixin.py:188} INFO - Best RMSE: 0.9685765167761742
+[2024-11-12T08:35:29.639+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-12T08:35:29.640+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T08:35:29.651+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=modeling_pipeline, task_id=Best_Model, run_id=manual__2024-11-12T08:33:54.297836+00:00, execution_date=20241112T083354, start_date=20241112T083529, end_date=20241112T083529
+[2024-11-12T08:35:29.737+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-12T08:35:29.781+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T08:35:29.782+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

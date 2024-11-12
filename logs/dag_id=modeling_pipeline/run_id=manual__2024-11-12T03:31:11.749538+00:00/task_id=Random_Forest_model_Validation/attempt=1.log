@@ -1,0 +1,157 @@
+[2024-11-12T03:35:09.023+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T03:35:09.315+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Random_Forest_model_Validation manual__2024-11-12T03:31:11.749538+00:00 [queued]>
+[2024-11-12T03:35:09.350+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Random_Forest_model_Validation manual__2024-11-12T03:31:11.749538+00:00 [queued]>
+[2024-11-12T03:35:09.351+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T03:35:09.420+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Random_Forest_model_Validation> on 2024-11-12 03:31:11.749538+00:00
+[2024-11-12T03:35:09.715+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=317) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T03:35:09.733+0000] {standard_task_runner.py:63} INFO - Started process 355 to run task
+[2024-11-12T03:35:09.761+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Random_Forest_model_Validation', 'manual__2024-11-12T03:31:11.749538+00:00', '--job-id', '1044', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmptlmactq4']
+[2024-11-12T03:35:09.774+0000] {standard_task_runner.py:91} INFO - Job 1044: Subtask Random_Forest_model_Validation
+[2024-11-12T03:35:10.030+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Random_Forest_model_Validation manual__2024-11-12T03:31:11.749538+00:00 [running]> on host 5039cd089413
+[2024-11-12T03:35:10.515+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Random_Forest_model_Validation' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T03:31:11.749538+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T03:31:11.749538+00:00'
+[2024-11-12T03:35:10.531+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T03:35:10.762+0000] {logging_mixin.py:188} INFO - Data loaded from /opt/***/dags/DataPreprocessing/src/data_store_pkl_files/test_data/no_anamoly_test_data.pkl.
+[2024-11-12T03:35:10.769+0000] {logging_mixin.py:188} INFO - Original Skewness: 0.5082849280995185
+[2024-11-12T03:35:10.779+0000] {logging_mixin.py:188} INFO - Log Transformed Skewness: -0.38788987353405835
+[2024-11-12T03:35:10.848+0000] {logging_mixin.py:188} INFO - Box-Cox Transformed Skewness: 0.011851083745351043
+[2024-11-12T03:35:10.852+0000] {logging_mixin.py:188} INFO - Choosing Box-Cox transformed column.
+[2024-11-12T03:35:10.877+0000] {logging_mixin.py:188} INFO - Feature engineering completed and NaN values dropped.
+[2024-11-12T03:35:11.192+0000] {logging_mixin.py:188} WARNING - 2024/11/12 03:35:11 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-11-12T03:35:12.476+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:35:12.502+0000] {logging_mixin.py:188} INFO - RMSE (Box-Cox transformed target): 0.003619503365798279
+[2024-11-12T03:35:12.516+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:35:12.570+0000] {logging_mixin.py:188} INFO - RMSE (Original PM2.5 target): 1.0013285295613887
+[2024-11-12T03:35:24.014+0000] {logging_mixin.py:188} WARNING -   8%|==                  | 448/5351 [00:11<02:00]       
+[2024-11-12T03:35:25.011+0000] {logging_mixin.py:188} WARNING -  10%|==                  | 514/5351 [00:12<01:52]       
+[2024-11-12T03:35:26.021+0000] {logging_mixin.py:188} WARNING -  11%|==                  | 583/5351 [00:13<01:46]       
+[2024-11-12T03:35:27.336+0000] {logging_mixin.py:188} WARNING -  11%|==                  | 614/5351 [00:14<01:48]       
+[2024-11-12T03:35:28.017+0000] {logging_mixin.py:188} WARNING -  12%|==                  | 627/5351 [00:15<01:53]       
+[2024-11-12T03:35:29.008+0000] {logging_mixin.py:188} WARNING -  13%|===                 | 673/5351 [00:16<01:51]       
+[2024-11-12T03:35:30.009+0000] {logging_mixin.py:188} WARNING -  14%|===                 | 728/5351 [00:17<01:47]       
+[2024-11-12T03:35:31.015+0000] {logging_mixin.py:188} WARNING -  14%|===                 | 774/5351 [00:18<01:46]       
+[2024-11-12T03:35:32.040+0000] {logging_mixin.py:188} WARNING -  15%|===                 | 810/5351 [00:19<01:46]       
+[2024-11-12T03:35:33.016+0000] {logging_mixin.py:188} WARNING -  16%|===                 | 858/5351 [00:20<01:44]       
+[2024-11-12T03:35:34.206+0000] {logging_mixin.py:188} WARNING -  17%|===                 | 900/5351 [00:21<01:43]       
+[2024-11-12T03:35:35.044+0000] {logging_mixin.py:188} WARNING -  17%|===                 | 925/5351 [00:22<01:45]       
+[2024-11-12T03:35:36.003+0000] {logging_mixin.py:188} WARNING -  18%|====                | 954/5351 [00:23<01:46]       
+[2024-11-12T03:35:37.043+0000] {logging_mixin.py:188} WARNING -  18%|====                | 984/5351 [00:24<01:46]       
+[2024-11-12T03:35:38.122+0000] {logging_mixin.py:188} WARNING -  19%|====                | 1000/5351 [00:25<01:48]       
+[2024-11-12T03:35:39.038+0000] {logging_mixin.py:188} WARNING -  19%|====                | 1028/5351 [00:26<01:49]       
+[2024-11-12T03:35:40.017+0000] {logging_mixin.py:188} WARNING -  20%|====                | 1070/5351 [00:27<01:48]       
+[2024-11-12T03:35:41.060+0000] {logging_mixin.py:188} WARNING -  21%|====                | 1112/5351 [00:28<01:46]       
+[2024-11-12T03:35:42.024+0000] {logging_mixin.py:188} WARNING -  21%|====                | 1150/5351 [00:29<01:45]       
+[2024-11-12T03:35:43.013+0000] {logging_mixin.py:188} WARNING -  23%|=====               | 1204/5351 [00:30<01:43]       
+[2024-11-12T03:35:44.012+0000] {logging_mixin.py:188} WARNING -  24%|=====               | 1260/5351 [00:31<01:40]       
+[2024-11-12T03:35:45.028+0000] {logging_mixin.py:188} WARNING -  24%|=====               | 1292/5351 [00:32<01:40]       
+[2024-11-12T03:35:46.085+0000] {logging_mixin.py:188} WARNING -  25%|=====               | 1332/5351 [00:33<01:39]       
+[2024-11-12T03:35:47.018+0000] {logging_mixin.py:188} WARNING -  26%|=====               | 1375/5351 [00:34<01:38]       
+[2024-11-12T03:35:48.016+0000] {logging_mixin.py:188} WARNING -  27%|=====               | 1430/5351 [00:35<01:35]       
+[2024-11-12T03:35:49.010+0000] {logging_mixin.py:188} WARNING -  28%|======              | 1472/5351 [00:36<01:34]       
+[2024-11-12T03:35:50.008+0000] {logging_mixin.py:188} WARNING -  29%|======              | 1537/5351 [00:37<01:31]       
+[2024-11-12T03:35:51.022+0000] {logging_mixin.py:188} WARNING -  30%|======              | 1590/5351 [00:38<01:29]       
+[2024-11-12T03:35:52.022+0000] {logging_mixin.py:188} WARNING -  31%|======              | 1635/5351 [00:39<01:28]       
+[2024-11-12T03:35:53.010+0000] {logging_mixin.py:188} WARNING -  32%|======              | 1700/5351 [00:40<01:25]       
+[2024-11-12T03:35:54.006+0000] {logging_mixin.py:188} WARNING -  33%|=======             | 1749/5351 [00:41<01:24]       
+[2024-11-12T03:35:55.070+0000] {logging_mixin.py:188} WARNING -  34%|=======             | 1793/5351 [00:42<01:23]       
+[2024-11-12T03:35:56.020+0000] {logging_mixin.py:188} WARNING -  34%|=======             | 1828/5351 [00:43<01:22]       
+[2024-11-12T03:35:57.007+0000] {logging_mixin.py:188} WARNING -  35%|=======             | 1867/5351 [00:44<01:22]       
+[2024-11-12T03:35:58.012+0000] {logging_mixin.py:188} WARNING -  36%|=======             | 1903/5351 [00:45<01:21]       
+[2024-11-12T03:35:59.016+0000] {logging_mixin.py:188} WARNING -  37%|=======             | 1974/5351 [00:46<01:18]       
+[2024-11-12T03:36:00.008+0000] {logging_mixin.py:188} WARNING -  38%|========            | 2043/5351 [00:47<01:16]       
+[2024-11-12T03:36:01.011+0000] {logging_mixin.py:188} WARNING -  39%|========            | 2110/5351 [00:48<01:13]       
+[2024-11-12T03:36:02.010+0000] {logging_mixin.py:188} WARNING -  40%|========            | 2164/5351 [00:49<01:12]       
+[2024-11-12T03:36:03.010+0000] {logging_mixin.py:188} WARNING -  42%|========            | 2222/5351 [00:50<01:10]       
+[2024-11-12T03:36:04.002+0000] {logging_mixin.py:188} WARNING -  43%|=========           | 2293/5351 [00:51<01:08]       
+[2024-11-12T03:36:05.010+0000] {logging_mixin.py:188} WARNING -  44%|=========           | 2376/5351 [00:52<01:05]       
+[2024-11-12T03:36:06.003+0000] {logging_mixin.py:188} WARNING -  46%|=========           | 2459/5351 [00:53<01:02]       
+[2024-11-12T03:36:07.010+0000] {logging_mixin.py:188} WARNING -  47%|=========           | 2515/5351 [00:54<01:00]       
+[2024-11-12T03:36:08.014+0000] {logging_mixin.py:188} WARNING -  48%|==========          | 2571/5351 [00:55<00:59]       
+[2024-11-12T03:36:09.008+0000] {logging_mixin.py:188} WARNING -  49%|==========          | 2624/5351 [00:56<00:58]       
+[2024-11-12T03:36:10.007+0000] {logging_mixin.py:188} WARNING -  50%|==========          | 2690/5351 [00:57<00:56]       
+[2024-11-12T03:36:11.052+0000] {logging_mixin.py:188} WARNING -  51%|==========          | 2736/5351 [00:58<00:55]       
+[2024-11-12T03:36:12.014+0000] {logging_mixin.py:188} WARNING -  52%|==========          | 2783/5351 [00:59<00:54]       
+[2024-11-12T03:36:13.002+0000] {logging_mixin.py:188} WARNING -  53%|===========         | 2830/5351 [01:00<00:53]       
+[2024-11-12T03:36:14.003+0000] {logging_mixin.py:188} WARNING -  53%|===========         | 2859/5351 [01:01<00:53]       
+[2024-11-12T03:36:15.018+0000] {logging_mixin.py:188} WARNING -  54%|===========         | 2894/5351 [01:02<00:52]       
+[2024-11-12T03:36:16.004+0000] {logging_mixin.py:188} WARNING -  55%|===========         | 2936/5351 [01:03<00:51]       
+[2024-11-12T03:36:17.004+0000] {logging_mixin.py:188} WARNING -  56%|===========         | 2993/5351 [01:04<00:50]       
+[2024-11-12T03:36:18.007+0000] {logging_mixin.py:188} WARNING -  57%|===========         | 3029/5351 [01:05<00:49]       
+[2024-11-12T03:36:19.016+0000] {logging_mixin.py:188} WARNING -  57%|===========         | 3076/5351 [01:06<00:48]       
+[2024-11-12T03:36:20.026+0000] {logging_mixin.py:188} WARNING -  58%|============        | 3115/5351 [01:07<00:48]       
+[2024-11-12T03:36:21.002+0000] {logging_mixin.py:188} WARNING -  59%|============        | 3171/5351 [01:08<00:46]       
+[2024-11-12T03:36:22.005+0000] {logging_mixin.py:188} WARNING -  60%|============        | 3237/5351 [01:09<00:45]       
+[2024-11-12T03:36:23.016+0000] {logging_mixin.py:188} WARNING -  61%|============        | 3288/5351 [01:10<00:43]       
+[2024-11-12T03:36:24.011+0000] {logging_mixin.py:188} WARNING -  63%|=============       | 3350/5351 [01:11<00:42]       
+[2024-11-12T03:36:25.006+0000] {logging_mixin.py:188} WARNING -  64%|=============       | 3400/5351 [01:12<00:41]       
+[2024-11-12T03:36:26.004+0000] {logging_mixin.py:188} WARNING -  65%|=============       | 3462/5351 [01:13<00:39]       
+[2024-11-12T03:36:27.006+0000] {logging_mixin.py:188} WARNING -  66%|=============       | 3524/5351 [01:14<00:38]       
+[2024-11-12T03:36:28.003+0000] {logging_mixin.py:188} WARNING -  67%|=============       | 3594/5351 [01:15<00:36]       
+[2024-11-12T03:36:29.026+0000] {logging_mixin.py:188} WARNING -  68%|==============      | 3644/5351 [01:16<00:35]       
+[2024-11-12T03:36:30.014+0000] {logging_mixin.py:188} WARNING -  69%|==============      | 3691/5351 [01:17<00:34]       
+[2024-11-12T03:36:31.010+0000] {logging_mixin.py:188} WARNING -  70%|==============      | 3748/5351 [01:18<00:33]       
+[2024-11-12T03:36:32.003+0000] {logging_mixin.py:188} WARNING -  71%|==============      | 3807/5351 [01:19<00:32]       
+[2024-11-12T03:36:33.008+0000] {logging_mixin.py:188} WARNING -  72%|==============      | 3874/5351 [01:20<00:30]       
+[2024-11-12T03:36:34.015+0000] {logging_mixin.py:188} WARNING -  74%|===============     | 3953/5351 [01:21<00:28]       
+[2024-11-12T03:36:35.010+0000] {logging_mixin.py:188} WARNING -  75%|===============     | 4020/5351 [01:22<00:27]       
+[2024-11-12T03:36:36.010+0000] {logging_mixin.py:188} WARNING -  76%|===============     | 4092/5351 [01:23<00:25]       
+[2024-11-12T03:36:37.008+0000] {logging_mixin.py:188} WARNING -  78%|================    | 4170/5351 [01:24<00:23]       
+[2024-11-12T03:36:38.003+0000] {logging_mixin.py:188} WARNING -  79%|================    | 4252/5351 [01:25<00:21]       
+[2024-11-12T03:36:39.018+0000] {logging_mixin.py:188} WARNING -  81%|================    | 4330/5351 [01:26<00:20]       
+[2024-11-12T03:36:40.013+0000] {logging_mixin.py:188} WARNING -  82%|================    | 4397/5351 [01:27<00:18]       
+[2024-11-12T03:36:41.016+0000] {logging_mixin.py:188} WARNING -  83%|=================   | 4466/5351 [01:28<00:17]       
+[2024-11-12T03:36:42.025+0000] {logging_mixin.py:188} WARNING -  85%|=================   | 4535/5351 [01:29<00:16]       
+[2024-11-12T03:36:43.017+0000] {logging_mixin.py:188} WARNING -  86%|=================   | 4594/5351 [01:30<00:14]       
+[2024-11-12T03:36:44.022+0000] {logging_mixin.py:188} WARNING -  87%|=================   | 4661/5351 [01:31<00:13]       
+[2024-11-12T03:36:45.021+0000] {logging_mixin.py:188} WARNING -  88%|==================  | 4705/5351 [01:32<00:12]       
+[2024-11-12T03:36:46.006+0000] {logging_mixin.py:188} WARNING -  89%|==================  | 4776/5351 [01:33<00:11]       
+[2024-11-12T03:36:47.024+0000] {logging_mixin.py:188} WARNING -  90%|==================  | 4836/5351 [01:34<00:10]       
+[2024-11-12T03:36:48.056+0000] {logging_mixin.py:188} WARNING -  91%|==================  | 4866/5351 [01:35<00:09]       
+[2024-11-12T03:36:49.028+0000] {logging_mixin.py:188} WARNING -  92%|==================  | 4900/5351 [01:36<00:08]       
+[2024-11-12T03:36:50.016+0000] {logging_mixin.py:188} WARNING -  92%|==================  | 4946/5351 [01:37<00:07]       
+[2024-11-12T03:36:51.052+0000] {logging_mixin.py:188} WARNING -  94%|=================== | 5007/5351 [01:38<00:06]       
+[2024-11-12T03:36:52.028+0000] {logging_mixin.py:188} WARNING -  94%|=================== | 5055/5351 [01:39<00:05]       
+[2024-11-12T03:36:53.021+0000] {logging_mixin.py:188} WARNING -  95%|=================== | 5103/5351 [01:40<00:04]       
+[2024-11-12T03:36:54.016+0000] {logging_mixin.py:188} WARNING -  97%|=================== | 5170/5351 [01:41<00:03]       
+[2024-11-12T03:36:55.023+0000] {logging_mixin.py:188} WARNING -  97%|=================== | 5212/5351 [01:42<00:02]       
+[2024-11-12T03:36:56.005+0000] {logging_mixin.py:188} WARNING -  98%|===================| 5267/5351 [01:43<00:01]       
+[2024-11-12T03:36:57.022+0000] {logging_mixin.py:188} WARNING -  99%|===================| 5313/5351 [01:44<00:00]       
+[2024-11-12T03:36:58.083+0000] {logging_mixin.py:188} WARNING -  99%|===================| 5323/5351 [01:45<00:00]       
+[2024-11-12T03:37:09.192+0000] {logging_mixin.py:188} INFO - SHAP summary plot saved at /opt/***/dags/artifacts/shap_summary_plot_randomforest.png
+[2024-11-12T03:37:36.399+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:37:36.416+0000] {logging_mixin.py:188} INFO - RMSE for n_estimators=100: 0.003679692702632717
+[2024-11-12T03:38:28.045+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:38:28.072+0000] {logging_mixin.py:188} INFO - RMSE for n_estimators=200: 0.003619503365798279
+[2024-11-12T03:38:28.447+0000] {logging_mixin.py:188} INFO - Sensitivity plot saved at /opt/***/dags/artifacts/n_estimators_sensitivity_randomforest.png
+[2024-11-12T03:38:29.017+0000] {logging_mixin.py:188} INFO - Model loaded from /opt/***/dags/weights/randomforest_pm25_model.pth
+[2024-11-12T03:38:29.399+0000] {logging_mixin.py:188} INFO - Plot saved at /opt/***/dags/artifacts/pm25_actual_vs_predicted_RandomForest.png
+[2024-11-12T03:38:29.414+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-12T03:38:29.432+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T03:38:29.532+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=modeling_pipeline, task_id=Random_Forest_model_Validation, run_id=manual__2024-11-12T03:31:11.749538+00:00, execution_date=20241112T033111, start_date=20241112T033509, end_date=20241112T033829
+[2024-11-12T03:38:29.720+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-12T03:38:29.837+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T03:38:29.845+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

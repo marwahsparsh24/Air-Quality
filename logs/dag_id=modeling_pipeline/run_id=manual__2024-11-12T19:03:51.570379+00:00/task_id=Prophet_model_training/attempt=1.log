@@ -1,0 +1,63 @@
+[2024-11-12T19:03:54.005+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T19:03:54.025+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Prophet_model_training manual__2024-11-12T19:03:51.570379+00:00 [queued]>
+[2024-11-12T19:03:54.034+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Prophet_model_training manual__2024-11-12T19:03:51.570379+00:00 [queued]>
+[2024-11-12T19:03:54.035+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T19:03:54.043+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Prophet_model_training> on 2024-11-12 19:03:51.570379+00:00
+[2024-11-12T19:03:54.058+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=409) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T19:03:54.061+0000] {standard_task_runner.py:63} INFO - Started process 437 to run task
+[2024-11-12T19:03:54.064+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Prophet_model_training', 'manual__2024-11-12T19:03:51.570379+00:00', '--job-id', '1163', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmpxwwtj8zv']
+[2024-11-12T19:03:54.066+0000] {standard_task_runner.py:91} INFO - Job 1163: Subtask Prophet_model_training
+[2024-11-12T19:03:54.098+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Prophet_model_training manual__2024-11-12T19:03:51.570379+00:00 [running]> on host 9919a500f6fd
+[2024-11-12T19:03:54.145+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Prophet_model_training' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T19:03:51.570379+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T19:03:51.570379+00:00'
+[2024-11-12T19:03:54.146+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T19:03:54.163+0000] {logging_mixin.py:188} INFO - /opt/***
+[2024-11-12T19:03:54.200+0000] {logging_mixin.py:188} WARNING - 2024/11/12 19:03:54 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-11-12T19:03:54.269+0000] {forecaster.py:961} INFO - Disabling yearly seasonality. Run prophet with yearly_seasonality=True to override this.
+[2024-11-12T19:03:54.322+0000] {filesystem.py:118} DEBUG - input tempfile: /tmp/tmpntvdrjvp/_bh9xzk_.json
+[2024-11-12T19:03:54.880+0000] {filesystem.py:118} DEBUG - input tempfile: /tmp/tmpntvdrjvp/auk3glsq.json
+[2024-11-12T19:03:54.882+0000] {model.py:2042} DEBUG - idx 0
+[2024-11-12T19:03:54.882+0000] {model.py:2043} DEBUG - running CmdStan, num_threads: None
+[2024-11-12T19:03:54.882+0000] {model.py:2055} DEBUG - CmdStan args: ['/home/***/.local/lib/python3.12/site-packages/prophet/stan_model/prophet_model.bin', 'random', 'seed=74210', 'data', 'file=/tmp/tmpntvdrjvp/_bh9xzk_.json', 'init=/tmp/tmpntvdrjvp/auk3glsq.json', 'output', 'file=/tmp/tmpntvdrjvp/prophet_modelakjc88ph/prophet_model-20241112190354.csv', 'method=optimize', 'algorithm=lbfgs', 'iter=10000']
+[2024-11-12T19:03:54.883+0000] {logging_mixin.py:188} WARNING - 19:03:54 - cmdstanpy - INFO - Chain [1] start processing
+[2024-11-12T19:03:54.883+0000] {model.py:2058} INFO - Chain [1] start processing
+[2024-11-12T19:03:57.953+0000] {logging_mixin.py:188} WARNING - 19:03:57 - cmdstanpy - INFO - Chain [1] done processing
+[2024-11-12T19:03:57.952+0000] {model.py:2115} INFO - Chain [1] done processing
+[2024-11-12T19:04:02.103+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:   0%|          | 0/7 [00:00<?, ?it/s]
+[2024-11-12T19:04:02.105+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  14%|#4        | 1/7 [00:00<00:00, 3685.68it/s]
+[2024-11-12T19:04:02.105+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  29%|##8       | 2/7 [00:00<00:00, 3819.95it/s]
+[2024-11-12T19:04:02.105+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  43%|####2     | 3/7 [00:00<00:00, 4413.51it/s]
+[2024-11-12T19:04:02.105+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  57%|#####7    | 4/7 [00:00<00:00, 4882.78it/s]
+[2024-11-12T19:04:02.105+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  71%|#######1  | 5/7 [00:00<00:00, 5265.26it/s]
+[2024-11-12T19:04:02.105+0000] {logging_mixin.py:188} WARNING - Downloading artifacts:  86%|########5 | 6/7 [00:00<00:00, 5698.78it/s]
+[2024-11-12T19:04:02.106+0000] {logging_mixin.py:188} WARNING - Downloading artifacts: 100%|##########| 7/7 [00:00<00:00, 6018.89it/s]
+[2024-11-12T19:04:02.106+0000] {logging_mixin.py:188} WARNING - Downloading artifacts: 100%|##########| 7/7 [00:00<00:00, 5488.90it/s]
+[2024-11-12T19:04:02.237+0000] {logging_mixin.py:188} INFO - Model saved at /opt/***/dags/weights/prophet_pm25_model.pth
+[2024-11-12T19:04:02.241+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-12T19:04:02.243+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T19:04:02.272+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=modeling_pipeline, task_id=Prophet_model_training, run_id=manual__2024-11-12T19:03:51.570379+00:00, execution_date=20241112T190351, start_date=20241112T190354, end_date=20241112T190402
+[2024-11-12T19:04:02.274+0000] {baseoperator.py:400} WARNING - EmailOperator.execute cannot be called outside TaskInstance!
+[2024-11-12T19:04:02.283+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/utils/email.py:154: RemovedInAirflow3Warning: Fetching SMTP credentials from configuration variables will be deprecated in a future release. Please set credentials using a connection instead.
+  send_mime_email(e_from=mail_from, e_to=recipients, mime_msg=msg, conn_id=conn_id, dryrun=dryrun)
+
+[2024-11-12T19:04:02.283+0000] {email.py:271} INFO - Email alerting: attempt 1
+[2024-11-12T19:04:02.792+0000] {email.py:282} INFO - Sent an alert email to ['anirudhak881@gmail.com']
+[2024-11-12T19:04:03.914+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-12T19:04:03.954+0000] {taskinstance.py:3503} INFO - 1 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T19:04:03.955+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

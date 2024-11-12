@@ -1,0 +1,96 @@
+[2024-11-12T09:14:10.476+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T09:14:10.542+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Random_Forest_model_Validation manual__2024-11-12T09:12:07.371588+00:00 [queued]>
+[2024-11-12T09:14:10.564+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Random_Forest_model_Validation manual__2024-11-12T09:12:07.371588+00:00 [queued]>
+[2024-11-12T09:14:10.571+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T09:14:10.583+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Random_Forest_model_Validation> on 2024-11-12 09:12:07.371588+00:00
+[2024-11-12T09:14:10.664+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=2015) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T09:14:10.666+0000] {standard_task_runner.py:63} INFO - Started process 2024 to run task
+[2024-11-12T09:14:10.678+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Random_Forest_model_Validation', 'manual__2024-11-12T09:12:07.371588+00:00', '--job-id', '1148', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmppjfgm6jt']
+[2024-11-12T09:14:10.692+0000] {standard_task_runner.py:91} INFO - Job 1148: Subtask Random_Forest_model_Validation
+[2024-11-12T09:14:10.769+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Random_Forest_model_Validation manual__2024-11-12T09:12:07.371588+00:00 [running]> on host 9919a500f6fd
+[2024-11-12T09:14:10.870+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Random_Forest_model_Validation' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T09:12:07.371588+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T09:12:07.371588+00:00'
+[2024-11-12T09:14:10.871+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T09:14:10.924+0000] {logging_mixin.py:188} INFO - Data loaded from /opt/***/dags/DataPreprocessing/src/data_store_pkl_files/test_data/no_anamoly_test_data.pkl.
+[2024-11-12T09:14:10.927+0000] {logging_mixin.py:188} INFO - Original Skewness: 0.5082849280995185
+[2024-11-12T09:14:10.930+0000] {logging_mixin.py:188} INFO - Log Transformed Skewness: -0.38788987353405835
+[2024-11-12T09:14:10.941+0000] {logging_mixin.py:188} INFO - Box-Cox Transformed Skewness: 0.011851083745351043
+[2024-11-12T09:14:10.943+0000] {logging_mixin.py:188} INFO - Choosing Box-Cox transformed column.
+[2024-11-12T09:14:10.953+0000] {logging_mixin.py:188} INFO - Feature engineering completed and NaN values dropped.
+[2024-11-12T09:14:11.015+0000] {logging_mixin.py:188} WARNING - 2024/11/12 09:14:11 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-11-12T09:14:11.192+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:14:11.193+0000] {logging_mixin.py:188} INFO - RMSE (Box-Cox transformed target): 0.003619503365798279
+[2024-11-12T09:14:11.194+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:14:11.197+0000] {logging_mixin.py:188} INFO - RMSE (Original PM2.5 target): 1.0013285295613887
+[2024-11-12T09:14:22.002+0000] {logging_mixin.py:188} WARNING -  27%|=====               | 1421/5351 [00:11<00:30]       
+[2024-11-12T09:14:23.005+0000] {logging_mixin.py:188} WARNING -  29%|======              | 1528/5351 [00:12<00:30]       
+[2024-11-12T09:14:24.009+0000] {logging_mixin.py:188} WARNING -  30%|======              | 1624/5351 [00:13<00:29]       
+[2024-11-12T09:14:25.044+0000] {logging_mixin.py:188} WARNING -  32%|======              | 1716/5351 [00:14<00:29]       
+[2024-11-12T09:14:26.013+0000] {logging_mixin.py:188} WARNING -  33%|=======             | 1788/5351 [00:15<00:29]       
+[2024-11-12T09:14:27.001+0000] {logging_mixin.py:188} WARNING -  35%|=======             | 1888/5351 [00:16<00:29]       
+[2024-11-12T09:14:28.005+0000] {logging_mixin.py:188} WARNING -  38%|========            | 2020/5351 [00:17<00:28]       
+[2024-11-12T09:14:29.010+0000] {logging_mixin.py:188} WARNING -  40%|========            | 2125/5351 [00:18<00:27]       
+[2024-11-12T09:14:30.012+0000] {logging_mixin.py:188} WARNING -  41%|========            | 2218/5351 [00:19<00:26]       
+[2024-11-12T09:14:31.008+0000] {logging_mixin.py:188} WARNING -  43%|=========           | 2310/5351 [00:20<00:26]       
+[2024-11-12T09:14:32.003+0000] {logging_mixin.py:188} WARNING -  45%|=========           | 2397/5351 [00:21<00:25]       
+[2024-11-12T09:14:33.003+0000] {logging_mixin.py:188} WARNING -  46%|=========           | 2464/5351 [00:22<00:25]       
+[2024-11-12T09:14:34.007+0000] {logging_mixin.py:188} WARNING -  49%|==========          | 2599/5351 [00:23<00:24]       
+[2024-11-12T09:14:35.004+0000] {logging_mixin.py:188} WARNING -  51%|==========          | 2730/5351 [00:24<00:23]       
+[2024-11-12T09:14:36.002+0000] {logging_mixin.py:188} WARNING -  53%|===========         | 2858/5351 [00:25<00:21]       
+[2024-11-12T09:14:37.002+0000] {logging_mixin.py:188} WARNING -  56%|===========         | 2999/5351 [00:26<00:20]       
+[2024-11-12T09:14:38.001+0000] {logging_mixin.py:188} WARNING -  59%|============        | 3142/5351 [00:27<00:18]       
+[2024-11-12T09:14:39.005+0000] {logging_mixin.py:188} WARNING -  61%|============        | 3276/5351 [00:28<00:17]       
+[2024-11-12T09:14:40.004+0000] {logging_mixin.py:188} WARNING -  64%|=============       | 3411/5351 [00:29<00:16]       
+[2024-11-12T09:14:41.007+0000] {logging_mixin.py:188} WARNING -  66%|=============       | 3544/5351 [00:30<00:15]       
+[2024-11-12T09:14:42.005+0000] {logging_mixin.py:188} WARNING -  68%|==============      | 3642/5351 [00:31<00:14]       
+[2024-11-12T09:14:43.007+0000] {logging_mixin.py:188} WARNING -  70%|==============      | 3727/5351 [00:32<00:13]       
+[2024-11-12T09:14:44.002+0000] {logging_mixin.py:188} WARNING -  72%|==============      | 3848/5351 [00:33<00:12]       
+[2024-11-12T09:14:45.007+0000] {logging_mixin.py:188} WARNING -  74%|===============     | 3975/5351 [00:34<00:11]       
+[2024-11-12T09:14:46.005+0000] {logging_mixin.py:188} WARNING -  77%|===============     | 4105/5351 [00:35<00:10]       
+[2024-11-12T09:14:47.004+0000] {logging_mixin.py:188} WARNING -  79%|================    | 4248/5351 [00:36<00:09]       
+[2024-11-12T09:14:48.005+0000] {logging_mixin.py:188} WARNING -  82%|================    | 4385/5351 [00:37<00:08]       
+[2024-11-12T09:14:49.005+0000] {logging_mixin.py:188} WARNING -  85%|=================   | 4522/5351 [00:38<00:06]       
+[2024-11-12T09:14:50.004+0000] {logging_mixin.py:188} WARNING -  87%|=================   | 4663/5351 [00:39<00:05]       
+[2024-11-12T09:14:51.006+0000] {logging_mixin.py:188} WARNING -  90%|==================  | 4796/5351 [00:40<00:04]       
+[2024-11-12T09:14:52.003+0000] {logging_mixin.py:188} WARNING -  92%|==================  | 4919/5351 [00:41<00:03]       
+[2024-11-12T09:14:53.009+0000] {logging_mixin.py:188} WARNING -  94%|=================== | 5052/5351 [00:42<00:02]       
+[2024-11-12T09:14:54.004+0000] {logging_mixin.py:188} WARNING -  97%|=================== | 5177/5351 [00:43<00:01]       
+[2024-11-12T09:14:55.013+0000] {logging_mixin.py:188} WARNING -  99%|===================| 5286/5351 [00:44<00:00]       
+[2024-11-12T09:14:58.386+0000] {logging_mixin.py:188} INFO - SHAP summary plot saved at /opt/***/dags/artifacts/shap_summary_plot_randomforest.png
+[2024-11-12T09:15:13.541+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:15:13.553+0000] {logging_mixin.py:188} INFO - RMSE for n_estimators=100: 0.003679692702632717
+[2024-11-12T09:15:46.411+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T09:15:46.422+0000] {logging_mixin.py:188} INFO - RMSE for n_estimators=200: 0.003619503365798279
+[2024-11-12T09:15:46.596+0000] {logging_mixin.py:188} INFO - Sensitivity plot saved at /opt/***/dags/artifacts/n_estimators_sensitivity_randomforest.png
+[2024-11-12T09:15:46.876+0000] {logging_mixin.py:188} INFO - Model loaded from /opt/***/dags/weights/randomforest_pm25_model.pth
+[2024-11-12T09:15:47.155+0000] {logging_mixin.py:188} INFO - Plot saved at /opt/***/dags/artifacts/pm25_actual_vs_predicted_RandomForest.png
+[2024-11-12T09:15:47.177+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-12T09:15:47.190+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T09:15:47.232+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=modeling_pipeline, task_id=Random_Forest_model_Validation, run_id=manual__2024-11-12T09:12:07.371588+00:00, execution_date=20241112T091207, start_date=20241112T091410, end_date=20241112T091547
+[2024-11-12T09:15:47.296+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-12T09:15:47.334+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T09:15:47.335+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

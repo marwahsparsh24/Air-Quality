@@ -1,0 +1,104 @@
+[2024-11-12T03:28:11.396+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-12T03:28:11.427+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.XGBoost_model_Validation manual__2024-11-12T03:22:11.859265+00:00 [queued]>
+[2024-11-12T03:28:11.434+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.XGBoost_model_Validation manual__2024-11-12T03:22:11.859265+00:00 [queued]>
+[2024-11-12T03:28:11.438+0000] {taskinstance.py:2306} INFO - Starting attempt 1 of 2
+[2024-11-12T03:28:11.446+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): XGBoost_model_Validation> on 2024-11-12 03:22:11.859265+00:00
+[2024-11-12T03:28:11.476+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=309) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-12T03:28:11.480+0000] {standard_task_runner.py:63} INFO - Started process 318 to run task
+[2024-11-12T03:28:11.483+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'XGBoost_model_Validation', 'manual__2024-11-12T03:22:11.859265+00:00', '--job-id', '1033', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmptl18gxd_']
+[2024-11-12T03:28:11.487+0000] {standard_task_runner.py:91} INFO - Job 1033: Subtask XGBoost_model_Validation
+[2024-11-12T03:28:11.527+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.XGBoost_model_Validation manual__2024-11-12T03:22:11.859265+00:00 [running]> on host 5039cd089413
+[2024-11-12T03:28:11.582+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='XGBoost_model_Validation' AIRFLOW_CTX_EXECUTION_DATE='2024-11-12T03:22:11.859265+00:00' AIRFLOW_CTX_TRY_NUMBER='1' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-12T03:22:11.859265+00:00'
+[2024-11-12T03:28:11.583+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-12T03:28:11.631+0000] {logging_mixin.py:188} INFO - Data loaded from /opt/***/dags/DataPreprocessing/src/data_store_pkl_files/test_data/no_anamoly_test_data.pkl.
+[2024-11-12T03:28:11.635+0000] {logging_mixin.py:188} INFO - Original Skewness: 0.5082849280995185
+[2024-11-12T03:28:11.637+0000] {logging_mixin.py:188} INFO - Log Transformed Skewness: -0.38788987353405835
+[2024-11-12T03:28:11.648+0000] {logging_mixin.py:188} INFO - Box-Cox Transformed Skewness: 0.011851083745351043
+[2024-11-12T03:28:11.650+0000] {logging_mixin.py:188} INFO - Choosing Box-Cox transformed column.
+[2024-11-12T03:28:11.671+0000] {logging_mixin.py:188} INFO - Feature engineering completed and NaN values dropped.
+[2024-11-12T03:28:11.754+0000] {logging_mixin.py:188} WARNING - 2024/11/12 03:28:11 WARNING mlflow.utils.git_utils: Failed to import Git (the Git executable is probably not on your PATH), so Git SHA is not available. Error: Failed to initialize: Bad git executable.
+The git executable must be specified in one of the following ways:
+    - be included in your $PATH
+    - be set via $GIT_PYTHON_GIT_EXECUTABLE
+    - explicitly set via git.refresh(<full-path-to-git-executable>)
+
+All git commands will error until this is rectified.
+
+This initial message can be silenced or aggravated in the future by setting the
+$GIT_PYTHON_REFRESH environment variable. Use one of the following values:
+    - quiet|q|silence|s|silent|none|n|0: for no message or exception
+    - warn|w|warning|log|l|1: for a warning message (logging level CRITICAL, displayed by default)
+    - error|e|exception|raise|r|2: for a raised exception
+
+Example:
+    export GIT_PYTHON_REFRESH=quiet
+[2024-11-12T03:28:11.820+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:11.825+0000] {logging_mixin.py:188} INFO - RMSE (Box-Cox transformed target): 0.019968685803829617
+[2024-11-12T03:28:11.825+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:11.827+0000] {logging_mixin.py:188} INFO - RMSE (Original PM2.5 target): 0.9685765167761742
+[2024-11-12T03:28:17.511+0000] {logging_mixin.py:188} INFO - SHAP summary plot saved at /opt/***/dags/artifacts/shap_summary_plot_xgboost.png
+[2024-11-12T03:28:18.356+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:18.360+0000] {logging_mixin.py:188} INFO - RMSE for n_estimators=50: 0.018109086120504485
+[2024-11-12T03:28:19.237+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:19.243+0000] {logging_mixin.py:188} INFO - RMSE for n_estimators=100: 0.018053738787679526
+[2024-11-12T03:28:23.561+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:23.569+0000] {logging_mixin.py:188} INFO - RMSE for n_estimators=200: 0.018018959351068304
+[2024-11-12T03:28:25.768+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:25.771+0000] {logging_mixin.py:188} INFO - RMSE for n_estimators=300: 0.01800712646999704
+[2024-11-12T03:28:25.844+0000] {logging_mixin.py:188} INFO - Sensitivity plot saved at /opt/***/dags/artifacts/n_estimators_sensitivity_xgboost.png
+[2024-11-12T03:28:27.955+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:27.960+0000] {logging_mixin.py:188} INFO - RMSE for learning_rate=0.01: 0.029769897178496898
+[2024-11-12T03:28:30.036+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:30.038+0000] {logging_mixin.py:188} INFO - RMSE for learning_rate=0.05: 0.018132587652373956
+[2024-11-12T03:28:32.575+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:32.577+0000] {logging_mixin.py:188} INFO - RMSE for learning_rate=0.1: 0.018257820449254367
+[2024-11-12T03:28:36.092+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:36.100+0000] {logging_mixin.py:188} INFO - RMSE for learning_rate=0.2: 0.018700540749211
+[2024-11-12T03:28:36.192+0000] {logging_mixin.py:188} INFO - Sensitivity plot saved at /opt/***/dags/artifacts/learning_rate_sensitivity_xgboost.png
+[2024-11-12T03:28:37.907+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:37.911+0000] {logging_mixin.py:188} INFO - RMSE for max_depth=3: 0.018975250891502194
+[2024-11-12T03:28:39.516+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:39.518+0000] {logging_mixin.py:188} INFO - RMSE for max_depth=5: 0.017636553748334453
+[2024-11-12T03:28:43.907+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:43.921+0000] {logging_mixin.py:188} INFO - RMSE for max_depth=7: 0.01793701419155378
+[2024-11-12T03:28:47.494+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/sklearn/metrics/_regression.py:492: FutureWarning: 'squared' is deprecated in version 1.4 and will be removed in 1.6. To calculate the root mean squared error, use the function'root_mean_squared_error'.
+  warnings.warn(
+
+[2024-11-12T03:28:47.501+0000] {logging_mixin.py:188} INFO - RMSE for max_depth=10: 0.01740618922483647
+[2024-11-12T03:28:47.608+0000] {logging_mixin.py:188} INFO - Sensitivity plot saved at /opt/***/dags/artifacts/max_depth_sensitivity_xgboost.png
+[2024-11-12T03:28:47.611+0000] {logging_mixin.py:188} INFO - Model loaded from /opt/***/dags/weights/xgboost_pm25_model.pth
+[2024-11-12T03:28:47.811+0000] {logging_mixin.py:188} INFO - Plot saved at /opt/***/dags/artifacts/pm25_actual_vs_predicted_XGBoost.png
+[2024-11-12T03:28:47.815+0000] {python.py:237} INFO - Done. Returned value was: None
+[2024-11-12T03:28:47.817+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-12T03:28:47.828+0000] {taskinstance.py:1206} INFO - Marking task as SUCCESS. dag_id=modeling_pipeline, task_id=XGBoost_model_Validation, run_id=manual__2024-11-12T03:22:11.859265+00:00, execution_date=20241112T032211, start_date=20241112T032811, end_date=20241112T032847
+[2024-11-12T03:28:47.900+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 0
+[2024-11-12T03:28:47.919+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-12T03:28:47.919+0000] {local_task_job_runner.py:222} INFO - ::endgroup::

@@ -1,0 +1,49 @@
+[2024-11-11T18:19:19.212+0000] {local_task_job_runner.py:120} INFO - ::group::Pre task execution logs
+[2024-11-11T18:19:19.221+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=non-requeueable deps ti=<TaskInstance: modeling_pipeline.Best_Model manual__2024-11-11T17:46:19.940019+00:00 [queued]>
+[2024-11-11T18:19:19.225+0000] {taskinstance.py:2076} INFO - Dependencies all met for dep_context=requeueable deps ti=<TaskInstance: modeling_pipeline.Best_Model manual__2024-11-11T17:46:19.940019+00:00 [queued]>
+[2024-11-11T18:19:19.225+0000] {taskinstance.py:2306} INFO - Starting attempt 2 of 2
+[2024-11-11T18:19:19.230+0000] {taskinstance.py:2330} INFO - Executing <Task(PythonOperator): Best_Model> on 2024-11-11 17:46:19.940019+00:00
+[2024-11-11T18:19:19.240+0000] {warnings.py:112} WARNING - /home/***/.local/lib/python3.12/site-packages/***/task/task_runner/standard_task_runner.py:61: DeprecationWarning: This process (pid=79) is multi-threaded, use of fork() may lead to deadlocks in the child.
+  pid = os.fork()
+
+[2024-11-11T18:19:19.241+0000] {standard_task_runner.py:63} INFO - Started process 88 to run task
+[2024-11-11T18:19:19.242+0000] {standard_task_runner.py:90} INFO - Running: ['***', 'tasks', 'run', 'modeling_pipeline', 'Best_Model', 'manual__2024-11-11T17:46:19.940019+00:00', '--job-id', '905', '--raw', '--subdir', 'DAGS_FOLDER/dag_script_model.py', '--cfg-path', '/tmp/tmppzvmifjs']
+[2024-11-11T18:19:19.247+0000] {standard_task_runner.py:91} INFO - Job 905: Subtask Best_Model
+[2024-11-11T18:19:19.273+0000] {task_command.py:426} INFO - Running <TaskInstance: modeling_pipeline.Best_Model manual__2024-11-11T17:46:19.940019+00:00 [running]> on host 5039cd089413
+[2024-11-11T18:19:19.312+0000] {taskinstance.py:2648} INFO - Exporting env vars: AIRFLOW_CTX_DAG_OWNER='MLOPS' AIRFLOW_CTX_DAG_ID='modeling_pipeline' AIRFLOW_CTX_TASK_ID='Best_Model' AIRFLOW_CTX_EXECUTION_DATE='2024-11-11T17:46:19.940019+00:00' AIRFLOW_CTX_TRY_NUMBER='2' AIRFLOW_CTX_DAG_RUN_ID='manual__2024-11-11T17:46:19.940019+00:00'
+[2024-11-11T18:19:19.313+0000] {taskinstance.py:430} INFO - ::endgroup::
+[2024-11-11T18:19:19.334+0000] {logging_mixin.py:188} INFO - 228524954728212615
+[2024-11-11T18:19:19.349+0000] {logging_mixin.py:188} INFO - 467240330939740349
+[2024-11-11T18:19:19.360+0000] {logging_mixin.py:188} INFO - 572499617916625725
+[2024-11-11T18:19:19.366+0000] {logging_mixin.py:188} INFO - Best model found in experiment 'PM2.5 XGBoost Prediction' with run ID 'd090ac46e5a8400bb0ebc3723b4f96d3'
+[2024-11-11T18:19:19.366+0000] {logging_mixin.py:188} INFO - Validation RMSE: 0.9685765167761742
+[2024-11-11T18:19:19.369+0000] {taskinstance.py:441} INFO - ::group::Post task execution logs
+[2024-11-11T18:19:19.369+0000] {taskinstance.py:2905} ERROR - Task failed with exception
+Traceback (most recent call last):
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 465, in _execute_task
+    result = _execute_callable(context=context, **execute_callable_kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/taskinstance.py", line 432, in _execute_callable
+    return execute_callable(context=context, **execute_callable_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/models/baseoperator.py", line 401, in wrapper
+    return func(self, *args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 235, in execute
+    return_value = self.execute_callable()
+                   ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/airflow/.local/lib/python3.12/site-packages/airflow/operators/python.py", line 252, in execute_callable
+    return self.python_callable(*self.op_args, **self.op_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/bestmodel.py", line 65, in main
+    best_model_data, best_rmse, best_experiment_name, best_run_id = get_best_model_and_load_weights(experiment_names)
+                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/airflow/dags/bestmodel.py", line 55, in get_best_model_and_load_weights
+    model_data = pickle.load(f)  # This assumes the .pth file can be read by pickle
+                 ^^^^^^^^^^^^^^
+_pickle.UnpicklingError: invalid load key, '{'.
+[2024-11-11T18:19:19.377+0000] {taskinstance.py:1206} INFO - Marking task as FAILED. dag_id=modeling_pipeline, task_id=Best_Model, run_id=manual__2024-11-11T17:46:19.940019+00:00, execution_date=20241111T174619, start_date=20241111T181919, end_date=20241111T181919
+[2024-11-11T18:19:19.385+0000] {standard_task_runner.py:110} ERROR - Failed to execute job 905 for task Best_Model (invalid load key, '{'.; 88)
+[2024-11-11T18:19:19.432+0000] {local_task_job_runner.py:240} INFO - Task exited with return code 1
+[2024-11-11T18:19:19.440+0000] {taskinstance.py:3503} INFO - 0 downstream tasks scheduled from follow-on schedule check
+[2024-11-11T18:19:19.441+0000] {local_task_job_runner.py:222} INFO - ::endgroup::
