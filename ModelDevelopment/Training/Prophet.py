@@ -12,6 +12,7 @@ import mlflow.prophet
 import mlflow.pyfunc
 import time
 import shap
+mlflow.set_tracking_uri(os.environ["MLFLOW_TRACKING_URI"])
 
 
 class ProphetWrapper(mlflow.pyfunc.PythonModel):
