@@ -28,8 +28,7 @@ jobs:
 
       - name: Configure MLflow Tracking URI and Create mlruns Directory
         run: |
-          # Define MLFLOW_TRACKING_URI in the environment
-          echo "MLFLOW_TRACKING_URI=${{ github.workspace }}/mlruns" >> $GITHUB_ENV
+          "MLFLOW_TRACKING_URI=file://${GITHUB_WORKSPACE}/mlruns" >> $GITHUB_ENV echo "MLFLOW_ARTIFACT_URI=${GITHUB_WORKSPACE}/mlruns" >> $GITHUB_ENV
           
           # Create the mlruns directory in GITHUB_WORKSPACE
           mkdir -p "${{ github.workspace }}/mlruns"
