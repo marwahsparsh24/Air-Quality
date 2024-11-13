@@ -12,6 +12,10 @@ jobs:
   train_prophet_model:
     runs-on: ubuntu-latest
 
+    env:
+      MLFLOW_TRACKING_URI: file://${{ github.workspace }}/mlruns
+      MLFLOW_ARTIFACT_URI: ${{ github.workspace }}/mlruns
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
@@ -28,18 +32,15 @@ jobs:
 
       - name: Configure MLflow Tracking URI and Create mlruns Directory
         run: |
-          echo "MLFLOW_TRACKING_URI=file://${GITHUB_WORKSPACE}/mlruns" >> $GITHUB_ENV
-          echo "MLFLOW_ARTIFACT_URI=${GITHUB_WORKSPACE}/mlruns" >> $GITHUB_ENV
-          
-          # Create the mlruns directory in GITHUB_WORKSPACE
+          echo "Setting MLflow tracking URI and artifact paths"
           mkdir -p "${{ github.workspace }}/mlruns"
-          # Set permissions to prevent permission errors
           chmod -R 777 "${{ github.workspace }}/mlruns"
+          echo "MLflow tracking URI: $MLFLOW_TRACKING_URI"
+          echo "MLflow artifact URI: $MLFLOW_ARTIFACT_URI"
 
       - name: Run Prophet Model Training Script
-        env:
-          MLFLOW_TRACKING_URI: file://${{ github.workspace }}/mlruns
         run: |
+          echo "Running Prophet Model Training Script"
           python ModelDevelopment/Training/Prophet.py
 
       - name: Upload MLflow Artifacts
