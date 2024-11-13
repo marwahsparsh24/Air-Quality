@@ -1,4 +1,4 @@
-\name: Automated Run Prophet Model Training with MLflow Logging
+name: Automated Run Prophet Model Training with MLflow Logging
 
 on:
   push:
