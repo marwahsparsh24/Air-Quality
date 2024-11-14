@@ -4,10 +4,10 @@ name: Run Docker on Push or Pull Request
 on:
   push:
     branches:
-      - model_local
+      - main
   pull_request:
     branches:
-      - model_local
+      - main
 
 jobs:
   build-and-run:
