@@ -1,0 +1,235 @@
+name: Run Docker on Push or Pull Request
+
+# Trigger the workflow on push or pull request to the model_local branch
+on:
+  push:
+    branches:
+      - model_local
+  pull_request:
+    branches:
+      - model_local
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository code
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up Docker Buildx (optional, but useful for multi-platform support)
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      # Step 3: Build the Docker image
+      - name: Build Docker image
+        run: |
+          docker build -t my_model_pipeline -f ModelDevelopment/Dockerfile ModelDevelopment
+
+      # Step 4: Run all scripts in sequence within the same container and notify on failure
+      - name: Run scripts in sequence with failure and success notifications
+        env:
+          SMTP_SERVER: "smtp.gmail.com"
+          SMTP_PORT: "587"
+          EMAIL_USERNAME: "anirudhak881@gmail.com"
+          EMAIL_PASSWORD: "ksmhwqrzhjllqsaz"  # Replace with actual app password
+          RECIPIENT_EMAIL: "anirudhak881@gmail.com"
+        run: |
+          docker run --name my_model_container my_model_pipeline sh -c "
+            python /app/Training/Prophet.py && \
+            (echo 'Subject: GitHub Actions - Training/Prophet.py Succeeded' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Training/Prophet.py has completed successfully.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD') || \
+            (echo 'Subject: GitHub Actions - Training/Prophet.py Failed' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Training/Prophet.py has failed.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD' && exit 1) && \
+
+            python /app/Validation/Prophet.py && \
+            (echo 'Subject: GitHub Actions - Validation/Prophet.py Succeeded' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Validation/Prophet.py has completed successfully.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD') || \
+            (echo 'Subject: GitHub Actions - Validation/Prophet.py Failed' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Validation/Prophet.py has failed.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD' && exit 1) && \
+
+            python /app/Training/RandomForest.py && \
+            (echo 'Subject: GitHub Actions - Training/RandomForest.py Succeeded' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Training/RandomForest.py has completed successfully.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD') || \
+            (echo 'Subject: GitHub Actions - Training/RandomForest.py Failed' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Training/RandomForest.py has failed.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD' && exit 1) && \
+
+            python /app/Training/RandomForest.py && \
+            (echo 'Subject: GitHub Actions - Training/RandomForest.py Succeeded' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Training/RandomForest.py has completed successfully.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD') || \
+            (echo 'Subject: GitHub Actions - Training/RandomForest.py Failed' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Training/RandomForest.py has failed.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD' && exit 1) && \
+
+            python /app/Validation/RandomForest.py && \
+            (echo 'Subject: GitHub Actions - Training/RandomForest.py Succeeded' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Validation/RandomForest.py has completed successfully.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD') || \
+            (echo 'Subject: GitHub Actions - Validation/RandomForest.py Failed' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Validation/RandomForest.py has failed.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD' && exit 1) && \
+
+            python /app/Training/XGBoost.py && \
+            (echo 'Subject: GitHub Actions - Training/XGBoost.py Succeeded' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Training/XGBoost.py has completed successfully.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD') || \
+            (echo 'Subject: GitHub Actions - Training/XGBoost.py Failed' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Training/XGBoost.py has failed.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD' && exit 1) && \
+
+            python /app/Validation/XGBoost.py && \
+            (echo 'Subject: GitHub Actions - Validation/XGBoost.py Succeeded' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Validation/XGBoost.py has completed successfully.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD') || \
+            (echo 'Subject: GitHub Actions - Validation/XGBoost.py Failed' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'Validation/XGBoost.py has failed.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD' && exit 1) && \
+
+            python /app/ModelBias/Model_bias.py && \
+            (echo 'Subject: GitHub Actions - ModelBias/Model_bias.py Succeeded' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'ModelBias/Model_bias.py has completed successfully.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD') || \
+            (echo 'Subject: GitHub Actions - ModelBias/Model_bias.py Failed' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'ModelBias/Model_bias.py has failed.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD' && exit 1) && \
+
+            python /app/bestmodel.py && \
+            (echo 'Subject: GitHub Actions - bestmodel.py Succeeded' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'bestmodel.py has completed successfully.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD') || \
+            (echo 'Subject: GitHub Actions - bestmodel.py Failed' > email.txt && \
+            echo 'To: $RECIPIENT_EMAIL' >> email.txt && \
+            echo 'bestmodel.py has failed.' >> email.txt && \
+            curl --url 'smtp://$SMTP_SERVER:$SMTP_PORT' --ssl-reqd \
+              --mail-from '$EMAIL_USERNAME' \
+              --mail-rcpt '$RECIPIENT_EMAIL' \
+              --upload-file email.txt \
+              --user '$EMAIL_USERNAME:$EMAIL_PASSWORD' && exit 1)
+          "
+
+      # Step 5: Cleanup - Stop and remove the container after all scripts complete
+      - name: Cleanup Docker container
+        if: always()
+        run: |
+          docker stop my_model_container
+          docker rm my_model_container
+
+      # Step 6: Send final email notification with pipeline status
+      - name: Send Pipeline Completion Email
+        if: always()
+        env:
+          SMTP_SERVER: "smtp.gmail.com"
+          SMTP_PORT: "587"
+          EMAIL_USERNAME: "anirudhak881@gmail.com"
+          EMAIL_PASSWORD: "ksmhwqrzhjllqsaz"  # Replace with actual app password
+          RECIPIENT_EMAIL: "anirudhak881@gmail.com"
+          PIPELINE_STATUS: ${{ job.status }}
+        run: |
+          # Create email content based on the pipeline's status
+          echo "Subject: GitHub Actions - Pipeline Completed (${PIPELINE_STATUS})" > email.txt
+          echo "To: $RECIPIENT_EMAIL" >> email.txt
+          if [ "$PIPELINE_STATUS" = "success" ]; then
+            echo "The pipeline has completed successfully." >> email.txt
+          else
+            echo "The pipeline has failed. Please check the logs for details." >> email.txt
+          fi
+          
+          # Send the email
+          curl --url "smtp://$SMTP_SERVER:$SMTP_PORT" --ssl-reqd \
+               --mail-from "$EMAIL_USERNAME" \
+               --mail-rcpt "$RECIPIENT_EMAIL" \
+               --upload-file email.txt \
+               --user "$EMAIL_USERNAME:$EMAIL_PASSWORD"
