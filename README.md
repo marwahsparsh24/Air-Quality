@@ -305,3 +305,108 @@ The above image shows the entire airflow dag data pipeline workflow.
 Email configurations are also included to update about the success and failure of the dags through smtp. Below mentioned email is used as part of configuration and used same for triggering anomoly alerts. SMTP setup is configured in docker compose file, app code is generated accordingly and used as passcode. Currently recieving and sending mail is same which is mentioned below
 
 Email: anirudhak881@gmail.com
+
+## Model Development
+
+Code for initiating the model development pipeline locally can be done using docker as follows
+
+After cloning the repo as given above open the model development folder
+```powershell
+cd ModelDevelopment
+```
+
+Once you are inside the model development folder run these docker commands to run the model development pipeline 
+
+```powershell
+docker build -t <name_of_container>
+docker run <name_of_container>
+```
+### Folder Structure Overview
+
+```plaintext
+Air-Quality
+└── ModelDevelopment
+   -DataPreprocessing
+        │
+        ├── src
+        │   │   ├── Schema
+        │   │   │   ├── check_schema_original_airpollution.py
+        │   │   │   ├── test_schema
+        │   │   │   │   └── check_output_data_schema.py
+        │   │   │   └── train_schema
+        │   │   │       └── check_output_data_schema.py
+        │   │   ├── data_air.py
+        │   │   ├── data_loader.py
+        │   │   ├── data_split.py
+        │   │   ├── data_store_pkl_files
+        │   │   │   ├── air_pollution.pkl
+        │   │   │   ├── csv
+        │   │   │   ├── test_data
+        │   │   │   │   ├── cleaned_test_data.pkl
+        │   │   │   │   ├── feature_eng_test_data.pkl
+        │   │   │   │   ├── no_anamoly_test_data.pkl
+        │   │   │   │   ├── no_null_test_data.pkl
+        │   │   │   │   ├── pivoted_test_data.pkl
+        │   │   │   │   └── test_data.pkl
+        │   │   │   └── train_data
+        │   │   │       ├── cleaned_train_data.pkl
+        │   │   │       ├── feature_eng_train_data.pkl
+        │   │   │       ├── no_anamoly_train_data.pkl
+        │   │   │       ├── no_null_train_data.pkl
+        │   │   │       ├── pivoted_train_data.pkl
+        │   │   │       └── train_data.pkl
+        │   │   ├── test
+        │   │   │   └── data_preprocessing
+        │   │   │       ├── __init__.py
+        │   │   │       ├── anamoly_detection.py
+        │   │   │       ├── check_missing_values.py
+        │   │   │       ├── feature_eng.py
+        │   │   │       ├── pivoting_data.py
+        │   │   │       └── removal_of_uneccesary_cols.py
+        │   │   └── train
+        │   │       └── data_preprocessing
+        │   │           ├── __init__.py
+        │   │           ├── anamoly_detection.py
+        │   │           ├── check_missing_values.py
+        │   │           ├── feature_eng.py
+        │   │           ├── pivoting_data.py
+        │   │           └── removal_of_uneccesary_cols.py
+        │   ├── __init__.py
+    ├── ModelBias
+    │   └── Model_bias.py
+    ├── Training
+    │   ├── Prophet.py
+    │   ├── RandomForest.py
+    │   └── XGBoost.py
+    ├── Validation
+    │   ├── Prophet.py
+    │   ├── RandomForest.py
+    │   └── XGBoost.py
+    ├── Dockerfile
+    ├── bestmodel.py
+    └── requirements.txt
+```
+
+### Model Development scripts
+
+```ModelBias/Model_bias.py```: This script contains the removal of bias from the model.
+
+```Training/Prophet.py```: This script contains the model run of Prophet regression model on training data.
+
+```Training/RandomForest.py```: This script contains the model run of Random forest regression model on training data.
+
+```Training/XGBoost.py```: This script contains the model run of XGBoost regression model on training data.
+
+```Validation/Prophet.py```: This script contains the model run of Prophet regression model on validation data.
+
+```Validation/RandomForest.py```: This script contains the model run of Random forest regression model on validation data.
+
+```Validation/XGBoost.py```: This script contains the model run of XGBoost regression model on validation data.
+
+```Dockerfile```: This Dockerfile sets up a Python 3.8 environment for a machine learning project, configuring the container’s working directory as `/app`. It installs dependencies from `requirements.txt` and copies the source code into the container. Additionally, it sets up MLflow for tracking experiments and custom environment paths for model development.
+
+```Bestmodel.py```: The `bestmodel.py` script is designed to identify and load the best-performing model from multiple experiments, likely focused on air quality predictions. It imports various machine learning libraries and models (e.g., XGBoost, Prophet, RandomForest) and defines a wrapper class for model predictions. This setup allows standardized input handling and prediction output across different model types using MLflow's model packaging framework.
+
+```requirements.txt```: The `requirements.txt` file lists dependencies for a machine learning project, including essential libraries like `numpy`, `pandas`, and `scikit-learn` for data manipulation and modeling. It includes `mlflow` for experiment tracking, `xgboost` for advanced machine learning algorithms, and `prophet` for time series forecasting. The list suggests this environment is configured for data analysis, model building, and cloud storage integration with `google-cloud-storage`.
+
+
