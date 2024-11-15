@@ -389,25 +389,25 @@ Air-Quality
 
 ### Model Development scripts
 
-```ModelBias/Model_bias.py```: This script contains the removal of bias from the model.
+**```ModelBias/Model_bias.py```**: This script contains the removal of bias from the model.
 
-```Training/Prophet.py```: This script contains the model run of Prophet regression model on training data.
+**```Training/Prophet.py```**: This script contains the model run of Prophet regression model on training data.
 
-```Training/RandomForest.py```: This script contains the model run of Random forest regression model on training data.
+**```Training/RandomForest.py```**: This script contains the model run of Random forest regression model on training data.
 
-```Training/XGBoost.py```: This script contains the model run of XGBoost regression model on training data.
+**```Training/XGBoost.py```**: This script contains the model run of XGBoost regression model on training data.
 
-```Validation/Prophet.py```: This script contains the model run of Prophet regression model on validation data.
+**```Validation/Prophet.py```**: This script contains the model run of Prophet regression model on validation data.
 
-```Validation/RandomForest.py```: This script contains the model run of Random forest regression model on validation data.
+**```Validation/RandomForest.py```**: This script contains the model run of Random forest regression model on validation data.
 
-```Validation/XGBoost.py```: This script contains the model run of XGBoost regression model on validation data.
+**```Validation/XGBoost.py```**: This script contains the model run of XGBoost regression model on validation data.
 
-```Dockerfile```: This Dockerfile sets up a Python 3.8 environment for a machine learning project, configuring the container’s working directory as `/app`. It installs dependencies from `requirements.txt` and copies the source code into the container. Additionally, it sets up MLflow for tracking experiments and custom environment paths for model development.
+**```Dockerfile```**: This Dockerfile sets up a Python 3.8 environment for a machine learning project, configuring the container’s working directory as `/app`. It installs dependencies from `requirements.txt` and copies the source code into the container. Additionally, it sets up MLflow for tracking experiments and custom environment paths for model development.
 
-```Bestmodel.py```: The `bestmodel.py` script is designed to identify and load the best-performing model from multiple experiments, likely focused on air quality predictions. It imports various machine learning libraries and models (e.g., XGBoost, Prophet, RandomForest) and defines a wrapper class for model predictions. This setup allows standardized input handling and prediction output across different model types using MLflow's model packaging framework.
+**```Bestmodel.py```**: The `bestmodel.py` script is designed to identify and load the best-performing model from multiple experiments, likely focused on air quality predictions. It imports various machine learning libraries and models (e.g., XGBoost, Prophet, RandomForest) and defines a wrapper class for model predictions. This setup allows standardized input handling and prediction output across different model types using MLflow's model packaging framework.
 
-```requirements.txt```: The `requirements.txt` file lists dependencies for a machine learning project, including essential libraries like `numpy`, `pandas`, and `scikit-learn` for data manipulation and modeling. It includes `mlflow` for experiment tracking, `xgboost` for advanced machine learning algorithms, and `prophet` for time series forecasting. The list suggests this environment is configured for data analysis, model building, and cloud storage integration with `google-cloud-storage`.
+**```requirements.txt```**: The `requirements.txt` file lists dependencies for a machine learning project, including essential libraries like `numpy`, `pandas`, and `scikit-learn` for data manipulation and modeling. It includes `mlflow` for experiment tracking, `xgboost` for advanced machine learning algorithms, and `prophet` for time series forecasting. The list suggests this environment is configured for data analysis, model building, and cloud storage integration with `google-cloud-storage`.
 
 
 
@@ -417,31 +417,31 @@ Air-Quality
 ### Training
 
 #### Prophet.py
-Data Loading and Preprocessing: Loads and preprocesses the data (PM2.5 measurements).
+**Data Loading and Preprocessing**: Loads and preprocesses the data (PM2.5 measurements).
 
-Model Training: A Prophet model is trained on the processed data.
+**Model Training**: A Prophet model is trained on the processed data.
 
-Model Wrapping: The trained Prophet model is wrapped to be logged with MLflow.
+**Model Wrapping**: The trained Prophet model is wrapped to be logged with MLflow.
 
-Model Logging: MLflow logs the model, metrics (like training duration), and artifacts (like the trained model weights)
+**Model Logging**: MLflow logs the model, metrics (like training duration), and artifacts (like the trained model weights)
 
 #### RandomForest.py
-Data Loading and Preprocessing: The script loads training data, extracts Box-Cox transformed PM2.5 values as the target variable, and prepares the feature set.
+**Data Loading and Preprocessing**: The script loads training data, extracts Box-Cox transformed PM2.5 values as the target variable, and prepares the feature set.
 
-Hyperparameter Tuning with Grid Search: It uses GridSearchCV to tune the model's hyperparameters (specifically, the number of trees in the forest) and selects the best configuration based on cross-validation with negative mean squared error as the scoring metric.
+**Hyperparameter Tuning with Grid Search**: It uses GridSearchCV to tune the model's hyperparameters (specifically, the number of trees in the forest) and selects the best configuration based on cross-validation with negative mean squared error as the scoring metric.
 
-Model Training and Logging: The model is trained using the best hyperparameters, and the training process is logged using MLflow. The model and training duration are logged as metrics and artifacts in MLflow for tracking.
+**Model Training and Logging**: The model is trained using the best hyperparameters, and the training process is logged using MLflow. The model and training duration are logged as metrics and artifacts in MLflow for tracking.
 
-Model Saving: After training, the model is saved to disk and logged as an artifact in MLflow for later use.
+**Model Saving**: After training, the model is saved to disk and logged as an artifact in MLflow for later use.
 
 #### XGBoost.py
-Hyperparameter Tuning: A grid search over hyperparameters (n_estimators, learning_rate, etc.) is performed to find the best model.
+**Hyperparameter Tuning**: A grid search over hyperparameters (n_estimators, learning_rate, etc.) is performed to find the best model.
 
-Model Training: The model is trained using the selected parameters.
+**Model Training**: The model is trained using the selected parameters.
 
-Logging and Saving: The model and its performance metrics (like training time) are logged using MLflow, and the trained model is saved to disk.
+**Logging and Saving**: The model and its performance metrics (like training time) are logged using MLflow, and the trained model is saved to disk.
 
-Experiment Tracking: The entire workflow is tracked in MLflow, allowing for reproducibility and comparison of experiments.
+**Experiment Tracking**: The entire workflow is tracked in MLflow, allowing for reproducibility and comparison of experiments.
 
 ### Validation
 
@@ -466,36 +466,36 @@ Evaluates bias by comparing metric deviations within each slice to detect perfor
 Logs results to MLflow, creating an organized record of model performance under different feature slices.
 
 ### bestmodel.py
-Model Evaluation:
+**Model Evaluation**:
 The script starts by identifying the best models in different experiments based on their RMSE and bias metrics.
 
-Combining RMSE and Bias Metrics:
+**Combining RMSE and Bias Metrics**:
 Both RMSE (a measure of prediction error) and bias metrics (such as MAE, MBE, and R2) are considered in model selection, allowing a comprehensive evaluation of model performance.
 
-Rollback Mechanism:
+**Rollback Mechanism**:
 Before registering a new model, the script checks if any model already registered in MLflow has a better or equal RMSE. If so, the script skips registering the new model, ensuring that only models with improvements are pushed to the registry.
 
-Model Registration:
+**Model Registration**:
 If no better model exists in the registry, the script logs the selected model (based on its combined RMSE and bias score) to MLflow’s model registry.
 
 ### Dockerfile
-Base Image: Uses an official Python 3.8 image to set up the environment for the container.
+**Base Image**: Uses an official Python 3.8 image to set up the environment for the container.
 
-Set Working Directory: Sets /app as the working directory for subsequent commands.
+**Set Working Directory**: Sets /app as the working directory for subsequent commands.
 
-Install Dependencies: Installs Python dependencies listed in requirements.txt via pip.
+**Install Dependencies**: Installs Python dependencies listed in requirements.txt via pip.
 
-Copy Source Code: Copies the entire project directory into the container's /app folder.
+**Copy Source Code**: Copies the entire project directory into the container's /app folder.
 
-Set MLflow Tracking URI: Configures MLflow to track experiments and store results in the container.
+**Set MLflow Tracking URI**: Configures MLflow to track experiments and store results in the container.
 
-Update Python Path: Adds /app/ModelDevelopment to the Python path for easy module access.
+**Update Python Path**: Adds /app/ModelDevelopment to the Python path for easy module access.
 
-Create Directories for Output Files: Creates directories /app/weights and /app/artifacts for model outputs.
+**Create Directories for Output Files**: Creates directories /app/weights and /app/artifacts for model outputs.
 
-Add Execute Permissions: Grants execute permissions to Python scripts in Training, Validation, and ModelBias folders.
+**Add Execute Permissions**: Grants execute permissions to Python scripts in Training, Validation, and ModelBias folders.
 
-Define Command to Run Scripts Sequentially: Specifies the order of script execution for training, validation, bias evaluation, and model selection.
+**Define Command to Run Scripts Sequentially**: Specifies the order of script execution for training, validation, bias evaluation, and model selection.
 
 #### Script order:
 Training/Prophet.py -> Validation/Prophet.py -> Training/RandomForest.py -> Validation/RandomForest.py -> Training/XGBoost.py -> Validation/XGBoost.py -> ModelBias/Model_bias.py -> bestmodel.py
@@ -506,74 +506,79 @@ Training/Prophet.py -> Validation/Prophet.py -> Training/RandomForest.py -> Vali
 
 #### 1. Search Space
    
-   Random Forest: Parameters like n_estimators, max_depth, and min_samples_split are tuned.
+   **Random Forest**: Parameters like n_estimators, max_depth, and min_samples_split are tuned.
 
-   XGBoost: Parameters such as learning_rate, max_depth, n_estimators, and subsample are explored.
+   **XGBoost**: Parameters such as learning_rate, max_depth, n_estimators, and subsample are explored.
 
-   Prophet: Parameters like growth, changepoint_prior_scale, and seasonality_prior_scale are adjusted.
+   **Prophet**: Parameters like growth, changepoint_prior_scale, and seasonality_prior_scale are adjusted.
 
 #### 2. Tuning Process
    
-   Random Forest & XGBoost: GridSearchCV is used to perform exhaustive search with cross-validation to find the best hyperparameters.
+   **Random Forest & XGBoost**: GridSearchCV is used to perform exhaustive search with cross-validation to find the best hyperparameters.
 
-   Prophet: Hyperparameters are manually selected without automated tuning.
+   **Prophet**: Hyperparameters are manually selected without automated tuning.
 
 ##  Experiment Tracking and Results
 
-Experiment Tracking with MLflow: Utilized MLflow to log experiments, track model performance, and manage hyperparameters for various models (Prophet, Random Forest, XGBoost).
+**Experiment Tracking with MLflow**: 
+Utilized MLflow to log experiments, track model performance, and manage hyperparameters for various models (Prophet, Random Forest, XGBoost).
 
-Logging Key Metrics: Hyperparameters, model metrics (RMSE, MAE, R2, MBE), and model versions were tracked for each run.
+**Logging Key Metrics**: 
+Hyperparameters, model metrics (RMSE, MAE, R2, MBE), and model versions were tracked for each run.
 
-Model Comparison: Visualizations and metrics from different models were compared to identify the best-performing one based on RMSE and bias.
+**Model Comparison**: 
+Visualizations and metrics from different models were compared to identify the best-performing one based on RMSE and bias.
 
-Model Selection: The final model was selected based on the lowest RMSE and bias scores, ensuring optimal performance.
+**Model Selection**: 
+The final model was selected based on the lowest RMSE and bias scores, ensuring optimal performance.
 
-Model Registration: The best model was registered in MLflow’s model registry for version control and easy access.
+**Model Registration**: 
+The best model was registered in MLflow’s model registry for version control and easy access.
 
-Rollback Mechanism: The system checks the existing models in the registry to ensure that new models have a lower RMSE before being registered, allowing for rollback if necessary
+**Rollback Mechanism**: 
+The system checks the existing models in the registry to ensure that new models have a lower RMSE before being registered, allowing for rollback if necessary
 
 ## Model Sensitivity analysis
 
 SHAP was utilized to interpret and explain the feature importance in predicting PM2.5 levels. By analyzing SHAP values, you can understand which features are driving the model’s predictions, how they interact, and how they influence the PM2.5 forecast. This helps ensure model transparency, improves trust, and provides actionable insights into air quality prediction
 
-
 Hyperparameter Sensitivity analysis was conducted in XGBoost(params - n_estimators, learning_rate, max_depth) and Random Forest (n_estimators),Iterated over a range of values for each hyperparameter, training and evaluating the model on each setting,Calculated RMSE for each hyperparameter configuration to assess model performance, logged and saved hyperparameter settings using MLFlow,Generated a visualization showing the relationship between hyperparameter values and RMSE.
 
 ## Model Bias Detection (using Slicing Techniques)
 
-Perform Slicing:
+**Perform Slicing**:
 The dataset is segmented into subgroups based on slicing features like hour, day_of_week, month, and season. These slices allow for evaluating model performance across different data subgroups.
 
-Track Metrics Across Slices:
+**Track Metrics Across Slices**:
 Key metrics such as MAE, RMSE, R², and MBE are computed for each slice of data. These metrics are tracked and logged in MLflow to monitor performance disparities across subgroups.
 
-Bias Mitigation:
+**Bias Mitigation**:
 Significant deviations from average metrics flag biased slices for further review.
 
-Document Bias Mitigation:
+**Document Bias Mitigation**:
 Bias detection results, including biased slices and their metrics, are logged into MLflow for transparency. Visualizations are also generated to document disparities and facilitate further analysis.
 
 ## CI/CD Pipeline Automation for Model Development
 
 Github Actions is configured using .github/workflows/docker_run_CI_CD.yml which does the following
 
-CI/CD Setup for Model Training:
+**CI/CD Setup for Model Training**:
 The pipeline is triggered on push or pull_request events to the main branch. It checks out the repository code, sets up Docker, builds the image, and runs model training scripts (Prophet, RandomForest, XGBoost) within the container.
 
-Automated Model Validation:
+**Automated Model Validation**:
 The pipeline automatically runs validation scripts (Validation/Prophet.py, Validation/RandomForest.py, Validation/XGBoost.py) after training. It sends email notifications about validation success or failure and prevents further steps if validation fails.
 
-Automated Model Bias Detection:
+**Automated Model Bias Detection**:
 The pipeline runs a bias detection script (ModelBias/Model_bias.py) after model training. It sends an email notification on bias detection success or failure, allowing for alerts if any bias is detected across data slices.
 
-Model Deployment or Registry Push:
+**Model Deployment or Registry Push**:
 when bestmodel.py is executed, from the set of experiments, it identifies the model with the lowest RMSE and evaluate it for bias metrics.
 It uses a weighted combination of RMSE and bias metrics to determine the best model which is pushed to the Model Registry.
 
-Notifications and Alerts:
+**Notifications and Alerts**:
 Email notifications are sent for training completion, success or failure of individual scripts, and overall pipeline status. This ensures visibility into pipeline progress and any issues that arise.
 
-Rollback Mechanism:
+**Rollback Mechanism**:
 The bestmodel.py takes care of rollback mechanism as follows. The registry is checked for any existing model and  its RMSE compared with the new model.
 Skip registration if the existing model has a better or equal RMSE.
 Register the new model if it's an improvement
