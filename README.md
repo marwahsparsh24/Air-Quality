@@ -318,7 +318,7 @@ cd ModelDevelopment
 Once you are inside the model development folder run these docker commands to run the model development pipeline 
 
 ```powershell
-docker build -t <name_of_container>
+docker build -t <name_of_container> .
 docker run <name_of_container>
 ```
 ### Folder Structure Overview
