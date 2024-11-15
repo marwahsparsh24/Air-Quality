@@ -371,7 +371,20 @@ Air-Quality
         │   │           ├── feature_eng.py
         │   │           ├── pivoting_data.py
         │   │           └── removal_of_uneccesary_cols.py
-        │   ├── __init__.py
+            ├── dags/
+                │   ├── DataPreprocessing/
+                │   │   ├── src/
+                │   │   │   ├── Schema/
+                │   │   │   ├── data_store_pkl_files/
+                │   │   │   │   ├── test_data/
+                │   │   │   │   └── train_data/
+                │   │   ├── test/
+                │   │   └── train/
+                │   ├── __init__.py
+                │   ├── air_pollution_stats.json
+                │   ├── custom_schema_generated_from_api.json
+                │   └── dag_script.py
+            ├── __init__.py
     ├── ModelBias
     │   └── Model_bias.py
     ├── Training
@@ -385,6 +398,7 @@ Air-Quality
     ├── Dockerfile
     ├── bestmodel.py
     └── requirements.txt
+└── docker-compose.yaml  
 ```
 
 ### Model Development scripts
@@ -408,7 +422,6 @@ Air-Quality
 **```Bestmodel.py```**: The `bestmodel.py` script is designed to identify and load the best-performing model from multiple experiments, likely focused on air quality predictions. It imports various machine learning libraries and models (e.g., XGBoost, Prophet, RandomForest) and defines a wrapper class for model predictions. This setup allows standardized input handling and prediction output across different model types using MLflow's model packaging framework.
 
 **```requirements.txt```**: The `requirements.txt` file lists dependencies for a machine learning project, including essential libraries like `numpy`, `pandas`, and `scikit-learn` for data manipulation and modeling. It includes `mlflow` for experiment tracking, `xgboost` for advanced machine learning algorithms, and `prophet` for time series forecasting. The list suggests this environment is configured for data analysis, model building, and cloud storage integration with `google-cloud-storage`.
-
 
 
 
@@ -479,6 +492,7 @@ Before registering a new model, the script checks if any model already registere
 If no better model exists in the registry, the script logs the selected model (based on its combined RMSE and bias score) to MLflow’s model registry.
 
 ### Dockerfile
+
 **Base Image**: Uses an official Python 3.8 image to set up the environment for the container.
 
 **Set Working Directory**: Sets /app as the working directory for subsequent commands.
@@ -495,7 +509,8 @@ If no better model exists in the registry, the script logs the selected model (b
 
 **Add Execute Permissions**: Grants execute permissions to Python scripts in Training, Validation, and ModelBias folders.
 
-**Define Command to Run Scripts Sequentially**: Specifies the order of script execution for training, validation, bias evaluation, and model selection.
+**Define Command to Run Scripts Sequentially**: Specifies the order of script execution for training, validation, bias 
+evaluation, and model selection.
 
 #### Script order:
 Training/Prophet.py -> Validation/Prophet.py -> Training/RandomForest.py -> Validation/RandomForest.py -> Training/XGBoost.py -> Validation/XGBoost.py -> ModelBias/Model_bias.py -> bestmodel.py
