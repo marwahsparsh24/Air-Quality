@@ -538,3 +538,17 @@ SHAP was utilized to interpret and explain the feature importance in predicting 
 
 
 Hyperparameter Sensitivity analysis was conducted in XGBoost(params - n_estimators, learning_rate, max_depth) and Random Forest (n_estimators),Iterated over a range of values for each hyperparameter, training and evaluating the model on each setting,Calculated RMSE for each hyperparameter configuration to assess model performance, logged and saved hyperparameter settings using MLFlow,Generated a visualization showing the relationship between hyperparameter values and RMSE.
+
+## Model Bias Detection (using Slicing Techniques)
+
+Perform Slicing:
+The dataset is segmented into subgroups based on slicing features like hour, day_of_week, month, and season. These slices allow for evaluating model performance across different data subgroups.
+
+Track Metrics Across Slices:
+Key metrics such as MAE, RMSE, R², and MBE are computed for each slice of data. These metrics are tracked and logged in MLflow to monitor performance disparities across subgroups.
+
+Bias Mitigation:
+Significant deviations from average metrics flag biased slices for further review.
+
+Document Bias Mitigation:
+Bias detection results, including biased slices and their metrics, are logged into MLflow for transparency. Visualizations are also generated to document disparities and facilitate further analysis.
