@@ -505,10 +505,15 @@ Training/Prophet.py -> Validation/Prophet.py -> Training/RandomForest.py -> Vali
 
 
 1. Search Space
+   
 Random Forest: Parameters like n_estimators, max_depth, and min_samples_split are tuned.
+
 XGBoost: Parameters such as learning_rate, max_depth, n_estimators, and subsample are explored.
+
 Prophet: Parameters like growth, changepoint_prior_scale, and seasonality_prior_scale are adjusted.
 
-3. Tuning Process
+2. Tuning Process
+   
 Random Forest & XGBoost: GridSearchCV is used to perform exhaustive search with cross-validation to find the best hyperparameters.
+
 Prophet: Hyperparameters are manually selected without automated tuning.
