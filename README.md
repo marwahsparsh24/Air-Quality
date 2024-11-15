@@ -552,3 +552,28 @@ Significant deviations from average metrics flag biased slices for further revie
 
 Document Bias Mitigation:
 Bias detection results, including biased slices and their metrics, are logged into MLflow for transparency. Visualizations are also generated to document disparities and facilitate further analysis.
+
+## CI/CD Pipeline Automation for Model Development
+
+Github Action is configured using .github/workflows/docker_run_CI_CD.yml which does the following
+
+CI/CD Setup for Model Training:
+The pipeline is triggered on push or pull_request events to the main branch. It checks out the repository code, sets up Docker, builds the image, and runs model training scripts (Prophet, RandomForest, XGBoost) within the container.
+
+Automated Model Validation:
+The pipeline automatically runs validation scripts (Validation/Prophet.py, Validation/RandomForest.py, Validation/XGBoost.py) after training. It sends email notifications about validation success or failure and prevents further steps if validation fails.
+
+Automated Model Bias Detection:
+The pipeline runs a bias detection script (ModelBias/Model_bias.py) after model training. It sends an email notification on bias detection success or failure, allowing for alerts if any bias is detected across data slices.
+
+Model Deployment or Registry Push:
+when bestmodel.py is executed, from the set of experiments, it identifies the model with the lowest RMSE and evaluate it for bias metrics.
+It uses a weighted combination of RMSE and bias metrics to determine the best model which is pushed to the Model Registry.
+
+Notifications and Alerts:
+Email notifications are sent for training completion, success or failure of individual scripts, and overall pipeline status. This ensures visibility into pipeline progress and any issues that arise.
+
+Rollback Mechanism:
+The bestmodel.py takes care of rollback mechanism as follows. The registry is checked for any existing model and  its RMSE compared with the new model.
+Skip registration if the existing model has a better or equal RMSE.
+Register the new model if it's an improvement
