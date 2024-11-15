@@ -480,11 +480,19 @@ If no better model exists in the registry, the script logs the selected model (b
 
 ### Dockerfile
 Base Image: Uses an official Python 3.8 image to set up the environment for the container.
+
 Set Working Directory: Sets /app as the working directory for subsequent commands.
+
 Install Dependencies: Installs Python dependencies listed in requirements.txt via pip.
+
 Copy Source Code: Copies the entire project directory into the container's /app folder.
+
 Set MLflow Tracking URI: Configures MLflow to track experiments and store results in the container.
+
 Update Python Path: Adds /app/ModelDevelopment to the Python path for easy module access.
+
 Create Directories for Output Files: Creates directories /app/weights and /app/artifacts for model outputs.
+
 Add Execute Permissions: Grants execute permissions to Python scripts in Training, Validation, and ModelBias folders.
+
 Define Command to Run Scripts Sequentially: Specifies the order of script execution for training, validation, bias evaluation, and model selection.
