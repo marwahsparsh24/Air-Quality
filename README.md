@@ -425,4 +425,57 @@ Model Wrapping: The trained Prophet model is wrapped to be logged with MLflow.
 
 Model Logging: MLflow logs the model, metrics (like training duration), and artifacts (like the trained model weights)
 
+#### RandomForest.py
+Data Loading and Preprocessing: The script loads training data, extracts Box-Cox transformed PM2.5 values as the target variable, and prepares the feature set.
+
+Hyperparameter Tuning with Grid Search: It uses GridSearchCV to tune the model's hyperparameters (specifically, the number of trees in the forest) and selects the best configuration based on cross-validation with negative mean squared error as the scoring metric.
+
+Model Training and Logging: The model is trained using the best hyperparameters, and the training process is logged using MLflow. The model and training duration are logged as metrics and artifacts in MLflow for tracking.
+
+Model Saving: After training, the model is saved to disk and logged as an artifact in MLflow for later use.
+
+#### XGBoost.py
+Hyperparameter Tuning: A grid search over hyperparameters (n_estimators, learning_rate, etc.) is performed to find the best model.
+
+Model Training: The model is trained using the selected parameters.
+
+Logging and Saving: The model and its performance metrics (like training time) are logged using MLflow, and the trained model is saved to disk.
+
+Experiment Tracking: The entire workflow is tracked in MLflow, allowing for reproducibility and comparison of experiments.
+
+### Validation
+
+#### Prophet.py
+This script loads training and test data, trains and evaluates a Prophet model on PM2.5 values, performs SHAP analysis for interpretability, logs metrics, parameters, and artifacts to MLflow, and visualizes the actual vs. predicted results
+
+#### RandomForest.py
+This script loads training and test data, trains and evaluates a Random Forest model on PM2.5 values, performs SHAP analysis for interpretability, runs hyperparameter sensitivity analysis to assess the model's response to key hyperparameters, logs metrics, parameters, and artifacts to MLflow, and visualizes actual vs. predicted results.
+
+#### XGBoost.py
+This script loads training and test data, trains and evaluates an XGBoost model on PM2.5 values, performs SHAP analysis for interpretability, conducts hyperparameter sensitivity analysis on key parameters, logs metrics, parameters, and artifacts to MLflow, and visualizes the actual vs. predicted results.
+
+### ModelBias
+
+#### Model_bias.py
+Loads feature-engineered data and three trained models.
+
+Generates predictions for each model, then calculates metrics (MAE, RMSE, R², MBE) across feature-based slices, like hour, day_of_week, and season.
+
+Evaluates bias by comparing metric deviations within each slice to detect performance biases.
+
+Logs results to MLflow, creating an organized record of model performance under different feature slices.
+
+### bestmodel.py
+Model Evaluation:
+The script starts by identifying the best models in different experiments based on their RMSE and bias metrics.
+
+Combining RMSE and Bias Metrics:
+Both RMSE (a measure of prediction error) and bias metrics (such as MAE, MBE, and R2) are considered in model selection, allowing a comprehensive evaluation of model performance.
+
+Rollback Mechanism:
+Before registering a new model, the script checks if any model already registered in MLflow has a better or equal RMSE. If so, the script skips registering the new model, ensuring that only models with improvements are pushed to the registry.
+
+Model Registration:
+If no better model exists in the registry, the script logs the selected model (based on its combined RMSE and bias score) to MLflow’s model registry.
+
 
