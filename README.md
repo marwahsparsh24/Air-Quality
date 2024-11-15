@@ -410,3 +410,13 @@ Air-Quality
 ```requirements.txt```: The `requirements.txt` file lists dependencies for a machine learning project, including essential libraries like `numpy`, `pandas`, and `scikit-learn` for data manipulation and modeling. It includes `mlflow` for experiment tracking, `xgboost` for advanced machine learning algorithms, and `prophet` for time series forecasting. The list suggests this environment is configured for data analysis, model building, and cloud storage integration with `google-cloud-storage`.
 
 
+### Model Development steps
+
+#### Training
+
+Data Loading and Preprocessing: Loads and preprocesses the data (PM2.5 measurements).
+Model Training: A Prophet model is trained on the processed data.
+Model Wrapping: The trained Prophet model is wrapped to be logged with MLflow.
+Model Logging: MLflow logs the model, metrics (like training duration), and artifacts (like the trained model weights)
+
+
