@@ -72,11 +72,11 @@ dvc pull
 #### Step 4: Initialize the Airflow Database
 Make sure to keep the docker desktop up and running
 ```bash
-docker-compose up airflow-init
+docker compose up airflow-init
 ```
 #### Step 5: Start the Airflow Services
 ```bash
-docker-compose up
+docker compose up
 ```
 #### Step 6: Access the Airflow Web UI
 Navigate to http://localhost:8080
