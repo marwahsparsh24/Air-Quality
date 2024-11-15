@@ -372,18 +372,66 @@ Air-Quality
         │   │           ├── pivoting_data.py
         │   │           └── removal_of_uneccesary_cols.py
             ├── dags/
-                │   ├── DataPreprocessing/
-                │   │   ├── src/
-                │   │   │   ├── Schema/
-                │   │   │   ├── data_store_pkl_files/
-                │   │   │   │   ├── test_data/
-                │   │   │   │   └── train_data/
-                │   │   ├── test/
-                │   │   └── train/
-                │   ├── __init__.py
-                │   ├── air_pollution_stats.json
-                │   ├── custom_schema_generated_from_api.json
-                │   └── dag_script.py
+                └── artifacts/
+                    ├── learning_rate_sensitivity_xgboost.png
+                    ├── max_depth_sensitivity_xgboost.png
+                    ├── n_estimators_sensitivity_randomForest.png
+                    ├── n_estimators_sensitivity_xgboost.png
+                    ├── pm25_actual_vs_predicted_Prophet.png
+                    ├── pm25_actual_vs_predicted_RandomForest.png
+                    ├── pm25_actual_vs_predicted_XGBoost.png
+                    ├── shap_summary_plot_prophet.png
+                    ├── shap_summary_plot_randomforest.png
+                    ├── shap_summary_plot_xgboost.png
+                    ├── y_pred_prophet_day_of_week_MAE.png
+                    ├── y_pred_prophet_day_of_week_MBE.png
+                    ├── y_pred_prophet_day_of_week_RMSE.png
+                    ├── y_pred_prophet_day_of_week_R².png
+                    ├── y_pred_prophet_hour_MAE.png
+                    ├── y_pred_prophet_hour_MBE.png
+                    ├── y_pred_prophet_hour_RMSE.png
+                    ├── y_pred_prophet_hour_R².png
+                    ├── y_pred_prophet_month_MAE.png
+                    ├── y_pred_prophet_month_MBE.png
+                    ├── y_pred_prophet_month_RMSE.png
+                    ├── y_pred_prophet_month_R².png
+                    ├── y_pred_prophet_season_MAE.png
+                    ├── y_pred_prophet_season_MBE.png
+                    ├── y_pred_prophet_season_RMSE.png
+                    ├── y_pred_prophet_season_R².png
+                    ├── y_pred_rf_day_of_week_MAE.png
+                    ├── y_pred_rf_day_of_week_MBE.png
+                    ├── y_pred_rf_day_of_week_RMSE.png
+                    ├── y_pred_rf_day_of_week_R².png
+                    ├── y_pred_rf_hour_MAE.png
+                    ├── y_pred_rf_hour_MBE.png
+                    ├── y_pred_rf_hour_RMSE.png
+                    ├── y_pred_rf_hour_R².png
+                    ├── y_pred_rf_month_MAE.png
+                    ├── y_pred_rf_month_MBE.png
+                    ├── y_pred_rf_month_RMSE.png
+                    ├── y_pred_rf_month_R².png
+                    ├── y_pred_rf_season_MAE.png
+                    ├── y_pred_rf_season_MBE.png
+                    ├── y_pred_rf_season_RMSE.png
+                    ├── y_pred_rf_season_R².png
+                    ├── y_pred_xgb_day_of_week_MAE.png
+                    ├── y_pred_xgb_day_of_week_MBE.png
+                    ├── y_pred_xgb_day_of_week_RMSE.png
+                    ├── y_pred_xgb_day_of_week_R².png
+                    ├── y_pred_xgb_hour_MAE.png
+                    ├── y_pred_xgb_hour_MBE.png
+                    ├── y_pred_xgb_hour_RMSE.png
+                    ├── y_pred_xgb_hour_R².png
+                    ├── y_pred_xgb_month_MAE.png
+                    ├── y_pred_xgb_month_MBE.png
+                    ├── y_pred_xgb_month_RMSE.png
+                    ├── y_pred_xgb_month_R².png
+                    ├── y_pred_xgb_season_MAE.png
+                    ├── y_pred_xgb_season_MBE.png
+                    ├── y_pred_xgb_season_RMSE.png
+                    ├── y_pred_xgb_season_R².png
+
             ├── __init__.py
     ├── ModelBias
     │   └── Model_bias.py
