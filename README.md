@@ -555,7 +555,7 @@ Bias detection results, including biased slices and their metrics, are logged in
 
 ## CI/CD Pipeline Automation for Model Development
 
-Github Action is configured using .github/workflows/docker_run_CI_CD.yml which does the following
+Github Actions is configured using .github/workflows/docker_run_CI_CD.yml which does the following
 
 CI/CD Setup for Model Training:
 The pipeline is triggered on push or pull_request events to the main branch. It checks out the repository code, sets up Docker, builds the image, and runs model training scripts (Prophet, RandomForest, XGBoost) within the container.
