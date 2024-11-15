@@ -504,7 +504,7 @@ Training/Prophet.py -> Validation/Prophet.py -> Training/RandomForest.py -> Vali
 ## Hyperparameter tuning
 
 
-1. Search Space
+##### 1. Search Space
    
    Random Forest: Parameters like n_estimators, max_depth, and min_samples_split are tuned.
 
