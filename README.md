@@ -414,8 +414,9 @@ Air-Quality
 
 ### Model Development steps
 
-#### Training
+### Training
 
+#### Prophet.py
 Data Loading and Preprocessing: Loads and preprocesses the data (PM2.5 measurements).
 
 Model Training: A Prophet model is trained on the processed data.
