@@ -504,7 +504,7 @@ Training/Prophet.py -> Validation/Prophet.py -> Training/RandomForest.py -> Vali
 ## Hyperparameter tuning
 
 
-##### 1. Search Space
+#### 1. Search Space
    
    Random Forest: Parameters like n_estimators, max_depth, and min_samples_split are tuned.
 
@@ -512,8 +512,22 @@ Training/Prophet.py -> Validation/Prophet.py -> Training/RandomForest.py -> Vali
 
    Prophet: Parameters like growth, changepoint_prior_scale, and seasonality_prior_scale are adjusted.
 
-2. Tuning Process
+#### 2. Tuning Process
    
-Random Forest & XGBoost: GridSearchCV is used to perform exhaustive search with cross-validation to find the best hyperparameters.
+   Random Forest & XGBoost: GridSearchCV is used to perform exhaustive search with cross-validation to find the best hyperparameters.
 
-Prophet: Hyperparameters are manually selected without automated tuning.
+   Prophet: Hyperparameters are manually selected without automated tuning.
+
+##  Experiment Tracking and Results
+
+Experiment Tracking with MLflow: Utilized MLflow to log experiments, track model performance, and manage hyperparameters for various models (Prophet, Random Forest, XGBoost).
+
+Logging Key Metrics: Hyperparameters, model metrics (RMSE, MAE, R2, MBE), and model versions were tracked for each run.
+
+Model Comparison: Visualizations and metrics from different models were compared to identify the best-performing one based on RMSE and bias.
+
+Model Selection: The final model was selected based on the lowest RMSE and bias scores, ensuring optimal performance.
+
+Model Registration: The best model was registered in MLflow’s model registry for version control and easy access.
+
+Rollback Mechanism: The system checks the existing models in the registry to ensure that new models have a lower RMSE before being registered, allowing for rollback if necessary
