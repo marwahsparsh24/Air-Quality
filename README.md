@@ -642,3 +642,5 @@ Following include a list of visualization generated during validation, SHAP anal
 56. y_pred_xgb_season_MBE.png
 57. y_pred_xgb_season_RMSE.png
 58. y_pred_xgb_season_R².png
+
+But these files may not be visible when ran through docker as they are executed in the docker environment, hence you can refer to the dags/artifacts folder for these images which were obtained by running the scripts using dags. In future this process will be migrated to Google Cloud.
