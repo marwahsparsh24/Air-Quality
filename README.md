@@ -577,3 +577,68 @@ Rollback Mechanism:
 The bestmodel.py takes care of rollback mechanism as follows. The registry is checked for any existing model and  its RMSE compared with the new model.
 Skip registration if the existing model has a better or equal RMSE.
 Register the new model if it's an improvement
+
+## Notes
+
+### Visualizations
+
+Following include a list of visualization generated during validation, SHAP analysis and model sensitivity analysis which are present in dags/artifacts folder
+
+1. learning_rate_sensitivity_xgboost.png
+2. max_depth_sensitivity_xgboost.png
+3. n_estimators_sensitivity_randomforest.png
+4. n_estimators_sensitivity_xgboost.png
+5. pm25_actual_vs_predicted_Prophet.png
+6. pm25_actual_vs_predicted_RandomForest.png
+7. pm25_actual_vs_predicted_XGBoost.png
+8. shap_summary_plot_prophet.png
+9. shap_summary_plot_randomforest.png
+10. shap_summary_plot_xgboost.png
+11. y_pred_prophet_day_of_week_MAE.png
+12. y_pred_prophet_day_of_week_MBE.png
+13. y_pred_prophet_day_of_week_RMSE.png
+14. y_pred_prophet_day_of_week_R².png
+15. y_pred_prophet_hour_MAE.png
+16. y_pred_prophet_hour_MBE.png
+17. y_pred_prophet_hour_RMSE.png
+18. y_pred_prophet_hour_R².png
+19. y_pred_prophet_month_MAE.png
+20. y_pred_prophet_month_MBE.png
+21. y_pred_prophet_month_RMSE.png
+22. y_pred_prophet_month_R².png
+23. y_pred_prophet_season_MAE.png
+24. y_pred_prophet_season_MBE.png
+25. y_pred_prophet_season_RMSE.png
+26. y_pred_prophet_season_R².png
+27. y_pred_rf_day_of_week_MAE.png
+28. y_pred_rf_day_of_week_MBE.png
+29. y_pred_rf_day_of_week_RMSE.png
+30. y_pred_rf_day_of_week_R².png
+31. y_pred_rf_hour_MAE.png
+32. y_pred_rf_hour_MBE.png
+33. y_pred_rf_hour_RMSE.png
+34. y_pred_rf_hour_R².png
+35. y_pred_rf_month_MAE.png
+36. y_pred_rf_month_MBE.png
+37. y_pred_rf_month_RMSE.png
+38. y_pred_rf_month_R².png
+39. y_pred_rf_season_MAE.png
+40. y_pred_rf_season_MBE.png
+41. y_pred_rf_season_RMSE.png
+42. y_pred_rf_season_R².png
+43. y_pred_xgb_day_of_week_MAE.png
+44. y_pred_xgb_day_of_week_MBE.png
+45. y_pred_xgb_day_of_week_RMSE.png
+46. y_pred_xgb_day_of_week_R².png
+47. y_pred_xgb_hour_MAE.png
+48. y_pred_xgb_hour_MBE.png
+49. y_pred_xgb_hour_RMSE.png
+50. y_pred_xgb_hour_R².png
+51. y_pred_xgb_month_MAE.png
+52. y_pred_xgb_month_MBE.png
+53. y_pred_xgb_month_RMSE.png
+54. y_pred_xgb_month_R².png
+55. y_pred_xgb_season_MAE.png
+56. y_pred_xgb_season_MBE.png
+57. y_pred_xgb_season_RMSE.png
+58. y_pred_xgb_season_R².png
