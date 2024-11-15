@@ -534,5 +534,7 @@ Rollback Mechanism: The system checks the existing models in the registry to ens
 
 ## Model Sensitivity analysis
 
-1. SHAP was utilized to interpret and explain the feature importance in predicting PM2.5 levels. By analyzing SHAP values, you can understand which features are driving the model’s predictions, how they interact, and how they influence the PM2.5 forecast. This helps ensure model transparency, improves trust, and provides actionable insights into air quality prediction
-2. Hyperparameter Sensitivity analysis was conducted in XGBoost(params - n_estimators, learning_rate, max_depth) and Random Forest (n_estimators),Iterated over a range of values for each hyperparameter, training and evaluating the model on each setting,Calculated RMSE for each hyperparameter configuration to assess model performance, logged and saved hyperparameter settings using MLFlow,Generated a visualization showing the relationship between hyperparameter values and RMSE.
+SHAP was utilized to interpret and explain the feature importance in predicting PM2.5 levels. By analyzing SHAP values, you can understand which features are driving the model’s predictions, how they interact, and how they influence the PM2.5 forecast. This helps ensure model transparency, improves trust, and provides actionable insights into air quality prediction
+
+
+Hyperparameter Sensitivity analysis was conducted in XGBoost(params - n_estimators, learning_rate, max_depth) and Random Forest (n_estimators),Iterated over a range of values for each hyperparameter, training and evaluating the model on each setting,Calculated RMSE for each hyperparameter configuration to assess model performance, logged and saved hyperparameter settings using MLFlow,Generated a visualization showing the relationship between hyperparameter values and RMSE.
