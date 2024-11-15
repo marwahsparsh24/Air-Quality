@@ -412,7 +412,7 @@ Air-Quality
 
 
 
-### Model Development steps
+## Model Development and ML Code
 
 ### Training
 
@@ -496,3 +496,19 @@ Create Directories for Output Files: Creates directories /app/weights and /app/a
 Add Execute Permissions: Grants execute permissions to Python scripts in Training, Validation, and ModelBias folders.
 
 Define Command to Run Scripts Sequentially: Specifies the order of script execution for training, validation, bias evaluation, and model selection.
+
+#### Script order:
+Training/Prophet.py -> Validation/Prophet.py -> Training/RandomForest.py -> Validation/RandomForest.py -> Training/XGBoost.py -> Validation/XGBoost.py -> ModelBias/Model_bias.py -> bestmodel.py
+
+
+## Hyperparameter tuning
+
+
+1. Search Space
+Random Forest: Parameters like n_estimators, max_depth, and min_samples_split are tuned.
+XGBoost: Parameters such as learning_rate, max_depth, n_estimators, and subsample are explored.
+Prophet: Parameters like growth, changepoint_prior_scale, and seasonality_prior_scale are adjusted.
+
+3. Tuning Process
+Random Forest & XGBoost: GridSearchCV is used to perform exhaustive search with cross-validation to find the best hyperparameters.
+Prophet: Hyperparameters are manually selected without automated tuning.
