@@ -99,7 +99,7 @@ Click on the DAG name to open its details page and manually trigger a run by cli
 
 #### Step 8: Stopping the Airflow Services
 ``` bash
-docker-compose down
+docker compose down
 ```
        
 ### Folder Structure Overview
