@@ -67,7 +67,7 @@ jobs:
         id: create_endpoint
         run: |
           echo "Checking for existing endpoint..."
-          ENDPOINT_NAME=$(gcloud ai endpoints list --region=us-central1 --filter="display_name=pm25-endpoint" --format="value(name)")
+          ENDPOINT_NAME=$(gcloud ai endpoints list --region=us-central1 --filter="display_name='pm25-endpoint'" --format="value(name)")
 
           if [ -z "$ENDPOINT_NAME" ]; then
             echo "No existing endpoint found. Creating a new one..."
@@ -81,6 +81,7 @@ jobs:
 
           echo "ENDPOINT_NAME=$ENDPOINT_NAME" >> $GITHUB_ENV
           echo "Retrieved or created ENDPOINT_NAME: $ENDPOINT_NAME"
+
 
       # Step 8: Deploy Model to Endpoint
       - name: Deploy Model to Endpoint
