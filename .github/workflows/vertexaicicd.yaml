@@ -83,7 +83,7 @@ jobs:
           echo "Retrieved or created ENDPOINT_NAME: $ENDPOINT_NAME"
 
 
-      # Step 8: Deploy Model to Endpoint
+      # Step 8: Deploy Model to Endpoint 
       - name: Deploy Model to Endpoint
         run: |
           echo "Deploying model $MODEL_ID to endpoint $ENDPOINT_NAME..."
