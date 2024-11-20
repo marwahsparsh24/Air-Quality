@@ -1,3 +1,4 @@
+logsBucket: gs://logstoragecicd
 steps:
 # Step 1: Authenticate with Google Cloud (Cloud Build does this automatically)
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
