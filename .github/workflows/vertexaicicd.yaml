@@ -66,6 +66,7 @@ jobs:
           gcloud ai endpoints deploy-model $ENDPOINT_NAME \
             --region=us-central1 \
             --model=pm25-model \
-            --deployed-model-display-name=pm25-model-deployment \
+            --display-name=pm25-model-deployment \
             --machine-type=n1-standard-4 \
             --traffic-split=0=100
+
