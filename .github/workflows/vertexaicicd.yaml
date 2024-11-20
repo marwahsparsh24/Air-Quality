@@ -3,7 +3,7 @@ name: Deploy to Vertex AI
 on:
   push:
     branches:
-      - vertexai  # Trigger the workflow on push to the vertexai branch
+      - vertexai  # Trigger the workflow on push to this branch
 
 jobs:
   deploy-pipeline:
@@ -35,39 +35,22 @@ jobs:
         run: |
           docker push gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
 
-      # Step 6: Submit Vertex AI Custom Job
-      - name: Submit Vertex AI Custom Job
-        run: |
-          gcloud ai custom-jobs create \
-            --region=us-central1 \
-            --display-name=pm25-training-job \
-            --worker-pool-spec=machine-type=n1-standard-4,replica-count=1,container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
-
-      # Step 7: Check if Model Exists
-      - name: Check if Model Exists
-        id: check_model
-        run: |
-          MODEL_ID=$(gcloud ai models list --region=us-central1 --filter="displayName=pm25-model" --format="value(name)")
-          if [ -n "$MODEL_ID" ]; then
-            echo "MODEL_NOT_FOUND=false" >> $GITHUB_ENV
-            echo "MODEL_ID=$MODEL_ID" >> $GITHUB_ENV
-          else
-            echo "MODEL_NOT_FOUND=true" >> $GITHUB_ENV
-          fi
-
-      # Step 8: Upload the Model to Vertex AI if it Doesn't Exist
+      # Step 6: Upload the Model to Vertex AI and Extract Model ID
       - name: Upload Model to Vertex AI
-        if: env.MODEL_NOT_FOUND == 'true'
+        id: upload_model
         run: |
           MODEL_ID=$(gcloud ai models upload \
             --region=us-central1 \
             --display-name=pm25-model \
             --container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
-            --format="value(modelId)")
+            --format="value(name)")
           echo "MODEL_ID=$MODEL_ID" >> $GITHUB_ENV
+        env:
+          GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
 
-      # Step 9: Create or Reuse an Endpoint
+      # Step 7: Create or Reuse an Endpoint
       - name: Create or Reuse Endpoint
+        id: create_endpoint
         run: |
           ENDPOINT_NAME=$(gcloud ai endpoints list --region=us-central1 --filter="display_name=pm25-endpoint" --format="value(name)")
           if [ -z "$ENDPOINT_NAME" ]; then
@@ -75,7 +58,7 @@ jobs:
           fi
           echo "ENDPOINT_NAME=$ENDPOINT_NAME" >> $GITHUB_ENV
 
-      # Step 10: Deploy Model to Endpoint
+      # Step 8: Deploy Model to Endpoint
       - name: Deploy Model to Endpoint
         run: |
           gcloud ai endpoints deploy-model $ENDPOINT_NAME \
@@ -84,3 +67,6 @@ jobs:
             --display-name=pm25-model-deployment \
             --machine-type=n1-standard-4 \
             --traffic-split=0=100
+        env:
+          MODEL_ID: ${{ env.MODEL_ID }}
+          ENDPOINT_NAME: ${{ env.ENDPOINT_NAME }}
