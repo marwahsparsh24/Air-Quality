@@ -36,6 +36,8 @@ class RandomForestPM25Model:
         self.y_test_original = None
     
     def load_data(self):
+        if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
+            raise EnvironmentError("GOOGLE_APPLICATION_CREDENTIALS is not set. Please configure it.")
         # Load training and test data
         client = storage.Client(project="airquality-438719")
 
@@ -82,6 +84,8 @@ class RandomForestPM25Model:
     #     return y_pred_original
 
     def save_weights(self):
+        if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
+            raise EnvironmentError("GOOGLE_APPLICATION_CREDENTIALS is not set. Please configure it.")
 
         storage_client = storage.Client(project="airquality-438719")
 
