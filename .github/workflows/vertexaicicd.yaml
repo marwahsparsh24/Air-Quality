@@ -1,4 +1,4 @@
-name: Deploy to Vertex AI
+name: Deploy to Vertex AI check
 
 on:
   push:
