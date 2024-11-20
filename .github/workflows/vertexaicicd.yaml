@@ -48,11 +48,11 @@ jobs:
         id: check_model
         run: |
           MODEL_ID=$(gcloud ai models list --region=us-central1 --filter="displayName=pm25-model" --format="value(name)")
-          if [ -z "$MODEL_ID" ]; then
-            echo "MODEL_NOT_FOUND=true" >> $GITHUB_ENV
-          else
+          if [ -n "$MODEL_ID" ]; then
             echo "MODEL_NOT_FOUND=false" >> $GITHUB_ENV
             echo "MODEL_ID=$MODEL_ID" >> $GITHUB_ENV
+          else
+            echo "MODEL_NOT_FOUND=true" >> $GITHUB_ENV
           fi
 
       # Step 8: Upload the Model to Vertex AI if it Doesn't Exist
