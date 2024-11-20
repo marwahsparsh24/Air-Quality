@@ -3,7 +3,7 @@ name: Deploy to Vertex AI
 on:
   push:
     branches:
-      - vertexai  # Trigger the workflow on push to this branch
+      - main  # Trigger the workflow on push to this branch
 
 jobs:
   deploy-pipeline:
