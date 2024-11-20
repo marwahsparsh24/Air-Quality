@@ -37,7 +37,7 @@ class RandomForestPM25Model:
     
     def load_data(self):
         # Load training and test data
-        client = storage.Client()
+        client = storage.Client(project="airquality-438719")
 
         # Specify your bucket name and the path to the pickle file in the 'processed' folder
         bucket_name = 'airquality-mlops-rg'
@@ -83,7 +83,7 @@ class RandomForestPM25Model:
 
     def save_weights(self):
 
-        storage_client = storage.Client()
+        storage_client = storage.Client(project="airquality-438719")
 
         # Define the bucket and the path to store the model weights
         bucket_name = "airquality-mlops-rg"
