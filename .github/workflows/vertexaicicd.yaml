@@ -39,14 +39,28 @@ jobs:
       - name: Upload Model to Vertex AI
         id: upload_model
         run: |
-          MODEL_ID=$(gcloud ai models upload \
+          echo "Uploading model to Vertex AI..."
+          gcloud ai models upload \
             --region=us-central1 \
             --display-name=pm25-model \
-            --container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
-            --format="value(name)")
+            --container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
+
+          echo "Model uploaded. Querying MODEL_ID..."
+          MODEL_ID=$(gcloud ai models list \
+            --region=us-central1 \
+            --filter="display_name=pm25-model" \
+            --format="value(name)" | tail -n 1)
+
+          if [ -z "$MODEL_ID" ]; then
+            echo "ERROR: MODEL_ID is empty. Exiting workflow."
+            exit 1
+          fi
+
           echo "MODEL_ID=$MODEL_ID" >> $GITHUB_ENV
+          echo "Retrieved MODEL_ID: $MODEL_ID"
         env:
           GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
+
 
       # Step 7: Create or Reuse an Endpoint
       - name: Create or Reuse Endpoint
