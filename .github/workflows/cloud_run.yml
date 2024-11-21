@@ -31,7 +31,13 @@ jobs:
             --build-arg GCP_PROJECT=${{ secrets.GCP_PROJECT }} \
             --build-arg SECRET_NAME=service-account-key \
             -t gcr.io/${{ secrets.GCP_PROJECT }}/cloud-image:latest \
-            -f ./vertex_testing/Dockerfile ./cloud_run
+            -f ./cloud_run/Dockerfile ./cloud_run
+      - name: Test Docker Image
+        run: |
+          docker run --rm \
+            -e GOOGLE_APPLICATION_CREDENTIALS=/app/service-account-key.json \
+            -v ${{ secrets.GCP_SA_KEY }}:/app/service-account-key.json:ro \
+            gcr.io/${{ secrets.GCP_PROJECT }}/cloud-image:latest
 
       # Step 5: Push Docker Image to GCR
       - name: Push Docker Image
