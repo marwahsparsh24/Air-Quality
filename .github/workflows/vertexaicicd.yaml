@@ -20,6 +20,10 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+      - name: Save Service Account Key Locally
+        run: |
+          echo "${{ secrets.GCP_SA_KEY }}" > service_account_key.json
+
       # Step 3: Configure Docker Authentication for GCR
       - name: Configure Docker Authentication
         run: gcloud auth configure-docker
@@ -27,9 +31,10 @@ jobs:
       # Step 4: Build Docker Image
       - name: Build Docker Image
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
-          --build-arg GCP_SA_KEY="${{ secrets.GCP_SA_KEY }}" \
-          -f ./vertex_testing/Dockerfile ./vertex_testing
+          docker build \
+            --build-arg GOOGLE_APPLICATION_CREDENTIALS=/app/service_account_key.json \
+            -t gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
+            -f ./vertex_testing/Dockerfile ./vertex_testing
 
       # Step 5: Push Docker Image to GCR
       - name: Push Docker Image
