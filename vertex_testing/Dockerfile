@@ -6,7 +6,10 @@ WORKDIR /app
 # Copy the requirements file and install dependencies
 COPY requirements.txt /app/
 COPY train.py /app/
+COPY gha-creds-a41866a5333c5895.json /app/key.json
 
+# Set the environment variable for authentication
+ENV GOOGLE_APPLICATION_CREDENTIALS="/app/key.json"
 RUN pip install --no-cache-dir -r requirements.txt
 
 
