@@ -17,5 +17,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application files
 COPY train.py /app/
 
+ENV GOOGLE_APPLICATION_CREDENTIALS="/app/service_account_key.json"
+
 # Fetch the key and run the training script
 ENTRYPOINT ["sh", "-c", "python /app/train.py"]
