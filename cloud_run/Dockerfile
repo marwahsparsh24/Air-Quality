@@ -16,13 +16,6 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application files
 COPY train.py /app/
-COPY fetch_key.py /app/
-
-# Environment variables for secret fetching
-ENV GCP_PROJECT=""
-ENV SECRET_NAME="key"
-ENV GOOGLE_APPLICATION_CREDENTIALS="/app/service_account_key.json"
 
 # Fetch the key and run the training script
-ENTRYPOINT ["sh", "-c", "python /app/fetch_key.py && python /app/train.py"]
-
+ENTRYPOINT ["sh", "-c", "python /app/train.py"]
