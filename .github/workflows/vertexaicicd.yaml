@@ -24,6 +24,8 @@ jobs:
       - name: Save Service Account Key Locally
         run: |
           echo "${{ secrets.GCP_SA_KEY }}" > service_account_key.json
+          cat service_account_key.json | jq . > valid_service_account_key.json
+          mv valid_service_account_key.json service_account_key.json
 
       # Step 4: Configure Docker Authentication for GCR
       - name: Configure Docker Authentication
