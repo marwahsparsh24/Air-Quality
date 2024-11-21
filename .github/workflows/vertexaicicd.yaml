@@ -20,15 +20,16 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
+      # Step 3: Save Service Account Key Locally
       - name: Save Service Account Key Locally
         run: |
           echo "${{ secrets.GCP_SA_KEY }}" > service_account_key.json
 
-      # Step 3: Configure Docker Authentication for GCR
+      # Step 4: Configure Docker Authentication for GCR
       - name: Configure Docker Authentication
         run: gcloud auth configure-docker
 
-      # Step 4: Build Docker Image
+      # Step 5: Build Docker Image
       - name: Build Docker Image
         run: |
           docker build \
@@ -36,11 +37,19 @@ jobs:
             -t gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
             -f ./vertex_testing/Dockerfile ./vertex_testing
 
-      # Step 5: Push Docker Image to GCR
+      # Step 6: Push Docker Image to GCR
       - name: Push Docker Image
         run: docker push gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
 
-      # Step 6: Trigger Vertex AI Training Job
+      # Step 7: Run Docker Container with Mounted Service Account
+      - name: Run Docker Container
+        run: |
+          docker run \
+            -e GOOGLE_APPLICATION_CREDENTIALS=/app/service_account_key.json \
+            -v $(pwd)/service_account_key.json:/app/service_account_key.json \
+            gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
+
+      # Step 8: Trigger Vertex AI Training Job
       - name: Trigger Vertex AI Training Job
         id: trigger_training
         run: |
@@ -60,24 +69,35 @@ jobs:
           echo "JOB_ID=$JOB_ID" >> $GITHUB_ENV
           echo "Training job triggered successfully with JOB_ID: $JOB_ID"
 
-      # Step 7: Wait for Training Job to Complete
+      # Step 9: Wait for Training Job to Complete
       - name: Wait for Training Job
         run: |
           echo "Waiting for training job ${{ env.JOB_ID }} to complete..."
+          MAX_RETRIES=60
+          RETRY_COUNT=0
+
           while true; do
             JOB_STATE=$(gcloud ai custom-jobs describe ${{ env.JOB_ID }} --region=us-central1 --format="value(state)")
             echo "Training job status: $JOB_STATE"
+
             if [[ "$JOB_STATE" == "SUCCEEDED" ]]; then
               echo "Training job completed successfully."
               break
             elif [[ "$JOB_STATE" == "FAILED" || "$JOB_STATE" == "CANCELLED" ]]; then
-              echo "Training job failed or was cancelled: $JOB_STATE"
+              echo "ERROR: Training job failed or was cancelled with status: $JOB_STATE"
               exit 1
             fi
+
+            RETRY_COUNT=$((RETRY_COUNT + 1))
+            if [[ "$RETRY_COUNT" -ge "$MAX_RETRIES" ]]; then
+              echo "ERROR: Training job did not complete within the maximum retries."
+              exit 1
+            fi
+
             sleep 60
           done
 
-      # Step 8: Retrieve the Model ID from Vertex AI Model Registry
+      # Step 10: Retrieve the Model ID from Vertex AI Model Registry
       - name: Retrieve Model from Registry
         id: get_model
         run: |
@@ -96,7 +116,7 @@ jobs:
           echo "MODEL_ID=$MODEL_ID" >> $GITHUB_ENV
           echo "Retrieved MODEL_ID: $MODEL_ID"
 
-      # Step 9: Create or Reuse Endpoint
+      # Step 11: Create or Reuse Endpoint
       - name: Create or Reuse Endpoint
         id: create_endpoint
         run: |
@@ -116,7 +136,7 @@ jobs:
           echo "ENDPOINT_NAME=$ENDPOINT_NAME" >> $GITHUB_ENV
           echo "Retrieved or created ENDPOINT_NAME: $ENDPOINT_NAME"
 
-      # Step 10: Deploy Model to Endpoint
+      # Step 12: Deploy Model to Endpoint
       - name: Deploy Model to Endpoint
         run: |
           echo "Deploying model ${{ env.MODEL_ID }} to endpoint ${{ env.ENDPOINT_NAME }}..."
@@ -126,7 +146,7 @@ jobs:
             --display-name=pm25-model-deployment \
             --machine-type=n1-standard-4 \
             --traffic-split=0=100 \
-            --service-account=$CUSTOM_SERVICE_ACCOUNT
+            --service-account=airquality@airquality-438719.iam.gserviceaccount.com
 
         env:
           MODEL_ID: ${{ env.MODEL_ID }}
