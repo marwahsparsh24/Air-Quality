@@ -19,6 +19,10 @@ jobs:
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
+      
+      - name: Copy Service Account Key
+        run: |
+          echo "${{ secrets.GCP_SA_KEY }}" > gha-creds-a41866a5333c5895.json
 
       # Step 3: Configure Docker Authentication for GCR
       - name: Configure Docker Authentication
@@ -44,6 +48,7 @@ jobs:
             --display-name=pm25-training-job \
             --worker-pool-spec=machine-type=n1-standard-4,replica-count=1,container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
             --args="--output-path=gs://airquality-mlops-rg/weights/model/" \
+            --env-vars=GOOGLE_APPLICATION_CREDENTIALS=/app/key.json \
             --format="value(name)")
 
           if [ -z "$JOB_ID" ]; then
