@@ -43,7 +43,7 @@ jobs:
             --region=us-central1 \
             --display-name=pm25-training-job \
             --worker-pool-spec=machine-type=n1-standard-4,replica-count=1,container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
-            --output-uri-prefix=gs://airquality-mlops-rg/weights/model/model.pkl \
+            --args="--output-path=gs://airquality-mlops-rg/weights/model/" \
             --format="value(name)")
 
           if [ -z "$JOB_ID" ]; then
