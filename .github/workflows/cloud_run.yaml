@@ -3,7 +3,7 @@ name: Model Save and Load Test
 on:
   push:
     branches:
-      - main
+      - vertexai
 
 jobs:
   model-handler:
