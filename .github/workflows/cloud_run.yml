@@ -1,34 +1,38 @@
-name: Model Save and Load Test
+name: Deploy to Vertex AI
 
 on:
   push:
     branches:
-      - vertexai
+      - vertexai  # Trigger the workflow on push to this branch
 
 jobs:
-  model-handler:
+  deploy-pipeline:
     runs-on: ubuntu-latest
 
     steps:
-    # Step 1: Checkout the code
-    - name: Checkout Code
-      uses: actions/checkout@v3
+      # Step 1: Checkout the Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-    # Step 2: Authenticate with GCP
-    - name: Authenticate with GCP
-      uses: google-github-actions/auth@v1
-      with:
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
+      # Step 2: Authenticate with Google Cloud
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-    # Step 3: Build the Docker Image
-    - name: Build Docker Image
-      run: |
-        docker build -t model-handler-image:latest ./cloud_run
+      # Step 3: Configure Docker Authentication for GCR
+      - name: Configure Docker Authentication
+        run: gcloud auth configure-docker
 
-    # Step 4: Run the Docker Container
-    - name: Run Model Save and Load Test
-      run: |
-        docker run --rm \
-          -e GOOGLE_APPLICATION_CREDENTIALS=/app/service-account-key.json \
-          -v ${{ secrets.GCP_SA_KEY }}:/app/service-account-key.json:ro \
-          model-handler-image:latest
+      # Step 4: Build Docker Image
+      - name: Build Docker Image
+        run: |
+          docker build \
+            --build-arg GCP_PROJECT=${{ secrets.GCP_PROJECT }} \
+            --build-arg SECRET_NAME=service-account-key \
+            -t gcr.io/${{ secrets.GCP_PROJECT }}/cloud-image:latest \
+            -f ./vertex_testing/Dockerfile ./cloud_run
+
+      # Step 5: Push Docker Image to GCR
+      - name: Push Docker Image
+        run: docker push gcr.io/${{ secrets.GCP_PROJECT }}/cloud-image:latest
