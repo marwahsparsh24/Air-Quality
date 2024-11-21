@@ -36,7 +36,9 @@ class RandomForestPM25Model:
         self.y_test_original = None
     
     def load_data(self):
-        client = storage.Client(project="airquality-438719")
+        if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
+            raise EnvironmentError("GOOGLE_APPLICATION_CREDENTIALS is not set. Ensure the service account key is correctly configured.")
+        client = storage.Client()
 
         # Specify your bucket name and the path to the pickle file in the 'processed' folder
         bucket_name = 'airquality-mlops-rg'

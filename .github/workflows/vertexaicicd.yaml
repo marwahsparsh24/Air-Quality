@@ -33,9 +33,10 @@ jobs:
       - name: Run Training Script in Docker
         run: |
           docker run --rm \
-            -v $PWD/output:/app/output \
-            gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
-            python /app/train.py
+            -v /path/to/service_account_key.json:/app/service_account_key.json \
+            -e GOOGLE_APPLICATION_CREDENTIALS=/app/service_account_key.json \
+            gcr.io/your-project-id/vertex-training-image:latest
+
 
       # Step 5: Push Docker Image to GCR
       - name: Push Docker Image

@@ -7,6 +7,7 @@ WORKDIR /app
 COPY requirements.txt /app/
 COPY train.py /app/
 RUN pip install --no-cache-dir -r requirements.txt
+ENV GOOGLE_APPLICATION_CREDENTIALS="/app/service_account_key.json"
 
 # Debugging: List files in the working directory during build
 
