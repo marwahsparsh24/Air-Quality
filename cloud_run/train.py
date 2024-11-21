@@ -36,8 +36,8 @@ class RandomForestPM25Model:
         self.y_test_original = None
     
     def load_data(self):
-        if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
-            raise EnvironmentError("GOOGLE_APPLICATION_CREDENTIALS is not set. Ensure the service account key is correctly configured.")
+        # if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
+        #     raise EnvironmentError("GOOGLE_APPLICATION_CREDENTIALS is not set. Ensure the service account key is correctly configured.")
         client = storage.Client()
 
         # Specify your bucket name and the path to the pickle file in the 'processed' folder
@@ -83,7 +83,7 @@ class RandomForestPM25Model:
     #     return y_pred_original
 
     def save_weights(self):
-        storage_client = storage.Client(project="airquality-438719")
+        storage_client = storage.Client()
 
         # Define the bucket and the path to store the model weights
         bucket_name = "airquality-mlops-rg"

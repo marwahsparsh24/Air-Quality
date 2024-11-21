@@ -32,6 +32,7 @@ jobs:
             --build-arg SECRET_NAME=service-account-key \
             -t gcr.io/${{ secrets.GCP_PROJECT }}/cloud-image:latest \
             -f ./cloud_run/Dockerfile ./cloud_run
+      
       - name: Test Docker Image
         run: |
           docker run --rm \
