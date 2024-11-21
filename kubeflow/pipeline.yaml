@@ -1,0 +1,69 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: air-quality-training-
+  namespace: kubeflow
+spec:
+  entrypoint: main
+  templates:
+    - name: main
+      steps:
+        # Step 1: Install Dependencies
+        - - name: install-dependencies
+            template: install-requirements
+
+        # Step 2: Train the Model
+        - - name: train-model
+            template: train-step
+            dependencies: [install-dependencies]
+
+        # Step 3: Build and Push Docker Image
+        - - name: build-and-push-image
+            template: docker-build-push
+            dependencies: [train-model]
+
+    # Install Python Dependencies
+    - name: install-requirements
+      container:
+        image: python:3.8-slim
+        command:
+          - sh
+          - -c
+        args:
+          - |
+            pip install --no-cache-dir -r requirements.txt
+
+    # Train Step
+    - name: train-step
+      container:
+        image: python:3.8-slim
+        command:
+          - python
+        args:
+          - train.py
+        volumeMounts:
+          - name: gcp-sa-key
+            mountPath: /var/secrets/google
+        env:
+          - name: GOOGLE_APPLICATION_CREDENTIALS
+            value: /var/secrets/google/key.json
+
+    # Docker Build and Push Step
+    - name: docker-build-push
+      container:
+        image: gcr.io/cloud-builders/docker
+        command:
+          - sh
+          - -c
+        args:
+          - |
+            docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/air-quality-training:latest . &&
+            docker push gcr.io/${{ secrets.GCP_PROJECT }}/air-quality-training:latest
+        volumeMounts:
+          - name: gcp-sa-key
+            mountPath: /var/secrets/google
+
+  volumes:
+    - name: gcp-sa-key
+      secret:
+        secretName: gcp-sa-key
