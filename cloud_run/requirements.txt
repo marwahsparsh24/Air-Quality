@@ -1,0 +1,17 @@
+pytest
+numpy 
+pandas
+scikit-learn
+kneed
+matplotlib
+seaborn
+xgboost
+scipy
+fairlearn
+mlflow
+prophet
+shap
+psycopg2-binary
+pickle5
+google-cloud-storage
+google-cloud-secret-manager
