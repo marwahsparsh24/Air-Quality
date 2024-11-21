@@ -1,88 +1,100 @@
-name: Deploy to Vertex AI
+logsBucket: gs://logstoragecicd
+steps:
+# Step 1: Authenticate with Google Cloud (Cloud Build does this automatically)
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "Authenticating with Google Cloud..."
+      gcloud auth configure-docker
 
-on:
-  push:
-    branches:
-      - vertexai  # Trigger the workflow on push to this branch
+# Step 2: Build Docker Image
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    [
+      'build',
+      '-t',
+      'gcr.io/airquality-438719/vertex-training-image:latest',
+      '-f',
+      './vertex_testing/Dockerfile',
+      './vertex_testing'
+    ]
 
-jobs:
-  deploy-pipeline:
-    runs-on: ubuntu-latest
-    steps:
-      # Step 1: Checkout the Repository
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+# Step 3: Push Docker Image to GCR
+- name: 'gcr.io/cloud-builders/docker'
+  args:
+    ['push', 'gcr.io/airquality-438719/vertex-training-image:latest']
 
-      # Step 2: Authenticate with Google Cloud
-      - name: Authenticate with Google Cloud
-        uses: google-github-actions/auth@v1
-        with:
-          credentials_json: ${{ secrets.GCP_SA_KEY }}
+# Step 4: Upload the Model to Vertex AI
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+  id: 'upload_model'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "Uploading model to Vertex AI..."
+      gcloud ai models upload \
+        --region=us-central1 \
+        --display-name=pm25-model \
+        --container-image-uri=gcr.io/airquality-438719/vertex-training-image:latest
 
-      # Step 3: Configure Docker Authentication for GCR
-      - name: Configure Docker Authentication
-        run: |
-          gcloud auth configure-docker
+      echo "Model uploaded. Querying the most recent MODEL_ID..."
+      MODEL_ID=$(gcloud ai models list \
+        --region=us-central1 \
+        --filter="display_name=pm25-model" \
+        --format="value(name)" \
+        --sort-by="~updateTime" | head -n 1)
 
-      # Step 4: Build Docker Image
-      - name: Build Docker Image
-        run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest -f ./vertex_testing/Dockerfile ./vertex_testing
+      if [ -z "$MODEL_ID" ]; then
+        echo "ERROR: MODEL_ID is empty. Exiting workflow."
+        exit 1
+      fi
 
-      # Step 5: Push Docker Image to GCR
-      - name: Push Docker Image
-        run: |
-          docker push gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
+      echo "MODEL_ID=$MODEL_ID"
+      echo "MODEL_ID=$MODEL_ID" >> /workspace/env_vars
 
-      # Step 6: Upload the Model to Vertex AI and Extract the Most Recent Model ID
-      - name: Upload Model to Vertex AI
-        id: upload_model
-        run: |
-          echo "Uploading model to Vertex AI..."
-          gcloud ai models upload \
-            --region=us-central1 \
-            --display-name=pm25-model \
-            --container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
-          echo "Model uploaded. Querying the most recent MODEL_ID..."
-          MODEL_ID=$(gcloud ai models list \
-            --region=us-central1 \
-            --filter="display_name=pm25-model" \
-            --format="value(name)" \
-            --sort-by="~updateTime" | head -n 1)
-          if [ -z "$MODEL_ID" ]; then
-            echo "ERROR: MODEL_ID is empty. Exiting workflow."
-            exit 1
-          fi
-          echo "MODEL_ID=$MODEL_ID" >> $GITHUB_ENV
-          echo "Retrieved the most recent MODEL_ID: $MODEL_ID"
-        env:
-          GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
+# Step 5: Create or Reuse Endpoint
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+  id: 'create_endpoint'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      echo "Checking for existing endpoint..."
+      ENDPOINT_NAME=$(gcloud ai endpoints list \
+        --region=us-central1 \
+        --filter="display_name='pm25-endpoint'" \
+        --format="value(name)")
 
-      # Step 7: Create or Reuse an Endpoint
-      - name: Create or Reuse Endpoint
-        id: create_endpoint
-        run: |
-          echo "Checking for existing endpoint..."
-          ENDPOINT_NAME=$(gcloud ai endpoints list --region=us-central1 --filter="display_name='pm25-endpoint'" --format="value(name)")
-          if [ -z "$ENDPOINT_NAME" ]; then
-            echo "No existing endpoint found. Creating a new one..."
-            ENDPOINT_NAME=$(gcloud ai endpoints create --region=us-central1 --display-name=pm25-endpoint --format="value(name)")
-          fi
-          if [ -z "$ENDPOINT_NAME" ]; then
-            echo "ERROR: Failed to create or retrieve endpoint. Exiting workflow."
-            exit 1
-          fi
-          echo "ENDPOINT_NAME=$ENDPOINT_NAME" >> $GITHUB_ENV
-          echo "Retrieved or created ENDPOINT_NAME: $ENDPOINT_NAME"
+      if [ -z "$ENDPOINT_NAME" ]; then
+        echo "No existing endpoint found. Creating a new one..."
+        ENDPOINT_NAME=$(gcloud ai endpoints create \
+          --region=us-central1 \
+          --display-name=pm25-endpoint \
+          --format="value(name)")
+      fi
 
-      # Step 8: Deploy Model to Endpoint
-      - name: Deploy Model to Endpoint
-        run: |
-          echo "Deploying model ${{ env.MODEL_ID }} to endpoint ${{ env.ENDPOINT_NAME }}..."
-          gcloud ai endpoints deploy-model ${{ env.ENDPOINT_NAME }} \
-            --region=us-central1 \
-            --model=${{ env.MODEL_ID }} \
-            --display-name=pm25-model-deployment \
-            --machine-type=n1-standard-4 \
-            --traffic-split=0=100 \
-            --service-account=airquality@airquality-438719.iam.gserviceaccount.com
+      if [ -z "$ENDPOINT_NAME" ]; then
+        echo "ERROR: Failed to create or retrieve endpoint. Exiting workflow."
+        exit 1
+      fi
+
+      echo "ENDPOINT_NAME=$ENDPOINT_NAME"
+      echo "ENDPOINT_NAME=$ENDPOINT_NAME" >> /workspace/env_vars
+
+# Step 6: Deploy Model to Endpoint
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk:slim'
+  id: 'deploy_model'
+  entrypoint: 'bash'
+  args:
+    - '-c'
+    - |
+      source /workspace/env_vars
+      echo "Deploying model $MODEL_ID to endpoint $ENDPOINT_NAME..."
+      gcloud ai endpoints deploy-model $ENDPOINT_NAME \
+        --region=us-central1 \
+        --model=$MODEL_ID \
+        --display-name=pm25-model-deployment \
+        --machine-type=n1-standard-4 \
+        --traffic-split=0=100
