@@ -4,6 +4,11 @@ FROM python:3.8-slim
 # Set the working directory
 WORKDIR /app
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    gcc libc-dev jq \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
 # Copy the script and requirements file
 COPY train.py .
 COPY requirements.txt .
