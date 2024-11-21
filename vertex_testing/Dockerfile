@@ -25,3 +25,4 @@ ENV GOOGLE_APPLICATION_CREDENTIALS="/app/service_account_key.json"
 
 # Fetch the key and run the training script
 ENTRYPOINT ["sh", "-c", "python /app/fetch_key.py && python /app/train.py"]
+
