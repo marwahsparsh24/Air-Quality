@@ -30,15 +30,6 @@ jobs:
         run: |
           docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest -f ./vertex_testing/Dockerfile ./vertex_testing
 
-      run: |
-          echo "${{ secrets.GCP_SA_KEY }}" > /tmp/service_account_key.json
-
-          docker run --rm \
-            -v /tmp/key.json:/app/key.json \
-            -e GOOGLE_APPLICATION_CREDENTIALS=/app/key.json \
-            gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
-
-
       # Step 5: Push Docker Image to GCR
       - name: Push Docker Image
         run: |
