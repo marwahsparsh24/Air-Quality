@@ -1,4 +1,4 @@
-name: Deploy to Vertex AI check
+name: Deploy to Vertex AI
 
 on:
   push:
@@ -19,10 +19,6 @@ jobs:
         uses: google-github-actions/auth@v1
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
-      
-      - name: Copy Service Account Key
-        run: |
-          echo "${{ secrets.GCP_SA_KEY }}" > gha-creds-a41866a5333c5895.json
 
       # Step 3: Configure Docker Authentication for GCR
       - name: Configure Docker Authentication
@@ -32,13 +28,16 @@ jobs:
       # Step 4: Build Docker Image
       - name: Build Docker Image
         run: |
-          docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest -f ./vertex_testing/Dockerfile ./vertex_testing
+          docker build -t gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
+          --build-arg GCP_SA_KEY="${{ secrets.GCP_SA_KEY }}" \
+          -f ./vertex_testing/Dockerfile ./vertex_testing
 
       # Step 5: Push Docker Image to GCR
       - name: Push Docker Image
         run: |
           docker push gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
 
+      # Step 6: Trigger Vertex AI Training Job
       - name: Trigger Vertex AI Training Job
         id: trigger_training
         run: |
@@ -48,6 +47,7 @@ jobs:
             --display-name=pm25-training-job \
             --worker-pool-spec=machine-type=n1-standard-4,replica-count=1,container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
             --args="--output-path=gs://airquality-mlops-rg/weights/model/" \
+            --model-display-name=pm25-model \
             --format="value(name)")
 
           if [ -z "$JOB_ID" ]; then
@@ -58,17 +58,29 @@ jobs:
           echo "Training job triggered successfully with JOB_ID: $JOB_ID"
           echo "JOB_ID=$JOB_ID" >> $GITHUB_ENV
 
-      # Step 6: Upload the Model to Vertex AI and Extract the Most Recent Model ID
-      - name: Upload Model to Vertex AI
-        id: upload_model
+      # Step 7: Wait for Training Job to Complete
+      - name: Wait for Training Job
         run: |
-          echo "Uploading model to Vertex AI..."
-          gcloud ai models upload \
-            --region=us-central1 \
-            --display-name=pm25-model \
-            --container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
+          echo "Waiting for training job ${{ env.JOB_ID }} to complete..."
+          gcloud ai custom-jobs describe ${{ env.JOB_ID }} --region=us-central1 --format="json" > job_status.json
+          JOB_STATE=$(jq -r '.state' job_status.json)
+          while [[ "$JOB_STATE" != "SUCCEEDED" && "$JOB_STATE" != "FAILED" && "$JOB_STATE" != "CANCELLED" ]]; do
+            echo "Training job in progress: $JOB_STATE"
+            sleep 60
+            gcloud ai custom-jobs describe ${{ env.JOB_ID }} --region=us-central1 --format="json" > job_status.json
+            JOB_STATE=$(jq -r '.state' job_status.json)
+          done
+          if [[ "$JOB_STATE" == "FAILED" || "$JOB_STATE" == "CANCELLED" ]]; then
+            echo "Training job failed or cancelled: $JOB_STATE"
+            exit 1
+          fi
+          echo "Training job completed successfully."
 
-          echo "Model uploaded. Querying the most recent MODEL_ID..."
+      # Step 8: Retrieve the Model ID from Vertex AI Model Registry
+      - name: Retrieve Model from Registry
+        id: get_model
+        run: |
+          echo "Retrieving model from Vertex AI Model Registry..."
           MODEL_ID=$(gcloud ai models list \
             --region=us-central1 \
             --filter="display_name=pm25-model" \
@@ -76,16 +88,14 @@ jobs:
             --sort-by="~updateTime" | head -n 1)
 
           if [ -z "$MODEL_ID" ]; then
-            echo "ERROR: MODEL_ID is empty. Exiting workflow."
+            echo "ERROR: Model not found in Vertex AI Model Registry."
             exit 1
           fi
 
           echo "MODEL_ID=$MODEL_ID" >> $GITHUB_ENV
-          echo "Retrieved the most recent MODEL_ID: $MODEL_ID"
-        env:
-          GCP_PROJECT: ${{ secrets.GCP_PROJECT }}
+          echo "Retrieved MODEL_ID: $MODEL_ID"
 
-      # Step 7: Create or Reuse an Endpoint
+      # Step 9: Create or Reuse Endpoint
       - name: Create or Reuse Endpoint
         id: create_endpoint
         run: |
@@ -105,14 +115,13 @@ jobs:
           echo "ENDPOINT_NAME=$ENDPOINT_NAME" >> $GITHUB_ENV
           echo "Retrieved or created ENDPOINT_NAME: $ENDPOINT_NAME"
 
-
-      # Step 8: Deploy Model to Endpoint 
+      # Step 10: Deploy Model to Endpoint
       - name: Deploy Model to Endpoint
         run: |
-          echo "Deploying model $MODEL_ID to endpoint $ENDPOINT_NAME..."
-          gcloud ai endpoints deploy-model $ENDPOINT_NAME \
+          echo "Deploying model ${{ env.MODEL_ID }} to endpoint ${{ env.ENDPOINT_NAME }}..."
+          gcloud ai endpoints deploy-model ${{ env.ENDPOINT_NAME }} \
             --region=us-central1 \
-            --model=$MODEL_ID \
+            --model=${{ env.MODEL_ID }} \
             --display-name=pm25-model-deployment \
             --machine-type=n1-standard-4 \
             --traffic-split=0=100 \
