@@ -23,7 +23,7 @@ jobs:
     # Step 3: Build the Docker Image
     - name: Build Docker Image
       run: |
-        docker build -t model-handler-image:latest .
+        docker build -t model-handler-image:latest ./cloud_run
 
     # Step 4: Run the Docker Container
     - name: Run Model Save and Load Test
