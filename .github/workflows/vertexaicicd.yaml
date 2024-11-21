@@ -47,7 +47,7 @@ jobs:
             --display-name=pm25-training-job \
             --worker-pool-spec=machine-type=n1-standard-4,replica-count=1,container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
             --args="--output-path=gs://airquality-mlops-rg/weights/model/" \
-            --service-account=airquality@airquality-438719.iam.gserviceaccount.com
+            --service-account=airquality@airquality-438719.iam.gserviceaccount.com \
             --format="value(name)")
 
           if [ -z "$JOB_ID" ]; then
