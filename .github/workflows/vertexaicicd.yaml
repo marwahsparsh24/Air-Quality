@@ -37,10 +37,14 @@ jobs:
             -t gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
             -f ./vertex_testing/Dockerfile ./vertex_testing
 
+      # run the model
+
       # Step 5: Push Docker Image to GCR
       - name: Push Docker Image
         run: |
           docker push gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
+
+        # training will be shown automatically, prediction registry
 
       # Step 6: Upload the Model to Vertex AI and Extract the Most Recent Model ID
       - name: Upload Model to Vertex AI

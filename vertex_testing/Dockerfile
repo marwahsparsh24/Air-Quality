@@ -9,10 +9,6 @@ COPY train.py /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Debugging: List files in the working directory during build
-RUN ls -l /app
 
-
-ARG GOOGLE_APPLICATION_CREDENTIALS
-ENV GOOGLE_APPLICATION_CREDENTIALS=$GOOGLE_APPLICATION_CREDENTIALS
 # Use absolute path to run the training script
 ENTRYPOINT ["python", "/app/train.py"]
