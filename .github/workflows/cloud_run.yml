@@ -99,7 +99,7 @@ jobs:
       - name: Build and Push Docker Image
         run: |
           echo "Building Docker image..."
-          docker build -f Dockerfilemodel -t $REGISTRY/$IMAGE_NAME:latest .
+          docker build -f cloud_run/Dockerfile -t $REGISTRY/$IMAGE_NAME:latest .
           echo "Pushing image to Artifact Registry..."
           docker push $REGISTRY/$IMAGE_NAME:latest
           
