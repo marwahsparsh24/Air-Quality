@@ -37,7 +37,7 @@ RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 
 # Copy over the model requirements and install
 COPY requirements.txt .
-RUN pip install --no-cache-dir -r /model_requirements.txt
+RUN pip install --no-cache-dir -r /requirements.txt
 
 # Set the working directory
 WORKDIR /app
