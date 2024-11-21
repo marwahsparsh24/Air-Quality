@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application files (train.py, etc.)
 COPY train.py /app/
-COPY fetch_key_json.py /app/  
+COPY fetch_key.py /app/  
 
 # Add support for Google credentials
 ARG GOOGLE_APPLICATION_CREDENTIALS
