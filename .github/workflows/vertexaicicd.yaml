@@ -22,8 +22,7 @@ jobs:
 
       # Step 3: Configure Docker Authentication for GCR
       - name: Configure Docker Authentication
-        run: |
-          gcloud auth configure-docker
+        run: gcloud auth configure-docker
 
       # Step 4: Build Docker Image
       - name: Build Docker Image
@@ -34,8 +33,7 @@ jobs:
 
       # Step 5: Push Docker Image to GCR
       - name: Push Docker Image
-        run: |
-          docker push gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
+        run: docker push gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest
 
       # Step 6: Trigger Vertex AI Training Job
       - name: Trigger Vertex AI Training Job
@@ -47,7 +45,6 @@ jobs:
             --display-name=pm25-training-job \
             --worker-pool-spec=machine-type=n1-standard-4,replica-count=1,container-image-uri=gcr.io/${{ secrets.GCP_PROJECT }}/vertex-training-image:latest \
             --args="--output-path=gs://airquality-mlops-rg/weights/model/" \
-            --model-display-name=pm25-model \
             --format="value(name)")
 
           if [ -z "$JOB_ID" ]; then
@@ -55,26 +52,25 @@ jobs:
             exit 1
           fi
 
-          echo "Training job triggered successfully with JOB_ID: $JOB_ID"
           echo "JOB_ID=$JOB_ID" >> $GITHUB_ENV
+          echo "Training job triggered successfully with JOB_ID: $JOB_ID"
 
       # Step 7: Wait for Training Job to Complete
       - name: Wait for Training Job
         run: |
           echo "Waiting for training job ${{ env.JOB_ID }} to complete..."
-          gcloud ai custom-jobs describe ${{ env.JOB_ID }} --region=us-central1 --format="json" > job_status.json
-          JOB_STATE=$(jq -r '.state' job_status.json)
-          while [[ "$JOB_STATE" != "SUCCEEDED" && "$JOB_STATE" != "FAILED" && "$JOB_STATE" != "CANCELLED" ]]; do
-            echo "Training job in progress: $JOB_STATE"
+          while true; do
+            JOB_STATE=$(gcloud ai custom-jobs describe ${{ env.JOB_ID }} --region=us-central1 --format="value(state)")
+            echo "Training job status: $JOB_STATE"
+            if [[ "$JOB_STATE" == "SUCCEEDED" ]]; then
+              echo "Training job completed successfully."
+              break
+            elif [[ "$JOB_STATE" == "FAILED" || "$JOB_STATE" == "CANCELLED" ]]; then
+              echo "Training job failed or was cancelled: $JOB_STATE"
+              exit 1
+            fi
             sleep 60
-            gcloud ai custom-jobs describe ${{ env.JOB_ID }} --region=us-central1 --format="json" > job_status.json
-            JOB_STATE=$(jq -r '.state' job_status.json)
           done
-          if [[ "$JOB_STATE" == "FAILED" || "$JOB_STATE" == "CANCELLED" ]]; then
-            echo "Training job failed or cancelled: $JOB_STATE"
-            exit 1
-          fi
-          echo "Training job completed successfully."
 
       # Step 8: Retrieve the Model ID from Vertex AI Model Registry
       - name: Retrieve Model from Registry
@@ -108,7 +104,7 @@ jobs:
           fi
 
           if [ -z "$ENDPOINT_NAME" ]; then
-            echo "ERROR: Failed to create or retrieve endpoint. Exiting workflow."
+            echo "ERROR: Failed to create or retrieve endpoint."
             exit 1
           fi
 

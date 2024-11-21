@@ -1,19 +1,22 @@
-# Use Python 3.8 as the base image
-FROM python:3.8
+# Use a lightweight Python base image
+FROM python:3.8-slim
 
+# Set the working directory inside the container
 WORKDIR /app
 
-# Copy the requirements file and install dependencies
+# Copy requirements file and install dependencies first (caching layer)
 COPY requirements.txt /app/
-COPY train.py /app/
-ARG GCP_SA_KEY
-RUN echo "$GCP_SA_KEY" > /app/key.json
-ENV GOOGLE_APPLICATION_CREDENTIALS="/app/key.json"
-
 RUN pip install --no-cache-dir -r requirements.txt
 
+# Copy application files (train.py, etc.)
+COPY train.py /app/
 
-# Debugging: List files in the working directory during build
+# Build-time ARG for GCP Service Account Key
+ARG GCP_SA_KEY
+RUN echo "$GCP_SA_KEY" > /app/key.json
 
-# Use absolute path to run the training script
+# Environment variable for Google Cloud credentials
+ENV GOOGLE_APPLICATION_CREDENTIALS="/app/key.json"
+
+# Run the training script when the container starts
 ENTRYPOINT ["python", "/app/train.py"]
