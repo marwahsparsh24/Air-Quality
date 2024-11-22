@@ -130,8 +130,8 @@ class RandomForestPM25Model:
             print(f"Error loading model: {e}")
             self.model = None
 
-        with open(model_save_path, 'rb') as f:
-            self.model = pd.read_pickle(f)
+        # with open(model_save_path, 'rb') as f:
+        #     self.model = pd.read_pickle(f)
         # mlflow.log_param("n_estimators",100)
         # mlflow.log_param("random_state",42)
         self.X_train = None
