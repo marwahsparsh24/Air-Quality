@@ -23,13 +23,17 @@ RUN mkdir -p ${MLFLOW_TRACKING_DIR}
 COPY random_forest_train.py /app/
 COPY Prophet_train.py /app/
 COPY XGBoost_train.py /app/
+COPY RandomForest_Valid.py /app/
+COPY Prophet_Valid.py /app/
+COPY XGBoost_valid.py /app/
+
 
 RUN chmod -R 777 ${MLFLOW_TRACKING_DIR}
 
 # ENV GOOGLE_APPLICATION_CREDENTIALS="/app/service_account_key.json"
 
 # Fetch the key and run the training script
-CMD ["sh", "-c", "python /app/random_forest_train.py && python /app/Prophet_train.py && python /app/XGBoost_train.py"]
+CMD ["sh", "-c", "python /app/random_forest_train.py && python /app/RandomForest_Valid.py"]
 
 
 # CMD ["python", "app/train.py"]

@@ -90,13 +90,13 @@ class RandomForestPM25Model:
 
         # Define the bucket and the path to store the model weights
         bucket_name = "airquality-mlops-rg"
-        model_blob_path = "weights/model/model.pkl"  # Path in the bucket where the model will be saved
+        model_blob_path = "weights/rf_model.pth"  # Path in the bucket where the model will be saved
 
         # Get the bucket
         bucket = storage_client.bucket(bucket_name)
 
         # Create a blob object for the specified path
-        model_blob = bucket.blob(model_blob_path)
+        model_blob = bucket.blob(self.model_save_path)
 
         buffer = BytesIO()
         pickle.dump(self.model, buffer)  # Serialize the model weights
@@ -112,7 +112,7 @@ def main():
     mlflow.set_experiment("PM2.5 Random Forest")
     bucket_name = "airquality-mlops-rg"
     train_file_gcs = f'gs://{bucket_name}/processed/train/feature_eng_train_data.pkl'
-    model_save_path_gcs = f'gs://{bucket_name}/weights/model/model.pth'
+    model_save_path_gcs = f'gs://{bucket_name}/weights/model/rf_model.pth'
 
     if mlflow.active_run():
         mlflow.end_run()
