@@ -16,8 +16,6 @@ from io import BytesIO
 import pickle5 as pickle
 
 def setup_mlflow_tracking():
-    os.environ['GIT_PYTHON_REFRESH'] = 'quiet'
-    mlflow.tracking.context.registry.register_context('git', lambda: None)
     MLFLOW_TRACKING_DIR = os.environ.get('MLFLOW_TRACKING_DIR', '/app/mlruns')
     os.makedirs(MLFLOW_TRACKING_DIR, exist_ok=True)
     mlflow.set_tracking_uri(f"file://{MLFLOW_TRACKING_DIR}")
@@ -113,7 +111,7 @@ def main():
     setup_mlflow_tracking()
     mlflow.set_experiment("PM2.5 Random Forest")
     bucket_name = "airquality-mlops-rg"
-    train_file_gcs = f'gs://{bucket_name}/processed/train/feature_eng_data.pkl'
+    train_file_gcs = f'gs://{bucket_name}/processed/train/feature_eng_train_data.pkl'
     model_save_path_gcs = f'gs://{bucket_name}/weights/model/model.pth'
 
     if mlflow.active_run():
