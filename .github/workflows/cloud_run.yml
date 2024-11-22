@@ -221,5 +221,3 @@ jobs:
         if: always()
         run: |
           rm -f /tmp/gcp-key.json
-has context menu
-Compose
