@@ -96,7 +96,7 @@ class RandomForestPM25Model:
         bucket = storage_client.bucket(bucket_name)
 
         # Create a blob object for the specified path
-        model_blob = bucket.blob(self.model_save_path)
+        model_blob = bucket.blob(model_blob_path)
 
         buffer = BytesIO()
         pickle.dump(self.model, buffer)  # Serialize the model weights
