@@ -16,8 +16,8 @@ from io import BytesIO
 import pickle5 as pickle
 
 def setup_mlflow_tracking():
-    """Configure MLflow tracking location"""
-    # Option 1: Local filesystem tracking
+    os.environ['GIT_PYTHON_REFRESH'] = 'quiet'
+    mlflow.tracking.context.registry.register_context('git', lambda: None)
     MLFLOW_TRACKING_DIR = os.environ.get('MLFLOW_TRACKING_DIR', '/app/mlruns')
     os.makedirs(MLFLOW_TRACKING_DIR, exist_ok=True)
     mlflow.set_tracking_uri(f"file://{MLFLOW_TRACKING_DIR}")
@@ -33,8 +33,8 @@ class RandomForestPM25Model:
         }
         #self.model = RandomForestRegressor(n_estimators=100, random_state=42)
         self.model = RandomForestRegressor(random_state=42)
-        mlflow.log_param("n_estimators",100)
-        mlflow.log_param("random_state",42)
+        # mlflow.log_param("n_estimators",100)
+        # mlflow.log_param("random_state",42)
         self.X_train = None
         self.y_train = None
         self.X_test = None
