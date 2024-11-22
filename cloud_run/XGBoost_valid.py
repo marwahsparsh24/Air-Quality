@@ -302,7 +302,7 @@ def main():
     bucket_name = "airquality-mlops-rg"
     train_file_gcs = f'processed/train/feature_eng_train_data.pkl'
     test_file_gcs = f'processed/test/feature_eng_test_data.pkl'
-    model_save_path_gcs = f'weights/xgboost_model.pth'
+    model_save_path_gcs = f'weights/xgboost_pm25_model.pth'
     mlflow.set_experiment("PM2.5 XGBoost Prediction")
     
     # Step 1: Load Data using DataFeatureEngineer
