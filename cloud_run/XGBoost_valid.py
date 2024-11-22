@@ -113,6 +113,26 @@ class XGBoostPM25Model:
         }
         self.model_save_path = model_save_path
         self.model = xgb.XGBRegressor(random_state=42)
+        bucket_name = "airquality-mlops-rg"
+        storage_client = storage.Client()
+        bucket = storage_client.bucket(bucket_name)
+        blob = bucket.blob(self.model_save_path)
+
+        temp_file_name = "/tmp/temp_model.pth"
+        # Download the file from the bucket to the temporary path
+        blob.download_to_filename(temp_file_name)
+
+        try:
+            self.model.load_model(temp_file_name)
+            # with open(temp_file_name, 'rb') as f:
+            #     self.model = pd.read_pickle(f)
+            print("Model loaded successfully using pandas.read_pickle.")
+        except Exception as e:
+            print(f"Error loading model: {e}")
+            self.model = None
+
+
+
         self.model.load_model(self.model_save_path)
         self.X_train = None
         self.y_train = None
