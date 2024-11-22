@@ -47,7 +47,6 @@ class DataFeatureEngineer:
         blob = bucket.blob(blob_name)
         pickle_data = blob.download_as_bytes() 
         self.data = pickle.load(BytesIO(pickle_data))
-        # self.data = pd.read_pickle(self.file_path)
         print(f"Data loaded from {self.file_path}.")
     
     def handle_skewness(self, column_name='pm25'):
@@ -110,7 +109,6 @@ class RandomForestPM25Model:
         self.param_grid = {
             'n_estimators': [100, 200]
         }
-        #self.model = RandomForestRegressor(n_estimators=100, random_state=42)
         self.model = RandomForestRegressor(random_state=42)
 
         bucket_name = "airquality-mlops-rg"
@@ -129,11 +127,6 @@ class RandomForestPM25Model:
         except Exception as e:
             print(f"Error loading model: {e}")
             self.model = None
-
-        # with open(model_save_path, 'rb') as f:
-        #     self.model = pd.read_pickle(f)
-        # mlflow.log_param("n_estimators",100)
-        # mlflow.log_param("random_state",42)
         self.X_train = None
         self.y_train = None
         self.X_test = None
@@ -178,12 +171,6 @@ class RandomForestPM25Model:
         self.X_test = test_data.drop(columns=['pm25'])
 
     def hyperparameter_sensitivity(self, param_name, param_values):
-        """Analyzes sensitivity of model performance to a specified hyperparameter.
-        
-        Parameters:
-            param_name (str): The hyperparameter to vary.
-            param_values (list): List of values to test for the specified hyperparameter.
-        """
         sensitivity_results = []
 
         for value in param_values:
@@ -226,11 +213,6 @@ class RandomForestPM25Model:
         destination_blob_name = f'artifacts/{param_name}_sensitivity_randomforest.png'
         blob = bucket.blob(destination_blob_name)
         blob.upload_from_filename(plot_path)
-        
-        # plot_path = os.path.join(os.getcwd(), f'artifacts/{param_name}_sensitivity_randomforest.png')
-        # plt.savefig(plot_path)
-        # mlflow.log_artifact(plot_path)
-        # print(f"Sensitivity plot saved at {plot_path}")
     
     def shap_analysis(self):
         storage_client = storage.Client()
@@ -294,12 +276,6 @@ class RandomForestPM25Model:
             print(f"Error loading model: {e}")
             self.model = None
 
-        # Load the model weights from the specified path
-        # model_save_path = self.model_save_path
-        # with open(model_save_path, 'rb') as f:
-        #     self.model = pd.read_pickle(f)
-        # print(f"Model loaded from {model_save_path}")
-
     def plot_results(self, y_pred_original):
         storage_client = storage.Client()
         bucket_name = "airquality-mlops-rg"
@@ -322,7 +298,7 @@ class RandomForestPM25Model:
         mlflow.log_artifact(plot_path)
         print(f"Plot saved at {plot_path}")
 
-        destination_blob_name = f'artifacts/shap_summary_plot_randomforest.png'
+        destination_blob_name = f'pm25_actual_vs_predicted_RandomForest.png'
         blob = bucket.blob(destination_blob_name)
         blob.upload_from_filename(plot_path)
 
@@ -335,28 +311,14 @@ def main():
     train_file_gcs = f'processed/train/feature_eng_train_data.pkl'
     test_file_gcs = f'processed/test/feature_eng_test_data.pkl'
     model_save_path_gcs = f'weights/rf_model.pth'
-    # main_path = os.path.abspath(os.path.join(curr_dir, '.'))
-    # data_prepocessing_path = os.path.abspath(os.path.join(main_path, 'DataPreprocessing'))
-    # data_prepocessing_path_pkl = os.path.abspath(os.path.join(main_path, 'DataPreprocessing/src/data_store_pkl_files'))
-    # data_prepocessing_path_pkl = os.path.join(curr_dir,'DataPreprocessing/src/data_store_pkl_files')
     
     file_path = f'processed/test/no_anamoly_test_data.pkl'
-    # file_path = os.path.join(data_prepocessing_path_pkl, 'test_data/no_anamoly_test_data.pkl')
-
-    # sys.path.append(main_path)
-    # sys.path.append(data_prepocessing_path)
-    # sys.path.append(data_prepocessing_path_pkl)
     engineer = DataFeatureEngineer(file_path)
     engineer.load_data()
     chosen_column = engineer.handle_skewness(column_name='pm25')
     engineer.feature_engineering(chosen_column)
     fitting_lambda = engineer.get_lambda()
     mlflow.log_param("lambda_value", fitting_lambda)
-
-
-    #train_file = os.path.join(data_prepocessing_path_pkl, 'train_data/feature_eng_train_data.pkl')
-    #test_file = os.path.join(data_prepocessing_path_pkl, 'test_data/feature_eng_test_data.pkl')
-    #model_save_path = os.path.join(curr_dir, 'weights/randomforest_pm25_model.pth')  # Save in .pth format
 
     if mlflow.active_run():
         mlflow.end_run()

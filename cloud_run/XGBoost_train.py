@@ -35,11 +35,6 @@ class XGBoostPM25Model:
         }
         self.model_save_path = model_save_path
         self.model = xgb.XGBRegressor(random_state=42)
-        #self.model = xgb.XGBRegressor(n_estimators=100, learning_rate=0.01, max_depth=5, random_state=42)
-        # mlflow.log_param("n_estimators",100)
-        # mlflow.log_param("learning_rate",0.01)
-        # mlflow.log_param("random_state",42)
-        # mlflow.log_param("max_depth",5)
         self.X_train = None
         self.y_train = None
         self.X_test = None
@@ -134,5 +129,4 @@ def main():
         xgb_model.save_weights()
     mlflow.end_run()
 if __name__ == "__main__":
-    # mlflow.set_tracking_uri("file:///opt/airflow/dags/mlruns")
     main()
