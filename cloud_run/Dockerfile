@@ -20,14 +20,14 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN mkdir -p ${MLFLOW_TRACKING_DIR}
 
 # Copy application files
-COPY train.py /app/
+COPY random_forest_train.py /app/
 
 RUN chmod -R 777 ${MLFLOW_TRACKING_DIR}
 
 # ENV GOOGLE_APPLICATION_CREDENTIALS="/app/service_account_key.json"
 
 # Fetch the key and run the training script
-ENTRYPOINT ["sh", "-c", "python /app/train.py"]
+ENTRYPOINT ["sh", "-c", "python /app/random_forest_train.py"]
 
 
 # CMD ["python", "app/train.py"]
