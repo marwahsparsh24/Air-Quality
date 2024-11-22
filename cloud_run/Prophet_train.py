@@ -111,7 +111,7 @@ def main():
 
     # Configure MLflow
     #mlflow.set_tracking_uri("postgresql://airquality:Prediction@34.42.22.132:5432/air?connect_timeout=100")  # Use GCS for artifact storage
-    #mlflow.set_experiment("PM2.5 Prophet")
+    mlflow.set_experiment("PM2.5 Prophet")
 
     if mlflow.active_run():
         mlflow.end_run()
