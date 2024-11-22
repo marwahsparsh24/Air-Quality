@@ -15,6 +15,13 @@ import io
 from io import BytesIO
 import pickle5 as pickle
 
+def setup_mlflow_tracking():
+    """Configure MLflow tracking location"""
+    # Option 1: Local filesystem tracking
+    MLFLOW_TRACKING_DIR = os.environ.get('MLFLOW_TRACKING_DIR', '/app/mlruns')
+    os.makedirs(MLFLOW_TRACKING_DIR, exist_ok=True)
+    mlflow.set_tracking_uri(f"file://{MLFLOW_TRACKING_DIR}")
+
 class RandomForestPM25Model:
     def __init__(self, train_file, test_file, lambda_value, model_save_path):
         self.train_file = train_file
@@ -26,8 +33,8 @@ class RandomForestPM25Model:
         }
         #self.model = RandomForestRegressor(n_estimators=100, random_state=42)
         self.model = RandomForestRegressor(random_state=42)
-        # mlflow.log_param("n_estimators",100)
-        # mlflow.log_param("random_state",42)
+        mlflow.log_param("n_estimators",100)
+        mlflow.log_param("random_state",42)
         self.X_train = None
         self.y_train = None
         self.X_test = None
@@ -36,8 +43,6 @@ class RandomForestPM25Model:
         self.y_test_original = None
     
     def load_data(self):
-        # if "GOOGLE_APPLICATION_CREDENTIALS" not in os.environ:
-        #     raise EnvironmentError("GOOGLE_APPLICATION_CREDENTIALS is not set. Ensure the service account key is correctly configured.")
         client = storage.Client()
 
         # Specify your bucket name and the path to the pickle file in the 'processed' folder
@@ -66,14 +71,14 @@ class RandomForestPM25Model:
 
         # Log the best parameters and best RMSE
         best_params = grid_search.best_params_
-        #mlflow.log_params(best_params)
+        mlflow.log_params(best_params)
         print("Best parameters:", best_params)
         
         # Set the model to the best estimator
         self.model = grid_search.best_estimator_
 
         # Log the best model in MLflow
-        #mlflow.sklearn.log_model(self.model, "XGBoost", input_example=self.X_train[:5])
+        mlflow.sklearn.log_model(self.model, "XGBoost", input_example=self.X_train[:5])
     
     # def train_model(self):
     #     # Train the model
@@ -105,24 +110,25 @@ class RandomForestPM25Model:
         print(f"Model weights saved and uploaded to GCS at {model_blob_path}")
 
 def main():
-    #mlflow.set_experiment("PM2.5 Random Forest")
+    setup_mlflow_tracking()
+    mlflow.set_experiment("PM2.5 Random Forest")
     bucket_name = "airquality-mlops-rg"
     train_file_gcs = f'gs://{bucket_name}/processed/train/feature_eng_data.pkl'
     model_save_path_gcs = f'gs://{bucket_name}/weights/model/model.pth'
 
-    # if mlflow.active_run():
-    #     mlflow.end_run()
+    if mlflow.active_run():
+        mlflow.end_run()
 
-    # with mlflow.start_run():
-    start_time = time.time()
-    rf_model = RandomForestPM25Model(train_file_gcs, None, None, model_save_path_gcs)
-    rf_model.load_data()
-    rf_model.grid_search_cv()
-    #rf_model.train_model()
-    train_duration = time.time() - start_time
-    #mlflow.log_metric("training_duration", train_duration)
-    rf_model.save_weights()
-    # mlflow.end_run()
+    with mlflow.start_run():
+        start_time = time.time()
+        rf_model = RandomForestPM25Model(train_file_gcs, None, None, model_save_path_gcs)
+        rf_model.load_data()
+        rf_model.grid_search_cv()
+        #rf_model.train_model()
+        train_duration = time.time() - start_time
+        mlflow.log_metric("training_duration", train_duration)
+        rf_model.save_weights()
+    mlflow.end_run()
 
 if __name__ == "__main__":
     # mlflow.set_tracking_uri("file:///opt/airflow/dags/mlruns")
