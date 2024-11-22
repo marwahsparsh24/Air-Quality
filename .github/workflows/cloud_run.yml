@@ -5,6 +5,12 @@
 #     branches:
 #       - vertexai  # Trigger the workflow on push to this branch
 
+# env:
+#   GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+#   GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+#   IMAGE_NAME: "cloud_run"
+#   GCS_BUCKET: "airquality-mlops-rg"
+
 # jobs:
 #   deploy-pipeline:
 #     runs-on: ubuntu-latest
@@ -37,102 +43,180 @@
 #             -t gcr.io/${{ secrets.GCP_PROJECT }}/cloud-image:latest \
 #             -f ./cloud_run/Dockerfile ./cloud_run
       
-#       - name: Test Docker Image
+#       - name: Run Model Training Script
 #         run: |
+#           echo "Starting model training..."
 #           docker run --rm \
-#             -e GOOGLE_APPLICATION_CREDENTIALS=/app/service_account_key.json \
-#             -v /tmp/service_account_key.json:/app/service_account_key.json:ro \
-#             gcr.io/${{ secrets.GCP_PROJECT }}/cloud-image:latest
+#           -v $(pwd):/app \
+#           -e GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-key.json \
+#           $REGISTRY/$IMAGE_NAME:latest \
+#           python cloud_run/train.py
+#           echo "Model training completed."
 
 #       # Step 5: Push Docker Image to GCR
 #       - name: Push Docker Image
 #         run: docker push gcr.io/${{ secrets.GCP_PROJECT }}/cloud-image:latest
 
 
-name: Model Training and Storage Pipeline
+# # name: Model Training and Storage Pipeline
+# # on:
+# #   push:
+# #     branches:
+# #       - vertexai
+# #   workflow_dispatch:
+
+# # env:
+# #   GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+# #   GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+# #   IMAGE_NAME: "cloud_run"
+# #   REGISTRY: "us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/gcr.io"
+# #   GCS_BUCKET: "airquality-mlops-rg"
+
+# # jobs:
+# #   model_pipeline:
+# #     runs-on: ubuntu-latest
+# #     permissions:
+# #       contents: read
+# #       id-token: write
+
+# #     steps:
+# #       - name: Checkout Repository
+# #         uses: actions/checkout@v2
+
+# #       - name: Clean up Docker
+# #         run: docker system prune -af --volumes
+
+# #       - name: Set up Docker Buildx
+# #         uses: docker/setup-buildx-action@v2
+
+# #       - id: 'auth'
+# #         name: 'Authenticate to Google Cloud'
+# #         uses: 'google-github-actions/auth@v1'
+# #         with:
+# #           credentials_json: '${{ secrets.GCP_SA_KEY }}'
+
+# #       - name: 'Set up Cloud SDK'
+# #         uses: 'google-github-actions/setup-gcloud@v1'
+
+# #       - name: Configure Docker for GCP Artifact Registry
+# #         run: |
+# #           gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
+
+# #       - name: Create Docker Network
+# #         run: docker network create mlflow-network
+
+# #       - name: Build and Push Docker Image
+# #         run: |
+# #           echo "Building Docker image..."
+# #           docker build -f cloud_run/Dockerfile -t $REGISTRY/$IMAGE_NAME:latest .
+# #           echo "Pushing image to Artifact Registry..."
+# #           docker push $REGISTRY/$IMAGE_NAME:latest
+          
+# #       - name: Run Model Training Script
+# #         run: |
+# #           echo "Starting model training..."
+# #           docker run --rm \
+# #           -v $(pwd):/app \
+# #           -e GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-key.json \
+# #           $REGISTRY/$IMAGE_NAME:latest \
+# #           python cloud_run/train.py
+# #           echo "Model training completed."
+
+# #       - name: Notify on Success
+# #         if: success()
+# #         run: |
+# #           echo "✅ Pipeline completed successfully:"
+# #           echo "- Model trained"
+# #           echo "- Model uploaded to GCS bucket: $GCS_BUCKET"
+# #           echo "- Docker image pushed to: $REGISTRY/$IMAGE_NAME:latest"
+
+# #       - name: Notify on Failure
+# #         if: failure()
+# #         run: |
+# #           echo "❌ Pipeline failed:"
+# #           echo "- Check the logs above for detailed error messages"
+# #           echo "- Verify GCP permissions and credentials"
+# #           echo "- Ensure all required services are enabled"
+
+# #       - name: Cleanup
+# #         if: always()
+# #         run: |
+# #           echo "Performing cleanup..."
+# #           rm -f model_output/best_model.pth
+# #           docker system prune -af --volumes
+# #           echo "Cleanup completed."
+
+
+
+
+
+name: Deploy registry
+ 
 on:
   push:
     branches:
       - vertexai
   workflow_dispatch:
-
+ 
 env:
   GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
-  GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-  IMAGE_NAME: "cloud_run"
-  REGISTRY: "us-central1-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/gcr.io"
-  GCS_BUCKET: "airquality-mlops-rg"
-
+  IMAGE_NAME: cloud_run
+  GCS_BUCKET: airquality-mlops-rg
+  REGISTRY: gcr.io/${{ secrets.GCP_PROJECT }}
+  IMAGE_TAG: ${{ github.sha }}
+ 
 jobs:
-  model_pipeline:
+  deploy-pipeline:
     runs-on: ubuntu-latest
     permissions:
       contents: read
       id-token: write
-
+ 
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
-
-      - name: Clean up Docker
-        run: docker system prune -af --volumes
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - id: 'auth'
-        name: 'Authenticate to Google Cloud'
-        uses: 'google-github-actions/auth@v1'
+        uses: actions/checkout@v3
+ 
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
         with:
-          credentials_json: '${{ secrets.GCP_SA_KEY }}'
-
-      - name: 'Set up Cloud SDK'
-        uses: 'google-github-actions/setup-gcloud@v1'
-
-      - name: Configure Docker for GCP Artifact Registry
+          project_id: ${{ secrets.GCP_PROJECT }}
+ 
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+ 
+      - name: Configure Docker Authentication
+        run: gcloud auth configure-docker
+ 
+      # Create a temporary credentials file
+      - name: Create credentials file
         run: |
-          gcloud auth configure-docker us-central1-docker.pkg.dev --quiet
-
-      - name: Create Docker Network
-        run: docker network create mlflow-network
-
-      - name: Build and Push Docker Image
+          echo '${{ secrets.GCP_SA_KEY }}' > /tmp/gcp-key.json
+          chmod 600 /tmp/gcp-key.json
+ 
+      - name: Build Docker Image
         run: |
-          echo "Building Docker image..."
-          docker build -f cloud_run/Dockerfile -t $REGISTRY/$IMAGE_NAME:latest .
-          # echo "Pushing image to Artifact Registry..."
-          # docker push $REGISTRY/$IMAGE_NAME:latest
-          
-      - name: Run Model Training Script
+          docker build \
+            --build-arg GCP_PROJECT=${{ secrets.GCP_PROJECT }} \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+            -f ./cloud_run/Dockerfile ./cloud_run
+ 
+      - name: Run Model Training
         run: |
-          echo "Starting model training..."
           docker run --rm \
-          -v $(pwd):/app \
-          -e GOOGLE_APPLICATION_CREDENTIALS=/app/gcp-key.json \
-          $REGISTRY/$IMAGE_NAME:latest \
-          python cloud_run/train.py
-          echo "Model training completed."
-
-      - name: Notify on Success
-        if: success()
+            -v /tmp/gcp-key.json:/tmp/gcp-key.json:ro \
+            -e GOOGLE_APPLICATION_CREDENTIALS=/tmp/gcp-key.json \
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+ 
+      - name: Push Docker Images
         run: |
-          echo "✅ Pipeline completed successfully:"
-          echo "- Model trained"
-          echo "- Model uploaded to GCS bucket: $GCS_BUCKET"
-          echo "- Docker image pushed to: $REGISTRY/$IMAGE_NAME:latest"
-
-      - name: Notify on Failure
-        if: failure()
-        run: |
-          echo "❌ Pipeline failed:"
-          echo "- Check the logs above for detailed error messages"
-          echo "- Verify GCP permissions and credentials"
-          echo "- Ensure all required services are enabled"
-
-      - name: Cleanup
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+ 
+      # Always clean up credentials
+      - name: Clean up credentials
         if: always()
         run: |
-          echo "Performing cleanup..."
-          rm -f model_output/best_model.pth
-          docker system prune -af --volumes
-          echo "Cleanup completed."
+          rm -f /tmp/gcp-key.json
