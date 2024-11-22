@@ -47,7 +47,7 @@ class RandomForestPM25Model:
 
         # Specify your bucket name and the path to the pickle file in the 'processed' folder
         bucket_name = 'airquality-mlops-rg'
-        pickle_file_path = 'processed/train/feature_eng_data.pkl'
+        pickle_file_path = 'processed/train/feature_eng_train_data.pkl'
 
         # Get the bucket and the blob (file)
         bucket = client.bucket(bucket_name)
