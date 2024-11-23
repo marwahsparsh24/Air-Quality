@@ -23,7 +23,6 @@ def load_model():
             blob = bucket.blob(model_path)
             model_str = blob.download_as_string()
             model = pickle.loads(model_str)
-            print("Loaded")
     except Exception as e:
         print(f"Error loading model: {str(e)}")
 
@@ -62,13 +61,4 @@ def flask_app(request):
     """
     Cloud Function entry point
     """
-    with app.test_request_context(
-        path=request.path,
-        base_url=request.base_url,
-        query_string=request.query_string,
-        method=request.method,
-        headers=request.headers,
-        data=request.data,
-        environ_base=request.environ
-    ):
-        return app.full_dispatch_request()
+    return app.wsgi_app(request.environ, request.get_response())
