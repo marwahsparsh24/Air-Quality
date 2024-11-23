@@ -209,7 +209,7 @@ class ProphetPM25Model:
         mlflow.log_artifact(shap_plot_path)
         print(f"SHAP summary plot saved at {shap_plot_path}")
 
-        destination_blob_name = f'artifacts/shap_summary_plot_randomforest.png'
+        destination_blob_name = f'artifacts/shap_summary_plot_prophet.png'
         blob = bucket.blob(destination_blob_name)
         blob.upload_from_filename(shap_plot_path)
 
@@ -287,7 +287,7 @@ class ProphetPM25Model:
         plt.savefig(plot_path)
         mlflow.log_artifact(plot_path)
         print(f"Plot saved at {plot_path}")
-        destination_blob_name = f'pm25_actual_vs_predicted_RandomForest.png'
+        destination_blob_name = f'artifacts/pm25_actual_vs_predicted_Prophet.png'
         blob = bucket.blob(destination_blob_name)
         blob.upload_from_filename(plot_path)
 # Main function to orchestrate the workflow

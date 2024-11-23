@@ -33,7 +33,7 @@ RUN chmod -R 777 ${MLFLOW_TRACKING_DIR}
 # ENV GOOGLE_APPLICATION_CREDENTIALS="/app/service_account_key.json"
 
 # Fetch the key and run the training script
-CMD ["sh", "-c", "python /app/Prophet_train.py && python /app/Prophet_Valid.py"]
+CMD ["sh", "-c", "python /app/Prophet_train.py && python /app/Prophet_Valid.py && python /app/XGBoost_train.py && python /app/XGBoost_valid.py && /app/random_forest_train.py && /app/RandomForest_Valid.py"]
 
 
 # CMD ["python", "app/train.py"]
