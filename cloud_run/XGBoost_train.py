@@ -93,18 +93,23 @@ class XGBoostPM25Model:
         bucket_name = "airquality-mlops-rg"
         model_blob_path = "weights/xgboost_pm25_model.pth"  # Path in the bucket where the model will be saved
 
+        local_path = "/tmp/xgboost_pm25_model.pth"
+        self.model.save_model(local_path)
+
         # Get the bucket
         bucket = storage_client.bucket(bucket_name)
 
         # Create a blob object for the specified path
         model_blob = bucket.blob(model_blob_path)
 
-        buffer = BytesIO()
-        pickle.dump(self.model, buffer)  # Serialize the model weights
-        buffer.seek(0)  # Ensure the buffer is at the start before uploading
+        # buffer = BytesIO()
+        # pickle.dump(self.model, buffer)  # Serialize the model weights
+        # buffer.seek(0)  # Ensure the buffer is at the start before uploading
 
         # Upload the serialized model weights to GCS
-        model_blob.upload_from_file(buffer, content_type='application/octet-stream')
+        # model_blob.upload_from_file(buffer, content_type='application/octet-stream')
+
+        model_blob.upload_from_filename(local_path)
 
         print(f"Model weights saved and uploaded to GCS at {model_blob_path}")
 

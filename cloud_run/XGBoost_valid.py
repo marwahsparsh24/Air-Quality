@@ -131,9 +131,6 @@ class XGBoostPM25Model:
             print(f"Error loading model: {e}")
             self.model = None
 
-
-
-        self.model.load_model(self.model_save_path)
         self.X_train = None
         self.y_train = None
         self.X_test = None
