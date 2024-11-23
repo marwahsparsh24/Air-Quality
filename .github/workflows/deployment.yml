@@ -13,6 +13,7 @@ env:
   SERVICE_NAME: flask-service
   IMAGE_TAG: ${{ github.sha }}
   REGISTRY: gcr.io/${{ secrets.GCP_PROJECT }}
+  KEY: ${{ secrets.GCP_SA_KEY }}
 
 jobs:
   deploy-pipeline:
