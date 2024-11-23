@@ -20,6 +20,12 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
 COPY app_flask.py /app/
+COPY /tmp/gcp-key.json /tmp/gcp-key.json
+RUN gcloud auth activate-service-account --key-file=/tmp/gcp-key.json
+RUN apt-get update && apt-get install -y curl gnupg && \
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] http://packages.cloud.google.com/apt cloud-sdk main" | tee -a /etc/apt/sources.list.d/google-cloud-sdk.list && \
+    curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key --keyring /usr/share/keyrings/cloud.google.gpg add - && \
+    apt-get update && apt-get install -y google-cloud-sdk
 # COPY model.pkl /app/
 # COPY /tmp/gcp-key.json /app/
 
