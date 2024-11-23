@@ -1,28 +1,52 @@
-import http.client
+import requests
 import json
 
-# Parse the URL to connect
-conn = http.client.HTTPSConnection("flask-service-681553118721.us-central1.run.app")
+# Define the endpoint URL
+endpoint = "https://us-central1-airquality-438719.cloudfunctions.net/predict-function/predict"
 
-# Prepare the JSON payload
-payload = json.dumps({
+# Define the input payload with the correct feature names
+payload = {
     "instances": [
-        [2.3407014970657998, 2.4594060470165027, 3.024640805476224, 3.179658388901441,
-         2.9151175097788653, 2.1352107522181587, 2.6082494498528423, 2.6757891667428324,
-         2.400716683994664, 0.36545726606972523, 0.4205211380627995, 0.4162462629814901,
-         2.5199614732626525, 2.5693165132876743, 2.555998428428869, -0.1187045499507029,
-         -0.6839393084104244, 20.0, 4.0, 7.0, 1.0, -0.8660254037844386, 0.5000000000000001,
-         -0.433883739117558, -0.9009688679024191]
+        {
+            "pm25_boxcox": 0.5,
+            "lag_1": 0.6,
+            "lag_2": 0.7,
+            "lag_3": 0.8,
+            "lag_4": 0.9,
+            "lag_5": 1.0,
+            "rolling_mean_3": 0.4,
+            "rolling_mean_6": 0.3,
+            "rolling_mean_24": 0.2,
+            "rolling_std_3": 0.1,
+            "rolling_std_6": 0.2,
+            "rolling_std_24": 0.3,
+            "ema_3": 0.7,
+            "ema_6": 0.6,
+            "ema_24": 0.5,
+            "diff_1": 0.4,
+            "diff_2": 0.3,
+            "hour": 15,
+            "day_of_week": 2,
+            "day_of_year": 123,
+            "month": 5,
+            "sin_hour": 0.707,
+            "cos_hour": 0.707,
+            "sin_day_of_week": 0.866,
+            "cos_day_of_week": 0.5
+        }
     ]
-})
+}
 
-# Set headers
-headers = {"Content-Type": "application/json"}
+# Send the POST request to the endpoint
+try:
+    headers = {"Content-Type": "application/json"}
+    response = requests.post(endpoint, headers=headers, data=json.dumps(payload))
 
-# Send the POST request
-conn.request("POST", "/predict", payload, headers)
+    # Check the status code and print the response
+    if response.status_code == 200:
+        print("Predictions:", response.json())
+    else:
+        print(f"Error: {response.status_code}, Response: {response.text}")
 
-# Get the response
-response = conn.getresponse()
-print("Status Code:", response.status)
-print("Response:", response.read().decode())
+except Exception as e:
+    print(f"An error occurred: {e}")
