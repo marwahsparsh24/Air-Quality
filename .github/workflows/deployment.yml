@@ -38,13 +38,6 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-      # Step 4: Set up gcloud CLI
-      - name: Set up gcloud CLI
-        uses: google-github-actions/setup-gcloud@v1
-        with:
-          project_id: ${{ env.PROJECT_ID }}
-          install_components: gcloud,docker
-
       # Step 5: Configure Docker Authentication
       - name: Configure Docker Authentication
         run: gcloud auth configure-docker
