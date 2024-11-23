@@ -1,0 +1,79 @@
+name: Endpoint Deployment
+ 
+on:
+  push:
+    branches:
+      - vertexai
+  workflow_dispatch:
+ 
+env:
+  PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+  REGION: us-central1
+  IMAGE_NAME: flask-app
+  SERVICE_NAME: flask-service
+  IMAGE_TAG: ${{ github.sha }}
+  REGISTRY: gcr.io/${{ secrets.GCP_PROJECT }}
+ 
+jobs:
+  deploy-pipeline:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+ 
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+ 
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT }}
+ 
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      - name: Set up gcloud CLI
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ env.PROJECT_ID }}
+          install_components: ['gcloud', 'docker']
+ 
+      - name: Configure Docker Authentication
+        run: gcloud auth configure-docker
+ 
+      # Create a temporary credentials file
+      - name: Create credentials file
+        run: |
+          echo '${{ secrets.GCP_SA_KEY }}' > /tmp/gcp-key.json
+          chmod 600 /tmp/gcp-key.json
+ 
+      - name: Build Docker Image
+        run: |
+          docker build \
+            --build-arg GCP_PROJECT=${{ secrets.GCP_PROJECT }} \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
+            -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+            -f ./endpoint_deployment/Dockerfile ./endpoint_deployment
+ 
+      - name: Push Docker Images
+        run: |
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+
+      # Step 6: Deploy to Cloud Run
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy ${{ env.SERVICE_NAME }} \
+            --image gcr.io/${{ env.PROJECT_ID }}/${{ env.IMAGE_NAME }}:latest \
+            --platform managed \
+            --region ${{ env.REGION }} \
+            --allow-unauthenticated
+ 
+      # Always clean up credentials
+      - name: Clean up credentials
+        if: always()
+        run: |
+          rm -f /tmp/gcp-key.json
