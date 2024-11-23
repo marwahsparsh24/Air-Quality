@@ -21,7 +21,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy application code
 COPY app_flask.py /app/
 # COPY model.pkl /app/
-COPY /tmp/gcp-key.json /app/
+# COPY /tmp/gcp-key.json /app/
 
 # Expose the application port
 EXPOSE 8080
