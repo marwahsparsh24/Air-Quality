@@ -18,3 +18,4 @@ google-cloud-secret-manager
 flask
 gunicorn
 google-cloud-aiplatform
+functions-framework==3.*
