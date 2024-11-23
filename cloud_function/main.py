@@ -58,7 +58,7 @@ def predict():
     except Exception as e:
         return flask.jsonify({"error": str(e)}), 400
 
-def flask_function(request):
+def flask_app(request):
     """
     Cloud Function entry point
     """
