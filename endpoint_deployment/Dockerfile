@@ -19,10 +19,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy application code
-COPY flask.py /app/
+COPY app_flask.py /app/
+# COPY model.pkl /app/
 
 # Expose the application port
 EXPOSE 8080
 
 # Use Python to run the app (or replace with Gunicorn for production)
-CMD ["python", "flask.py"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:8080", "app_flask:app"]
