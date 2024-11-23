@@ -40,4 +40,5 @@ jobs:
             --region us-central1 \
             --entry-point flask_app \
             --source ./cloud_function \
+            --memory 512MB \
             --allow-unauthenticated
