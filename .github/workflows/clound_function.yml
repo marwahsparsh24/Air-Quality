@@ -35,7 +35,7 @@ jobs:
       - name: Deploy to Cloud Functions
         run: |
           gcloud functions deploy predict-function \
-            --runtime python38 \
+            --runtime python39 \
             --trigger-http \
             --region us-central1 \
             --entry-point flask_app \
