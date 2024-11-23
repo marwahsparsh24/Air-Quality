@@ -3,7 +3,7 @@ name: Deploy to Google Cloud Functions
 on:
   push:
     branches:
-      - main
+      - vertexai
   workflow_dispatch:
 
 jobs:
