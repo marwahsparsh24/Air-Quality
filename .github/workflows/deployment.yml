@@ -71,8 +71,6 @@ jobs:
             --platform managed \
             --region ${{ env.REGION }} \
             --allow-unauthenticated
-            --timeout=3600 \
-            --memory=2Gi
 
       # Step 10: Always clean up credentials
       - name: Clean up credentials
