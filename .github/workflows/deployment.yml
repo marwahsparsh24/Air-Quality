@@ -62,9 +62,7 @@ jobs:
           docker run --rm \
             -v /tmp/gcp-key.json:/tmp/gcp-key.json:ro \
             -e GOOGLE_APPLICATION_CREDENTIALS=/tmp/gcp-key.json \
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }} \
-            sh -c "ls -l /tmp && cat /tmp/gcp-key.json && echo 'Mount successful, exiting.'"
-
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.IMAGE_TAG }}
 
       # Step 8: Push Docker Images
       - name: Push Docker Images
