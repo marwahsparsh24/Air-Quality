@@ -22,7 +22,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY flask.py /app/
 
 # Expose the application port
-EXPOSE $AIP_HTTP_PORT
+EXPOSE 8080
 
 # Use Python to run the app (or replace with Gunicorn for production)
 CMD ["python", "flask.py"]
