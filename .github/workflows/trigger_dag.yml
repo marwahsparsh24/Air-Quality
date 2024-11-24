@@ -1,0 +1,25 @@
+name: Trigger Airflow DAG
+
+on:
+  workflow_dispatch:  # Allows manual triggering of the workflow
+  push:               # Automatically triggers on push to the main branch
+    branches:
+      - vertexai
+
+jobs:
+  trigger-dag:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Trigger Airflow DAG
+      env:
+        AIRFLOW_USERNAME: admin  # Airflow admin username
+        AIRFLOW_PASSWORD: ksmhwqrzhjllqsaz  # Airflow admin password
+        AIRFLOW_VM_IP: 34.170.107.190:8080        # External IP of your Airflow instance
+        AIRFLOW_DAG_ID: datapipeline      # DAG ID to trigger
+      run: |
+        echo "Triggering Airflow DAG: $AIRFLOW_DAG_ID..."
+        curl -X POST "http://34.170.107.190:8080/api/v1/dags/datapipeline/dagRuns" \
+             -H "Content-Type: application/json" \
+             -u "admin:ksmhwqrzhjllqsaz" \
+             -d '{"dag_run_id": "github_action_$(date +%s)"}'
