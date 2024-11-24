@@ -1,22 +1,2 @@
-# pytest
-# numpy 
-# pandas
-# scikit-learn
-# kneed
-# matplotlib
-# seaborn
-# xgboost
-# scipy
-# fairlearn
-# mlflow
-# prophet
-# shap
-# psycopg2-binary
-# google-cloud-storage
-# google-cloud-secret-manager
-# flask
-# gunicorn
-# google-cloud-aiplatform
-# functions-framework==3.*
 streamlit
 requests
