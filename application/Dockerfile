@@ -5,7 +5,7 @@ FROM python:3.9-slim
 WORKDIR /app
 
 # Copy application files
-COPY app.py /app
+COPY streamlit.py /app
 COPY requirements.txt /app
 
 # Install dependencies
