@@ -59,6 +59,13 @@ jobs:
           fi
         done
 
+    - name: Send Email Notification for DAG Completion
+      if: always()
+      run: |
+        status="${{ job.status }}"
+        echo -e "Subject: Airflow DAG ${status}\n\nThe Airflow DAG run (ID: ${{ steps.unique_id.outputs.dag_run_id }}) completed with status: ${status}" \
+          | sendmail -S smtp.gmail.com:587 -au ${{ secrets.SMTP_EMAIL }} -ap ${{ secrets.SMTP_PASSWORD }} ${{ secrets.TO_EMAIL }}
+
   # Job 2: Deploy Registry
   deploy-pipeline:
     runs-on: ubuntu-latest
@@ -121,6 +128,13 @@ jobs:
         if: always()
         run: rm -f /tmp/gcp-key.json
 
+      - name: Send Email Notification for Deploy Pipeline
+        if: always()
+        run: |
+          status="${{ job.status }}"
+          echo -e "Subject: Deploy Pipeline ${status}\n\nDeploy Pipeline completed with status: ${status}" \
+          | sendmail -S smtp.gmail.com:587 -au ${{ secrets.SMTP_EMAIL }} -ap ${{ secrets.SMTP_PASSWORD }} ${{ secrets.TO_EMAIL }}
+
   # Job 3: Deploy to Google Cloud Functions
   deploy-endpoint:
     runs-on: ubuntu-latest
@@ -154,3 +168,10 @@ jobs:
             --source ./cloud_function \
             --memory 512MB \
             --allow-unauthenticated
+
+      - name: Send Email Notification for Deploy Endpoint
+        if: always()
+        run: |
+          status="${{ job.status }}"
+          echo -e "Subject: Deploy Endpoint ${status}\n\nDeploy Endpoint completed with status: ${status}" \
+          | sendmail -S smtp.gmail.com:587 -au ${{ secrets.SMTP_EMAIL }} -ap ${{ secrets.SMTP_PASSWORD }} ${{ secrets.TO_EMAIL }}
