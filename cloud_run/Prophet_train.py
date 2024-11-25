@@ -106,7 +106,7 @@ def main():
     setup_mlflow_tracking()
     # Initialize the storage client and set GCS paths
     bucket_name = "airquality-mlops-rg"
-    train_file_gcs = f'gs://{bucket_name}/processed/train/feature_eng_ata.pkl'
+    train_file_gcs = f'gs://{bucket_name}/processed/train/feature_eng_data.pkl'
     model_save_path_gcs = f'gs://{bucket_name}/weights/prophet_pm25_model.pth'
 
     # Configure MLflow
