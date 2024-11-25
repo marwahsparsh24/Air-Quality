@@ -213,8 +213,8 @@ class XGBoostPM25Model:
         client = storage.Client()
 
         bucket_name = 'airquality-mlops-rg'
-        pickle_file_path = 'processed/train/feature_eng_train_data.pkl'
-        pickle_file_path_test = 'processed/test/feature_eng_test_data.pkl'
+        pickle_file_path = 'processed/train/feature_eng_data.pkl'
+        pickle_file_path_test = 'processed/test/feature_eng_data.pkl'
 
         # Get the bucket and the blob (file)
         bucket = client.bucket(bucket_name)
