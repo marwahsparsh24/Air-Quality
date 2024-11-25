@@ -3,7 +3,7 @@ name: Deploy registry
 on:
   push:
     branches:
-      - vertexai
+      - main
   workflow_dispatch:
  
 env:

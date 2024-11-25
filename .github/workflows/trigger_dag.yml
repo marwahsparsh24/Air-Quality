@@ -4,7 +4,7 @@ on:
   workflow_dispatch:  # Allows manual triggering of the workflow
   push:               # Automatically triggers on push to the main branch
     branches:
-      - vertexai
+      - main
 
 jobs:
   trigger-dag:
