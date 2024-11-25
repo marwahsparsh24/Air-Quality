@@ -12,8 +12,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Install Sendmail
-      run: sudo apt-get update && sudo apt-get install -y sendmail
+    - name: Install Required Utilities
+      run: |
+        sudo apt-get update && sudo apt-get install -y mailutils
 
     - name: Generate Unique DAG Run ID
       id: unique_id
@@ -64,10 +65,13 @@ jobs:
 
     - name: Send Email Notification for DAG Completion
       if: always()
+      env:
+        SMTP_EMAIL: ${{ secrets.SMTP_EMAIL }}
+        SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+        TO_EMAIL: ${{ secrets.TO_EMAIL }}
       run: |
-        status="${{ job.status }}"
-        echo -e "Subject: Airflow DAG ${status}\n\nThe Airflow DAG run (ID: ${{ steps.unique_id.outputs.dag_run_id }}) completed with status: ${status}" \
-          | sendmail -S smtp.gmail.com:587 -au ${{ secrets.SMTP_EMAIL }} -ap ${{ secrets.SMTP_PASSWORD }} ${{ secrets.TO_EMAIL }}
+        echo "Airflow DAG run (ID: ${{ steps.unique_id.outputs.dag_run_id }}) completed with status: ${{ job.status }}" \
+        | mail -s "Airflow DAG Status: ${{ job.status }}" -r "${SMTP_EMAIL}" "${TO_EMAIL}"
 
   # Job 2: Deploy Registry
   deploy-pipeline:
@@ -86,8 +90,8 @@ jobs:
       IMAGE_TAG: ${{ github.sha }}
 
     steps:
-      - name: Install Sendmail
-        run: sudo apt-get update && sudo apt-get install -y sendmail
+      - name: Install Required Utilities
+        run: sudo apt-get update && sudo apt-get install -y mailutils
 
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -136,10 +140,13 @@ jobs:
 
       - name: Send Email Notification for Deploy Pipeline
         if: always()
+        env:
+          SMTP_EMAIL: ${{ secrets.SMTP_EMAIL }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
         run: |
-          status="${{ job.status }}"
-          echo -e "Subject: Deploy Pipeline ${status}\n\nDeploy Pipeline completed with status: ${status}" \
-          | sendmail -S smtp.gmail.com:587 -au ${{ secrets.SMTP_EMAIL }} -ap ${{ secrets.SMTP_PASSWORD }} ${{ secrets.TO_EMAIL }}
+          echo "Deploy Pipeline completed with status: ${{ job.status }}" \
+          | mail -s "Deploy Pipeline Status: ${{ job.status }}" -r "${SMTP_EMAIL}" "${TO_EMAIL}"
 
   # Job 3: Deploy to Google Cloud Functions
   deploy-endpoint:
@@ -151,8 +158,8 @@ jobs:
       id-token: write
 
     steps:
-      - name: Install Sendmail
-        run: sudo apt-get update && sudo apt-get install -y sendmail
+      - name: Install Required Utilities
+        run: sudo apt-get update && sudo apt-get install -y mailutils
 
       - name: Checkout Repository
         uses: actions/checkout@v3
@@ -180,7 +187,10 @@ jobs:
 
       - name: Send Email Notification for Deploy Endpoint
         if: always()
+        env:
+          SMTP_EMAIL: ${{ secrets.SMTP_EMAIL }}
+          SMTP_PASSWORD: ${{ secrets.SMTP_PASSWORD }}
+          TO_EMAIL: ${{ secrets.TO_EMAIL }}
         run: |
-          status="${{ job.status }}"
-          echo -e "Subject: Deploy Endpoint ${status}\n\nDeploy Endpoint completed with status: ${status}" \
-          | sendmail -S smtp.gmail.com:587 -au ${{ secrets.SMTP_EMAIL }} -ap ${{ secrets.SMTP_PASSWORD }} ${{ secrets.TO_EMAIL }}
+          echo "Deploy Endpoint completed with status: ${{ job.status }}" \
+          | mail -s "Deploy Endpoint Status: ${{ job.status }}" -r "${SMTP_EMAIL}" "${TO_EMAIL}"
