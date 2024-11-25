@@ -1,4 +1,4 @@
-name: Trigger Airflows DAG - Datapipeline
+name: Trigger Airflow DAG - Datapipeline
 
 on:
   workflow_dispatch:  # Allows manual triggering of the workflow
