@@ -6,7 +6,7 @@ env:
   GCS_BUCKET: airquality-mlops-rg
   REGISTRY: gcr.io/${{ secrets.GCP_PROJECT }}
   IMAGE_TAG: ${{ github.sha }}
-  
+
 on:
   workflow_dispatch:
   push:
@@ -94,6 +94,7 @@ jobs:
 
   # Job 2: Deploy Registry
   deploy-pipeline:
+  needs: trigger-dag
     runs-on: ubuntu-latest
     permissions:
       contents: read
