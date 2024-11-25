@@ -94,8 +94,8 @@ jobs:
 
   # Job 2: Deploy Registry
   deploy-pipeline:
-  needs: trigger-dag
     runs-on: ubuntu-latest
+    needs: trigger-dag
     permissions:
       contents: read
       id-token: write
@@ -176,6 +176,10 @@ jobs:
   deploy-endpoint:
     runs-on: ubuntu-latest
     needs: deploy-pipeline
+
+    permissions:
+      contents: read
+      id-token: write
 
     steps:
       - name: Install Required Utilities
