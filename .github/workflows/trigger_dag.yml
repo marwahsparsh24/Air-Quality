@@ -11,15 +11,19 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Generate Unique DAG Run ID
+      id: unique_id
+      run: echo "::set-output name=dag_run_id::datapipeline_$(date +'%Y%m%d%H%M%S')"
+
     - name: Trigger Airflow DAG
       env:
         AIRFLOW_USERNAME: admin  # Airflow admin username
         AIRFLOW_PASSWORD: ksmhwqrzhjllqsaz  # Airflow admin password
         AIRFLOW_VM_IP: 34.170.107.190:8080        # External IP of your Airflow instance
-        AIRFLOW_DAG_ID: datapipeline      # DAG ID to trigger
+        AIRFLOW_DAG_ID: datapipeline              # DAG ID to trigger
       run: |
-        echo "Triggering Airflow DAG: $AIRFLOW_DAG_ID..."
+        echo "Triggering Airflow DAG: $AIRFLOW_DAG_ID with unique DAG Run ID..."
         curl -X POST "http://34.170.107.190:8080/api/v1/dags/datapipeline/dagRuns" \
              -H "Content-Type: application/json" \
-             -u "admin:ksmhwqrzhjllqsaz" \
-             -d '{"dag_run_id": "datapipeline"}'
+             -u "$AIRFLOW_USERNAME:$AIRFLOW_PASSWORD" \
+             -d "{\"dag_run_id\": \"${{ steps.unique_id.outputs.dag_run_id }}\"}"
