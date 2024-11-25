@@ -146,8 +146,8 @@ class ProphetPM25Model:
         client = storage.Client()
 
         bucket_name = 'airquality-mlops-rg'
-        pickle_file_path = 'processed/train/feature_eng_train_data.pkl'
-        pickle_file_path_test = 'processed/test/feature_eng_test_data.pkl'
+        pickle_file_path = 'processed/train/feature_eng_data.pkl'
+        pickle_file_path_test = 'processed/test/feature_eng_data.pkl'
 
         # Get the bucket and the blob (file)
         bucket = client.bucket(bucket_name)
@@ -296,10 +296,10 @@ def main():
     mlflow.set_experiment("PM2.5 Prophet")
     
     bucket_name = "airquality-mlops-rg"
-    train_file_gcs = f'processed/train/feature_eng_train_data.pkl'
-    test_file_gcs = f'processed/test/feature_eng_test_data.pkl'
+    train_file_gcs = f'processed/train/feature_eng_data.pkl'
+    test_file_gcs = f'processed/test/feature_eng_data.pkl'
     model_save_path_gcs = f'weights/prophet_pm25_model.pth'
-    file_path = f'processed/test/no_anamoly_test_data.pkl'
+    file_path = f'processed/test/anamoly_data.pkl'
     engineer = DataFeatureEngineer(file_path)
     engineer.load_data()
     chosen_column = engineer.handle_skewness(column_name='pm25')

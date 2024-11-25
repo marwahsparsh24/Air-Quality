@@ -317,13 +317,13 @@ def main():
 
     setup_mlflow_tracking()
     bucket_name = "airquality-mlops-rg"
-    train_file_gcs = f'processed/train/feature_eng_train_data.pkl'
-    test_file_gcs = f'processed/test/feature_eng_test_data.pkl'
+    train_file_gcs = f'processed/train/feature_eng_data.pkl'
+    test_file_gcs = f'processed/test/feature_eng_data.pkl'
     model_save_path_gcs = f'weights/xgboost_pm25_model.pth'
     mlflow.set_experiment("PM2.5 XGBoost Prediction")
     
     # Step 1: Load Data using DataFeatureEngineer
-    file_path = f'processed/test/no_anamoly_test_data.pkl'
+    file_path = f'processed/test/anamoly_data.pkl'
     # Initialize DataFeatureEngineer to preprocess the data and fetch the lambda value
     engineer = DataFeatureEngineer(file_path)
     engineer.load_data()

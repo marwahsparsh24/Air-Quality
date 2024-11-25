@@ -45,7 +45,7 @@ class RandomForestPM25Model:
 
         # Specify your bucket name and the path to the pickle file in the 'processed' folder
         bucket_name = 'airquality-mlops-rg'
-        pickle_file_path = 'processed/train/feature_eng_train_data.pkl'
+        pickle_file_path = 'processed/train/feature_eng_data.pkl'
 
         # Get the bucket and the blob (file)
         bucket = client.bucket(bucket_name)
@@ -111,7 +111,7 @@ def main():
     setup_mlflow_tracking()
     mlflow.set_experiment("PM2.5 Random Forest")
     bucket_name = "airquality-mlops-rg"
-    train_file_gcs = f'gs://{bucket_name}/processed/train/feature_eng_train_data.pkl'
+    train_file_gcs = f'gs://{bucket_name}/processed/train/feature_eng_data.pkl'
     model_save_path_gcs = f'gs://{bucket_name}/weights/model/rf_model.pth'
 
     if mlflow.active_run():
