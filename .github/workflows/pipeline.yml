@@ -182,12 +182,23 @@ jobs:
       id-token: write
 
     steps:
-      - name: Install Required Utilities
-        run: sudo apt-get update && sudo apt-get install -y curl
-
+      # Step 1: Checkout Repository
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      # Step 2: Set up Google Cloud SDK
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT }}
+
+      # Step 3: Authenticate with Google Cloud
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      # Step 4: Deploy to Cloud Functions
       - name: Deploy to Cloud Functions
         run: |
           gcloud functions deploy predict-function \
