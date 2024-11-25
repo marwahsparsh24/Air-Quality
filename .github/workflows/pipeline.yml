@@ -9,25 +9,55 @@ on:
 jobs:
   # Job 1: Trigger Airflow DAG
   trigger-dag:
-    runs-on: ubuntu-latest
+  runs-on: ubuntu-latest
 
-    steps:
-    - name: Generate Unique DAG Run ID
-      id: unique_id
-      run: echo "::set-output name=dag_run_id::datapipeline_$(date +'%Y%m%d%H%M%S')"
+  steps:
+  - name: Generate Unique DAG Run ID
+    id: unique_id
+    run: echo "::set-output name=dag_run_id::datapipeline_$(date +'%Y%m%d%H%M%S')"
 
-    - name: Trigger Airflow DAG
-      env:
-        AIRFLOW_USERNAME: admin  # Airflow admin username
-        AIRFLOW_PASSWORD: ksmhwqrzhjllqsaz  # Airflow admin password
-        AIRFLOW_VM_IP: 34.170.107.190:8080        # External IP of your Airflow instance
-        AIRFLOW_DAG_ID: datapipeline              # DAG ID to trigger
-      run: |
-        echo "Triggering Airflow DAG: $AIRFLOW_DAG_ID with unique DAG Run ID..."
-        curl -X POST "http://34.170.107.190:8080/api/v1/dags/datapipeline/dagRuns" \
-             -H "Content-Type: application/json" \
-             -u "$AIRFLOW_USERNAME:$AIRFLOW_PASSWORD" \
-             -d "{\"dag_run_id\": \"${{ steps.unique_id.outputs.dag_run_id }}\"}"
+  - name: Trigger Airflow DAG
+    id: trigger_dag
+    env:
+      AIRFLOW_USERNAME: admin
+      AIRFLOW_PASSWORD: ksmhwqrzhjllqsaz
+      AIRFLOW_VM_IP: 34.170.107.190:8080
+      AIRFLOW_DAG_ID: datapipeline
+    run: |
+      echo "Triggering Airflow DAG: $AIRFLOW_DAG_ID with unique DAG Run ID..."
+      curl -X POST "http://$AIRFLOW_VM_IP/api/v1/dags/$AIRFLOW_DAG_ID/dagRuns" \
+           -H "Content-Type: application/json" \
+           -u "$AIRFLOW_USERNAME:$AIRFLOW_PASSWORD" \
+           -d "{\"dag_run_id\": \"${{ steps.unique_id.outputs.dag_run_id }}\"}"
+
+  - name: Wait for DAG Completion
+    id: wait_for_completion
+    env:
+      AIRFLOW_USERNAME: admin
+      AIRFLOW_PASSWORD: ksmhwqrzhjllqsaz
+      AIRFLOW_VM_IP: 34.170.107.190:8080
+      AIRFLOW_DAG_ID: datapipeline
+      DAG_RUN_ID: ${{ steps.unique_id.outputs.dag_run_id }}
+    run: |
+      echo "Polling for DAG run status..."
+      while true; do
+        status=$(curl -s -u "$AIRFLOW_USERNAME:$AIRFLOW_PASSWORD" \
+          "http://$AIRFLOW_VM_IP/api/v1/dags/$AIRFLOW_DAG_ID/dagRuns/$DAG_RUN_ID" \
+          | jq -r '.state')
+
+        echo "Current DAG run state: $status"
+
+        if [ "$status" == "success" ]; then
+          echo "DAG run completed successfully!"
+          break
+        elif [ "$status" == "failed" ]; then
+          echo "DAG run failed!"
+          exit 1
+        else
+          echo "DAG is still running. Waiting..."
+          sleep 10
+        fi
+      done
 
   # Job 2: Deploy Registry
   deploy-pipeline:
@@ -92,7 +122,7 @@ jobs:
         run: rm -f /tmp/gcp-key.json
 
   # Job 3: Deploy to Google Cloud Functions
-  deploy-to-cloud-functions:
+  deploy-endpoint:
     runs-on: ubuntu-latest
     needs: deploy-pipeline  # Ensures this job starts after 'deploy-pipeline'
 
