@@ -3,6 +3,7 @@ name: Regular Conditional Trigger
 on:
   schedule:
     - cron: "*/2 * * * *"  # Runs every 2 minutes
+  workflow_dispatch:  # Allows manual trigger
 
 jobs:
   # Step 1: Check the System Condition
@@ -10,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     outputs:
       condition: ${{ steps.check_condition.outputs.condition }}
+    env:
+      ACTIONS_RUNNER_DEBUG: true
+      ACTIONS_STEP_DEBUG: true
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
@@ -17,10 +21,9 @@ jobs:
     - name: Execute Python File
       id: check_condition
       run: |
-        echo "Running fecth.py to check the system condition..."
+        echo "Running fetch.py to check the system condition..."
         python fetch.py
-      continue-on-error: true  # Allow the workflow to proceed even if script exits with non-zero
-      shell: bash
+      continue-on-error: true
 
     - name: Capture Condition Output
       id: capture_condition
@@ -35,7 +38,7 @@ jobs:
 
   # Step 2: Execute Dependent Jobs
   dependent-job:
-    if: ${{ needs.check-condition.outputs.condition == 'True' }}  # Run only if condition is True
+    if: ${{ needs.check-condition.outputs.condition == 'True' }}
     needs: check-condition
     runs-on: ubuntu-latest
 
