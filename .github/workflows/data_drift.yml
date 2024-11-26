@@ -1,0 +1,50 @@
+name: Regular Conditional Trigger
+
+on:
+  schedule:
+    - cron: "*/2 * * * *"  # Runs every 2 minutes
+
+jobs:
+  # Step 1: Check the System Condition
+  check-condition:
+    runs-on: ubuntu-latest
+    outputs:
+      condition: ${{ steps.check_condition.outputs.condition }}
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Execute Python File
+      id: check_condition
+      run: |
+        echo "Running fecth.py to check the system condition..."
+        python fetch.py
+      continue-on-error: true  # Allow the workflow to proceed even if script exits with non-zero
+      shell: bash
+
+    - name: Capture Condition Output
+      id: capture_condition
+      run: |
+        if [ $? -eq 0 ]; then
+          echo "System condition is True."
+          echo "::set-output name=condition::True"
+        else
+          echo "System condition is False."
+          echo "::set-output name=condition::False"
+        fi
+
+  # Step 2: Execute Dependent Jobs
+  dependent-job:
+    if: ${{ needs.check-condition.outputs.condition == 'True' }}  # Run only if condition is True
+    needs: check-condition
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+
+    - name: Execute Additional Job 1
+      run: echo "Executing Job 1 because the condition is True."
+
+    - name: Execute Additional Job 2
+      run: echo "Executing Job 2 because the condition is True."

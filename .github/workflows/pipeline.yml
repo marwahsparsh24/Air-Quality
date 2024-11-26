@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
   push:
     branches:
-      - vertexai
+      - main
 
 jobs:
   # Job 1: Trigger Airflow DAG
