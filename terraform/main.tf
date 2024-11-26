@@ -1,64 +1,82 @@
-# main.tf
-
-# Configure the Azure provider
-provider "azurerm" {
-  features {}
-   subscription_id = var.subscription_id
-}
-
-# Get the current Azure client configuration
-data "azurerm_client_config" "current" {}
-
-# Create a Resource Group
-resource "azurerm_resource_group" "mlops_rg" {
-  name     = var.resource_group_name
-  location = var.location
-}
-
-# Create a Storage Account
-resource "azurerm_storage_account" "mlops_storage" {
-  name                     = var.storage_account_name
-  resource_group_name      = azurerm_resource_group.mlops_rg.name
-  location                 = azurerm_resource_group.mlops_rg.location
-  account_tier             = "Standard"
-  account_replication_type = "LRS"
-}
-
-# Create a Key Vault
-resource "azurerm_key_vault" "mlops_key_vault" {
-  name                = "mlops-pricekey"
-  location            = azurerm_resource_group.mlops_rg.location
-  resource_group_name = azurerm_resource_group.mlops_rg.name
-  sku_name            = "standard"
-  tenant_id           = data.azurerm_client_config.current.tenant_id
-}
-
-# Create an Application Insights instance
-resource "azurerm_application_insights" "mlops_app_insights" {
-  name                = "mlops-appinsights"
-  location            = azurerm_resource_group.mlops_rg.location
-  resource_group_name = azurerm_resource_group.mlops_rg.name
-  application_type    = "web"
-}
-
-# Create an Azure Machine Learning Workspace
-resource "azurerm_machine_learning_workspace" "mlops_ml_workspace" {
-  name                = var.ml_workspace_name
-  location            = azurerm_resource_group.mlops_rg.location
-  resource_group_name = azurerm_resource_group.mlops_rg.name
-  key_vault_id        = azurerm_key_vault.mlops_key_vault.id
-  application_insights_id = azurerm_application_insights.mlops_app_insights.id
-  storage_account_id  = azurerm_storage_account.mlops_storage.id
-
-  identity {
-    type = "SystemAssigned"
+# Provider configuration
+terraform {
+  required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "~> 4.0"
+    }
   }
+  required_version = ">= 1.0"
 }
 
-# Create a Databricks Workspace
-resource "azurerm_databricks_workspace" "mlops_databricks" {
-  name                = var.databricks_workspace_name
-  resource_group_name = azurerm_resource_group.mlops_rg.name
-  location            = azurerm_resource_group.mlops_rg.location
-  sku                 = "standard"
+provider "google" {
+  credentials = file("/Users/swapnavippaturi/Downloads/key.json")
+  project     = var.project_id
+  region      = var.region
+  zone        = var.zone
+}
+
+# Firewall Rule for Airflow Webserver
+resource "google_compute_firewall" "allow_airflow" {
+  name    = "allow-airflow-web"
+  network = "default"
+  project = var.project_id
+
+  allow {
+    protocol = "tcp"
+    ports    = ["8080", "5555"] # Include Flower UI if required
+  }
+
+  source_ranges = ["0.0.0.0/0"] # Restrict to your IP if needed
+  target_tags   = ["airflow"]
+}
+
+# Compute Engine VM
+resource "google_compute_instance" "airflow_vm" {
+  name         = "airflow-docker-vm"
+  machine_type = var.machine_type
+  zone         = var.zone
+  project      = var.project_id
+
+  boot_disk {
+    initialize_params {
+      image = "projects/ubuntu-os-cloud/global/images/family/ubuntu-2204-lts"
+      size  = 30
+    }
+  }
+
+  network_interface {
+    network = "default"
+    access_config {}
+  }
+
+  metadata = {
+    startup-script = <<-EOT
+      #!/bin/bash
+      sudo apt update && sudo apt install -y docker.io docker-compose
+      sudo usermod -aG docker $USER
+      sudo systemctl start docker
+      sudo systemctl enable docker
+
+      # Create directories for Airflow
+      mkdir -p ~/airflow/dags ~/airflow/logs ~/airflow/plugins ~/airflow/config
+      chmod -R 777 ~/airflow
+
+      # Write Docker Compose file
+      cat <<EOF > ~/airflow/docker-compose.yaml
+      ${file("./docker-compose.yaml")}
+      EOF
+
+      # Start Airflow services
+      cd ~/airflow
+      docker-compose up -d
+    EOT
+  }
+
+  tags = ["airflow"]
+
+  service_account {
+    email = "airquality@airquality-438719.iam.gserviceaccount.com"
+    scopes = ["https://www.googleapis.com/auth/cloud-platform"]
+  }
 }

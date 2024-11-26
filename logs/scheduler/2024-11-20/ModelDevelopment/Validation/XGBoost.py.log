@@ -1,0 +1,310 @@
+[2024-11-20T05:28:43.749+0000] {processor.py:161} INFO - Started process (PID=66) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:28:43.752+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:28:43.756+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:28:43.756+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:28:48.152+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:28:48.195+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 4.455 seconds
+[2024-11-20T05:29:18.637+0000] {processor.py:161} INFO - Started process (PID=147) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:29:18.640+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:29:18.642+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:29:18.642+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:29:19.910+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:29:19.919+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.288 seconds
+[2024-11-20T05:29:50.242+0000] {processor.py:161} INFO - Started process (PID=228) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:29:50.243+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:29:50.245+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:29:50.245+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:29:51.461+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:29:51.470+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.234 seconds
+[2024-11-20T05:30:22.067+0000] {processor.py:161} INFO - Started process (PID=309) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:30:22.068+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:30:22.070+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:30:22.069+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:30:23.321+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:30:23.335+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.275 seconds
+[2024-11-20T05:30:53.872+0000] {processor.py:161} INFO - Started process (PID=390) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:30:53.875+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:30:53.882+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:30:53.881+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:30:55.045+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:30:55.056+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.196 seconds
+[2024-11-20T05:31:25.578+0000] {processor.py:161} INFO - Started process (PID=471) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:31:25.582+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:31:25.584+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:31:25.584+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:31:26.852+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:31:26.870+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.298 seconds
+[2024-11-20T05:31:57.509+0000] {processor.py:161} INFO - Started process (PID=552) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:31:57.511+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:31:57.513+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:31:57.513+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:31:58.901+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:31:58.911+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.416 seconds
+[2024-11-20T05:32:29.826+0000] {processor.py:161} INFO - Started process (PID=633) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:32:29.828+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:32:29.830+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:32:29.830+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:32:31.120+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:32:31.148+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.331 seconds
+[2024-11-20T05:33:01.560+0000] {processor.py:161} INFO - Started process (PID=713) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:33:01.561+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:33:01.564+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:33:01.564+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:33:02.884+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:33:02.900+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.352 seconds
+[2024-11-20T05:33:33.165+0000] {processor.py:161} INFO - Started process (PID=794) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:33:33.168+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:33:33.176+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:33:33.175+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:33:36.361+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:33:36.382+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 3.241 seconds
+[2024-11-20T05:34:06.943+0000] {processor.py:161} INFO - Started process (PID=875) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:34:06.945+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:34:06.948+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:34:06.947+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:34:08.201+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:34:08.232+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.298 seconds
+[2024-11-20T05:34:38.441+0000] {processor.py:161} INFO - Started process (PID=956) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:34:38.443+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:34:38.447+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:34:38.446+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:34:39.828+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:34:39.850+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.422 seconds
+[2024-11-20T05:35:10.269+0000] {processor.py:161} INFO - Started process (PID=1037) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:35:10.272+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:35:10.275+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:35:10.275+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:35:12.173+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:35:12.197+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.937 seconds
+[2024-11-20T05:35:42.356+0000] {processor.py:161} INFO - Started process (PID=1118) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:35:42.368+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:35:42.381+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:35:42.380+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:35:43.659+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:35:43.680+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.337 seconds
+[2024-11-20T05:36:14.277+0000] {processor.py:161} INFO - Started process (PID=1199) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:36:14.279+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:36:14.282+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:36:14.282+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:36:15.879+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:36:15.910+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.641 seconds
+[2024-11-20T05:36:46.081+0000] {processor.py:161} INFO - Started process (PID=1285) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:36:46.083+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:36:46.086+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:36:46.086+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:36:49.730+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:36:49.776+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 3.710 seconds
+[2024-11-20T05:37:20.129+0000] {processor.py:161} INFO - Started process (PID=1366) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:37:20.131+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:37:20.135+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:37:20.134+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:37:21.633+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:37:21.655+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.536 seconds
+[2024-11-20T05:37:52.369+0000] {processor.py:161} INFO - Started process (PID=1448) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:37:52.370+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:37:52.372+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:37:52.372+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:37:53.739+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:37:53.771+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.407 seconds
+[2024-11-20T05:38:24.272+0000] {processor.py:161} INFO - Started process (PID=1529) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:38:24.273+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:38:24.278+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:38:24.275+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:38:25.660+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:38:25.677+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.409 seconds
+[2024-11-20T05:38:56.359+0000] {processor.py:161} INFO - Started process (PID=1610) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:38:56.361+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:38:56.364+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:38:56.364+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:38:57.711+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:38:57.723+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.370 seconds
+[2024-11-20T05:39:27.755+0000] {processor.py:161} INFO - Started process (PID=1690) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:39:27.756+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:39:27.759+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:39:27.758+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:39:29.186+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:39:29.211+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.461 seconds
+[2024-11-20T05:40:00.032+0000] {processor.py:161} INFO - Started process (PID=1772) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:40:00.039+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:40:00.051+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:40:00.051+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:40:01.277+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:40:01.293+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.273 seconds
+[2024-11-20T05:40:31.639+0000] {processor.py:161} INFO - Started process (PID=1853) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:40:31.640+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:40:31.642+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:40:31.642+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:40:33.185+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:40:33.220+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.586 seconds
+[2024-11-20T05:41:03.927+0000] {processor.py:161} INFO - Started process (PID=1934) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:41:03.927+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:41:03.929+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:41:03.929+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:41:05.174+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:41:05.197+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.275 seconds
+[2024-11-20T05:41:35.585+0000] {processor.py:161} INFO - Started process (PID=2015) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:41:35.586+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:41:35.589+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:41:35.589+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:41:36.984+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:41:36.997+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.418 seconds
+[2024-11-20T05:42:07.123+0000] {processor.py:161} INFO - Started process (PID=2095) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:42:07.124+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:42:07.127+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:42:07.127+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:42:08.262+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:42:08.272+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.160 seconds
+[2024-11-20T05:42:38.543+0000] {processor.py:161} INFO - Started process (PID=2176) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:42:38.544+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:42:38.546+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:42:38.546+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:42:39.814+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:42:39.821+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.284 seconds
+[2024-11-20T05:43:10.728+0000] {processor.py:161} INFO - Started process (PID=2258) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:43:10.729+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:43:10.731+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:43:10.731+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:43:12.000+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:43:12.018+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.293 seconds
+[2024-11-20T05:43:42.392+0000] {processor.py:161} INFO - Started process (PID=2339) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:43:42.393+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:43:42.396+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:43:42.395+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:43:43.717+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:43:43.734+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.348 seconds
+[2024-11-20T05:44:14.742+0000] {processor.py:161} INFO - Started process (PID=2419) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:44:14.743+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:44:14.745+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:44:14.745+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:44:16.117+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:44:16.141+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.405 seconds
+[2024-11-20T05:44:46.475+0000] {processor.py:161} INFO - Started process (PID=2506) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:44:46.477+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:44:46.477+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:44:46.477+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:44:47.688+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:44:47.707+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.235 seconds
+[2024-11-20T05:45:18.014+0000] {processor.py:161} INFO - Started process (PID=2587) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:45:18.017+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:45:18.019+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:45:18.019+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:45:19.488+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:45:19.519+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.513 seconds
+[2024-11-20T05:45:50.065+0000] {processor.py:161} INFO - Started process (PID=2668) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:45:50.067+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:45:50.069+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:45:50.069+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:45:51.350+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:45:51.362+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.305 seconds
+[2024-11-20T05:46:21.453+0000] {processor.py:161} INFO - Started process (PID=2748) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:46:21.456+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:46:21.464+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:46:21.463+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:46:22.791+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:46:22.801+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.360 seconds
+[2024-11-20T05:46:53.045+0000] {processor.py:161} INFO - Started process (PID=2830) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:46:53.046+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:46:53.049+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:46:53.048+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:46:54.235+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:46:54.246+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.207 seconds
+[2024-11-20T05:47:24.656+0000] {processor.py:161} INFO - Started process (PID=2911) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:47:24.657+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:47:24.659+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:47:24.658+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:47:25.913+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:47:25.934+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.284 seconds
+[2024-11-20T05:47:56.768+0000] {processor.py:161} INFO - Started process (PID=2992) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:47:56.773+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:47:56.777+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:47:56.776+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:47:57.988+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:47:58.007+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.246 seconds
+[2024-11-20T05:48:28.443+0000] {processor.py:161} INFO - Started process (PID=3073) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:48:28.445+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:48:28.450+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:48:28.450+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:48:29.879+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:48:29.890+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.459 seconds
+[2024-11-20T05:49:00.285+0000] {processor.py:161} INFO - Started process (PID=3154) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:49:00.289+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:49:00.298+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:49:00.298+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:49:01.943+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:49:01.959+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.686 seconds
+[2024-11-20T05:49:32.376+0000] {processor.py:161} INFO - Started process (PID=3235) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:49:32.380+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:49:32.386+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:49:32.385+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:49:34.256+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:49:34.278+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.908 seconds
+[2024-11-20T05:50:05.290+0000] {processor.py:161} INFO - Started process (PID=3316) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:50:05.292+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:50:05.302+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:50:05.301+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:50:06.526+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:50:06.540+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.257 seconds
+[2024-11-20T05:50:37.185+0000] {processor.py:161} INFO - Started process (PID=3397) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:50:37.191+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:50:37.200+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:50:37.199+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:50:38.833+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:50:38.847+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.676 seconds
+[2024-11-20T05:51:09.593+0000] {processor.py:161} INFO - Started process (PID=3478) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:51:09.594+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:51:09.597+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:51:09.597+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:51:11.982+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:51:12.012+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 2.433 seconds
+[2024-11-20T05:51:42.350+0000] {processor.py:161} INFO - Started process (PID=3559) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:51:42.351+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:51:42.352+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:51:42.352+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:51:43.468+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:51:43.487+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.140 seconds
+[2024-11-20T05:52:13.798+0000] {processor.py:161} INFO - Started process (PID=3640) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:52:13.799+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:52:13.801+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:52:13.800+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:52:15.038+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:52:15.052+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.260 seconds
+[2024-11-20T05:52:45.180+0000] {processor.py:161} INFO - Started process (PID=3721) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:52:45.181+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:52:45.184+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:52:45.184+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:52:46.393+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:52:46.412+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.237 seconds
+[2024-11-20T05:53:16.870+0000] {processor.py:161} INFO - Started process (PID=3802) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:53:16.872+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:53:16.874+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:53:16.873+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:53:18.094+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:53:18.104+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.241 seconds
+[2024-11-20T05:53:48.512+0000] {processor.py:161} INFO - Started process (PID=3889) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:53:48.513+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:53:48.515+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:53:48.515+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:53:49.801+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:53:49.811+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.311 seconds
+[2024-11-20T05:54:20.373+0000] {processor.py:161} INFO - Started process (PID=3969) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:54:20.374+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:54:20.376+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:54:20.376+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:54:21.700+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:54:21.707+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.341 seconds
+[2024-11-20T05:54:51.994+0000] {processor.py:161} INFO - Started process (PID=4050) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:54:51.997+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:54:51.999+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:54:51.998+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:54:53.335+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:54:53.347+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.365 seconds
+[2024-11-20T05:55:24.170+0000] {processor.py:161} INFO - Started process (PID=4131) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:55:24.171+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:55:24.174+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:55:24.173+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:55:25.357+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:55:25.574+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.429 seconds
+[2024-11-20T05:55:56.144+0000] {processor.py:161} INFO - Started process (PID=4212) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:55:56.147+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:55:56.152+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:55:56.151+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:55:57.388+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:55:57.398+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.277 seconds
+[2024-11-20T05:56:27.602+0000] {processor.py:161} INFO - Started process (PID=4293) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:56:27.607+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:56:27.611+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:56:27.610+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:56:30.314+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:56:30.356+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 2.773 seconds
+[2024-11-20T05:57:00.788+0000] {processor.py:161} INFO - Started process (PID=4373) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:57:00.791+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:57:00.793+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:57:00.793+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:57:02.029+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:57:02.047+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.283 seconds
+[2024-11-20T05:57:32.741+0000] {processor.py:161} INFO - Started process (PID=4455) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:57:32.742+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:57:32.743+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:57:32.743+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:57:33.948+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:57:33.978+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.244 seconds
+[2024-11-20T05:58:04.497+0000] {processor.py:161} INFO - Started process (PID=4536) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:58:04.499+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:58:04.502+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:58:04.502+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:58:05.717+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:58:05.737+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.262 seconds
+[2024-11-20T05:58:36.082+0000] {processor.py:161} INFO - Started process (PID=4617) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:58:36.084+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:58:36.086+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:58:36.086+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:58:37.277+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:58:37.296+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.221 seconds
+[2024-11-20T05:59:08.201+0000] {processor.py:161} INFO - Started process (PID=4698) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:59:08.203+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:59:08.204+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:59:08.204+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:59:09.548+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:59:09.565+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.370 seconds
+[2024-11-20T05:59:39.846+0000] {processor.py:161} INFO - Started process (PID=4779) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:59:39.848+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T05:59:39.850+0000] {logging_mixin.py:188} INFO - [2024-11-20T05:59:39.850+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:59:41.195+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T05:59:41.208+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.374 seconds
+[2024-11-20T06:00:11.515+0000] {processor.py:161} INFO - Started process (PID=4860) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T06:00:11.517+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T06:00:11.519+0000] {logging_mixin.py:188} INFO - [2024-11-20T06:00:11.519+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T06:00:13.196+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T06:00:13.223+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.723 seconds
+[2024-11-20T06:00:43.466+0000] {processor.py:161} INFO - Started process (PID=4940) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T06:00:43.468+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T06:00:43.472+0000] {logging_mixin.py:188} INFO - [2024-11-20T06:00:43.472+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T06:00:44.962+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T06:00:44.978+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.544 seconds
+[2024-11-20T06:01:15.334+0000] {processor.py:161} INFO - Started process (PID=5021) to work on /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T06:01:15.336+0000] {processor.py:830} INFO - Processing file /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py for tasks to queue
+[2024-11-20T06:01:15.339+0000] {logging_mixin.py:188} INFO - [2024-11-20T06:01:15.338+0000] {dagbag.py:545} INFO - Filling up the DagBag from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T06:01:17.029+0000] {processor.py:842} WARNING - No viable dags retrieved from /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py
+[2024-11-20T06:01:17.043+0000] {processor.py:183} INFO - Processing /opt/airflow/dags/ModelDevelopment/Validation/XGBoost.py took 1.730 seconds

@@ -1,0 +1,44 @@
+name: Deploy to Google Cloud Functions
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy-to-cloud-functions:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      id-token: write
+
+    steps:
+      # Step 1: Checkout Repository
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Google Cloud SDK
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT }}
+
+      # Step 3: Authenticate with Google Cloud
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
+
+      # Step 4: Deploy to Cloud Functions
+      - name: Deploy to Cloud Functions
+        run: |
+          gcloud functions deploy predict-function \
+            --runtime python39 \
+            --trigger-http \
+            --region us-central1 \
+            --entry-point flask_app \
+            --source ./cloud_function \
+            --memory 512MB \
+            --allow-unauthenticated

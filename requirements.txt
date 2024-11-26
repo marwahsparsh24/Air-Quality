@@ -1,5 +1,5 @@
 pytest
-numpy 
+numpy
 pandas
 scikit-learn
 kneed
@@ -11,3 +11,4 @@ fairlearn
 mlflow
 prophet
 shap
+apache-airflow-providers-google
