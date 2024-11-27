@@ -16,7 +16,6 @@ on:
 jobs:
   fetch-data:
     runs-on: ubuntu-latest
-    needs: deploy-pipeline
 
     permissions:
       contents: read
