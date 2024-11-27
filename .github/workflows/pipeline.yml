@@ -49,8 +49,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Execute fetch.py
-        run: python fetch.py
+      - name: Execute fetch_data.py
+        run: python fetch_data.py
 
   # Job 1: Trigger Airflow DAG
   trigger-dag:
