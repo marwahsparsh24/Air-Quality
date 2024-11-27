@@ -1,0 +1,25 @@
+name: Retrain and Deploy
+ 
+on:
+  workflow_dispatch:  # Triggered by the Cloud Function
+ 
+jobs:
+  retrain-and-deploy:
+    runs-on: ubuntu-latest
+ 
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v3
+ 
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.9"
+ 
+    - name: Retrain Model
+      run: |
+        echo "Retraining model..."
+ 
+    - name: Deploy Model
+      run: |
+        echo "Deploying model..."
