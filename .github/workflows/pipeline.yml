@@ -9,9 +9,9 @@ env:
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
 
 jobs:
   # Job 1: Trigger Airflow DAG

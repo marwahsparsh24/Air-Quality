@@ -2,12 +2,13 @@ name: Run Docker on Push or Pull Request
 
 # Trigger the workflow on push or pull request to the model_local branch
 on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - main
+  # pull_request:
+  #   branches:
+  #     - main
 
 jobs:
   build-and-run:
