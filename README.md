@@ -181,10 +181,7 @@ Air-Quality/
 │   ├── custom_schema_generated_from_api.json
 │   └── dag_script.py
 ├── docker-compose.yaml
-├── ModelDeployment/
 ├── ModelDevelopment/
-├── ModelLogging/
-├── ModelMonitoring/
 └── README.md
 
 ```
