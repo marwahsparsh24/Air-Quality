@@ -1,0 +1,168 @@
+[2024-11-27 00:55:31Z INFO HostContext] No proxy settings were found based on environmental variables (http_proxy/https_proxy/HTTP_PROXY/HTTPS_PROXY)
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Root': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner'
+[2024-11-27 00:55:31Z INFO HostContext] Well known config file 'Credentials': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials'
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Root': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner'
+[2024-11-27 00:55:31Z INFO HostContext] Well known config file 'Runner': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.runner'
+[2024-11-27 00:55:31Z INFO Listener] Runner is built for OSX (X64) - osx-x64.
+[2024-11-27 00:55:31Z INFO Listener] RuntimeInformation: Darwin 24.1.0 Darwin Kernel Version 24.1.0: Thu Oct 10 21:02:45 PDT 2024; root:xnu-11215.41.3~2/RELEASE_ARM64_T8112.
+[2024-11-27 00:55:31Z INFO Listener] Version: 2.321.0
+[2024-11-27 00:55:31Z INFO Listener] Commit: e249007931b7c8e857797fa259c167f0bd4f997a
+[2024-11-27 00:55:31Z INFO Listener] Culture: en-US
+[2024-11-27 00:55:31Z INFO Listener] UI Culture: en-US
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Root': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner'
+[2024-11-27 00:55:31Z INFO Listener] Validating directory permissions for: '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner'
+[2024-11-27 00:55:31Z INFO CommandLineParser] Parse
+[2024-11-27 00:55:31Z INFO CommandLineParser] Parsing 1 args
+[2024-11-27 00:55:31Z INFO CommandLineParser] parsing argument
+[2024-11-27 00:55:31Z INFO CommandLineParser] HasArgs: False
+[2024-11-27 00:55:31Z INFO CommandLineParser] Adding Command: run
+[2024-11-27 00:55:31Z INFO Listener] Arguments parsed
+[2024-11-27 00:55:31Z INFO Runner] ExecuteCommand
+[2024-11-27 00:55:31Z INFO ConfigurationStore] currentAssemblyLocation: /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin/Runner.Listener.dll
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:31Z INFO ConfigurationStore] binPath: /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Root': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner'
+[2024-11-27 00:55:31Z INFO ConfigurationStore] RootFolder: /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Root': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner'
+[2024-11-27 00:55:31Z INFO HostContext] Well known config file 'Runner': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.runner'
+[2024-11-27 00:55:31Z INFO ConfigurationStore] ConfigFilePath: /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.runner
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Root': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner'
+[2024-11-27 00:55:31Z INFO HostContext] Well known config file 'Credentials': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials'
+[2024-11-27 00:55:31Z INFO ConfigurationStore] CredFilePath: /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Root': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner'
+[2024-11-27 00:55:31Z INFO HostContext] Well known config file 'MigratedCredentials': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials_migrated'
+[2024-11-27 00:55:31Z INFO ConfigurationStore] MigratedCredFilePath: /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials_migrated
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Root': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner'
+[2024-11-27 00:55:31Z INFO HostContext] Well known config file 'Service': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.service'
+[2024-11-27 00:55:31Z INFO ConfigurationStore] ServiceConfigFilePath: /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.service
+[2024-11-27 00:55:31Z INFO CommandSettings] Flag 'help': 'False'
+[2024-11-27 00:55:31Z INFO CommandSettings] Flag 'version': 'False'
+[2024-11-27 00:55:31Z INFO CommandSettings] Flag 'commit': 'False'
+[2024-11-27 00:55:31Z INFO CommandSettings] Flag 'check': 'False'
+[2024-11-27 00:55:31Z INFO CommandSettings] Command 'configure': 'False'
+[2024-11-27 00:55:31Z INFO CommandSettings] Command 'remove': 'False'
+[2024-11-27 00:55:31Z INFO CommandSettings] Command 'warmup': 'False'
+[2024-11-27 00:55:31Z INFO ConfigurationManager] LoadSettings
+[2024-11-27 00:55:31Z INFO ConfigurationStore] IsConfigured()
+[2024-11-27 00:55:31Z INFO ConfigurationStore] IsConfigured: True
+[2024-11-27 00:55:31Z INFO ConfigurationManager] Is configured: True
+[2024-11-27 00:55:31Z INFO ConfigurationStore] Read setting file: 307 chars
+[2024-11-27 00:55:31Z INFO ConfigurationManager] Settings Loaded
+[2024-11-27 00:55:31Z INFO ConfigurationStore] IsServiceConfigured()
+[2024-11-27 00:55:31Z INFO ConfigurationStore] IsServiceConfigured: False
+[2024-11-27 00:55:31Z INFO CommandSettings] Command 'run': 'True'
+[2024-11-27 00:55:31Z INFO ConfigurationStore] IsConfigured()
+[2024-11-27 00:55:31Z INFO ConfigurationStore] IsConfigured: True
+[2024-11-27 00:55:31Z INFO ConfigurationManager] Is configured: True
+[2024-11-27 00:55:31Z INFO Runner] Could not parse the argument value '' for StartupType. Defaulting to Manual
+[2024-11-27 00:55:31Z INFO Runner] Set runner startup type - Manual
+[2024-11-27 00:55:31Z INFO CommandSettings] Flag 'once': 'False'
+[2024-11-27 00:55:31Z INFO CommandSettings] Flag 'once': 'False'
+[2024-11-27 00:55:31Z INFO Runner] RunAsync
+[2024-11-27 00:55:31Z INFO ConfigurationManager] LoadSettings
+[2024-11-27 00:55:31Z INFO ConfigurationStore] IsConfigured()
+[2024-11-27 00:55:31Z INFO ConfigurationStore] IsConfigured: True
+[2024-11-27 00:55:31Z INFO ConfigurationManager] Is configured: True
+[2024-11-27 00:55:31Z INFO ConfigurationManager] Settings Loaded
+[2024-11-27 00:55:31Z INFO MessageListener] {
+  "AgentId": 21,
+  "AgentName": "Sparshs-MacBook-Air",
+  "PoolId": 1,
+  "PoolName": "Default",
+  "ServerUrl": "https://pipelinesghubeus24.actions.githubusercontent.com/hV4qJsK0LBznD0Gfmq4ld5EM64cY72LkG5ZTLpi7w1Ffy1ku3R/",
+  "GitHubUrl": "https://github.com/KARSarma/Air-Quality",
+  "WorkFolder": "_work"
+}
+[2024-11-27 00:55:31Z INFO MessageListener] Loading Credentials
+[2024-11-27 00:55:31Z INFO ConfigurationStore] HasCredentials()
+[2024-11-27 00:55:31Z INFO ConfigurationStore] stored True
+[2024-11-27 00:55:31Z INFO CredentialManager] GetCredentialProvider
+[2024-11-27 00:55:31Z INFO CredentialManager] Creating type OAuth
+[2024-11-27 00:55:31Z INFO CredentialManager] Creating credential type: OAuth
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:31Z INFO HostContext] Well known directory 'Root': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner'
+[2024-11-27 00:55:31Z INFO HostContext] Well known config file 'RSACredentials': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials_rsaparams'
+[2024-11-27 00:55:31Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials_rsaparams
+[2024-11-27 00:55:31Z INFO MessageListener] Attempt to create session.
+[2024-11-27 00:55:31Z INFO MessageListener] Connecting to the Runner Server...
+[2024-11-27 00:55:31Z INFO RunnerServer] EstablishVssConnection
+[2024-11-27 00:55:31Z INFO RunnerServer] Establish connection with 100 seconds timeout.
+[2024-11-27 00:55:31Z INFO GitHubActionsService] Starting operation Location.GetConnectionData
+[2024-11-27 00:55:31Z INFO RunnerServer] EstablishVssConnection
+[2024-11-27 00:55:31Z INFO RunnerServer] Establish connection with 60 seconds timeout.
+[2024-11-27 00:55:31Z INFO GitHubActionsService] Starting operation Location.GetConnectionData
+[2024-11-27 00:55:31Z INFO RunnerServer] EstablishVssConnection
+[2024-11-27 00:55:31Z INFO RunnerServer] Establish connection with 60 seconds timeout.
+[2024-11-27 00:55:32Z INFO GitHubActionsService] Starting operation Location.GetConnectionData
+[2024-11-27 00:55:32Z INFO GitHubActionsService] Finished operation Location.GetConnectionData
+[2024-11-27 00:55:32Z INFO GitHubActionsService] Finished operation Location.GetConnectionData
+[2024-11-27 00:55:32Z INFO GitHubActionsService] Finished operation Location.GetConnectionData
+[2024-11-27 00:55:32Z INFO MessageListener] VssConnection created
+[2024-11-27 00:55:32Z INFO Terminal] WRITE LINE: 
+[2024-11-27 00:55:32Z INFO Terminal] WRITE LINE: 
+[2024-11-27 00:55:32Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials_rsaparams
+[2024-11-27 00:55:32Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials_rsaparams
+[2024-11-27 00:55:32Z INFO GitHubActionsService] AAD Correlation ID for this token request: Unknown
+[2024-11-27 00:55:32Z INFO MessageListener] Session created.
+[2024-11-27 00:55:32Z INFO Terminal] WRITE LINE: Current runner version: '2.321.0'
+[2024-11-27 00:55:32Z INFO Terminal] WRITE LINE: 2024-11-27 00:55:32Z: Listening for Jobs
+[2024-11-27 00:55:32Z INFO JobDispatcher] Set runner/worker IPC timeout to 30 seconds.
+[2024-11-27 00:55:32Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials_rsaparams
+[2024-11-27 00:55:32Z INFO GitHubActionsService] AAD Correlation ID for this token request: Unknown
+[2024-11-27 00:55:34Z INFO MessageListener] Message '3267077947643270122' received from session '6a695fb2-dc5b-40de-a2a9-a38315a50edb'.
+[2024-11-27 00:55:34Z INFO ConfigurationStore] HasCredentials()
+[2024-11-27 00:55:34Z INFO ConfigurationStore] stored True
+[2024-11-27 00:55:34Z INFO CredentialManager] GetCredentialProvider
+[2024-11-27 00:55:34Z INFO CredentialManager] Creating type OAuth
+[2024-11-27 00:55:34Z INFO CredentialManager] Creating credential type: OAuth
+[2024-11-27 00:55:34Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials_rsaparams
+[2024-11-27 00:55:34Z INFO ActionsRunServer] EstablishVssConnection
+[2024-11-27 00:55:34Z INFO ActionsRunServer] Establish connection with 100 seconds timeout.
+[2024-11-27 00:55:34Z INFO GitHubActionsService] Starting operation Location.GetConnectionData
+[2024-11-27 00:55:34Z INFO GitHubActionsService] Finished operation Location.GetConnectionData
+[2024-11-27 00:55:34Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials_rsaparams
+[2024-11-27 00:55:34Z INFO RSAFileKeyManager] Loading RSA key parameters from file /Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/.credentials_rsaparams
+[2024-11-27 00:55:34Z INFO GitHubActionsService] AAD Correlation ID for this token request: Unknown
+[2024-11-27 00:55:34Z INFO JobDispatcher] Job request 868 for plan f6d170d1-7cc9-4423-a33d-932c35857466 job ca395085-040a-526b-2ce8-bdc85f692774 received.
+[2024-11-27 00:55:34Z INFO JobDispatcher] Pull OrchestrationId f6d170d1-7cc9-4423-a33d-932c35857466.build.__default from JWT claims
+[2024-11-27 00:55:34Z INFO MessageListener] Received job status event. JobState: Busy
+[2024-11-27 00:55:34Z INFO MessageListener] _getMessagesTokenSource is already disposed.
+[2024-11-27 00:55:34Z INFO Terminal] WRITE LINE: 2024-11-27 00:55:34Z: Running job: build
+[2024-11-27 00:55:34Z INFO JobDispatcher] Start renew job request 868 for job ca395085-040a-526b-2ce8-bdc85f692774.
+[2024-11-27 00:55:34Z INFO JobDispatcher] Successfully renew job request 868, job is valid till 11/27/2024 1:05:34 AM
+[2024-11-27 00:55:34Z INFO HostContext] Well known directory 'Bin': '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper] Starting process:
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper]   File name: '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin/Runner.Worker'
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper]   Arguments: 'spawnclient 148 151'
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper]   Working directory: '/Users/sparshmarwah21/Documents/GitHub/Air-Quality/actions-runner/bin'
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper]   Require exit code zero: 'False'
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper]   Encoding web name:  ; code page: ''
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper]   Force kill process on cancellation: 'True'
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper]   Redirected STDIN: 'False'
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper]   Persist current code page: 'False'
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper]   Keep redirected STDIN open: 'False'
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper]   High priority process: 'True'
+[2024-11-27 00:55:34Z INFO ProcessInvokerWrapper] Process started with process id 3196, waiting for process exit.
+[2024-11-27 00:55:34Z INFO JobDispatcher] Send job request message to worker for job ca395085-040a-526b-2ce8-bdc85f692774.
+[2024-11-27 00:55:34Z INFO ProcessChannel] Sending message of length 24397, with hash 'b1e1e517f220c76c7a9cf32ce95cb84abb4fdf4af997cdd361a869e58c893d8c'
+[2024-11-27 00:55:34Z INFO JobNotification] Entering JobStarted Notification
+[2024-11-27 00:55:34Z INFO JobNotification] Entering StartMonitor
+[2024-11-27 00:55:58Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2024-11-27 00:55:58Z INFO ProcessInvokerWrapper] STDOUT/STDERR stream read finished.
+[2024-11-27 00:55:58Z INFO ProcessInvokerWrapper] Finished process 3196 with exit code 102, and elapsed time 00:00:23.4650456.
+[2024-11-27 00:55:58Z INFO JobDispatcher] Worker finished for job ca395085-040a-526b-2ce8-bdc85f692774. Code: 102
+[2024-11-27 00:55:58Z INFO JobDispatcher] finish job request for job ca395085-040a-526b-2ce8-bdc85f692774 with result: Failed
+[2024-11-27 00:55:58Z INFO Terminal] WRITE LINE: 2024-11-27 00:55:58Z: Job build completed with result: Failed
+[2024-11-27 00:55:58Z INFO JobDispatcher] Stop renew job request for job ca395085-040a-526b-2ce8-bdc85f692774.
+[2024-11-27 00:55:58Z INFO JobDispatcher] job renew has been cancelled, stop renew job request 868.
+[2024-11-27 00:55:58Z INFO JobNotification] Entering JobCompleted Notification
+[2024-11-27 00:55:58Z INFO JobNotification] Entering EndMonitor
+[2024-11-27 00:55:58Z INFO MessageListener] Received job status event. JobState: Online

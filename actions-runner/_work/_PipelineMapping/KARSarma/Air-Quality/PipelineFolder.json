@@ -1,0 +1,12 @@
+﻿{
+  "repositoryName": "KARSarma/Air-Quality",
+  "pipelineDirectory": "Air-Quality",
+  "workspaceDirectory": "Air-Quality/Air-Quality",
+  "repositories": {
+    "KARSarma/Air-Quality": {
+      "repositoryPath": "Air-Quality/Air-Quality",
+      "lastRunOn": "11/26/2024 19:55:36 -05:00"
+    }
+  },
+  "lastRunOn": "11/26/2024 19:55:36 -05:00"
+}
