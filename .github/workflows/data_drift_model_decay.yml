@@ -1,4 +1,11 @@
 name: Retraining Pipeline
+
+env:
+  GCP_PROJECT_ID: ${{ secrets.GCP_PROJECT }}
+  IMAGE_NAME: cloud_run
+  GCS_BUCKET: airquality-mlops-rg
+  REGISTRY: gcr.io/${{ secrets.GCP_PROJECT }}
+  IMAGE_TAG: ${{ github.sha }}
  
 on:
   workflow_dispatch:  # Allows manual or external trigger
