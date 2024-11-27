@@ -1,25 +1,19 @@
-name: Retrain and Deploy
+name: Conditional Pipeline Execution
  
 on:
-  workflow_dispatch:  # Triggered by the Cloud Function
+  workflow_dispatch:  # Allows manual or external trigger
+  repository_dispatch:  # Triggered by an external event from the Cloud Function
  
 jobs:
-  retrain-and-deploy:
+  run-pipeline:
+    if: github.event.action == 'trigger-pipeline'  # Ensure it runs only for the correct action
     runs-on: ubuntu-latest
  
     steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
  
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: "3.9"
- 
-    - name: Retrain Model
+    - name: Execute Pipeline
       run: |
-        echo "Retraining model..."
- 
-    - name: Deploy Model
-      run: |
-        echo "Deploying model..."
+        echo "Condition met! Running the pipeline."
+        # Add your pipeline commands here
