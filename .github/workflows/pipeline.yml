@@ -49,14 +49,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Authenticate with GCP
-        env:
-          GOOGLE_APPLICATION_CREDENTIALS: ${{ secrets.GCP_SA_KEY }}
-        run: |
-          echo "${{ secrets.GCP_SA_KEY }}" > key.json
-          gcloud auth activate-service-account --key-file=key.json
-          gcloud config set project ${{ secrets.GCP_PROJECT }}
-
       - name: Execute fetch.py
         run: python fetch.py
 
