@@ -1,4 +1,4 @@
-name: Model Decay Execution
+name: Retraining Pipeline
  
 on:
   workflow_dispatch:  # Allows manual or external trigger
@@ -6,7 +6,7 @@ on:
  
 jobs:
   run-pipeline:
-    if: github.event.action == 'trigger-pipeline-model-decay'  # Ensure it runs only for the correct action
+    if: github.event.action == 'trigger-pipeline'  # Ensure it runs only for the correct action
     runs-on: ubuntu-latest
  
     steps:
