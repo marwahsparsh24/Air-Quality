@@ -244,8 +244,15 @@ class RandomForestPM25Model:
         bucket_name = "airquality-mlops-rg"
         bucket = storage_client.bucket(bucket_name)
         # Initialize SHAP explainer for XGBoost
+        columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
+        self.X_train = self.X_train.drop(columns=[col for col in columns_to_drop if col in self.X_train.columns])
+        print("Columns in X_test after dropping:", self.X_train.columns)
+        print(self.X_train)
         explainer = shap.Explainer(self.model, self.X_train)
-        
+        columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
+        self.X_test = self.X_test.drop(columns=[col for col in columns_to_drop if col in self.X_test.columns])
+        print("Columns in X_test after dropping:", self.X_test.columns)
+        print(self.X_test)
         # Calculate SHAP values for the test set
         shap_values = explainer(self.X_test)
 
