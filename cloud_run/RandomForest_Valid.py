@@ -187,7 +187,7 @@ class RandomForestPM25Model:
 
         for column in test_data.columns:
             if column == 'pm25_boxcox' or column == 'pm25_log':
-                self.X_test = train_data.drop(columns=column)
+                self.X_test = test_data.drop(columns=column)
                 # self.y_test = test_data[column]
                 break
         self.y_test_original = test_data['pm25']
