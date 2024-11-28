@@ -232,14 +232,14 @@ class XGBoostPM25Model:
 
         # Extract Box-Cox transformed y and original y
         for column in train_data.columns:
-            if column == 'pm25_boxcox' or column == 'pm25_log':
+            if column == 'pm25_boxcox' or column == 'pm25_log' or column == 'pm25':
                 self.y_train = train_data[column]
                 break
         self.y_train_original = train_data['pm25']
         self.X_train = train_data.drop(columns=['pm25'])
         
         for column in test_data.columns:
-            if column == 'pm25_boxcox' or column == 'pm25_log':
+            if column == 'pm25_boxcox' or column == 'pm25_log' or column == 'pm25':
                 self.y_test = test_data[column]
                 break
         self.y_test_original = test_data['pm25']
