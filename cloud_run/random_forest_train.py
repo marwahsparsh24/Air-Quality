@@ -72,6 +72,12 @@ class RandomForestPM25Model:
         # self.X_train = train_data.drop(columns=['pm25'])
 
     def grid_search_cv(self):
+        print(self.X_train.head())
+        print(self.X_train.columns)
+        columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
+        self.X_train = self.X_train.drop(columns=[col for col in columns_to_drop if col in columns_to_drop])
+        print(self.X_train)
+        grid_search.fit(self.X_train, self.y_train)
         # Perform grid search with cross-validation
         grid_search = GridSearchCV(estimator=self.model, param_grid=self.param_grid, cv=3, scoring='neg_mean_squared_error')
         grid_search.fit(self.X_train, self.y_train)
