@@ -129,6 +129,7 @@ def load_models():
 
 # Make predictions
 def make_predictions(feature_data, rf_model, xgb_model, prophet_model):
+    print(feature_data)
     X_test = feature_data.drop(columns=['pm25', 'season', 'timestamp'], errors='ignore')
     y_true = feature_data['pm25']
 
@@ -196,6 +197,7 @@ def evaluate_model_bias(feature_data, y_true):
                     
                     # Collect metrics for each slice of the feature
                     grouped_results = []
+                    print(feature_data)
                     for name, group in feature_data.groupby(feature):
                         # Calculate metrics
                         mae = mean_absolute_error(group['pm25'], group[model_col])
