@@ -264,19 +264,20 @@ class RandomForestPM25Model:
 
     def evaluate(self):
         # Make predictions on the test data
-        y_pred_boxcox = self.model.predict(self.X_test)
+        # y_pred_boxcox = self.model.predict(self.X_test)
+        y_pred_original = self.model.predict(self.X_test)
 
         # Evaluate the model on the transformed target (Box-Cox transformed PM2.5)
-        rmse_boxcox = mean_squared_error(self.y_test, y_pred_boxcox, squared=False)
-        print(f"RMSE (Box-Cox transformed target): {rmse_boxcox}")
+        # rmse_boxcox = mean_squared_error(self.y_test, y_pred_boxcox, squared=False)
+        # print(f"RMSE (Box-Cox transformed target): {rmse_boxcox}")
 
         # Inverse Box-Cox transformation to get predictions back to the original PM2.5 scale
-        y_pred_original = inv_boxcox(y_pred_boxcox, self.lambda_value)
+        # y_pred_original = inv_boxcox(y_pred_boxcox, self.lambda_value)
 
         # Evaluate the model on the original PM2.5 scale (using inverse-transformed predictions)
         rmse_original = mean_squared_error(self.y_test_original, y_pred_original, squared=False)
         mlflow.log_metric("RMSE",rmse_original)
-        mlflow.log_metric("RMSE_BoxCOX",rmse_boxcox)
+        # mlflow.log_metric("RMSE_BoxCOX",rmse_boxcox)
         print(f"RMSE (Original PM2.5 target): {rmse_original}")
 
         return y_pred_original
