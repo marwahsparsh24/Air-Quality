@@ -45,6 +45,7 @@ class XGBoostPM25Model:
     def grid_search_cv(self):
         # Perform grid search with cross-validation
         grid_search = GridSearchCV(estimator=self.model, param_grid=self.param_grid, cv=3, scoring='neg_mean_squared_error')
+        print(self.X_train.head())
         grid_search.fit(self.X_train, self.y_train)
 
         # Log the best parameters and best RMSE
