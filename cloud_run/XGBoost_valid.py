@@ -270,9 +270,13 @@ class XGBoostPM25Model:
         self.y_test_original = test_data['pm25']
         self.y_test = test_data['pm25']
         self.X_test = test_data.drop(columns=['pm25'])
-        print(self.X_test)
+        
 
     def evaluate(self):
+        columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
+        self.X_test = self.X_test.drop(columns=[col for col in columns_to_drop if col in self.X_test.columns])
+        print("Columns in X_test after dropping:", self.X_test.columns)
+
         # Make predictions on the test data
         y_pred_original = self.model.predict(self.X_test)
 

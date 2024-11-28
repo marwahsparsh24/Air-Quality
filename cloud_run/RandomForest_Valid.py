@@ -264,6 +264,8 @@ class RandomForestPM25Model:
         blob.upload_from_filename(shap_plot_path)
 
     def evaluate(self):
+        columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
+        self.X_test = self.X_test.drop(columns=[col for col in columns_to_drop if col in self.X_test.columns])
         # Make predictions on the test data
         # y_pred_boxcox = self.model.predict(self.X_test)
         y_pred_original = self.model.predict(self.X_test)
