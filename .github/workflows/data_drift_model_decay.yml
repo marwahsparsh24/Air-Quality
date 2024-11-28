@@ -25,7 +25,7 @@ jobs:
         echo "Condition met! Running the pipeline."
         # Add your pipeline commands here
   
-  Job 1: Trigger Airflow DAG
+  # Job 1: Trigger Airflow DAG
   trigger-dag:
     runs-on: ubuntu-latest
     steps:
