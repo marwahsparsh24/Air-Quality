@@ -52,25 +52,26 @@ class DataFeatureEngineer:
     def handle_skewness(self, column_name='pm25'):
         skewness = self.data[column_name].skew()
         print(f'Original Skewness: {skewness}')
-        if np.abs(skewness)<0.5:
-            return column_name
-        else:
-            self.data[f'{column_name}_log'] = np.log1p(self.data[column_name])
-            log_skewness = self.data[f'{column_name}_log'].skew()
-            print(f'Log Transformed Skewness: {log_skewness}')
+        return column_name
+        # if np.abs(skewness)<0.5:
+        #     return column_name
+        # else:
+        #     self.data[f'{column_name}_log'] = np.log1p(self.data[column_name])
+        #     log_skewness = self.data[f'{column_name}_log'].skew()
+        #     print(f'Log Transformed Skewness: {log_skewness}')
 
-            self.data[f'{column_name}_boxcox'], self.fitting_lambda = stats.boxcox(self.data[column_name] + 1)
-            boxcox_skewness = self.data[f'{column_name}_boxcox'].skew()
-            print(f'Box-Cox Transformed Skewness: {boxcox_skewness}')
+        #     self.data[f'{column_name}_boxcox'], self.fitting_lambda = stats.boxcox(self.data[column_name] + 1)
+        #     boxcox_skewness = self.data[f'{column_name}_boxcox'].skew()
+        #     print(f'Box-Cox Transformed Skewness: {boxcox_skewness}')
 
-            if abs(boxcox_skewness) < abs(log_skewness):
-                self.data.drop(columns=[f'{column_name}_log'],inplace=True)
-                print("Choosing Box-Cox transformed column.")
-                return f'{column_name}_boxcox'
-            else:
-                print("Choosing Log transformed column.")
-                self.data.drop(columns=[f'{column_name}_boxcox'],inplace=True)
-                return f'{column_name}_log'
+        #     if abs(boxcox_skewness) < abs(log_skewness):
+        #         self.data.drop(columns=[f'{column_name}_log'],inplace=True)
+        #         print("Choosing Box-Cox transformed column.")
+        #         return f'{column_name}_boxcox'
+        #     else:
+        #         print("Choosing Log transformed column.")
+        #         self.data.drop(columns=[f'{column_name}_boxcox'],inplace=True)
+        #         return f'{column_name}_log'
 
     def feature_engineering(self, chosen_column):
         # Create lag features
