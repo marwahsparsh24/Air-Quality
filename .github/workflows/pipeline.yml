@@ -274,7 +274,7 @@ jobs:
 
 deploy-streamlit:
   runs-on: ubuntu-latest
-  needs: deploy-endpoint  # Ensure the pipeline completes before deploying Streamlit
+  # needs: deploy-endpoint  # Ensure the pipeline completes before deploying Streamlit
   
   permissions:
     contents: read
