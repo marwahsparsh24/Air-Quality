@@ -36,6 +36,8 @@ def load_feature_data():
     feature_data = pickle.load(BytesIO(pickle_data))
     #feature_data = pd.read_pickle(feature_data_path)
     print("Loaded feature-engineered test data successfully.")
+    columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
+    feature_data = feature_data.drop(columns=[col for col in columns_to_drop if col in feature_data.columns.tolist()])
 
     if 'season' not in feature_data.columns:
         feature_data['season'] = feature_data['month'].apply(lambda x: (
