@@ -46,6 +46,11 @@ class XGBoostPM25Model:
         # Perform grid search with cross-validation
         grid_search = GridSearchCV(estimator=self.model, param_grid=self.param_grid, cv=3, scoring='neg_mean_squared_error')
         print(self.X_train.head())
+        print(self.X_train.columns)
+        columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
+        self.X_train = self.X_train.drop(columns=[col for col in columns_to_drop if col in self.X_test.columns])
+        print("Columns in X_train after dropping:", self.X_test.columns)
+        print(self.X_train)
         grid_search.fit(self.X_train, self.y_train)
 
         # Log the best parameters and best RMSE
