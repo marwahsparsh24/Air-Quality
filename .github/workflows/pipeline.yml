@@ -55,7 +55,7 @@ jobs:
   # Job 1: Trigger Airflow DAG
   trigger-dag:
     runs-on: ubuntu-latest
-    needs: fetch-data
+    # needs: fetch-data
 
     steps:
     - name: Install Required Utilities
