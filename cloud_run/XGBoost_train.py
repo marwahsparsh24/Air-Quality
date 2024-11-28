@@ -72,13 +72,23 @@ class XGBoostPM25Model:
         pickle_data = blob.download_as_bytes() 
         train_data = pickle.load(BytesIO(pickle_data))
 
-        # Extract Box-Cox transformed y and original y
         for column in train_data.columns:
-            if column == 'pm25_boxcox' or column == 'pm25_log' or column == 'pm25':
-                self.y_train = train_data[column]
+            if column == 'pm25_boxcox' or column == 'pm25_log':
+                self.X_train = train_data.drop(columns=column)
+                # self.y_train = train_data[column]
                 break
+
         self.y_train_original = train_data['pm25']
+        self.y_train = train_data['pm25']
         self.X_train = train_data.drop(columns=['pm25'])
+
+        # # Extract Box-Cox transformed y and original y
+        # for column in train_data.columns:
+        #     if column == 'pm25_boxcox' or column == 'pm25_log' or column == 'pm25':
+        #         self.y_train = train_data[column]
+        #         break
+        # self.y_train_original = train_data['pm25']
+        # self.X_train = train_data.drop(columns=['pm25'])
 
     def train_model(self):
         # Train the model
