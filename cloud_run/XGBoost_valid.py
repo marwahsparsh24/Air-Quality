@@ -229,6 +229,7 @@ class XGBoostPM25Model:
         blob_test = bucket.blob(blob_name_test)
         pickle_data_test = blob_test.download_as_bytes() 
         test_data = pickle.load(BytesIO(pickle_data_test))
+        print(test_data.head())
 
         # Extract Box-Cox transformed y and original y
         # for column in train_data.columns:
