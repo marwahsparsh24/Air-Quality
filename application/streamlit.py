@@ -97,12 +97,6 @@ import json
 import math
 from datetime import datetime
 from google.cloud import bigquery
-import pandas as pd
-from google.cloud import storage
-import io
-from io import BytesIO
-import pickle5 as pickle
-import os 
 
 # Initialize BigQuery client
 client = bigquery.Client()
