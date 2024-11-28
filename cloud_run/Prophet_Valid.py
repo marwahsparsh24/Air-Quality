@@ -167,17 +167,28 @@ class ProphetPM25Model:
 
         # Extract Box-Cox transformed y and original y
         for column in train_data.columns:
-            if column == 'pm25_boxcox' or column == 'pm25_log' or column == 'pm25':
-                self.y_train = train_data[column]
+            if column == 'pm25_boxcox' or column == 'pm25_log':
+                self.X_train = train_data.drop(columns=column)
+                # self.y_train = train_data[column]
                 break
+
         self.y_train_original = train_data['pm25']
+        self.y_train = train_data['pm25']
         self.X_train = train_data.drop(columns=['pm25'])
+        # for column in train_data.columns:
+        #     if column == 'pm25_boxcox' or column == 'pm25_log' or column == 'pm25':
+        #         self.y_train = train_data[column]
+        #         break
+        # self.y_train_original = train_data['pm25']
+        # self.X_train = train_data.drop(columns=['pm25'])
 
         for column in test_data.columns:
-            if column == 'pm25_boxcox' or column == 'pm25_log' or column == 'pm25':
-                self.y_test = test_data[column]
+            if column == 'pm25_boxcox' or column == 'pm25_log':
+                self.X_train = train_data.drop(columns=column)
+                # self.y_test = test_data[column]
                 break
         self.y_test_original = test_data['pm25']
+        self.y_test = test_data['pm25']
         self.X_test = test_data.drop(columns=['pm25'])
 
     def shap_analysis(self):
@@ -227,10 +238,11 @@ class ProphetPM25Model:
 
         # Predict on the test data
         forecast = self.model.predict(future)
-        y_pred_boxcox = forecast['yhat'][-len(self.X_test):].values
+        # y_pred_boxcox = forecast['yhat'][-len(self.X_test):].values
+        y_pred_original = forecast['yhat'][-len(self.X_test):].values
 
         # Inverse Box-Cox transformation to get predictions back to original PM2.5 scale
-        y_pred_original = inv_boxcox(y_pred_boxcox, self.lambda_value)
+        # y_pred_original = inv_boxcox(y_pred_boxcox, self.lambda_value)
 
         # Handle NaN values in predictions
         valid_idx = ~np.isnan(y_pred_original) & ~np.isnan(self.y_test_original)

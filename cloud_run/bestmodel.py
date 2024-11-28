@@ -358,26 +358,6 @@ def main():
         # Upload the serialized model weights to GCS
         model_blob.upload_from_file(buffer, content_type='application/octet-stream')
         print(f"Model weights saved and uploaded to GCS at {model_blob_path}")
-
-
-    # existing_rmse = check_existing_model_rmse(model_name, best_rmse)
-    # if existing_rmse is not None and existing_rmse <= best_rmse:
-    #     print(f"Existing model in registry has a better or equal RMSE ({existing_rmse}). Skipping registration.")
-    # else:
-    #     # Log and register the new best model in MLflow
-    #     with mlflow.start_run(run_id=best_run_id) as run:
-    #         mlflow.log_param("best_combined_score", best_combined_score)
-            
-    #         # Log and push the best model to the MLflow registry
-    #         mlflow.pyfunc.log_model(
-    #             artifact_path="model",
-    #             python_model=wrapped_model,
-    #             registered_model_name=model_name
-    #         )
-    #         print(f"Best model '{model_name}' registered with MLflow Model Registry.")
-
-    # print(f"\nBest model selected: {best_model_name} with combined score: {best_combined_score}")
-    # print("Model Details:", best_model_name, best_combined_score)
     print("Bias Results:", bias_results)
     print("RMSE Results:", rmse_results)
 

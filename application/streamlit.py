@@ -42,7 +42,6 @@ def main():
             payload = {
                 "instances": [
                     {
-                        "pm25_boxcox": 0.5,  # Replace with real data or keep default
                         "lag_1": 0.6,
                         "lag_2": 0.7,
                         "lag_3": 0.8,
