@@ -77,7 +77,6 @@ class RandomForestPM25Model:
         columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
         self.X_train = self.X_train.drop(columns=[col for col in columns_to_drop if col in self.X_train.columns.tolist()])
         print(self.X_train)
-        grid_search.fit(self.X_train, self.y_train)
         # Perform grid search with cross-validation
         grid_search = GridSearchCV(estimator=self.model, param_grid=self.param_grid, cv=3, scoring='neg_mean_squared_error')
         grid_search.fit(self.X_train, self.y_train)

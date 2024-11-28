@@ -192,7 +192,7 @@ class XGBoostPM25Model:
         # Initialize SHAP explainer for XGBoost
         columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
         self.X_train = self.X_train.drop(columns=[col for col in columns_to_drop if col in self.X_train.columns])
-        print("Columns in X_test after dropping:", self.X_train.columns)
+        print("Columns in X_train after dropping:", self.X_train.columns)
         print(self.X_train)
         explainer = shap.Explainer(self.model, self.X_train)
         columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
