@@ -92,6 +92,7 @@ class XGBoostPM25Model:
 
     def train_model(self):
         # Train the model
+        print(self.X_train)
         self.model.fit(self.X_train, self.y_train)
         mlflow.sklearn.log_model(self.model,"XGBoost",input_example=self.X_train[:5])
 
