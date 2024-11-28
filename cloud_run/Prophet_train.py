@@ -52,6 +52,7 @@ class ProphetPM25Model:
         blob = bucket.blob(blob_name)
         pickle_data = blob.download_as_bytes() 
         train_data = pickle.load(BytesIO(pickle_data))
+        print(train_data)
 
         
         # Extract Box-Cox transformed y and original y
@@ -108,9 +109,6 @@ def main():
     bucket_name = "airquality-mlops-rg"
     train_file_gcs = f'gs://{bucket_name}/processed/train/feature_eng_data.pkl'
     model_save_path_gcs = f'gs://{bucket_name}/weights/prophet_pm25_model.pth'
-
-    # Configure MLflow
-    #mlflow.set_tracking_uri("postgresql://airquality:Prediction@34.42.22.132:5432/air?connect_timeout=100")  # Use GCS for artifact storage
     mlflow.set_experiment("PM2.5 Prophet")
 
     if mlflow.active_run():
