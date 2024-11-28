@@ -272,51 +272,51 @@ jobs:
   #           --upload-file email.txt \
   #           --user "$EMAIL_USERNAME:$EMAIL_PASSWORD"
 
-deploy-streamlit:
-  runs-on: ubuntu-latest
-  # needs: deploy-endpoint  # Ensure the pipeline completes before deploying Streamlit
-  
-  permissions:
-    contents: read
-    id-token: write
+  deploy-streamlit:
+    runs-on: ubuntu-latest
+    # needs: deploy-endpoint  # Ensure the pipeline completes before deploying Streamlit
+    
+    permissions:
+      contents: read
+      id-token: write
 
-  steps:
-    - name: Checkout Repository
-      uses: actions/checkout@v3
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
 
-    - name: Set up Cloud SDK
-      uses: google-github-actions/setup-gcloud@v1
-      with:
-        project_id: ${{ secrets.GCP_PROJECT }}
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v1
+        with:
+          project_id: ${{ secrets.GCP_PROJECT }}
 
-    - name: Authenticate with Google Cloud
-      uses: google-github-actions/auth@v1
-      with:
-        credentials_json: ${{ secrets.GCP_SA_KEY }}
+      - name: Authenticate with Google Cloud
+        uses: google-github-actions/auth@v1
+        with:
+          credentials_json: ${{ secrets.GCP_SA_KEY }}
 
-    - name: Configure Docker Authentication
-      run: gcloud auth configure-docker
+      - name: Configure Docker Authentication
+        run: gcloud auth configure-docker
 
-    # Build the Docker image for Streamlit
-    - name: Build Streamlit Docker Image
-      run: |
-        docker build \
-          -t ${{ env.REGISTRY }}/streamlit_app:${{ env.IMAGE_TAG }} \
-          -t ${{ env.REGISTRY }}/streamlit_app:latest \
-          -f ./application/Dockerfile ./application
+      # Build the Docker image for Streamlit
+      - name: Build Streamlit Docker Image
+        run: |
+          docker build \
+            -t ${{ env.REGISTRY }}/streamlit_app:${{ env.IMAGE_TAG }} \
+            -t ${{ env.REGISTRY }}/streamlit_app:latest \
+            -f ./application/Dockerfile ./application
 
-    # Push the Docker image to GCR
-    - name: Push Streamlit Docker Images
-      run: |
-        docker push ${{ env.REGISTRY }}/streamlit_app:${{ env.IMAGE_TAG }}
-        docker push ${{ env.REGISTRY }}/streamlit_app:latest
+      # Push the Docker image to GCR
+      - name: Push Streamlit Docker Images
+        run: |
+          docker push ${{ env.REGISTRY }}/streamlit_app:${{ env.IMAGE_TAG }}
+          docker push ${{ env.REGISTRY }}/streamlit_app:latest
 
-    # Deploy the Streamlit app to Cloud Run
-    - name: Deploy Streamlit App to Cloud Run
-      run: |
-        gcloud run deploy streamlit-app \
-          --image ${{ env.REGISTRY }}/streamlit_app:latest \
-          --platform managed \
-          --region us-central1 \
-          --allow-unauthenticated \
-          --port 8080
+      # Deploy the Streamlit app to Cloud Run
+      - name: Deploy Streamlit App to Cloud Run
+        run: |
+          gcloud run deploy streamlit-app \
+            --image ${{ env.REGISTRY }}/streamlit_app:latest \
+            --platform managed \
+            --region us-central1 \
+            --allow-unauthenticated \
+            --port 8080
