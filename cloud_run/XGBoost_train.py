@@ -48,7 +48,7 @@ class XGBoostPM25Model:
         print(self.X_train.head())
         print(self.X_train.columns.tolist())
         columns_to_drop = ['pm25_boxcox', 'pm25_log', 'pm25']
-        self.X_train = self.X_train.drop(columns=[col for col in columns_to_drop if col in self.X_train.tolist()])
+        self.X_train = self.X_train.drop(columns=[col for col in columns_to_drop if col in self.X_train.columns.tolist()])
         print(self.X_train)
         grid_search.fit(self.X_train, self.y_train)
 
