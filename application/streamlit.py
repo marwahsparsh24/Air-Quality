@@ -6,7 +6,8 @@ from datetime import datetime
 from google.cloud import bigquery
 
 # Initialize BigQuery client
-client = bigquery.Client()
+# change it according to the table
+client = bigquery.Client(project="airquality-438719")
 
 # Define the endpoint URL
 endpoint = "https://us-central1-airquality-438719.cloudfunctions.net/predict-function/predict"
@@ -48,6 +49,21 @@ def main():
     st.header("Enter Date and Time for Prediction")
     input_date = st.date_input("Select a date for prediction:")
     input_time = st.time_input("Select a time for prediction:")
+    # input also give an option for date starting from 2022 jan only
+    # add a value between 1 to 10
+    # choose it from the pointer
+    # if no value is selected then value for the given date is only predicted
+    # if value is selected then choose prediction of that date to date + value selected
+    # if no value is selected just make the prediction and say if it is good or bad, something artistic using gpt key
+    # if value is selected build a plot and keep it in the place holder and describe something aritistic using gpt key, explain plot
+    # everytime predict is pressed remove everything in the place holders
+    # if future date is selected that is not in the csv, take the corresponding value exactly an year before this,
+    # access the data from bigquery
+    # ex: 2026 is selcted in dataset for the timestamp check if it has 2025, 2024 go on till you find corresponding date, extract 
+    # the entries and fill them
+    # if there are n number of entries, and date in future, populate rest using the same logic as above
+    # every entry is recorded and stored in big query
+    # change the client accordingly
     
 
     if st.button("Predict Air Quality"):
@@ -115,9 +131,4 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-#change input
-# do for multiple values
-# add graph showing outputs
-# explain it using LLM/GPT
 
