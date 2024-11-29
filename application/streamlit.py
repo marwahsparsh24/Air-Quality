@@ -48,6 +48,7 @@ def main():
     st.header("Enter Date and Time for Prediction")
     input_date = st.date_input("Select a date for prediction:")
     input_time = st.time_input("Select a time for prediction:")
+    
 
     if st.button("Predict Air Quality"):
         try:
@@ -60,6 +61,7 @@ def main():
 
             sin_hour, cos_hour = compute_cyclic_features(hour, 24)
             sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
+            # given the location  
 
             payload = {
                 "instances": [
@@ -113,3 +115,9 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+#change input
+# do for multiple values
+# add graph showing outputs
+# explain it using LLM/GPT
+
