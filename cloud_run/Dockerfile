@@ -29,6 +29,7 @@ COPY XGBoost_valid.py /app/
 COPY Model_bias.py /app/
 COPY bestmodel.py /app/
 COPY saving_bigquery.py /app/
+COPY delete_query.py /app/
 
 
 RUN chmod -R 777 ${MLFLOW_TRACKING_DIR}
