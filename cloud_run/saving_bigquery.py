@@ -99,6 +99,7 @@ except:
     ]
     table = bigquery.Table(full_table_id, schema=schema)
     client.create_table(table)
+    
 # query = f"DELETE FROM `{full_table_id}` WHERE TRUE"
 # client.query(query).result()
 # print(f"All rows deleted from {full_table_id}.")
