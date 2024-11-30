@@ -98,7 +98,6 @@ def main():
     result_placeholder = st.empty()
     # if no value is selected just make the prediction and say if it is good or bad, something artistic using gpt key
     # if value is selected build a plot and keep it in the place holder and describe something aritistic using gpt key, explain plot
-    # everytime predict is pressed remove everything in the place holders
     if st.button("Predict Air Quality"):
         plot_placeholder.empty()  # Clears any existing plot
         result_placeholder.empty()
@@ -155,8 +154,8 @@ def main():
                     prediction = response.json()
                     predicted_value = prediction["predictions"][0]
                     predictions.append({"date": current_datetime, "value": predicted_value})
-                    st.success("Prediction Successful!")
-                    st.write(f"Predicted Air Quality Value: {predicted_value}")
+                    # st.success("Prediction Successful!")
+                    # st.write(f"Predicted Air Quality Value: {predicted_value}")
                     predictions_table = "airquality-438719.airqualityuser.predictions"
                     store_in_bigquery(payload["instances"][0], predicted_value, predictions_table, datetime_obj)
                 else:
