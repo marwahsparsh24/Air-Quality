@@ -206,9 +206,9 @@ def main():
                 # Plot results
                 st.success("Prediction Successful!")
                 for prediction in predictions:
-                    date = prediction["date"].strftime("%Y-%m-%d %H:%M:%S")  # Format datetime
+                    dates = prediction["date"].strftime("%Y-%m-%d %H:%M:%S")  # Format datetime
                     value = prediction["value"]
-                    st.write(f"Time: {date}, Predicted Value: {value}")
+                    st.write(f"Time: {dates}, Predicted Value: {value}")
                 with plot_placeholder:
                     df = pd.DataFrame(predictions)
                     st.line_chart(data=df, x="date", y="value")
