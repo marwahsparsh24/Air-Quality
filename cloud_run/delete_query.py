@@ -32,21 +32,55 @@
 # truncate_table()
 
 
-from google.cloud import bigquery
+# from google.cloud import bigquery
 
-client = bigquery.Client()
+# client = bigquery.Client()
 
-def delete_entries():
-    table_id = "airquality-438719.airqualityuser.allfeatures"
+# def delete_entries():
+#     table_id = "airquality-438719.airqualityuser.allfeatures"
 
-    # Delete all rows from the table
-    query = f"DELETE FROM `{table_id}` WHERE TRUE"
-    job = client.query(query)
-    job.result()  # Wait for the query to complete
-    print("All rows deleted from the table.")
+#     # Delete all rows from the table
+#     query = f"DELETE FROM `{table_id}` WHERE TRUE"
+#     job = client.query(query)
+#     job.result()  # Wait for the query to complete
+#     print("All rows deleted from the table.")
 
-delete_entries()
+# delete_entries()
 
 
 # Call the function
 # delete_rows_in_chunks()
+
+
+
+from google.cloud import bigquery
+import time
+
+# Initialize BigQuery client
+client = bigquery.Client(project="airquality-438719")
+
+def delete_table(table_id):
+    """Delete a BigQuery table and validate the deletion."""
+    try:
+        # Delete the table
+        client.delete_table(table_id, not_found_ok=True)
+        print(f"Table {table_id} deleted successfully.")
+        
+        # Wait for the deletion to propagate
+        time.sleep(15)  # Wait 5 seconds to ensure the deletion reflects
+
+        # Validate that the table no longer exists
+        try:
+            client.get_table(table_id)
+            print(f"Table {table_id} still exists! Deletion not yet reflected.")
+        except Exception:
+            print(f"Table {table_id} confirmed as deleted.")
+    except Exception as e:
+        print(f"An error occurred during table deletion: {e}")
+
+# Table to delete
+full_table_id = "airquality-438719.airqualityuser.allfeatures"
+
+# Call the function
+delete_table(full_table_id)
+
