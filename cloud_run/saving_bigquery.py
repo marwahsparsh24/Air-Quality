@@ -30,11 +30,8 @@ pickle_data_train = blob_train.download_as_bytes()
 feature_data_train = pickle.load(BytesIO(pickle_data_train))
 full_table_id = "airquality-438719.airqualityuser.allfeatures"
 
+
 def populate_temp_feature_eng_table(feature_eng_file):
-    query = f"DELETE FROM `{full_table_id}` WHERE TRUE"
-    client.query(query).result()
-    print(f"All rows deleted from {full_table_id}.")
- 
     # Load data from the pickle file
     client_st = storage.Client()
     bucket_name = 'airquality-mlops-rg'
@@ -93,10 +90,6 @@ def populate_temp_feature_eng_table(feature_eng_file):
         else:
             print(f"Successfully inserted batch {i//batch_size + 1}")
 
-# check if table exists
-# if exists then delete all rows in the table
-# if it not exists then create the table
-
 try:
     client.get_table(full_table_id)
 except:
@@ -106,6 +99,9 @@ except:
     ]
     table = bigquery.Table(full_table_id, schema=schema)
     client.create_table(table)
+query = f"DELETE FROM `{full_table_id}` WHERE TRUE"
+client.query(query).result()
+print(f"All rows deleted from {full_table_id}.")
 populate_temp_feature_eng_table(feature_data_path)
 populate_temp_feature_eng_table(feature_data_path_train)
 
