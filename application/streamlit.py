@@ -65,10 +65,26 @@ def find_date_in_bigquery(table_id, datetime_obj, max_attempts=10):
         datetime_obj = datetime_obj.replace(year=datetime_obj.year - 1)
 
     print(f"No matching date found after {max_attempts} attempts.")
-    day_of_week = datetime_obj.weekday()
-    day_of_year = datetime_obj.timetuple().tm_yday
-    month = datetime_obj.month
-    hour = datetime_obj.hour
+    return datetime_iso
+
+def get_feature_data_for_date(table_id, datetime_iso):
+    query = f"""
+    SELECT feature_data
+    FROM `{table_id}`
+    WHERE timestamp = '{datetime_iso}'
+    """
+    query_job = client.query(query)
+    results = query_job.result()
+
+    rows = list(results)
+    if rows:
+        feature_data = rows[0].feature_data  # Assuming `feature_data` column exists
+        return feature_data
+    
+    day_of_week = datetime_iso.weekday()
+    day_of_year = datetime_iso.timetuple().tm_yday
+    month = datetime_iso.month
+    hour = datetime_iso.hour
     sin_hour, cos_hour = compute_cyclic_features(hour, 24)
     sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
     feature = {
@@ -98,21 +114,6 @@ def find_date_in_bigquery(table_id, datetime_obj, max_attempts=10):
                 "cos_day_of_week": cos_day_of_week,
                 }
     return feature
-
-def get_feature_data_for_date(table_id, datetime_iso):
-    query = f"""
-    SELECT feature_data
-    FROM `{table_id}`
-    WHERE timestamp = '{datetime_iso}'
-    """
-    query_job = client.query(query)
-    results = query_job.result()
-
-    rows = list(results)
-    if rows:
-        feature_data = rows[0].feature_data  # Assuming `feature_data` column exists
-        return feature_data
-    return None
 
 def generate_time_options():
     """Generate a static list of time options with 1-hour intervals."""
@@ -145,14 +146,14 @@ def main():
             for i in range(additional_days + 1):
                 current_datetime = datetime_obj + timedelta(hours=i)
                 found_date = find_date_in_bigquery(table_id, current_datetime)
-                feature_data = get_feature_data_for_date(table_id, found_date)
+                feature_data_entry = get_feature_data_for_date(table_id, found_date)
                 day_of_week = current_datetime.weekday()
                 day_of_year = current_datetime.timetuple().tm_yday
                 month = current_datetime.month
                 hour = current_datetime.hour
                 sin_hour, cos_hour = compute_cyclic_features(hour, 24)
                 sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
-                feature_data_dict  = json.loads(feature_data)
+                feature_data_dict  = json.loads(feature_data_entry)
                 payload = {
                     "instances": [
                         {
