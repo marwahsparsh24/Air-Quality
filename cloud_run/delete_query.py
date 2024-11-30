@@ -24,5 +24,12 @@ def delete_rows_in_chunks():
             print("Table is now empty.")
             break
 
+def truncate_table():
+    query = f"TRUNCATE TABLE `airquality-438719.airqualityuser.allfeatures`"
+    client.query(query).result()  # Wait for the operation to complete
+    print("Table truncated successfully.")
+
+truncate_table()
+
 # Call the function
-delete_rows_in_chunks()
+# delete_rows_in_chunks()
