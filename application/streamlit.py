@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import json
 import math
-from datetime import datetime,date,timedelta
+from datetime import datetime,date,timedelta,time
 from google.cloud import bigquery
 import pandas as pd
 
@@ -58,13 +58,13 @@ def find_date_in_bigquery(table_id, datetime_obj, max_attempts=10):
         date_count = list(results)[0].date_count
 
         if date_count > 0:
-            print(f"Date {datetime_iso} found in the table.")
+            st.write(f"Date {datetime_iso} found in the table.")
             return datetime_iso  # Return the found date
 
-        print(f"Date {datetime_iso} not found. Decrementing year...")
+        st.write(f"Date {datetime_iso} not found. Decrementing year...")
         datetime_obj = datetime_obj.replace(year=datetime_obj.year - 1)
 
-    print(f"No matching date found after {max_attempts} attempts.")
+    st.write(f"No matching date found after {max_attempts} attempts.")
     return None
 
 def get_feature_data_for_date(table_id, datetime_iso):
@@ -82,12 +82,17 @@ def get_feature_data_for_date(table_id, datetime_iso):
         return feature_data
     return None
 
+def generate_time_options():
+    """Generate a static list of time options with 1-hour intervals."""
+    return [time(hour=h, minute=0) for h in range(24)]  # Times: 00:00, 01:00, ..., 23:00
+
 def main():
     min_date = date(2022, 1, 1)
     st.title("Air Quality Prediction")
     st.header("Enter Date and Time for Prediction")
+    time_options = generate_time_options()
     input_date = st.date_input("Select a date for prediction:",min_value=min_date)
-    input_time = st.time_input("Select a time for prediction:")
+    input_time = st.time_input("Select a time for prediction:",options=time_options)
     additional_days = st.slider(
         "Select number of days for additional predictions (1-24):",
         min_value=0,
