@@ -65,8 +65,39 @@ def find_date_in_bigquery(table_id, datetime_obj, max_attempts=10):
         datetime_obj = datetime_obj.replace(year=datetime_obj.year - 1)
 
     print(f"No matching date found after {max_attempts} attempts.")
-    
-    return None
+    day_of_week = datetime_obj.weekday()
+    day_of_year = datetime_obj.timetuple().tm_yday
+    month = datetime_obj.month
+    hour = datetime_obj.hour
+    sin_hour, cos_hour = compute_cyclic_features(hour, 24)
+    sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
+    feature = {
+                "lag_1": 2.1462424282737667,
+                "lag_2": 2.1260022701562704,
+                "lag_3": 1.9535269514369231,
+                "lag_4": 1.90712065179672,
+                "lag_5": 1.90712065179672,
+                "rolling_mean_3": 2.090259560846853,
+                "rolling_mean_6": 2.006424489595154,
+                "rolling_mean_24": 2.0784056585593538,
+                "rolling_std_3": 0.08007872420850096,
+                "rolling_std_6": 0.10623635498573898,
+                "rolling_std_24": 0.15142463206132026,
+                "ema_3": 2.099382685440239,
+                "ema_6": 2.0683034409780907,
+                "ema_24": 2.0814968354677896,
+                "diff_1": 0.020240158117496243,
+                "diff_2": 0.14770844416324347,
+                "hour": hour,
+                "day_of_week": day_of_week,
+                "day_of_year": day_of_year,
+                "month": month,
+                "sin_hour": sin_hour,
+                "cos_hour": cos_hour,
+                "sin_day_of_week": sin_day_of_week,
+                "cos_day_of_week": cos_day_of_week,
+                }
+    return feature
 
 def get_feature_data_for_date(table_id, datetime_iso):
     query = f"""
@@ -115,14 +146,12 @@ def main():
                 current_datetime = datetime_obj + timedelta(hours=i)
                 found_date = find_date_in_bigquery(table_id, current_datetime)
                 feature_data = get_feature_data_for_date(table_id, found_date)
-                st.write(feature_data)
-                day_of_week = datetime_obj.weekday()
-                day_of_year = datetime_obj.timetuple().tm_yday
-                month = datetime_obj.month
-                hour = datetime_obj.hour
+                day_of_week = current_datetime.weekday()
+                day_of_year = current_datetime.timetuple().tm_yday
+                month = current_datetime.month
+                hour = current_datetime.hour
                 sin_hour, cos_hour = compute_cyclic_features(hour, 24)
                 sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
-            
                 payload = {
                     "instances": [
                         {
@@ -153,12 +182,13 @@ def main():
                         }
                     ]
                 }
-
+                st.write(payload)
                 headers = {"Content-Type": "application/json"}
                 response = requests.post(endpoint, headers=headers, data=json.dumps(payload))
 
                 if response.status_code == 200:
                     prediction = response.json()
+                    st.write(prediction)
                     predicted_value = prediction["predictions"][0]
                     predictions.append({"date": current_datetime, "value": predicted_value})
                     # st.success("Prediction Successful!")
