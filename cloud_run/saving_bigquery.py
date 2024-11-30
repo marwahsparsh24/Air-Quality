@@ -91,7 +91,7 @@ def populate_temp_feature_eng_table(feature_eng_file):
     filtered_rows = [row for row in rows_to_insert if row['timestamp'] not in existing_timestamps]
     print(f"{len(filtered_rows)} new rows to be inserted after filtering.")
     batch_size =1000
-    if len(filtered_rows) == 0:
+    if len(existing_timestamps) == 0:
         for i in range(0, len(rows_to_insert), batch_size):
             batch = rows_to_insert[i:i + batch_size]
             table_id = "airquality-438719.airqualityuser.allfeatures"
