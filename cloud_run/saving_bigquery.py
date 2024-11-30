@@ -102,7 +102,7 @@ try:
     query = f"DELETE FROM `{full_table_id}` WHERE TRUE"
     client.query(query).result()
     print(f"All rows deleted from {full_table_id}.")
-except bigquery.NotFound:
+except:
     print(f"Table {full_table_id} does not exist. Creating it.")
     schema = [
         bigquery.SchemaField("timestamp", "TIMESTAMP", mode="REQUIRED"),
@@ -111,8 +111,6 @@ except bigquery.NotFound:
     table_ref = bigquery.Table(full_table_id, schema=schema)
     client.create_table(table_ref)
     print(f"Table {full_table_id} created successfully.")
-
-
 populate_temp_feature_eng_table(feature_data_path)
 populate_temp_feature_eng_table(feature_data_path_train)
 
