@@ -91,14 +91,24 @@ def populate_temp_feature_eng_table(feature_eng_file):
     filtered_rows = [row for row in rows_to_insert if row['timestamp'] not in existing_timestamps]
     print(f"{len(filtered_rows)} new rows to be inserted after filtering.")
     batch_size =1000
-    for i in range(0, len(filtered_rows), batch_size):
-        batch = filtered_rows[i:i + batch_size]
-        table_id = "airquality-438719.airqualityuser.allfeatures"
-        errors = client.insert_rows_json(table_id, batch)
-        if errors:
-            print(f"Errors occurred while inserting batch {i//batch_size + 1}: {errors}")
-        else:
-            print(f"Successfully inserted batch {i//batch_size + 1}")
+    if len(filtered_rows) == 0:
+        for i in range(0, len(rows_to_insert), batch_size):
+            batch = rows_to_insert[i:i + batch_size]
+            table_id = "airquality-438719.airqualityuser.allfeatures"
+            errors = client.insert_rows_json(table_id, batch)
+            if errors:
+                print(f"Errors occurred while inserting batch {i//batch_size + 1}: {errors}")
+            else:
+                print(f"Successfully inserted batch {i//batch_size + 1}")
+    else:
+        for i in range(0, len(filtered_rows), batch_size):
+            batch = filtered_rows[i:i + batch_size]
+            table_id = "airquality-438719.airqualityuser.allfeatures"
+            errors = client.insert_rows_json(table_id, batch)
+            if errors:
+                print(f"Errors occurred while inserting batch {i//batch_size + 1}: {errors}")
+            else:
+                print(f"Successfully inserted batch {i//batch_size + 1}")
 
 try:
     client.get_table(full_table_id)
