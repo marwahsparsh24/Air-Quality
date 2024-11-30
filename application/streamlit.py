@@ -92,7 +92,7 @@ def main():
     st.header("Enter Date and Time for Prediction")
     time_options = generate_time_options()
     input_date = st.date_input("Select a date for prediction:",min_value=min_date)
-    input_time = st.time_input("Select a time for prediction:",options=time_options)
+    input_time = st.selectbox("Select a time for prediction:", options=time_options)
     additional_days = st.slider(
         "Select number of days for additional predictions (1-24):",
         min_value=0,
