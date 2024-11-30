@@ -152,25 +152,26 @@ def main():
                 hour = current_datetime.hour
                 sin_hour, cos_hour = compute_cyclic_features(hour, 24)
                 sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
+                feature_data_dict  = json.loads(feature_data)
                 payload = {
                     "instances": [
                         {
-                            "lag_1": feature_data["lag_1"],
-                            "lag_2": feature_data["lag_2"],
-                            "lag_3": feature_data["lag_3"],
-                            "lag_4": feature_data["lag_4"],
-                            "lag_5": feature_data["lag_5"],
-                            "rolling_mean_3": feature_data["rolling_mean_3"],
-                            "rolling_mean_6": feature_data["rolling_mean_6"],
-                            "rolling_mean_24": feature_data["rolling_mean_24"],
-                            "rolling_std_3": feature_data["rolling_std_3"],
-                            "rolling_std_6": feature_data["rolling_std_6"],
-                            "rolling_std_24": feature_data["rolling_std_24"],
-                            "ema_3": feature_data["ema_3"],
-                            "ema_6": feature_data["ema_6"],
-                            "ema_24": feature_data["ema_24"],
-                            "diff_1": feature_data["diff_1"],
-                            "diff_2": feature_data["diff_2"],
+                            "lag_1": feature_data_dict["lag_1"],
+                            "lag_2": feature_data_dict["lag_2"],
+                            "lag_3": feature_data_dict["lag_3"],
+                            "lag_4": feature_data_dict["lag_4"],
+                            "lag_5": feature_data_dict["lag_5"],
+                            "rolling_mean_3": feature_data_dict["rolling_mean_3"],
+                            "rolling_mean_6": feature_data_dict["rolling_mean_6"],
+                            "rolling_mean_24": feature_data_dict["rolling_mean_24"],
+                            "rolling_std_3": feature_data_dict["rolling_std_3"],
+                            "rolling_std_6": feature_data_dict["rolling_std_6"],
+                            "rolling_std_24": feature_data_dict["rolling_std_24"],
+                            "ema_3": feature_data_dict["ema_3"],
+                            "ema_6": feature_data_dict["ema_6"],
+                            "ema_24": feature_data_dict["ema_24"],
+                            "diff_1": feature_data_dict["diff_1"],
+                            "diff_2": feature_data_dict["diff_2"],
                             "hour": hour,
                             "day_of_week": day_of_week,
                             "day_of_year": day_of_year,
