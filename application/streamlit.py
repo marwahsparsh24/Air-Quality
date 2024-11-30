@@ -183,13 +183,11 @@ def main():
                         }
                     ]
                 }
-                st.write(payload)
                 headers = {"Content-Type": "application/json"}
                 response = requests.post(endpoint, headers=headers, data=json.dumps(payload))
 
                 if response.status_code == 200:
                     prediction = response.json()
-                    st.write(prediction)
                     predicted_value = prediction["predictions"][0]
                     predictions.append({"date": current_datetime, "value": predicted_value})
                     # st.success("Prediction Successful!")
@@ -206,6 +204,11 @@ def main():
                 result_placeholder.write(artistic_description)
             else:
                 # Plot results
+                st.success("Prediction Successful!")
+                for prediction in predictions:
+                    date = prediction["date"].strftime("%Y-%m-%d %H:%M:%S")  # Format datetime
+                    value = prediction["value"]
+                    st.write(f"Time: {date}, Predicted Value: {value}")
                 with plot_placeholder:
                     df = pd.DataFrame(predictions)
                     st.line_chart(data=df, x="date", y="value")
