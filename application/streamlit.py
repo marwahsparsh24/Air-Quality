@@ -108,7 +108,7 @@ def main():
         result_placeholder.empty()
         try:
             datetime_obj = datetime.combine(input_date, input_time)
-            table_id = "airquality-438719.airqualityuser.predictions"
+            table_id = "airquality-438719.airqualityuser.allfeatures"
             predictions = []
             for i in range(additional_days + 1):
                 current_datetime = datetime_obj + timedelta(hours=i)
