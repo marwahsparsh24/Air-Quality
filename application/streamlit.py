@@ -48,6 +48,7 @@ def main():
     st.header("Enter Date and Time for Prediction")
     input_date = st.date_input("Select a date for prediction:")
     input_time = st.time_input("Select a time for prediction:")
+
     # input also give an option for date starting from 2022 jan only
     # add a value between 1 to 10
     # choose it from the pointer
@@ -68,6 +69,7 @@ def main():
     if st.button("Predict Air Quality"):
         try:
             datetime_obj = datetime.combine(input_date, input_time)
+            # i want to extract the 
 
             day_of_week = datetime_obj.weekday()
             day_of_year = datetime_obj.timetuple().tm_yday

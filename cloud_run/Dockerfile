@@ -30,6 +30,7 @@ COPY Model_bias.py /app/
 COPY bestmodel.py /app/
 COPY saving_bigquery.py /app/
 COPY delete_table.py /app/
+COPY testing.py /app/
 
 
 RUN chmod -R 777 ${MLFLOW_TRACKING_DIR}
@@ -39,4 +40,5 @@ RUN chmod -R 777 ${MLFLOW_TRACKING_DIR}
 # Fetch the key and run the training script
 #CMD ["sh", "-c", "python /app/XGBoost_train.py && python /app/XGBoost_valid.py && python /app/random_forest_train.py && python /app/RandomForest_Valid.py && python /app/Model_bias.py && python /app/bestmodel.py"]
 # CMD ["sh", "-c", "python /app/Prophet_train.py && python /app/Prophet_Valid.py && python /app/XGBoost_train.py && python /app/XGBoost_valid.py && python /app/random_forest_train.py && python /app/RandomForest_Valid.py && python /app/Model_bias.py && python /app/bestmodel.py"]
-CMD ["sh", "-c", "python /app/delete_table.py && python /app/saving_bigquery.py && python /app/Prophet_train.py && python /app/Prophet_Valid.py && python /app/XGBoost_train.py && python /app/XGBoost_valid.py && python /app/random_forest_train.py && python /app/RandomForest_Valid.py && python /app/Model_bias.py && python /app/bestmodel.py"]
+#CMD ["sh", "-c", "python /app/delete_table.py && python /app/saving_bigquery.py && python /app/Prophet_train.py && python /app/Prophet_Valid.py && python /app/XGBoost_train.py && python /app/XGBoost_valid.py && python /app/random_forest_train.py && python /app/RandomForest_Valid.py && python /app/Model_bias.py && python /app/bestmodel.py"]
+CMD ["sh", "-c", "python /app/testing.py"]
