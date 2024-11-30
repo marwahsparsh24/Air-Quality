@@ -58,13 +58,14 @@ def find_date_in_bigquery(table_id, datetime_obj, max_attempts=10):
         date_count = list(results)[0].date_count
 
         if date_count > 0:
-            st.write(f"Date {datetime_iso} found in the table.")
+            print(f"Date {datetime_iso} found in the table.")
             return datetime_iso  # Return the found date
 
-        st.write(f"Date {datetime_iso} not found. Decrementing year...")
+        print(f"Date {datetime_iso} not found. Decrementing year...")
         datetime_obj = datetime_obj.replace(year=datetime_obj.year - 1)
 
-    st.write(f"No matching date found after {max_attempts} attempts.")
+    print(f"No matching date found after {max_attempts} attempts.")
+    
     return None
 
 def get_feature_data_for_date(table_id, datetime_iso):
@@ -94,9 +95,9 @@ def main():
     input_date = st.date_input("Select a date for prediction:",min_value=min_date)
     input_time = st.selectbox("Select a time for prediction:", options=time_options)
     additional_days = st.slider(
-        "Select number of days for additional predictions (1-24):",
+        "Select number of hours for additional predictions (1-24):",
         min_value=0,
-        max_value=24,
+        max_value=23,
         value=0,
     )
     plot_placeholder = st.empty()
@@ -114,6 +115,7 @@ def main():
                 current_datetime = datetime_obj + timedelta(hours=i)
                 found_date = find_date_in_bigquery(table_id, current_datetime)
                 feature_data = get_feature_data_for_date(table_id, found_date)
+                st.write(feature_data)
                 day_of_week = datetime_obj.weekday()
                 day_of_year = datetime_obj.timetuple().tm_yday
                 month = datetime_obj.month
