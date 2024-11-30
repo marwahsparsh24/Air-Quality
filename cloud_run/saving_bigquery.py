@@ -35,6 +35,7 @@ def get_existing_timestamps():
     query = f"SELECT DISTINCT timestamp FROM `{full_table_id}`"
     query_job = client.query(query)  # Make an API request
     results = query_job.result()
+    print(results)
     return {row.timestamp for row in results}  
 
 def populate_temp_feature_eng_table(feature_eng_file):
