@@ -89,7 +89,7 @@ def main():
     input_date = st.date_input("Select a date for prediction:",min_value=min_date)
     input_time = st.time_input("Select a time for prediction:")
     additional_days = st.slider(
-        "Select number of days for additional predictions (1-10):",
+        "Select number of days for additional predictions (1-24):",
         min_value=0,
         max_value=24,
         value=0,
