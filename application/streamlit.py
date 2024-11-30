@@ -91,7 +91,7 @@ def main():
     additional_days = st.slider(
         "Select number of days for additional predictions (1-10):",
         min_value=0,
-        max_value=10,
+        max_value=24,
         value=0,
     )
     plot_placeholder = st.empty()
@@ -107,7 +107,7 @@ def main():
             table_id = "airquality-438719.airqualityuser.predictions"
             predictions = []
             for i in range(additional_days + 1):
-                current_datetime = datetime_obj + timedelta(days=i)
+                current_datetime = datetime_obj + timedelta(hours=i)
                 found_date = find_date_in_bigquery(table_id, current_datetime)
                 feature_data = get_feature_data_for_date(table_id, found_date)
                 day_of_week = datetime_obj.weekday()
