@@ -109,8 +109,8 @@ except:
         bigquery.SchemaField("feature_data", "STRING", mode="REQUIRED")
     ]
     table_ref = bigquery.Table(full_table_id, schema=schema)
-    client.create_table(table_ref)
-    print(f"Table {full_table_id} created successfully.")
+    # client.create_table(table_ref)
+    # print(f"Table {full_table_id} created successfully.")
 populate_temp_feature_eng_table(feature_data_path)
 populate_temp_feature_eng_table(feature_data_path_train)
 
