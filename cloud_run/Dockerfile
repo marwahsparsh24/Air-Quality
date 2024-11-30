@@ -40,31 +40,3 @@ RUN chmod -R 777 ${MLFLOW_TRACKING_DIR}
 #CMD ["sh", "-c", "python /app/XGBoost_train.py && python /app/XGBoost_valid.py && python /app/random_forest_train.py && python /app/RandomForest_Valid.py && python /app/Model_bias.py && python /app/bestmodel.py"]
 # CMD ["sh", "-c", "python /app/Prophet_train.py && python /app/Prophet_Valid.py && python /app/XGBoost_train.py && python /app/XGBoost_valid.py && python /app/random_forest_train.py && python /app/RandomForest_Valid.py && python /app/Model_bias.py && python /app/bestmodel.py"]
 CMD ["sh", "-c", "python /app/delete_table.py && python /app/saving_bigquery.py"]
-
-
-# CMD ["python", "app/train.py"]
-
-
-
-
-# # Python image Dockerfile
-# FROM python:3.8
-
-# # Install dependencies
-# RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
-
-# # Copy over the model requirements and install
-# COPY requirements.txt .
-# RUN pip install --no-cache-dir -r /requirements.txt
-
-# # Set the working directory
-# WORKDIR /app
-
-# # Copy your model training script and other necessary files
-# COPY cloud_run/ cloud_run/
-
-# # Create a directory to save the model
-# RUN mkdir -p /app/model_output
-
-# # Entry point for running the training script
-# CMD ["python", "cloud_run/training.py"]
