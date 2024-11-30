@@ -45,7 +45,6 @@ def store_in_bigquery(input_data, predicted_value, predictions_table, datetime_o
 
 def main():
     st.title("Air Quality Prediction")
-
     st.header("Enter Date and Time for Prediction")
     input_date = st.date_input("Select a date for prediction:")
     input_time = st.time_input("Select a time for prediction:")

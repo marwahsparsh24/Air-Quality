@@ -28,6 +28,7 @@ COPY Prophet_Valid.py /app/
 COPY XGBoost_valid.py /app/
 COPY Model_bias.py /app/
 COPY bestmodel.py /app/
+COPY saving_bigquery.py /app/
 
 
 RUN chmod -R 777 ${MLFLOW_TRACKING_DIR}
@@ -36,8 +37,8 @@ RUN chmod -R 777 ${MLFLOW_TRACKING_DIR}
 
 # Fetch the key and run the training script
 #CMD ["sh", "-c", "python /app/XGBoost_train.py && python /app/XGBoost_valid.py && python /app/random_forest_train.py && python /app/RandomForest_Valid.py && python /app/Model_bias.py && python /app/bestmodel.py"]
-CMD ["sh", "-c", "python /app/Prophet_train.py && python /app/Prophet_Valid.py && python /app/XGBoost_train.py && python /app/XGBoost_valid.py && python /app/random_forest_train.py && python /app/RandomForest_Valid.py && python /app/Model_bias.py && python /app/bestmodel.py"]
-# CMD ["sh", "-c", "python /app/Model_bias.py"]
+# CMD ["sh", "-c", "python /app/Prophet_train.py && python /app/Prophet_Valid.py && python /app/XGBoost_train.py && python /app/XGBoost_valid.py && python /app/random_forest_train.py && python /app/RandomForest_Valid.py && python /app/Model_bias.py && python /app/bestmodel.py"]
+CMD ["sh", "-c", "python /app/saving_bigquery.py"]
 
 
 # CMD ["python", "app/train.py"]

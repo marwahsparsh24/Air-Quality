@@ -15,6 +15,7 @@ import json
 client = bigquery.Client(project="airquality-438719")
 
 feature_data_path = f'processed/test/feature_eng_data.pkl'
+feature_data_path_train = f'processed/train/feature_eng_data.pkl'
 
 
 bucket_name = "airquality-mlops-rg"
@@ -23,6 +24,11 @@ bucket = storage_client.bucket(bucket_name)
 blob = bucket.blob(feature_data_path)
 pickle_data = blob.download_as_bytes()
 feature_data = pickle.load(BytesIO(pickle_data))
+
+blob_train = bucket.blob(feature_data_path_train)
+pickle_data_train = blob_train.download_as_bytes()
+feature_data_train = pickle.load(BytesIO(pickle_data_train))
+full_table_id = "airquality-438719.airqualityuser.allfeatures"
 
 def populate_temp_feature_eng_table(feature_eng_file):
  
@@ -74,5 +80,40 @@ def populate_temp_feature_eng_table(feature_eng_file):
         # Add the row to the list to insert into BigQuery
         rows_to_insert.append({
         "timestamp": timestamp, "feature_data": json.dumps(feature_dict)})
-    return rows_to_insert
+        batch_size =1000
+        for i in range(0, len(rows_to_insert), batch_size):
+            batch = rows_to_insert[i:i + batch_size]
+            table_id = "airquality-438719.airqualityuser.allfeatures"
+            errors = client.insert_rows_json(table_id, batch)
+            if errors:
+                print(f"Errors occurred while inserting batch {i//batch_size + 1}: {errors}")
+            else:
+                print(f"Successfully inserted batch {i//batch_size + 1}")
+
+# check if table exists
+# if exists then delete all rows in the table
+# if it not exists then create the table
+
+try:
+    client.get_table(full_table_id)
+    print(f"Table {full_table_id} exists. Deleting all rows.")
+
+    # Delete all rows
+    query = f"DELETE FROM `{full_table_id}` WHERE TRUE"
+    client.query(query).result()
+    print(f"All rows deleted from {full_table_id}.")
+except bigquery.NotFound:
+    print(f"Table {full_table_id} does not exist. Creating it.")
+    schema = [
+        bigquery.SchemaField("timestamp", "TIMESTAMP", mode="REQUIRED"),
+        bigquery.SchemaField("feature_data", "STRING", mode="REQUIRED")
+    ]
+    table_ref = bigquery.Table(full_table_id, schema=schema)
+    client.create_table(table_ref)
+    print(f"Table {full_table_id} created successfully.")
+
+
+populate_temp_feature_eng_table(feature_data_path)
+populate_temp_feature_eng_table(feature_data_path_train)
+
  
