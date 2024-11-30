@@ -15,4 +15,3 @@ psycopg2-binary
 pickle5
 google-cloud-storage
 google-cloud-secret-manager
-json
