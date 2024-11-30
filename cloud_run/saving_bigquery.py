@@ -32,16 +32,16 @@ feature_data_train = pickle.load(BytesIO(pickle_data_train))
 full_table_id = "airquality-438719.airqualityuser.allfeatures"
 
 
-def get_existing_timestamps():
-    query = f"SELECT DISTINCT timestamp FROM `{full_table_id}`"
-    query_job = client.query(query)  # Make an API request
-    results = query_job.result()
-    return {row.timestamp for row in results}  
+# def get_existing_timestamps():
+#     query = f"SELECT DISTINCT timestamp FROM `{full_table_id}`"
+#     query_job = client.query(query)  # Make an API request
+#     results = query_job.result()
+#     return {row.timestamp for row in results}  
 
-def normalize_timestamp(ts):
-    if isinstance(ts, str):
-        return datetime.fromisoformat(ts)
-    return ts
+# def normalize_timestamp(ts):
+#     if isinstance(ts, str):
+#         return datetime.fromisoformat(ts)
+#     return ts
 
 def populate_temp_feature_eng_table(feature_eng_file):
     # Load data from the pickle file
@@ -92,32 +92,31 @@ def populate_temp_feature_eng_table(feature_eng_file):
         # Add the row to the list to insert into BigQuery
         rows_to_insert.append({
         "timestamp": timestamp, "feature_data": json.dumps(feature_dict)})
-    existing_timestamps = {normalize_timestamp(ts) for ts in get_existing_timestamps()}
-    print(f"Fetched {len(existing_timestamps)} existing timestamps.")
+    # existing_timestamps = {normalize_timestamp(ts) for ts in get_existing_timestamps()}
+    # print(f"Fetched {len(existing_timestamps)} existing timestamps.")
     # existing_timestamps = get_existing_timestamps()
     # print(f"Fetched {len(existing_timestamps)} existing timestamps.")
 
-    filtered_rows = [row for row in rows_to_insert if row['timestamp'] not in existing_timestamps]
-    print(f"{len(filtered_rows)} new rows to be inserted after filtering.")
+    # filtered_rows = [row for row in rows_to_insert if row['timestamp'] not in existing_timestamps]
+    # print(f"{len(filtered_rows)} new rows to be inserted after filtering.")
     batch_size =1000
-    if len(existing_timestamps) == 0:
-        for i in range(0, len(rows_to_insert), batch_size):
-            batch = rows_to_insert[i:i + batch_size]
-            table_id = "airquality-438719.airqualityuser.allfeatures"
-            errors = client.insert_rows_json(table_id, batch)
-            if errors:
-                print(f"Errors occurred while inserting batch {i//batch_size + 1}: {errors}")
-            else:
-                print(f"Successfully inserted batch {i//batch_size + 1}")
-    else:
-        for i in range(0, len(filtered_rows), batch_size):
-            batch = filtered_rows[i:i + batch_size]
-            table_id = "airquality-438719.airqualityuser.allfeatures"
-            errors = client.insert_rows_json(table_id, batch)
-            if errors:
-                print(f"Errors occurred while inserting batch {i//batch_size + 1}: {errors}")
-            else:
-                print(f"Successfully inserted batch {i//batch_size + 1}")
+    # if len(existing_timestamps) == 0:
+    #     for i in range(0, len(rows_to_insert), batch_size):
+    #         batch = rows_to_insert[i:i + batch_size]
+    #         table_id = "airquality-438719.airqualityuser.allfeatures"
+    #         errors = client.insert_rows_json(table_id, batch)
+    #         if errors:
+    #             print(f"Errors occurred while inserting batch {i//batch_size + 1}: {errors}")
+    #         else:
+    #             print(f"Successfully inserted batch {i//batch_size + 1}")
+    for i in range(0, len(rows_to_insert), batch_size):
+        batch = rows_to_insert[i:i + batch_size]
+        table_id = "airquality-438719.airqualityuser.allfeatures"
+        errors = client.insert_rows_json(table_id, batch)
+        if errors:
+            print(f"Errors occurred while inserting batch {i//batch_size + 1}: {errors}")
+        else:
+            print(f"Successfully inserted batch {i//batch_size + 1}")
 
 try:
     client.get_table(full_table_id)
