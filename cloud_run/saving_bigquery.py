@@ -109,9 +109,5 @@ except:
     ]
     table = bigquery.Table(full_table_id, schema=schema)
     client.create_table(table)
-    
-# query = f"DELETE FROM {full_table_id} WHERE TRUE"
-# client.query(query).result()
-# print(f"All rows deleted from {full_table_id}.")
 populate_temp_feature_eng_table(feature_data_path)
 populate_temp_feature_eng_table(feature_data_path_train)
