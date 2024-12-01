@@ -200,14 +200,13 @@ def main():
 
             if additional_days == 0:
                 predicted_value = predictions[0]["value"]
-                result_placeholder.success(f"Prediction Successful! Air Quality: {predicted_value}")
                 if predicted_value < 2:
                     air_quality = "Good"
                 elif 2 <= predicted_value < 5:
                     air_quality = "Moderate"
                 else:
                     air_quality = "Bad"
-                artistic_description = f"The air quality on {datetime_obj.date()} is expected to be '{air_quality}'."
+                artistic_description = f"Air Quality: {predicted_value}. The air quality on {datetime_obj.date()} is expected to be '{air_quality}'."
                 result_placeholder.write(artistic_description)
             else:
                 # Plot results
