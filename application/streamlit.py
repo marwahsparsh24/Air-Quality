@@ -139,102 +139,101 @@ def main():
     if st.button("Predict Air Quality"):
         plot_placeholder.empty()
         result_placeholder.empty()
-        try:
-            datetime_obj = datetime.combine(input_date, input_time)
-            table_id = "airquality-438719.airqualityuser.allfeatures"
-            predictions = []
-            for i in range(additional_days + 1):
-                current_datetime = datetime_obj + timedelta(hours=i)
-                found_date = find_date_in_bigquery(table_id, current_datetime)
-                feature_data_entry = get_feature_data_for_date(table_id, found_date)
-                day_of_week = current_datetime.weekday()
-                day_of_year = current_datetime.timetuple().tm_yday
-                month = current_datetime.month
-                hour = current_datetime.hour
-                sin_hour, cos_hour = compute_cyclic_features(hour, 24)
-                sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
-                feature_data_dict  = json.loads(feature_data_entry)
-                payload = {
-                    "instances": [
-                        {
-                            "lag_1": feature_data_dict["lag_1"],
-                            "lag_2": feature_data_dict["lag_2"],
-                            "lag_3": feature_data_dict["lag_3"],
-                            "lag_4": feature_data_dict["lag_4"],
-                            "lag_5": feature_data_dict["lag_5"],
-                            "rolling_mean_3": feature_data_dict["rolling_mean_3"],
-                            "rolling_mean_6": feature_data_dict["rolling_mean_6"],
-                            "rolling_mean_24": feature_data_dict["rolling_mean_24"],
-                            "rolling_std_3": feature_data_dict["rolling_std_3"],
-                            "rolling_std_6": feature_data_dict["rolling_std_6"],
-                            "rolling_std_24": feature_data_dict["rolling_std_24"],
-                            "ema_3": feature_data_dict["ema_3"],
-                            "ema_6": feature_data_dict["ema_6"],
-                            "ema_24": feature_data_dict["ema_24"],
-                            "diff_1": feature_data_dict["diff_1"],
-                            "diff_2": feature_data_dict["diff_2"],
-                            "hour": hour,
-                            "day_of_week": day_of_week,
-                            "day_of_year": day_of_year,
-                            "month": month,
-                            "sin_hour": sin_hour,
-                            "cos_hour": cos_hour,
-                            "sin_day_of_week": sin_day_of_week,
-                            "cos_day_of_week": cos_day_of_week,
-                        }
-                    ]
-                }
-                headers = {"Content-Type": "application/json"}
-                response = requests.post(endpoint, headers=headers, data=json.dumps(payload))
+        datetime_obj = datetime.combine(input_date, input_time)
+        table_id = "airquality-438719.airqualityuser.allfeatures"
+        predictions = []
+        for i in range(additional_days + 1):
+            current_datetime = datetime_obj + timedelta(hours=i)
+            found_date = find_date_in_bigquery(table_id, current_datetime)
+            feature_data_entry = get_feature_data_for_date(table_id, found_date)
+            day_of_week = current_datetime.weekday()
+            day_of_year = current_datetime.timetuple().tm_yday
+            month = current_datetime.month
+            hour = current_datetime.hour
+            sin_hour, cos_hour = compute_cyclic_features(hour, 24)
+            sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
+            feature_data_dict  = json.loads(feature_data_entry)
+            payload = {
+                "instances": [
+                    {
+                        "lag_1": feature_data_dict["lag_1"],
+                        "lag_2": feature_data_dict["lag_2"],
+                        "lag_3": feature_data_dict["lag_3"],
+                        "lag_4": feature_data_dict["lag_4"],
+                        "lag_5": feature_data_dict["lag_5"],
+                        "rolling_mean_3": feature_data_dict["rolling_mean_3"],
+                        "rolling_mean_6": feature_data_dict["rolling_mean_6"],
+                        "rolling_mean_24": feature_data_dict["rolling_mean_24"],
+                        "rolling_std_3": feature_data_dict["rolling_std_3"],
+                        "rolling_std_6": feature_data_dict["rolling_std_6"],
+                        "rolling_std_24": feature_data_dict["rolling_std_24"],
+                        "ema_3": feature_data_dict["ema_3"],
+                        "ema_6": feature_data_dict["ema_6"],
+                        "ema_24": feature_data_dict["ema_24"],
+                        "diff_1": feature_data_dict["diff_1"],
+                        "diff_2": feature_data_dict["diff_2"],
+                        "hour": hour,
+                        "day_of_week": day_of_week,
+                        "day_of_year": day_of_year,
+                        "month": month,
+                        "sin_hour": sin_hour,
+                        "cos_hour": cos_hour,
+                        "sin_day_of_week": sin_day_of_week,
+                        "cos_day_of_week": cos_day_of_week,
+                    }
+                ]
+            }
+            headers = {"Content-Type": "application/json"}
+            response = requests.post(endpoint, headers=headers, data=json.dumps(payload))
 
-                if response.status_code == 200:
-                    prediction = response.json()
-                    predicted_value = prediction["predictions"][0]
-                    predictions.append({"date": current_datetime, "value": predicted_value})
-                    predictions_table = "airquality-438719.airqualityuser.predictions"
-                    store_in_bigquery(payload["instances"][0], predicted_value, predictions_table, datetime_obj)
-                else:
-                    result_placeholder.error(f"Error {response.status_code}: {response.text}").error(f"Error {response.status_code}: {response.text}")
-
-            if additional_days == 0:
-                predicted_value = predictions[0]["value"]
-                if predicted_value < 2:
-                    air_quality = "Good"
-                elif 2 <= predicted_value < 5:
-                    air_quality = "Moderate"
-                else:
-                    air_quality = "Bad"
-                artistic_description = f"Air Quality: {predicted_value}. The air quality on {datetime_obj.date()} is expected to be '{air_quality}'."
-                result_placeholder.write(artistic_description)
+            if response.status_code == 200:
+                prediction = response.json()
+                predicted_value = prediction["predictions"][0]
+                predictions.append({"date": current_datetime, "value": predicted_value})
+                predictions_table = "airquality-438719.airqualityuser.predictions"
+                store_in_bigquery(payload["instances"][0], predicted_value, predictions_table, datetime_obj)
             else:
-                # Plot results
-                st.success("Prediction Successful!")
-                for prediction in predictions:
-                    dates = prediction["date"].strftime("%Y-%m-%d %H:%M:%S")  # Format datetime
-                    value = prediction["value"]
-                    st.write(f"Time: {dates}, Predicted Value: {value}")
-                with plot_placeholder:
-                    # analyse the graph using gpt
-                    df = pd.DataFrame(predictions)
-                    average_value = df["value"].mean()
-                    min_value = df["value"].min()
-                    max_value = df["value"].max()
-                    good_hours = len(df[df["value"] < 2])
-                    moderate_hours = len(df[(df["value"] >= 2) & (df["value"] < 5)])
-                    bad_hours = len(df[df["value"] >= 5])
-                    st.line_chart(data=df, x="date", y="value")
-                    artistic_description = f"""
-                    The air quality predictions for the next {additional_days} hours show these trends.
-                    Here is the summary:
-                    - Average air quality value: {average_value:.2f}
-                    - Minimum value: {min_value:.2f}
-                    - Maximum value: {max_value:.2f}
-                    - Hours with 'Good' quality (<2): {good_hours}
-                    - Hours with 'Moderate' quality (2-5): {moderate_hours}
-                    - Hours with 'Bad' quality (>=5): {bad_hours}"""
-                    result_placeholder.write(artistic_description)
-        except Exception as e:
-            st.error(f"An error occurred: {e}")
+                result_placeholder.error(f"Error {response.status_code}: {response.text}").error(f"Error {response.status_code}: {response.text}")
+
+        if additional_days == 0:
+            predicted_value = predictions[0]["value"]
+            if predicted_value < 2:
+                air_quality = "Good"
+            elif 2 <= predicted_value < 5:
+                air_quality = "Moderate"
+            else:
+                air_quality = "Bad"
+            artistic_description = f"Air Quality: {predicted_value}. The air quality on {datetime_obj.date()} is expected to be '{air_quality}'."
+            result_placeholder.write(artistic_description)
+        else:
+            # Plot results
+            st.success("Prediction Successful!")
+            for prediction in predictions:
+                dates = prediction["date"].strftime("%Y-%m-%d %H:%M:%S")  # Format datetime
+                value = prediction["value"]
+                st.write(f"Time: {dates}, Predicted Value: {value}")
+            with plot_placeholder:
+                # analyse the graph using gpt
+                df = pd.DataFrame(predictions)
+                average_value = df["value"].mean()
+                min_value = df["value"].min()
+                max_value = df["value"].max()
+                good_hours = len(df[df["value"] < 2])
+                moderate_hours = len(df[(df["value"] >= 2) & (df["value"] < 5)])
+                bad_hours = len(df[df["value"] >= 5])
+                st.line_chart(data=df, x="date", y="value")
+                artistic_description = f"""
+                The air quality predictions for the next {additional_days} hours show these trends.
+                Here is the summary:
+                - Average air quality value: {average_value:.2f}
+                - Minimum value: {min_value:.2f}
+                - Maximum value: {max_value:.2f}
+                - Hours with 'Good' quality (<2): {good_hours}
+                - Hours with 'Moderate' quality (2-5): {moderate_hours}
+                - Hours with 'Bad' quality (>=5): {bad_hours}"""
+                result_placeholder.write(artistic_description)
+    # except Exception as e:
+        #     st.error(f"An error occurred: {e}")
 
 if __name__ == "__main__":
     main()
