@@ -191,8 +191,6 @@ def main():
                     prediction = response.json()
                     predicted_value = prediction["predictions"][0]
                     predictions.append({"date": current_datetime, "value": predicted_value})
-                    # st.success("Prediction Successful!")
-                    # st.write(f"Predicted Air Quality Value: {predicted_value}")
                     predictions_table = "airquality-438719.airqualityuser.predictions"
                     store_in_bigquery(payload["instances"][0], predicted_value, predictions_table, datetime_obj)
                 else:
