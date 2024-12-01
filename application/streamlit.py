@@ -216,8 +216,23 @@ def main():
                 with plot_placeholder:
                     # analyse the graph using gpt
                     df = pd.DataFrame(predictions)
+                    average_value = df["value"].mean()
+                    min_value = df["value"].min()
+                    max_value = df["value"].max()
+                    good_hours = len(df[df["value"] < 2])
+                    moderate_hours = len(df[(df["value"] >= 2) & (df["value"] < 5)])
+                    bad_hours = len(df[df["value"] >= 5])
                     st.line_chart(data=df, x="date", y="value")
-                    artistic_description = f"The air quality predictions for the next {additional_days} hours show these trends."
+                    artistic_description = f"""
+                    The air quality predictions for the next {additional_days} hours show these trends.
+                    I have an air quality prediction data for the next {len(df)} hours.
+                    Here is the summary:
+                    - Average air quality value: {average_value:.2f}
+                    - Minimum value: {min_value:.2f}
+                    - Maximum value: {max_value:.2f}
+                    - Hours with 'Good' quality (<2): {good_hours}
+                    - Hours with 'Moderate' quality (2-5): {moderate_hours}
+                    - Hours with 'Bad' quality (>=5): {bad_hours}"""
                     result_placeholder.write(artistic_description)
         except Exception as e:
             st.error(f"An error occurred: {e}")
