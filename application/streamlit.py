@@ -81,12 +81,12 @@ def get_feature_data_for_date(table_id, datetime_iso):
         feature_data = rows[0].feature_data  # Assuming `feature_data` column exists
         return feature_data
     
-    day_of_week = datetime_iso.weekday()
-    day_of_year = datetime_iso.timetuple().tm_yday
-    month = datetime_iso.month
-    hour = datetime_iso.hour
-    sin_hour, cos_hour = compute_cyclic_features(hour, 24)
-    sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
+    # day_of_week = datetime_iso.weekday()
+    # day_of_year = datetime_iso.timetuple().tm_yday
+    # month = datetime_iso.month
+    # hour = datetime_iso.hour
+    # sin_hour, cos_hour = compute_cyclic_features(hour, 24)
+    # sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
     feature = {
                 "lag_1": 2.1462424282737667,
                 "lag_2": 2.1260022701562704,
@@ -104,14 +104,14 @@ def get_feature_data_for_date(table_id, datetime_iso):
                 "ema_24": 2.0814968354677896,
                 "diff_1": 0.020240158117496243,
                 "diff_2": 0.14770844416324347,
-                "hour": hour,
-                "day_of_week": day_of_week,
-                "day_of_year": day_of_year,
-                "month": month,
-                "sin_hour": sin_hour,
-                "cos_hour": cos_hour,
-                "sin_day_of_week": sin_day_of_week,
-                "cos_day_of_week": cos_day_of_week,
+                "hour": 0,
+                "day_of_week": 0,
+                "day_of_year": 0,
+                "month": 0,
+                "sin_hour": 0,
+                "cos_hour": 0,
+                "sin_day_of_week": 0,
+                "cos_day_of_week": 0,
                 }
     return feature
 
@@ -134,8 +134,6 @@ def main():
     )
     plot_placeholder = st.empty()
     result_placeholder = st.empty()
-    # if no value is selected just make the prediction and say if it is good or bad, something artistic using gpt key
-    # if value is selected build a plot and keep it in the place holder and describe something aritistic using gpt key, explain plot
     if st.button("Predict Air Quality"):
         plot_placeholder.empty()
         result_placeholder.empty()
