@@ -133,10 +133,12 @@ def main():
         value=0,
     )
     plot_placeholder = st.empty()
+    result_placeholder = st.empty()
     # if no value is selected just make the prediction and say if it is good or bad, something artistic using gpt key
     # if value is selected build a plot and keep it in the place holder and describe something aritistic using gpt key, explain plot
     if st.button("Predict Air Quality"):
         plot_placeholder.empty()
+        result_placeholder.empty()
         try:
             datetime_obj = datetime.combine(input_date, input_time)
             table_id = "airquality-438719.airqualityuser.allfeatures"
@@ -194,11 +196,11 @@ def main():
                     predictions_table = "airquality-438719.airqualityuser.predictions"
                     store_in_bigquery(payload["instances"][0], predicted_value, predictions_table, datetime_obj)
                 else:
-                    st.error(f"Error {response.status_code}: {response.text}")
+                    result_placeholder.error(f"Error {response.status_code}: {response.text}").error(f"Error {response.status_code}: {response.text}")
 
             if additional_days == 0:
                 predicted_value = predictions[0]["value"]
-                st.success(f"Prediction Successful! Air Quality: {predicted_value}")
+                result_placeholder.success(f"Prediction Successful! Air Quality: {predicted_value}")
                 if predicted_value < 2:
                     air_quality = "Good"
                 elif 2 <= predicted_value < 5:
@@ -206,7 +208,7 @@ def main():
                 else:
                     air_quality = "Bad"
                 artistic_description = f"The air quality on {datetime_obj.date()} is expected to be '{air_quality}'."
-                st.write(artistic_description)
+                result_placeholder.write(artistic_description)
             else:
                 # Plot results
                 st.success("Prediction Successful!")
@@ -219,7 +221,7 @@ def main():
                     df = pd.DataFrame(predictions)
                     st.line_chart(data=df, x="date", y="value")
                     artistic_description = f"The air quality predictions for the next {additional_days} hours show these trends."
-                    st.write(artistic_description)
+                    result_placeholder.write(artistic_description)
         except Exception as e:
             st.error(f"An error occurred: {e}")
 
