@@ -199,7 +199,13 @@ def main():
             if additional_days == 0:
                 predicted_value = predictions[0]["value"]
                 st.success(f"Prediction Successful! Air Quality: {predicted_value}")
-                artistic_description = f"The air quality on {datetime_obj.date()} is expected to be {'Good' if predicted_value < 5 else 'Bad'}."
+                if predicted_value < 2:
+                    air_quality = "Good"
+                elif 2 <= predicted_value < 5:
+                    air_quality = "Moderate"
+                else:
+                    air_quality = "Bad"
+                artistic_description = f"The air quality on {datetime_obj.date()} is expected to be '{air_quality}'."
                 st.write(artistic_description)
             else:
                 # Plot results
@@ -209,6 +215,7 @@ def main():
                     value = prediction["value"]
                     st.write(f"Time: {dates}, Predicted Value: {value}")
                 with plot_placeholder:
+                    # analyse the graph using gpt
                     df = pd.DataFrame(predictions)
                     st.line_chart(data=df, x="date", y="value")
                     artistic_description = f"The air quality predictions for the next {additional_days} hours show these trends."
