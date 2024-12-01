@@ -225,7 +225,6 @@ def main():
                     st.line_chart(data=df, x="date", y="value")
                     artistic_description = f"""
                     The air quality predictions for the next {additional_days} hours show these trends.
-                    I have an air quality prediction data for the next {len(df)} hours.
                     Here is the summary:
                     - Average air quality value: {average_value:.2f}
                     - Minimum value: {min_value:.2f}
