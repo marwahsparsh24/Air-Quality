@@ -131,7 +131,7 @@ jobs:
           --upload-file email.txt \
           --user "$EMAIL_USERNAME:$EMAIL_PASSWORD"
 
-  Job 2: Deploy Registry
+  # Job 2: Deploy Registry
   deploy-pipeline:
     runs-on: ubuntu-latest
     needs: trigger-dag
