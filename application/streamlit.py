@@ -150,6 +150,11 @@ def main():
             hour = current_datetime.hour
             sin_hour, cos_hour = compute_cyclic_features(hour, 24)
             sin_day_of_week, cos_day_of_week = compute_cyclic_features(day_of_week, 7)
+            if isinstance(feature_data_entry, str):
+                feature_data_dict = json.loads(feature_data_entry)
+            elif isinstance(feature_data_entry, dict):
+                feature_data_dict = feature_data_entry
+            # feature_data_dict = feature_data_entry
             feature_data_dict  = json.loads(feature_data_entry)
             payload = {
                 "instances": [
