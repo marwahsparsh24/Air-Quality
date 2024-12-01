@@ -155,7 +155,7 @@ def main():
             elif isinstance(feature_data_entry, dict):
                 feature_data_dict = feature_data_entry
             # feature_data_dict = feature_data_entry
-            feature_data_dict  = json.loads(feature_data_entry)
+            # feature_data_dict  = json.loads(feature_data_entry)
             payload = {
                 "instances": [
                     {
