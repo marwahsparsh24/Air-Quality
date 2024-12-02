@@ -42,7 +42,7 @@ jobs:
       env:
         AIRFLOW_USERNAME: admin
         AIRFLOW_PASSWORD: ksmhwqrzhjllqsaz
-        AIRFLOW_VM_IP: 34.170.107.190:8080
+        AIRFLOW_VM_IP: :8080
         AIRFLOW_DAG_ID: datapipeline
       run: |
         echo "Triggering Airflow DAG: $AIRFLOW_DAG_ID with unique DAG Run ID..."
@@ -56,7 +56,7 @@ jobs:
       env:
         AIRFLOW_USERNAME: admin
         AIRFLOW_PASSWORD: ksmhwqrzhjllqsaz
-        AIRFLOW_VM_IP: 34.170.107.190:8080
+        AIRFLOW_VM_IP: 34.170.107.190.190:8080
         AIRFLOW_DAG_ID: datapipeline
         DAG_RUN_ID: ${{ steps.unique_id.outputs.dag_run_id }}
       run: |
