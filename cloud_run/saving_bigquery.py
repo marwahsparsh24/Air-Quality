@@ -12,7 +12,8 @@ from google.cloud import bigquery
 import os
 import pandas as pd
 import json
-from datetime import datetime,time
+from datetime import datetime
+# import time
 client = bigquery.Client(project="airquality-438719")
 
 feature_data_path = f'processed/test/feature_eng_data.pkl'
@@ -126,6 +127,6 @@ except:
     ]
     table = bigquery.Table(full_table_id, schema=schema)
     client.create_table(table)
-    time.sleep(30)
+    # time.sleep(30)
 populate_temp_feature_eng_table(feature_data_path)
 populate_temp_feature_eng_table(feature_data_path_train)

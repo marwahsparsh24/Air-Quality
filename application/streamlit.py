@@ -2,7 +2,8 @@ import streamlit as st
 import requests
 import json
 import math
-from datetime import datetime,date,timedelta,time
+from datetime import datetime,date,timedelta
+# import time
 from google.cloud import bigquery
 import pandas as pd
 
@@ -32,7 +33,7 @@ def store_in_bigquery(input_data, predicted_value, predictions_table, datetime_o
     except:
         table = bigquery.Table(predictions_table, schema=predictions_schema)
         client.create_table(table)
-        time.sleep(30)
+        # time.sleep(30)
 
     rows_to_insert = [
         {
