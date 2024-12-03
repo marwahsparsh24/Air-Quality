@@ -12,7 +12,7 @@ from google.cloud import bigquery
 import os
 import pandas as pd
 import json
-from datetime import datetime
+from datetime import datetime,time
 client = bigquery.Client(project="airquality-438719")
 
 feature_data_path = f'processed/test/feature_eng_data.pkl'
@@ -63,7 +63,6 @@ def populate_temp_feature_eng_table(feature_eng_file):
         timestamp = row["timestamp"].isoformat()
         feature_dict = {
         "pm25": row["pm25"],
-        "pm25_boxcox": row["pm25_boxcox"],
         "lag_1": row["lag_1"],
         "lag_2": row["lag_2"],
         "lag_3": row["lag_3"],
@@ -127,5 +126,6 @@ except:
     ]
     table = bigquery.Table(full_table_id, schema=schema)
     client.create_table(table)
+    time.sleep(30)
 populate_temp_feature_eng_table(feature_data_path)
 populate_temp_feature_eng_table(feature_data_path_train)

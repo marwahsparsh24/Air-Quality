@@ -6,7 +6,7 @@ def delete_table(table_id):
         # Delete the table
         client.delete_table(table_id, not_found_ok=True)
         print(f"Table {table_id} deleted successfully.")
-        time.sleep(20)
+        time.sleep(30)
         try:
             client.get_table(table_id)
             print(f"Table {table_id} still exists! Deletion not yet reflected.")
