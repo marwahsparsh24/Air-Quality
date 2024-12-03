@@ -47,16 +47,16 @@ jobs:
       run: |
         echo "Triggering Airflow DAG: $AIRFLOW_DAG_ID with unique DAG Run ID..."
         curl -X POST "http://$AIRFLOW_VM_IP/api/v1/dags/$AIRFLOW_DAG_ID/dagRuns" \
-            -H "Content-Type: application/json" \
-            -u "$AIRFLOW_USERNAME:$AIRFLOW_PASSWORD" \
-            -d "{\"dag_run_id\": \"${{ steps.unique_id.outputs.dag_run_id }}\"}"
+             -H "Content-Type: application/json" \
+             -u "$AIRFLOW_USERNAME:$AIRFLOW_PASSWORD" \
+             -d "{\"dag_run_id\": \"${{ steps.unique_id.outputs.dag_run_id }}\"}"
 
     - name: Wait for DAG Completion
       id: wait_for_completion
       env:
         AIRFLOW_USERNAME: admin
         AIRFLOW_PASSWORD: ksmhwqrzhjllqsaz
-        AIRFLOW_VM_IP: 34.170.107.190.190:8080
+        AIRFLOW_VM_IP: 34.170.107.190:8080
         AIRFLOW_DAG_ID: datapipeline
         DAG_RUN_ID: ${{ steps.unique_id.outputs.dag_run_id }}
       run: |
