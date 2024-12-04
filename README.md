@@ -864,23 +864,31 @@ This Dockerfile is designed for a streamlined, efficient Python environment to h
 
     1. Sets up GOOGLE_APPLICATION_CREDENTIALS for authenticating with Google Cloud services.
         
-o	Configures MLFLOW_TRACKING_DIR for managing MLflow experiment logs and artifacts.
-•	System Dependencies: Installs necessary system-level packages like gcc, libc-dev, and jq for compatibility and scripting needs.
-•	Python Dependencies: Installs all required Python libraries listed in requirements.txt.
-•	Code Setup:
-o	Copies multiple Python scripts into the container, each responsible for specific tasks such as data processing, model training, validation, and evaluation.
-o	Grants full permissions to the MLflow directory to ensure seamless logging and artifact storage.
-•	Workflow Execution: The container is configured to sequentially execute a series of Python scripts that collectively handle the following tasks:
-1.	Data Management:
-	delete_table.py: Deletes existing data in Google BigQuery.
-	saving_bigquery.py: Saves new data to BigQuery.
-2.	Model Training and Validation:
-	Prophet_train.py and Prophet_Valid.py: Train and validate the Prophet model.
-	XGBoost_train.py and XGBoost_valid.py: Train and validate the XGBoost model.
-	random_forest_train.py and RandomForest_Valid.py: Train and validate the Random Forest model.
-3.	Model Evaluation:
-	Model_bias.py: Evaluates model bias to ensure fairness and reliability.
-	bestmodel.py: Determines and finalizes the best-performing model.
+    2. Configures MLFLOW_TRACKING_DIR for managing MLflow experiment logs and artifacts.
+       
+3. System Dependencies: Installs necessary system-level packages like gcc, libc-dev, and jq for compatibility and scripting needs.
+4. Python Dependencies: Installs all required Python libraries listed in requirements.txt.
+5. Code Setup:	
+
+    1. Copies multiple Python scripts into the container, each responsible for specific tasks such as data processing, model training, validation, and evaluation.
+ 
+    2. Grants full permissions to the MLflow directory to ensure seamless logging and artifact storage.
+
+6. Workflow Execution: The container is configured to sequentially execute a series of Python scripts that collectively handle the following tasks:
+   
+**Data Management:**
+
+    1. delete_table.py: Deletes existing data in Google BigQuery.
+    2. saving_bigquery.py: Saves new data to BigQuery.
+    
+**Model Training and Validation:**
+    1. Prophet_train.py and Prophet_Valid.py: Train and validate the Prophet model.
+    2. XGBoost_train.py and XGBoost_valid.py: Train and validate the XGBoost model.
+    3. random_forest_train.py and RandomForest_Valid.py: Train and validate the Random Forest model.
+    
+**Model Evaluation:**
+    1. Model_bias.py: Evaluates model bias to ensure fairness and reliability.
+    2. bestmodel.py: Determines and finalizes the best-performing model.
 
 
 
