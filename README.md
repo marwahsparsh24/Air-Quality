@@ -711,5 +711,12 @@ Following include a list of visualization generated during validation, SHAP anal
 But these files may not be visible when ran through docker as they are executed in the docker environment, hence you can refer to the dags/artifacts folder for these images which were obtained by running the scripts using dags. In future this process will be migrated to Google Cloud.
 
 
+
+
 ## Model Deployment
+
 Initially all the tasks in the Data Pipeline and the Model Development pipeline were run locally to get results. During the Deployment phase of the project we have moved these pipelines into the cloud infrastructure along with automating the training, retraining(in case of data drift/model decay) and deployment processes which are explained in the following sections.
+
+
+**GitHub Actions automation**
+GitHub Actions is a powerful CI/CD (Continuous Integration/Continuous Deployment) tool that enables automation of workflows directly within your GitHub repository. It allows developers to define custom workflows using YAML files, making it flexible and highly configurable. These workflows can be triggered by various events, such as code pushes, pull requests, or even scheduled timings. The scheduled timings are done  using cron scheduling as per the requirements such as every 30 minutes, 1 hour or daily. 
