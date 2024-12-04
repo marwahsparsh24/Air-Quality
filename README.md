@@ -858,11 +858,11 @@ Here a detailed description of all files under the Cloud_run folder which are us
 
 This Dockerfile is designed for a streamlined, efficient Python environment to handle the various machine learning tasks involved in the model development process. Here's an overview of its key features and workflow:
 
-•	Base Image: It uses a minimal Python environment (python:3.8-slim) to keep the container lightweight.
+1. Base Image: It uses a minimal Python environment (python:3.8-slim) to keep the container lightweight.
 
-•	Environment Configuration:
+2. Environment Configuration:
 
-        o	Sets up GOOGLE_APPLICATION_CREDENTIALS for authenticating with Google Cloud services.
+    1. Sets up GOOGLE_APPLICATION_CREDENTIALS for authenticating with Google Cloud services.
         
 o	Configures MLFLOW_TRACKING_DIR for managing MLflow experiment logs and artifacts.
 •	System Dependencies: Installs necessary system-level packages like gcc, libc-dev, and jq for compatibility and scripting needs.
