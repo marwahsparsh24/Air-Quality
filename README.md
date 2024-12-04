@@ -861,6 +861,7 @@ This Dockerfile is designed for a streamlined, efficient Python environment to h
 •	Base Image: It uses a minimal Python environment (python:3.8-slim) to keep the container lightweight.
 
 •	Environment Configuration:
+
         o	Sets up GOOGLE_APPLICATION_CREDENTIALS for authenticating with Google Cloud services.
         
 o	Configures MLFLOW_TRACKING_DIR for managing MLflow experiment logs and artifacts.
