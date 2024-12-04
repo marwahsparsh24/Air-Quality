@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 import json
 import math
-from datetime import datetime,date,timedelta
+from datetime import datetime,date,timedelta,time
 # import time
 from google.cloud import bigquery
 import pandas as pd
