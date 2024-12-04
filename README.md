@@ -709,3 +709,7 @@ Following include a list of visualization generated during validation, SHAP anal
 58. y_pred_xgb_season_R².png
 
 But these files may not be visible when ran through docker as they are executed in the docker environment, hence you can refer to the dags/artifacts folder for these images which were obtained by running the scripts using dags. In future this process will be migrated to Google Cloud.
+
+
+## Model Deployment
+Initially all the tasks in the Data Pipeline and the Model Development pipeline were run locally to get results. During the Deployment phase of the project we have moved these pipelines into the cloud infrastructure along with automating the training, retraining(in case of data drift/model decay) and deployment processes which are explained in the following sections.
