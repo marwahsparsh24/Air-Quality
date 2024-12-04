@@ -718,5 +718,77 @@ But these files may not be visible when ran through docker as they are executed 
 Initially all the tasks in the Data Pipeline and the Model Development pipeline were run locally to get results. During the Deployment phase of the project we have moved these pipelines into the cloud infrastructure along with automating the training, retraining(in case of data drift/model decay) and deployment processes which are explained in the following sections.
 
 
-**GitHub Actions automation**
+### GitHub Actions automation
+
 GitHub Actions is a powerful CI/CD (Continuous Integration/Continuous Deployment) tool that enables automation of workflows directly within your GitHub repository. It allows developers to define custom workflows using YAML files, making it flexible and highly configurable. These workflows can be triggered by various events, such as code pushes, pull requests, or even scheduled timings. The scheduled timings are done  using cron scheduling as per the requirements such as every 30 minutes, 1 hour or daily. 
+
+
+## Limitation of GitHub workflow scheduling
+
+Using the cron scheduling given by GitHub actions leads to limitation of number of concurrent jobs to just only 20 which because of restrictions from the free subscription by GitHub. 
+
+
+To overcome this we use combination of Github Actions and Google Cloud Scheduler to automate the deployment process which will be covered in the future sections.
+
+
+### Pipeline.yml
+
+This GitHub actions file is configured to trigger the whole end to end pipeline when any changes are made in the main GitHub repository. It executes the following jobs in order.
+There are 5 main stages in this GIthub Actions yaml file which are as follows:
+
+**1. Job: Fetch-data**
+
+o	The workflow uses environment variables like GCP_PROJECT_ID, IMAGE_NAME, and GCS_BUCKET to configure Google Cloud settings.
+o	The repository is checked out using actions/checkout, ensuring access to all the code.
+o	It installs the Google Cloud SDK, allowing interaction with Google Cloud resources like GCR and Cloud Functions.
+o	Authenticates with Google Cloud using a service account key stored in GitHub Secrets (GCP_SA_KEY).
+o	Installs Python dependencies from requirements.txt.
+o	The fetch_data.py script is executed to collect the necessary data from the source.
+
+
+**2. Job: Trigger-dag**
+
+o	This job is triggered after the fetch-data job completes successfully (needs: fetch-data).
+o	Installs curl and jq, utilities required to interact with APIs and parse JSON responses.
+o	A unique DAG run ID is created using the current timestamp (datapipeline_YYYYMMDDHHMMSS), ensuring that each DAG run can be individually identified.
+o	The workflow uses the Airflow REST API to trigger a DAG (datapipeline) by sending a POST request to Airflow’s server (AIRFLOW_VM_IP).
+o	The unique DAG run ID generated earlier is passed in the request to start a specific DAG execution.
+o	A polling mechanism checks the status of the DAG run by calling the Airflow API. It continuously checks the state (success, failed, or running).
+o	The script waits until the DAG completes or fails and terminates the job accordingly.
+
+
+**3. Job: Deploy-pipeline**
+
+o	This job runs after the trigger-dag job finishes (needs: trigger-dag).
+o	Repeats the setup and authentication process for accessing Google Cloud.
+o	Configures Docker to authenticate with Google Container Registry (GCR) for pushing images.
+o	Builds a Docker image for the application, specifying the base image and any required build arguments.
+o	The Docker container runs a model training process by executing code inside the container(files in the cloud_run folder used for model development), with GCP credentials mounted for authentication.
+o	Once the image is built and trained, it is pushed to the GCR with both the current IMAGE_TAG (using GitHub SHA) and latest tags.
+o	Cleans up the temporary credentials file used for Google Cloud authentication.
+o	After deployment completes (or fails), an email is sent with the status of the deployment pipeline. SMTP credentials are fetched from GitHub Secrets and used to send the email to the specified recipient.
+
+
+**4. Job: Deploy-endpoint**
+
+o	Runs after the deploy-pipeline job is complete (needs: deploy-pipeline).
+o	Similar to the previous jobs, the repository is checked out.
+o	The SDK is configured again to interact with Google Cloud.
+o	Authenticates using the service account key, enabling access to GCP resources.
+o	This step deploys the application as a Cloud Function (predict-function) using Google Cloud SDK. The function is triggered via HTTP requests, and the source code is deployed from the ./cloud_function directory.
+o	After deploying the Cloud Function, an email is sent notifying the status of this deployment.
+
+
+**5. Job: deploy-streamlit**
+
+o	This job runs after deploy-endpoint completes (needs: deploy-endpoint).
+o	The repository is checked out to access the Streamlit app’s code.
+o	The Cloud SDK is installed and authenticated, as in previous jobs.
+o	Ensures that Docker is authenticated with Google Container Registry for image pushes.
+o	Builds the Docker image for the Streamlit application from the ./application directory, which will be used to deploy the app.
+o	The built image is pushed to GCR with both version-specific and latest tags.
+o	Deploys the Streamlit app to Google Cloud Run, ensuring that it is publicly accessible via HTTP requests on port 8080.
+o	Finally, an email is sent to notify about the completion of the Streamlit deployment, detailing the success or failure.
+
+
+
