@@ -830,5 +830,58 @@ o	Finally, an email is sent to notify about the completion of the Streamlit depl
 •	Email notifications are sent after every  success/failure of each job, in case of failure the subsequent jobs are halted.
 
 
+ Now we shall go through all the scripts triggered during the execution of this yaml file
+
+ **Fetch_data.py**
+
+ o	Configures API authentication and specifies the target city, country, and time range for data collection.
+ 
+o	Fetches the location ID corresponding to the city and retrieves air pollution data for the specified time range.
+
+o	Collects available air quality parameters (e.g., PM2.5, CO) for additional insights.
+
+o	Processes the raw data to create a structured format for analysis and storage.
+
+o	Identifies and logs anomalies in the data, such as missing fields, invalid values (e.g., negative pollution levels), and duplicate records.
+
+o	Checks if the processed data already exists in the GCS bucket to avoid redundancy.
+
+o	Saves the validated data as a CSV file directly to GCS for further use.
+
+
+
+**Cloud_run folder:**
+
+Here a detailed description of all files under the Cloud_run folder which are used for model development is given
+
+**Docker_file:**
+
+This Dockerfile is designed for a streamlined, efficient Python environment to handle the various machine learning tasks involved in the model development process. Here's an overview of its key features and workflow:
+
+•	Base Image: It uses a minimal Python environment (python:3.8-slim) to keep the container lightweight.
+
+•	Environment Configuration:
+        o	Sets up GOOGLE_APPLICATION_CREDENTIALS for authenticating with Google Cloud services.
+        
+o	Configures MLFLOW_TRACKING_DIR for managing MLflow experiment logs and artifacts.
+•	System Dependencies: Installs necessary system-level packages like gcc, libc-dev, and jq for compatibility and scripting needs.
+•	Python Dependencies: Installs all required Python libraries listed in requirements.txt.
+•	Code Setup:
+o	Copies multiple Python scripts into the container, each responsible for specific tasks such as data processing, model training, validation, and evaluation.
+o	Grants full permissions to the MLflow directory to ensure seamless logging and artifact storage.
+•	Workflow Execution: The container is configured to sequentially execute a series of Python scripts that collectively handle the following tasks:
+1.	Data Management:
+	delete_table.py: Deletes existing data in Google BigQuery.
+	saving_bigquery.py: Saves new data to BigQuery.
+2.	Model Training and Validation:
+	Prophet_train.py and Prophet_Valid.py: Train and validate the Prophet model.
+	XGBoost_train.py and XGBoost_valid.py: Train and validate the XGBoost model.
+	random_forest_train.py and RandomForest_Valid.py: Train and validate the Random Forest model.
+3.	Model Evaluation:
+	Model_bias.py: Evaluates model bias to ensure fairness and reliability.
+	bestmodel.py: Determines and finalizes the best-performing model.
+
+
+
 
 
