@@ -832,7 +832,7 @@ o	Finally, an email is sent to notify about the completion of the Streamlit depl
 
  Now we shall go through all the scripts triggered during the execution of this yaml file
 
- **Fetch_data.py**
+## Fetch_data.py
 
  o	Configures API authentication and specifies the target city, country, and time range for data collection.
  
@@ -854,7 +854,7 @@ o	Saves the validated data as a CSV file directly to GCS for further use.
 
 Here a detailed description of all files under the Cloud_run folder which are used for model development is given
 
-**Docker_file:**
+## Docker_file:
 
 This Dockerfile is designed for a streamlined, efficient Python environment to handle the various machine learning tasks involved in the model development process. Here's an overview of its key features and workflow:
 
@@ -888,6 +888,56 @@ This Dockerfile is designed for a streamlined, efficient Python environment to h
 **Model Evaluation:**
 1. Model_bias.py: Evaluates model bias to ensure fairness and reliability.
 2. bestmodel.py: Determines and finalizes the best-performing model.
+
+
+
+## delete_table.py
+
+•	Deletes the specified BigQuery table (airquality-438719.airqualityuser.allfeatures).
+
+•	Introduces a delay to ensure the deletion is propagated.
+
+•	Verifies whether the table still exists and confirms deletion.
+
+•	Provides error handling for issues encountered during the process.
+
+
+## saving_bigquery.py
+
+This script is designed to load, process, and insert feature-engineered data (in pickle format) from GCS into BigQuery, where it can be used for further analysis or model training. It ensures proper handling of timestamps and performs batch insertions to optimize data loading. Additionally, it checks and creates the target BigQuery table if necessary.
+
+•	Creates a BigQuery client to interact with the BigQuery project (airquality-438719).
+
+•	Initializes a Cloud Storage client to access data from a GCS bucket (airquality-mlops-rg).
+
+•	Specifies paths to feature-engineered data stored in GCS (test and train sets in pickle format).
+
+•	Downloads the pickle files containing the feature-engineered data from the specified GCS bucket.
+
+•	Deserializes the files using pickle to load the data into Python 
+
+•	Ensures that the timestamp column is correctly formatted as datetime and is present in the dataset.
+
+•	Converts the timestamp to ISO 8601 format and prepares the feature data for BigQuery
+
+•	Converts each row of data into a dictionary containing various features like PM2.5, rolling means, and other time-based features.
+
+•	Each dictionary is then serialized into a JSON string and appended to a list
+
+•	The data is uploaded in batches of 1000 rows to BigQuery using the insert_rows_json method.
+
+•	The script handles errors during insertion and prints success or error messages accordingly.
+
+•	Before inserting data, the script checks if the target table (airquality-438719.airqualityuser.allfeatures) exists in BigQuery.
+
+•	If the table doesn’t exist, it creates the table with the defined schema:
+
+    1. timestamp (nullable TIMESTAMP).
+    2. feature_data (nullable STRING for storing JSON data)
+    
+•	Finally, the script calls the function to insert data for both test and train datasets into the BigQuery table
+
+
 
 
 
