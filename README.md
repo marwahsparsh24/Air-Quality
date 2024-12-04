@@ -938,6 +938,163 @@ This script is designed to load, process, and insert feature-engineered data (in
 •	Finally, the script calls the function to insert data for both test and train datasets into the BigQuery table
 
 
+## Prophet_train.py
+
+
+The script automates the process of training a PM2.5 prediction model using Prophet, while logging key metrics and the trained model itself in MLflow, and ensuring that the model is saved for future use in Google Cloud Storage. This approach supports model versioning, monitoring, and deployment in a cloud-based environment
+
+•	Loads training data from a pickle file stored in a GCS bucket, deserializing it into a Pandas DataFrame.
+
+•	Prepares the training data in the format expected by Prophet (a DataFrame with ds for timestamps and y for PM2.5 values).
+
+•	Trains the Prophet model using the preprocessed data and logs the model to MLflow.
+
+•	The trained model's weights are serialized with pickle and uploaded to GCS for storage.
+
+
+## Prophet_Valid.py
+
+
+•	Initializes MLflow for experiment tracking and logs parameters and metrics.
+
+•	Loads training and test data from Google Cloud Storage.
+
+•	Applies feature engineering, including transformations and generating time-series features (lags, rolling means, etc.).
+
+•	Handles skewness in the target variable (PM2.5) using Box-Cox or log transformations.
+
+•	Downloads the pre-trained Prophet model from GCS and loads it using pandas.read_pickle
+
+•	 Makes predictions on the test data and calculates performance metrics like RMSE (Root Mean Squared Error).
+
+•	Performs SHAP (Shapley values) analysis to interpret the model's feature importance and saves the SHAP summary plot.
+
+•	Plots actual vs. predicted PM2.5 values and saves the plot as an artifact in MLflow.
+
+•	Saves and uploads artifacts such as SHAP plots and result plots to Google Cloud Storage for later use.
+
+
+## XGBoost_train.py
+
+
+•	The script imports various libraries like XGBoost, MLflow, Google Cloud Storage, and others for machine learning, data processing, and experiment tracking
+
+•	The setup_mlflow_tracking() function configures the MLflow tracking URI, where experiment logs and metrics will be stored locally.
+
+•	Defines model attributes, including hyperparameter grid and placeholders for training data
+
+•	Downloads training data from a Google Cloud Storage bucket, processes it, and splits it into 
+features (X_train) and target (y_train).
+
+•	Performs a grid search for optimal hyperparameters for the XGBoost model, using cross-validation and logging the results in MLflow.
+
+•	Fits the XGBoost model on the training data and logs the trained model in MLflow.
+
+•	Saves the trained model's weights to a specified Google Cloud Storage bucket.
+
+
+## XGBoost_valid.py
+
+•	Loads PM2.5 data from Google Cloud Storage, performs skewness checks, and applies feature engineering. This includes creating lag features, rolling statistics, and cyclical features (like hour of day or day of the week). The target variable (pm25) is also transformed if necessary using a Box-Cox transformation.
+
+•	Sets up an XGBoost regression model for predicting PM2.5. The model is trained using features engineered in the previous step. Hyperparameter tuning is performed using grid search for parameters like n_estimators, learning_rate, and max_depth. The training and evaluation are tracked using MLflow.
+
+•	The script evaluates how changes in hyperparameters (e.g., n_estimators, learning_rate, max_depth) affect model performance (measured by RMSE). The results are logged to MLflow and visualized with a plot
+
+•	SHAP (Shapley Additive Explanations) is used to interpret the model's predictions, providing insights into the importance of different features.
+
+•	The model’s performance is evaluated on a test set, and RMSE is calculated and logged. The actual vs. predicted PM2.5 values are plotted and saved as artifacts in MLflow and Google Cloud Storage.
+
+
+## Random_forest_train.py
+
+•	The script uses MLflow to track experiments, log parameters, and save model artifacts (such as hyperparameters, metrics, and the trained model itself).
+
+•	It sets up the MLflow tracking URI to store logs locally, ensuring all training details are stored in the specified directory.
+
+•	The data is fetched from Google Cloud Storage (GCS), where a pickled dataset containing feature-engineered data (feature_eng_data.pkl) is downloaded.
+
+•	It uses pickle to deserialize the data into a pandas DataFrame and extracts the target variable (pm25) and features for training the model.
+
+•	The model is a Random Forest Regressor from sklearn, which is initialized with specific hyperparameters (e.g., random_state=42 for reproducibility).
+
+•	A grid search with cross-validation (GridSearchCV) is performed to tune the model's hyperparameters, specifically n_estimators, and the best parameters are selected based on mean squared error
+
+•	The model is trained on the feature data (X_train) and the target variable (y_train), and the training process duration is logged as an MLflow metric.
+
+•	After training, the best model is serialized using pickle and uploaded to Google Cloud Storage for persistence. The model weights are saved under the weights/rf_model.pth path in the cloud.
+
+•	The model is also logged as an artifact in MLflow, making it easy to track and load in future runs.
+
+•	Hyperparameters (from the grid search) are logged using mlflow.log_params(), and the model is logged as a MLflow artifact. The training duration is tracked as a metric (training_duration).
+
+
+## Random_forest_valid.py
+
+•	Configures MLflow for experiment tracking, saving logs locally with a specified tracking URI.
+
+•	Handles data loading, feature engineering, and skewness checks, creating lag features, rolling statistics, and time-based features
+
+•	Manages training, evaluation, hyperparameter tuning, SHAP analysis, and result plotting for the Random Forest model.
+
+•	Logs and evaluates the impact of hyperparameters (e.g., n_estimators) on model performance using RMSE.
+
+•	Uses SHAP for model interpretability, visualizing feature importance and contributions to predictions.
+
+•	Computes RMSE for model performance, with optional inverse transformations for skewed data.
+
+•	Plots actual vs predicted PM2.5 values and logs them as artifacts in both MLflow and Google Cloud Storage.
+
+
+## Model_bias.py
+
+•	The script loads feature-engineered test data from Google Cloud Storage, processing it by adding missing columns (season, timestamp) and dropping irrelevant ones (pm25_boxcox, pm25_log).
+
+•	The script defines functions to load pre-trained models (Random Forest, XGBoost, Prophet) from Google Cloud Storage, ensuring each model is available for predictions.
+
+•	The models (Random Forest, XGBoost, Prophet) are used to make predictions on the feature data, which are stored as new columns in the dataset (y_pred_rf, y_pred_xgb, y_pred_prophet).
+
+•	The evaluate_model_bias() function evaluates model bias by analyzing performance across different slicing features like hour, day_of_week, month, and season.
+
+•	For each slice of the slicing features, the script calculates MAE, RMSE, R², and MBE to assess model performance in each segment.
+
+•	Metrics for each model and slicing feature are logged to MLflow, ensuring easy tracking of performance and bias across experiments.
+
+•	The function computes deviations from average metrics for each slice and flags slices as biased if the deviation exceeds a threshold.
+
+•	The biased metrics (e.g., biased MAE, RMSE) are logged in MLflow to track the count of biased slices for each model and slicing feature.
+
+•	The distribution of bias metrics is visualized using bar plots, which are saved locally and uploaded to Google Cloud Storage for easy access and review.
+
+
+## Best_model.py
+
+•	The script evaluates multiple machine learning models (Random Forest, XGBoost, Prophet) across different experiments based on RMSE and bias metrics to select the best model.
+
+•	A combined score for each model is computed as a weighted sum of RMSE and bias metrics, where RMSE is given more importance (0.5 weight), and bias metrics like MAE, R2, and MBE are assigned lower weights.
+
+•	Weights for the bias metrics are defined (MAE: 0.2, R2: 0.2, MBE: 0.1), reflecting their importance in the combined score calculation.
+
+•	The bias results (e.g., MAE, RMSE, R2, MBE) are collected for different features (hour, day_of_week, etc.) to assess how each model performs across these features.
+
+•	 The best model is selected based on the combined score, which factors in both RMSE and bias metrics. The model with the lowest combined score is chosen.
+
+•	 Before uploading a new model, the script checks the existing RMSE value from the registry. If the new model’s RMSE is worse, it does not upload the new model, maintaining the best-performing one.
+
+•	The script loads pre-trained models (Random Forest, XGBoost, Prophet) from Google Cloud Storage (GCS) by downloading model weights to temporary files and then deserializing them.
+
+•	After selecting the best model, the script uploads the model weights to GCS, along with the updated RMSE value, ensuring only the best model is saved.
+
+•	There are mechanisms in place to catch errors during model loading (e.g., incorrect model format) and ensure models are loaded correctly before further processing.
+
+•	The script uses MLflow’s model registry to check for existing compares them before deciding to overwrite or update the stored model.
+
+
+
+
+
+
+
 
 
 
