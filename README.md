@@ -754,46 +754,81 @@ o	The fetch_data.py script is executed to collect the necessary data from the so
 **2. Job: Trigger-dag**
 
 o	This job is triggered after the fetch-data job completes successfully (needs: fetch-data).
+
 o	Installs curl and jq, utilities required to interact with APIs and parse JSON responses.
+
 o	A unique DAG run ID is created using the current timestamp (datapipeline_YYYYMMDDHHMMSS), ensuring that each DAG run can be individually identified.
+
 o	The workflow uses the Airflow REST API to trigger a DAG (datapipeline) by sending a POST request to Airflow’s server (AIRFLOW_VM_IP).
+
 o	The unique DAG run ID generated earlier is passed in the request to start a specific DAG execution.
+
 o	A polling mechanism checks the status of the DAG run by calling the Airflow API. It continuously checks the state (success, failed, or running).
+
 o	The script waits until the DAG completes or fails and terminates the job accordingly.
 
 
 **3. Job: Deploy-pipeline**
 
 o	This job runs after the trigger-dag job finishes (needs: trigger-dag).
+
 o	Repeats the setup and authentication process for accessing Google Cloud.
+
 o	Configures Docker to authenticate with Google Container Registry (GCR) for pushing images.
+
 o	Builds a Docker image for the application, specifying the base image and any required build arguments.
+
 o	The Docker container runs a model training process by executing code inside the container(files in the cloud_run folder used for model development), with GCP credentials mounted for authentication.
+
 o	Once the image is built and trained, it is pushed to the GCR with both the current IMAGE_TAG (using GitHub SHA) and latest tags.
+
 o	Cleans up the temporary credentials file used for Google Cloud authentication.
+
 o	After deployment completes (or fails), an email is sent with the status of the deployment pipeline. SMTP credentials are fetched from GitHub Secrets and used to send the email to the specified recipient.
 
 
 **4. Job: Deploy-endpoint**
 
 o	Runs after the deploy-pipeline job is complete (needs: deploy-pipeline).
+
 o	Similar to the previous jobs, the repository is checked out.
+
 o	The SDK is configured again to interact with Google Cloud.
+
 o	Authenticates using the service account key, enabling access to GCP resources.
+
 o	This step deploys the application as a Cloud Function (predict-function) using Google Cloud SDK. The function is triggered via HTTP requests, and the source code is deployed from the ./cloud_function directory.
+
 o	After deploying the Cloud Function, an email is sent notifying the status of this deployment.
 
 
 **5. Job: deploy-streamlit**
 
 o	This job runs after deploy-endpoint completes (needs: deploy-endpoint).
+
 o	The repository is checked out to access the Streamlit app’s code.
+
 o	The Cloud SDK is installed and authenticated, as in previous jobs.
+
 o	Ensures that Docker is authenticated with Google Container Registry for image pushes.
+
 o	Builds the Docker image for the Streamlit application from the ./application directory, which will be used to deploy the app.
+
 o	The built image is pushed to GCR with both version-specific and latest tags.
+
 o	Deploys the Streamlit app to Google Cloud Run, ensuring that it is publicly accessible via HTTP requests on port 8080.
+
 o	Finally, an email is sent to notify about the completion of the Streamlit deployment, detailing the success or failure.
+
+
+**Overall Workflow Flow:**
+
+•	**Data Fetching → Trigger Airflow DAG → Build & Deploy Pipeline → Deploy to Google Cloud Functions → Deploy Streamlit App to Cloud Run**
+
+•	At each stage, email notifications are sent to the specified recipient, updating them about the status of the job. These notifications are sent regardless of the job outcome, thanks to the if: always() condition in each email step.
+
+•	Email notifications are sent after every  success/failure of each job, in case of failure the subsequent jobs are halted.
+
 
 
 
