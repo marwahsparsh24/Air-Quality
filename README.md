@@ -739,10 +739,15 @@ There are 5 main stages in this GIthub Actions yaml file which are as follows:
 **1. Job: Fetch-data**
 
 o	The workflow uses environment variables like GCP_PROJECT_ID, IMAGE_NAME, and GCS_BUCKET to configure Google Cloud settings.
+
 o	The repository is checked out using actions/checkout, ensuring access to all the code.
+
 o	It installs the Google Cloud SDK, allowing interaction with Google Cloud resources like GCR and Cloud Functions.
+
 o	Authenticates with Google Cloud using a service account key stored in GitHub Secrets (GCP_SA_KEY).
+
 o	Installs Python dependencies from requirements.txt.
+
 o	The fetch_data.py script is executed to collect the necessary data from the source.
 
 
