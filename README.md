@@ -877,18 +877,17 @@ This Dockerfile is designed for a streamlined, efficient Python environment to h
 6. Workflow Execution: The container is configured to sequentially execute a series of Python scripts that collectively handle the following tasks:
    
 **Data Management:**
-
-    1. delete_table.py: Deletes existing data in Google BigQuery.
-    2. saving_bigquery.py: Saves new data to BigQuery.
+1. delete_table.py: Deletes existing data in Google BigQuery.
+2. saving_bigquery.py: Saves new data to BigQuery.
     
 **Model Training and Validation:**
-    1. Prophet_train.py and Prophet_Valid.py: Train and validate the Prophet model.
-    2. XGBoost_train.py and XGBoost_valid.py: Train and validate the XGBoost model.
-    3. random_forest_train.py and RandomForest_Valid.py: Train and validate the Random Forest model.
+1. Prophet_train.py and Prophet_Valid.py: Train and validate the Prophet model.
+2. XGBoost_train.py and XGBoost_valid.py: Train and validate the XGBoost model.
+3. random_forest_train.py and RandomForest_Valid.py: Train and validate the Random Forest model.
     
 **Model Evaluation:**
-    1. Model_bias.py: Evaluates model bias to ensure fairness and reliability.
-    2. bestmodel.py: Determines and finalizes the best-performing model.
+1. Model_bias.py: Evaluates model bias to ensure fairness and reliability.
+2. bestmodel.py: Determines and finalizes the best-performing model.
 
 
 
