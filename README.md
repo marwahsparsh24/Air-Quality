@@ -932,8 +932,8 @@ This script is designed to load, process, and insert feature-engineered data (in
 
 •	If the table doesn’t exist, it creates the table with the defined schema:
 
-    1. timestamp (nullable TIMESTAMP).
-    2. feature_data (nullable STRING for storing JSON data)
+1. timestamp (nullable TIMESTAMP).
+2. feature_data (nullable STRING for storing JSON data)
     
 •	Finally, the script calls the function to insert data for both test and train datasets into the BigQuery table
 
