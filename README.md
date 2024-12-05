@@ -1419,7 +1419,7 @@ airquality
 ## AIR QUALITY PREDICTION FLOWCHART
 <img width="1069" alt="image" src="https://github.com/user-attachments/assets/4d42d778-4e45-4430-841e-a0d4c0f49c5c">
 
-
+<img width="1069" alt="image" src="https://github.com/user-attachments/assets/8edaa186-6045-4b3a-8a2f-33ef6c54d15e">
 
 
 
