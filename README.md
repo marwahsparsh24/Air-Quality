@@ -1094,7 +1094,7 @@ features (X_train) and target (y_train).
 
 This section explains key concepts like model decay and data drift, followed by how they are addressed in the project. It integrates actual implementation details, including Google Cloud components, monitoring, automation, and retraining workflows.
 
-1. **What is Model Decay?**
+**What is Model Decay?**
 
 Definition:Model decay occurs when a machine learning model's performance deteriorates over time due to changes in real-world conditions that differ from the training environment. Common reasons include:
 
@@ -1119,21 +1119,21 @@ What We Are Doing in This Project
 3. BigQuery: 
     - Predictions and input features are stored in BigQuery for further analysis and decay detection.
 
-5. GitHub Actions: 
+4. GitHub Actions: 
     - Automates the retraining pipeline when decay is detected.
 
-6. Decay Detection:
+5. Decay Detection:
     - Using compare_and_trigger_with_temp_table, the project identifies whether differences between predictions and observed values exceed the set threshold.
 
-7. Automated Functions:
+6. Automated Functions:
     - A Google Cloud Function (trigger_github_pipeline_model) is triggered when decay is detected, initiating the retraining workflow through GitHub Actions.
     - This Cloud Function interacts with BigQuery to fetch predictions and feature data, compare them, and determine if retraining is necessary.
 
-8. Cloud Scheduler:
+7. Cloud Scheduler:
     - A Cloud Scheduler job runs periodically (e.g., hourly or daily) to trigger the decay detection workflow, ensuring timely identification of issues.
 
 
-2. **What is Data Drift?**
+**What is Data Drift?**
    
 Definition:Data drift occurs when the statistical properties of input data change over time compared to the training data. This can reduce the model's predictive performance.
 
@@ -1144,27 +1144,27 @@ Even if the model initially performs well, data drift can affect its ability to 
 **What We Are Doing in This Project**
 
 1.	Detecting Data Drift:
-        - Drift is detected by comparing the mean and variance of new data with the existing data using the detect_drift function: 
-        - drift_value = mean_diff + var_diff
-        - Drift detection checks are implemented via an Airflow DAG.
+    - Drift is detected by comparing the mean and variance of new data with the existing data using the detect_drift function: 
+    - drift_value = mean_diff + var_diff
+    - Drift detection checks are implemented via an Airflow DAG.
 2.	Thresholds Set:
-        - Drift Value > 3: If the combined mean and variance differences exceed 3, the retraining workflow is triggered.
+    - Drift Value > 3: If the combined mean and variance differences exceed 3, the retraining workflow is triggered.
 3.	Recording and Visualizing Drift:
-        - Recording: 
-                - Drift values are logged in a GCS file (api_data/drift.txt) for historical tracking.
-        - Plotting: 
-                - A visualization of drift over time is generated using Matplotlib and saved to GCS as a plot (api_data/plot_drift.png).
+    - Recording: 
+            - Drift values are logged in a GCS file (api_data/drift.txt) for historical tracking.
+    - Plotting: 
+            - A visualization of drift over time is generated using Matplotlib and saved to GCS as a plot (api_data/plot_drift.png).
 4.	Automated Alerts:
-        - GitHub Actions monitors drift metrics and triggers retraining workflows when thresholds are exceeded.
-        - Notifications are sent to stakeholders to inform them of detected drift.
+    - GitHub Actions monitors drift metrics and triggers retraining workflows when thresholds are exceeded.
+    - Notifications are sent to stakeholders to inform them of detected drift.
 5.	Automated Functions:
-        - A Google Cloud Function (trigger_github_pipeline) is triggered when data drift is detected.
-        - This function calculates drift metrics, logs the drift values, and determines whether to trigger the GitHub Actions pipeline for retraining.
+    - A Google Cloud Function (trigger_github_pipeline) is triggered when data drift is detected.
+    - This function calculates drift metrics, logs the drift values, and determines whether to trigger the GitHub Actions pipeline for retraining.
 6.	Cloud Scheduler:
-        - A Cloud Scheduler job periodically triggers the drift detection workflow to ensure timely monitoring.
+    - A Cloud Scheduler job periodically triggers the drift detection workflow to ensure timely monitoring.
   	
 
-3. **What Are Thresholds for Triggering Retraining?**
+**What Are Thresholds for Triggering Retraining?**
 
 Definition:Thresholds are predefined limits for performance metrics and data drift values. If these thresholds are breached, the retraining process is triggered.
 
@@ -1175,14 +1175,14 @@ Thresholds ensure the model is retrained only when necessary, avoiding unnecessa
 **What We Are Doing in This Project**
 
 1.	Performance Metrics Thresholds:
-        - Prediction Difference > 3: Retraining is triggered if the absolute difference between the predicted and actual values exceeds this value.
+    - Prediction Difference > 3: Retraining is triggered if the absolute difference between the predicted and actual values exceeds this value.
 2.	Drift Metrics Thresholds:
-        - Drift Value > 3: If the combined mean and variance differences exceed 3, retraining is triggered.
+    - Drift Value > 3: If the combined mean and variance differences exceed 3, retraining is triggered.
 3.	Integration:
-        - Threshold checks are automated using Evidently AI, GitHub Actions, and Airflow.
-        - If a threshold is breached, an Airflow DAG is triggered to initiate retraining.
+    - Threshold checks are automated using Evidently AI, GitHub Actions, and Airflow.
+    - If a threshold is breached, an Airflow DAG is triggered to initiate retraining.
 
-4. **Automating the Retraining Pipeline**
+**Automating the Retraining Pipeline**
 
 Definition:An automated retraining pipeline continuously evaluates model performance and initiates steps like data pulling, retraining, validation, and redeployment when thresholds are breached.
 
@@ -1193,20 +1193,20 @@ Automation minimizes manual effort, ensures timely retraining, and reduces downt
 **What We Are Doing in This Project**
 
 1.	Pulling New Data:
-        - Latest data is fetched automatically from GCS using the fetch_latest_csv function.
-        - Data is preprocessed to ensure compatibility with the training pipeline.
+    - Latest data is fetched automatically from GCS using the fetch_latest_csv function.
+    - Data is preprocessed to ensure compatibility with the training pipeline.
 2.	Retraining the Model:
-        - A Dockerized training pipeline retrains the model using the latest data.
-        - Retraining is performed within a secure and consistent environment.
+    - A Dockerized training pipeline retrains the model using the latest data.
+    - Retraining is performed within a secure and consistent environment.
 3.	Validating the Model:
-        - New model performance is evaluated against existing metrics such as accuracy and RMSE.
-        - The new model is deployed only if it outperforms the current model.
+    - New model performance is evaluated against existing metrics such as accuracy and RMSE.
+    - The new model is deployed only if it outperforms the current model.
 4.	Deploying the Model:
-        - Deployment to production is automated using GCP Cloud Functions.
-        - The current model is retained if the new model fails validation.
+    - Deployment to production is automated using GCP Cloud Functions.
+    - The current model is retained if the new model fails validation.
   	
 
-5. **Notifications for Model Retraining**
+**Notifications for Model Retraining**
 
 Definition:Notifications alert stakeholders about retraining triggers, completion, or any anomalies detected during the pipeline.
 
@@ -1222,12 +1222,12 @@ Keeping stakeholders informed ensures transparency, aids compliance, and allows 
         - Retraining is completed (success or failure).
         -  A new model is deployed or the existing one is retained.
     - The SMTP email service is configured in GitHub Actions for notification delivery.
-3.	Details Shared in Notifications:
-        - Metrics before and after retraining.
-        - Reasons for retraining (e.g., data drift or model decay).
-        - Deployment status.
-4.	Future Enhancements:
-        - Integration with Slack or Microsoft Teams for real-time notifications and collaboration.
+2.	Details Shared in Notifications:
+    - Metrics before and after retraining.
+    - Reasons for retraining (e.g., data drift or model decay).
+    - Deployment status.
+3.	Future Enhancements:
+    - Integration with Slack or Microsoft Teams for real-time notifications and collaboration.
 
 
 
