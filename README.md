@@ -1109,26 +1109,20 @@ What We Are Doing in This Project
 1.	Monitoring Key Metrics:
     - Metrics such as RMSE (Root Mean Square Error) are monitored in real-time by comparing predictions with observed values.
     - Thresholds Set: 
-        - Prediction Difference > 3: Retraining is triggered if the absolute difference between the predicted and actual values exceeds this value.
-        
+        - Prediction Difference > 3: Retraining is triggered if the absolute difference between the predicted and actual values exceeds this value.      
 2.	Real-Time Monitoring Infrastructure:
     - Google Monitoring: 
         - Metrics such as prediction error (difference between predicted and actual values) are logged using Google Monitoring.
         - Alerts are configured in Google Monitoring to notify the system when thresholds are breached.
-
 3. BigQuery: 
     - Predictions and input features are stored in BigQuery for further analysis and decay detection.
-
 4. GitHub Actions: 
     - Automates the retraining pipeline when decay is detected.
-
 5. Decay Detection:
     - Using compare_and_trigger_with_temp_table, the project identifies whether differences between predictions and observed values exceed the set threshold.
-
 6. Automated Functions:
     - A Google Cloud Function (trigger_github_pipeline_model) is triggered when decay is detected, initiating the retraining workflow through GitHub Actions.
     - This Cloud Function interacts with BigQuery to fetch predictions and feature data, compare them, and determine if retraining is necessary.
-
 7. Cloud Scheduler:
     - A Cloud Scheduler job runs periodically (e.g., hourly or daily) to trigger the decay detection workflow, ensuring timely identification of issues.
 
