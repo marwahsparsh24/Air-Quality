@@ -1212,9 +1212,9 @@ Keeping stakeholders informed ensures transparency, aids compliance, and allows 
 
 1.	Email Notifications:
         - Notifications are sent via email when: 
-                - Retraining is triggered.
-                - Retraining is completed (success or failure).
-                - A new model is deployed or the existing one is retained.
+            - Retraining is triggered.
+            - Retraining is completed (success or failure).
+            - A new model is deployed or the existing one is retained.
         - The SMTP email service is configured in GitHub Actions for notification delivery.
 2.	Details Shared in Notifications:
         - Metrics before and after retraining.
