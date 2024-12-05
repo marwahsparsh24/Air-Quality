@@ -1116,7 +1116,7 @@ What We Are Doing in This Project
         - Metrics such as prediction error (difference between predicted and actual values) are logged using Google Monitoring.
         - Alerts are configured in Google Monitoring to notify the system when thresholds are breached.
 
-3.      BigQuery: 
+3. BigQuery: 
     - Predictions and input features are stored in BigQuery for further analysis and decay detection.
 
 5.      GitHub Actions: 
