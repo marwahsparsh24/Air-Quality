@@ -1295,7 +1295,7 @@ To access bigquery tables to connect with cloud functions:
 9. Resource Admin: gcloud projects add-iam-policy-binding airquality-438719 \
     --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.resourceAdmin"
 10. Connection Admin: gcloud projects add-iam-policy-binding airquality-438719 \
-    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.connectionAdmin"
+    --member=serviceAccount:681553118721-compute@developer.gserviceaccount.com \--role="roles/bigquery.connectionAdmin"
 
 
 
