@@ -1090,6 +1090,20 @@ features (X_train) and target (y_train).
 •	The script uses MLflow’s model registry to check for existing compares them before deciding to overwrite or update the stored model.
 
 
+## Data Drift and Model Decay
+
+This section explains key concepts like model decay and data drift, followed by how they are addressed in the project. It integrates actual implementation details, including Google Cloud components, monitoring, automation, and retraining workflows.
+
+1. **What is Model Decay?**
+2. 
+Definition:Model decay occurs when a machine learning model's performance deteriorates over time due to changes in real-world conditions that differ from the training environment. Common reasons include:
+
+- Data Drift: The input data distribution changes over time.
+- Concept Drift: The relationship between input features and output labels changes.
+
+
+
+
 
 
 
