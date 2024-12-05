@@ -1132,6 +1132,7 @@ What We Are Doing in This Project
 8. Cloud Scheduler:
     - A Cloud Scheduler job runs periodically (e.g., hourly or daily) to trigger the decay detection workflow, ensuring timely identification of issues.
 
+
 2. **What is Data Drift?**
    
 Definition:Data drift occurs when the statistical properties of input data change over time compared to the training data. This can reduce the model's predictive performance.
