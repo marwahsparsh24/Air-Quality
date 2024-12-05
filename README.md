@@ -1297,7 +1297,17 @@ To access bigquery tables to connect with cloud functions:
 10. Connection Admin: gcloud projects add-iam-policy-binding airquality-438719 \
     --member=serviceAccount:681553118721-compute@developer.gserviceaccount.com \--role="roles/bigquery.connectionAdmin"
 
-    https:/[]()/681553118721-compute@developer.gserviceaccount.[]()com  should work
+
+**VM Instance**
+
+To set up a VM instance for Apache Airflow and Docker on Google Cloud Platform (GCP), create a Compute Engine VM with a suitable machine type (e.g., e2-medium) and an Ubuntu or Debian boot disk. Enable HTTP/HTTPS traffic and configure firewall rules for Airflow’s web interface (port 8080). SSH into the VM, install Docker, and configure it by adding your user to the Docker group. Use the official docker-compose.yaml file to set up Airflow by initializing the database and starting services. Access the Airflow web interface via http://[VM-IP]:8080.
+
+
+**Streamlit Application**
+
+We have used streamlit to showcase our front end of the project where the user is given the option to add the date and particular hour that you want your prediction for and furthermore the additional predicted hours can also be set with a short summary of all the predicted PM2.5 hour values.
+Link for the streamlit - https://streamlit-app-681553118721.us-central1.run.app
+
 
 
 
