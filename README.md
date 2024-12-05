@@ -1224,6 +1224,81 @@ Keeping stakeholders informed ensures transparency, aids compliance, and allows 
     - Integration with Slack or Microsoft Teams for real-time notifications and collaboration.
 
 
+Earlier we mentioned about the limitation of using Github Actions alone for deployment which is that the cron scheduling given by GitHub actions leads to limitation of number of concurrent jobs to just only 20 which because of restrictions from the free subscription by GitHub.
+
+Hence to avoid this limitation, we used the combination of Google cloud functions and google cloud scheduler to trigger YAML files to create GitHub actions to automate model deployment pipeline. Like cron scheduler by GitHub actions GCP provides google cloud scheduler to create cron schedules to help cloud functions to trigger YAML files.
+
+Image
+
+These are the 2 schedulers used to eliminate the limitation
+
+- Trigger – It is created to automate the running of data drift YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger.
+- Trigger-model-decay – It is created to automate the running of model decay YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger
+
+Image
+
+**Importance of BigQuery in Model Decay**
+
+BigQuery is a powerful tool for evaluating machine learning model performance over time, particularly in applications like predicting PM2.5 levels. By leveraging its ability to handle large datasets efficiently, we used BigQuery as a tool to compare model's predictions with actual measurements across different time periods. Temporary tables in BigQuery are especially useful for intermediate data processing during this analysis, as they reduce storage overhead and allow for quick, session-based evaluations. These tables typically include timestamps, actual values, predicted values, and error metrics, forming the basis for calculating key performance indicators.
+
+To assess performance, Root Mean Square Error (RMSE) can be computed from the temporary tables. By comparing these metrics across time periods, we identified trends and detected model decay—when the model's RMSE value deteriorates due to shifts in data patterns. 
+
+BigQuery is then integrated into workflows as a connector in Google Cloud Functions, where it serves as a core component for orchestrating model decay detection. The process is automated using Cloud Scheduler, which triggers Cloud Functions to execute a YAML configuration file. This YAML file defines the steps for evaluating model performance and monitoring decay, ensuring a streamlined and scalable solution for maintaining model reliability over time.
+
+**BigQuery Tables:**
+
+**Allfeatures** – This table contains the feature engineered data within the timeline entered by the user. In this table, the entries get refreshed after every session to avoid overwrite of data in order to reduce redundancy.
+
+Image
+
+**Predictions** – This table contains the predictions and the timestamp which starts from the date entered by the user and number of hours entered 
+
+
+Image
+
+**Permissions:**
+To access storage buckets for the cloud functions there are multiple permissions needed to be given and those are:
+
+1. Object Viewer: gcloud storage buckets add-iam-policy-binding gs://airquality-mlops-rg \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/storage.objectViewer"
+2. Object Creator: gcloud storage buckets add-iam-policy-binding gs://airquality-mlops-rg \--member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \ --role="roles/storage.objectCreator"
+3. Object Admin: gcloud storage buckets add-iam-policy-binding gs://airquality-mlops-rg \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \ --role="roles/storage.objectAdmin"
+4. Admin: gcloud storage buckets add-iam-policy-binding gs://airquality-mlops-rg \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/storage.admin"
+   
+To access cloud functions to trigger GitHub action – Trigger GitHub Pipeline:
+
+1. Invoker: gcloud functions add-iam-policy-binding trigger_github_pipeline \
+    --region us-central1 \ --member="allUsers" \
+    --role="roles/cloudfunctions.invoker"
+   
+To access bigquery tables to connect with cloud functions:
+
+1. Admin: gcloud projects add-iam-policy-binding airquality-438719 \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.admin"
+2. User: gcloud projects add-iam-policy-binding airquality-438719 \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.user"
+3. Job User: gcloud projects add-iam-policy-binding airquality-438719 \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.jobUser"
+4. Data Editor: gcloud projects add-iam-policy-binding airquality-438719 \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.dataEditor"
+5. Data Owner: gcloud projects add-iam-policy-binding airquality-438719 \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.dataOwner"
+6. Data Viewer: gcloud projects add-iam-policy-binding airquality-438719 \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.dataViewer"
+7. Meta Data Viewer: gcloud projects add-iam-policy-binding airquality-438719 \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.metadataViewer"
+8. Read Session User: gcloud projects add-iam-policy-binding airquality-438719 \
+--member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \
+--role="roles/bigquery.readSessionUser"
+9. Resource Admin: gcloud projects add-iam-policy-binding airquality-438719 \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.resourceAdmin"
+10. Connection Admin: gcloud projects add-iam-policy-binding airquality-438719 \
+    --member="serviceAccount:681553118721-compute@developer.gserviceaccount.com" \--role="roles/bigquery.connectionAdmin"
+
+
+
 
 
 
