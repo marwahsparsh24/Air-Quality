@@ -1119,17 +1119,17 @@ What We Are Doing in This Project
 3. BigQuery: 
     - Predictions and input features are stored in BigQuery for further analysis and decay detection.
 
-5.      GitHub Actions: 
+5. GitHub Actions: 
     - Automates the retraining pipeline when decay is detected.
 
-6.      Decay Detection:
+6. Decay Detection:
     - Using compare_and_trigger_with_temp_table, the project identifies whether differences between predictions and observed values exceed the set threshold.
 
-7.      Automated Functions:
+7. Automated Functions:
     - A Google Cloud Function (trigger_github_pipeline_model) is triggered when decay is detected, initiating the retraining workflow through GitHub Actions.
     - This Cloud Function interacts with BigQuery to fetch predictions and feature data, compare them, and determine if retraining is necessary.
 
-8.      Cloud Scheduler:
+8. Cloud Scheduler:
     - A Cloud Scheduler job runs periodically (e.g., hourly or daily) to trigger the decay detection workflow, ensuring timely identification of issues.
 
 2. **What is Data Drift?**
