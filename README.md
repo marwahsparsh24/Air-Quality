@@ -1311,6 +1311,7 @@ To set up a VM instance for Apache Airflow and Docker on Google Cloud Platform (
 **Streamlit Application**
 
 We have used streamlit to showcase our front end of the project where the user is given the option to add the date and particular hour that you want your prediction for and furthermore the additional predicted hours can also be set with a short summary of all the predicted PM2.5 hour values.
+
 Link for the streamlit - https://streamlit-app-681553118721.us-central1.run.app
 
 ## Folder Structure
