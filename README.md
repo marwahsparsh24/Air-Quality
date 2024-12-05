@@ -1232,8 +1232,13 @@ Image
 
 These are the 2 schedulers used to eliminate the limitation
 
-- Trigger – It is created to automate the running of data drift YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger.
-- Trigger-model-decay – It is created to automate the running of model decay YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger
+- ```Trigger``` – It is created to automate the running of data drift YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger.
+- ```Trigger-model-decay``` – It is created to automate the running of model decay YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger
+
+There are 3 cloud functions used to trigger YAML files
+- ```dfdfg``` - This cloud function is created to detect data drift in the endpoint data
+- ```model-decay``` - This cloud function is created to trigger the YAML file to detect model decay
+- ```Predict-function``` - This cloud function is created for the predictions of the best model out of all the other models
 
 Image
 
@@ -1307,6 +1312,112 @@ To set up a VM instance for Apache Airflow and Docker on Google Cloud Platform (
 
 We have used streamlit to showcase our front end of the project where the user is given the option to add the date and particular hour that you want your prediction for and furthermore the additional predicted hours can also be set with a short summary of all the predicted PM2.5 hour values.
 Link for the streamlit - https://streamlit-app-681553118721.us-central1.run.app
+
+## Folder Structure
+
+```
+airquality
+├── .dvc
+│   ├── cache
+│   │   └── files
+│   │       └── md5
+│   ├── .gitignore
+│   └── config
+├── .github
+│   └── workflows
+│       ├── data_drift_model_decay.yml
+│       ├── docker_run_CI_CD.yml
+│       ├── pipeline.yml
+│       ├── pytest_actions_data_bias.yml
+│       ├── pytest_actions_test_data.yml
+│       └── pytest_actions_train_data.yml
+├── DataPreprocessing
+│   ├── preprocess
+│   ├── src
+│   └── test
+│       ├── .DS_Store
+│       ├── __init__.py
+│       └── feature_eng_train_data.pkl
+├── ModelDevelopment
+│   ├── DataPreprocessing
+│   ├── ModelBias
+│   ├── Training
+│   ├── Validation
+│   ├── Dockerfile
+│   ├── bestmodel.py
+│   └── requirements.txt
+├── application
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── streamlit.py
+├── cloud_function
+│   ├── .DS_Store
+│   ├── main.py
+│   └── requirements.txt
+├── cloud_run
+│   ├── .DS_Store
+│   ├── Dockerfile
+│   ├── Model_bias.py
+│   ├── Prophet_Valid.py
+│   ├── Prophet_train.py
+│   ├── RandomForest_Valid.py
+│   ├── XGBoost_train.py
+│   ├── XGBoost_valid.py
+│   ├── bestmodel.py
+│   ├── delete_table.py
+│   ├── random_forest_train.py
+│   ├── requirements.txt
+│   ├── saving_bigquery.py
+│   └── testing.py
+├── dags
+│   ├── DataPreprocessing
+│   ├── ModelDevelopment
+│   ├── artifacts
+│   └── weights
+│       ├── .DS_Store
+│       ├── __init__.py
+│       ├── air_pollution_stats.json
+│       ├── bestmodel.py
+│       ├── custom_schema_generated_from.json
+│       ├── dag_script.py
+│       └── dag_script_model.py
+├── data
+│   ├── .gitignore
+│   └── data_store_pkl_files.dvc
+├── logs
+│   ├── dag_id=datapipeline_new
+│   ├── dag_id=modeling_pipeline
+│   ├── dag_processor_manager
+│   └── scheduler
+├── mlruns
+│   ├── 0
+│   ├── 371188221075429255
+│   ├── 433991511969967091
+│   └── 481589397634862112
+├── terraform
+│   ├── docker-compose.yaml
+│   ├── main.tf
+│   └── variables.tf
+├── test
+│   └── weights_model_model.pkl
+├── weights
+│   ├── lstm_pm25_model.pth
+│   ├── prophet_pm25_model.pth
+│   ├── randomforest_pm25_model.pth
+│   ├── xgboost_pm25_model.pth
+├── .env
+├── .gitattributes
+├── .gitignore
+├── .dvcignore
+├── LICENSE
+├── README.md
+├── docker-compose.yaml
+├── fetch_data.py
+└── requirements.txt
+```
+## AIR QUALITY PREDICTION FLOWCHART
+<img width="1069" alt="image" src="https://github.com/user-attachments/assets/4d42d778-4e45-4430-841e-a0d4c0f49c5c">
+
 
 
 
