@@ -1236,12 +1236,14 @@ Hence to avoid this limitation, we used the combination of Google cloud function
 These are the 2 schedulers used to eliminate the limitation
 
 - ```Trigger``` – It is created to automate the running of data drift YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger.
-- ```Trigger-model-decay``` – It is created to automate the running of model decay YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger
+- ```Trigger-model-decay``` – It is created to automate the running of model decay YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger. 
 
 There are 3 cloud functions used to trigger YAML files
-- ```dfdfg``` - This cloud function is created to detect data drift in the endpoint data
-- ```model-decay``` - This cloud function is created to trigger the YAML file to detect model decay
-- ```Predict-function``` - This cloud function is created for the predictions of the best model out of all the other models
+- ```dfdfg``` - This cloud function is created to detect data drift in the endpoint data. This cloud function associates a code which fetches the latest air quality data from Google Cloud Storage, retrieves new data from an API, detects data drift by comparing new and existing datasets, and stores the results. If the drift exceeds a threshold, it triggers a GitHub Actions workflow. Additionally, it generates and saves a plot of the drift over time.
+  
+- ```model-decay``` - This cloud function is created to trigger the YAML file to detect model decay. This cloud function associates a code which manages air quality prediction workflows. It loads processed feature data from a Cloud Storage bucket and compares it against predictions stored in BigQuery to detect significant deviations (decays). If no decays are detected, it processes test data for further checks. The function also updates predictions in BigQuery by calling a model endpoint. When a deviation is detected, it triggers a GitHub Actions pipeline via the GitHub API to potentially re-train the model or perform other adjustments, ensuring the system stays accurate.
+
+- ```Predict-function``` - This cloud function is created for the predictions of the best model out of all the other models. This cloud function associates a code that handles requests for health checks and predictions using a pre-trained machine learning model. The model is loaded from a Google Cloud Storage bucket during the function's initialization and is used for making predictions on data sent in POST requests to the `/predict` endpoint. The function also includes a `/health` endpoint to confirm service availability. It validates incoming requests, processes prediction inputs into a Pandas DataFrame, and uses the loaded model to generate predictions, returning the results in JSON format. For unsupported paths or methods, it returns an error response.
 
 <img width="1069" alt="image" src="https://github.com/user-attachments/assets/85f7da4d-2df9-40f9-9958-b9bba06f8b52">
 
@@ -1322,7 +1324,7 @@ Link for the streamlit - https://streamlit-app-681553118721.us-central1.run.app
 <img width="1069" alt="image" src="https://github.com/user-attachments/assets/e4ad3a7a-3668-471f-8e5f-638e3459ca6d">
 
 
-## Folder Structure
+## GitHub repo Folder Structure
 
 ```
 airquality
@@ -1424,6 +1426,92 @@ airquality
 ├── fetch_data.py
 └── requirements.txt
 ```
+## GCP Storage Bucket Folder Structure
+
+**Storage Bucket name**: airquality-mlops-rg
+```
+airquality-mlops-rg/
+├── airquality-key.json
+├── api_data/
+│   ├── air_pollution_data_1.csv
+│   ├── air_pollution_data_2022-12-31_2023-01-01.csv
+│   ├── air_pollution_data_2023-01-30_2023-01-31.csv
+│   ├── air_pollution_data_2023-02-16_2023-02-17.csv
+│   ├── air_pollution_data_2023-03-18_2023-03-19.csv
+│   ├── air_pollution_data_2023-04-17_2023-04-18.csv
+│   ├── air_pollution_data_2023-05-17_2023-05-18.csv
+│   ├── air_pollution_data_2023-06-16_2023-06-17.csv
+│   ├── air_pollution_data_2023-07-16_2023-07-17.csv
+│   ├── air_pollution_data_2023-08-15_2023-08-16.csv
+│   ├── drift.txt
+│   └── plot_drift.png
+├── artifacts/
+│   ├── learning_rate_sensitivity_xgboost.png
+│   ├── max_depth_sensitivity_xgboost.png
+│   ├── n_estimators_sensitivity_randomforest.png
+│   ├── n_estimators_sensitivity_xgboost.png
+│   ├── pm25_actual_vs_predicted_RandomForest.png
+│   ├── pm25_actual_vs_predicted_Xgboost.png
+│   ├── shap_summary_actual_prophnet.png
+│   ├── shap_summary_plot_prophnet.png
+│   ├── z_pred_day_of_week_MAE.png
+│   ├── z_pred_day_of_week_MBE.png
+│   ├── z_pred_day_of_week_RMSE.png
+│   ├── z_pred_hour_MAE.png
+│   ├── z_pred_hour_MBE.png
+│   ├── z_pred_hour_RMSE.png
+│   ├── z_pred_month_MAE.png
+│   ├── z_pred_month_MBE.png
+│   ├── z_pred_month_RMSE.png
+│   ├── z_pred_prophet_day_of_week_MAE.png
+│   ├── z_pred_prophet_day_of_week_MBE.png
+│   ├── z_pred_prophet_day_of_week_RMSE.png
+│   ├── z_pred_prophet_hour_MAE.png
+│   ├── z_pred_prophet_hour_MBE.png
+│   ├── z_pred_prophet_hour_RMSE.png
+│   ├── z_pred_prophet_month_MAE.png
+│   ├── z_pred_prophet_month_MBE.png
+│   ├── z_pred_prophet_month_RMSE.png
+│   ├── z_pred_prophet_R2.png
+│   ├── z_pred_prophet_season_MAE.png
+│   ├── z_pred_prophet_season_MBE.png
+│   ├── z_pred_prophet_season_RMSE.png
+│   ├── z_pred_season_MAE.png
+│   ├── z_pred_season_MBE.png
+│   ├── z_pred_season_RMSE.png
+│   └── ... (more files in similar format)
+├── composer_requirements/
+│   └── requirements.txt
+├── processed/
+│   ├── Schema.pkl
+│   ├── Stats.pkl
+│   ├── air_pollution.pkl
+│   ├── resampled_data.pkl
+│   ├── test/
+│   │   ├── anomaly_data.pkl
+│   │   ├── feature_eng_data.pkl
+│   │   ├── missing_val_data.pkl
+│   │   ├── pivot_data.pkl
+│   │   ├── remove_col_data.pkl
+│   │   └── test_data.pkl
+│   └── train/
+│       ├── anamoly_data.pkl
+│       ├── feature_eng_data.pkl
+│       ├── missing_val_data.pkl
+│       ├── output_schema.pkl
+│       ├── output_stats.pkl
+│       ├── pivot_data.pkl
+│       ├── remove_col_data.pkl
+│       └── train_data.pkl
+└── weights/
+    ├── model/
+    │   ├── model.pkl
+    │   └── rmse.txt
+    ├── prophet_pm25_model.pth
+    ├── rf_model.pth
+    └── xgboost_pm25_model.pth
+```
+
 ## AIR QUALITY PREDICTION FLOWCHART
 <img width="1069" alt="image" src="https://github.com/user-attachments/assets/4d42d778-4e45-4430-841e-a0d4c0f49c5c">
 
