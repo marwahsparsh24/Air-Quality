@@ -1089,6 +1089,9 @@ features (X_train) and target (y_train).
 
 •	The script uses MLflow’s model registry to check for existing compares them before deciding to overwrite or update the stored model.
 
+<img width="929" alt="image" src="https://github.com/user-attachments/assets/d51d914e-8f5e-41da-be30-ba1c47760efa">
+
+
 
 ## Data Drift and Model Decay
 
@@ -1228,7 +1231,7 @@ Earlier we mentioned about the limitation of using Github Actions alone for depl
 
 Hence to avoid this limitation, we used the combination of Google cloud functions and google cloud scheduler to trigger YAML files to create GitHub actions to automate model deployment pipeline. Like cron scheduler by GitHub actions GCP provides google cloud scheduler to create cron schedules to help cloud functions to trigger YAML files.
 
-Image
+<img width="1069" alt="image" src="https://github.com/user-attachments/assets/12f8557a-4db7-440e-ba4f-ded1cfc89220">
 
 These are the 2 schedulers used to eliminate the limitation
 
@@ -1240,7 +1243,8 @@ There are 3 cloud functions used to trigger YAML files
 - ```model-decay``` - This cloud function is created to trigger the YAML file to detect model decay
 - ```Predict-function``` - This cloud function is created for the predictions of the best model out of all the other models
 
-Image
+<img width="1069" alt="image" src="https://github.com/user-attachments/assets/85f7da4d-2df9-40f9-9958-b9bba06f8b52">
+
 
 **Importance of BigQuery in Model Decay**
 
@@ -1254,12 +1258,13 @@ BigQuery is then integrated into workflows as a connector in Google Cloud Functi
 
 **Allfeatures** – This table contains the feature engineered data within the timeline entered by the user. In this table, the entries get refreshed after every session to avoid overwrite of data in order to reduce redundancy.
 
-Image
+
+<img width="1069" alt="image" src="https://github.com/user-attachments/assets/8edaa186-6045-4b3a-8a2f-33ef6c54d15e">
 
 **Predictions** – This table contains the predictions and the timestamp which starts from the date entered by the user and number of hours entered 
 
+<img width="1069" alt="image" src="https://github.com/user-attachments/assets/058914c8-1d96-4194-91f6-8da008e615b2">
 
-Image
 
 **Permissions:**
 To access storage buckets for the cloud functions there are multiple permissions needed to be given and those are:
@@ -1313,6 +1318,9 @@ To set up a VM instance for Apache Airflow and Docker on Google Cloud Platform (
 We have used streamlit to showcase our front end of the project where the user is given the option to add the date and particular hour that you want your prediction for and furthermore the additional predicted hours can also be set with a short summary of all the predicted PM2.5 hour values.
 
 Link for the streamlit - https://streamlit-app-681553118721.us-central1.run.app
+
+<img width="1069" alt="image" src="https://github.com/user-attachments/assets/e4ad3a7a-3668-471f-8e5f-638e3459ca6d">
+
 
 ## Folder Structure
 
@@ -1419,7 +1427,6 @@ airquality
 ## AIR QUALITY PREDICTION FLOWCHART
 <img width="1069" alt="image" src="https://github.com/user-attachments/assets/4d42d778-4e45-4430-841e-a0d4c0f49c5c">
 
-<img width="1069" alt="image" src="https://github.com/user-attachments/assets/8edaa186-6045-4b3a-8a2f-33ef6c54d15e">
 
 
 
