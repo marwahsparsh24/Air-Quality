@@ -2,6 +2,8 @@
 This repository contains the code and resources for predicting PM2.5 levels for location Miami-Fort Lauderdale-Miami Beach
 from 2022 Jan to 2023 Dec using air quality data from OpenAQ. It includes data collection, preprocessing, and modeling scripts along with analysis and visualizations. The project aims to forecast PM2.5 levels and provide insights into air pollution trends.
 
+Project Scoping: https://drive.google.com/file/d/1olueguND6EpznFMc7AeNH6wzuH3N86Q0/view?usp=sharing
+
 ## pre-requisites
 
 git
