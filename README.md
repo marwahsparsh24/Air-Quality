@@ -1559,7 +1559,7 @@ Link for the streamlit - https://streamlit-app-681553118721.us-central1.run.app
 
 ## Cost and Resource Estimation
 
-| **Service Display Name**        | **Total Cost (USD)** | **Total Usage**              |
+| **Service Display Name**        | **Total Cost (USD)/month** | **Total Usage/month**              |
 |----------------------------------|----------------------|------------------------------|
 | Instances (Compute Engine)      | $88.85               | 9,520 units                 |
 | Editions (BigQuery)             | $29.95               | 7 units                     |
@@ -1570,7 +1570,7 @@ Link for the streamlit - https://streamlit-app-681553118721.us-central1.run.app
 | Data Transfer (Networking)      | $0.10                | 6 units                     |
 
 
-Total cost :- $154.62
+Total estimated cost :- $154/month
 
 
 
