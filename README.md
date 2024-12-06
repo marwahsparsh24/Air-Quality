@@ -1525,26 +1525,6 @@ Link for the streamlit - https://streamlit-app-681553118721.us-central1.run.app
 <img width="1069" alt="image" src="https://github.com/user-attachments/assets/e4ad3a7a-3668-471f-8e5f-638e3459ca6d">
 
 
-## Tools and Technologies Used
-
-| Tool/Technology         | Purpose                                                                                      |
-|--------------------------|----------------------------------------------------------------------------------------------|
-| GitHub Actions          | Automates the CI/CD pipeline, including retraining, validation, and notifications.          |
-| Airflow                 | Orchestrates workflows for drift detection and retraining.                                  |
-| BigQuery                | Stores predictions and input features for decay and drift detection.                        |
-| Evidently AI            | Monitors data drift and generates feature distribution reports.                             |
-| Docker                  | Containerizes the training, validation, and deployment pipelines for consistency.           |
-| GCP Cloud Functions     | Handles decay and drift detection and triggers retraining workflows.                        |
-| Google Cloud Scheduler  | Periodically triggers workflows for decay and drift detection.                              |
-| Google Cloud Monitoring | Tracks performance metrics like RMSE and accuracy, triggering alerts when thresholds are exceeded. |
-| GCS (Google Cloud Storage) | Stores datasets, drift metrics, historical logs, and drift visualization plots.           |
-| Matplotlib              | Visualizes data drift trends over time as saved plots in GCS.                               |
-| SMTP Notifications      | Sends email alerts for pipeline progress, retraining triggers, and outcomes.                |
-| Prophet                 | Used for time-series modeling and forecasting as part of the training pipeline.             |
-| Random Forest           | Used as a regression model for predictions and performance validation.                      |
-| XGBoost                 | Used for advanced regression tasks and comparative analysis.                                |
-| Python                  | Core programming language for implementing drift detection, decay handling, and pipeline logic. |
-| Google Cloud Run        | Hosts the Streamlit application for visualizing and monitoring model performance.           |
 
 ## Tools and Technologies Used
 
