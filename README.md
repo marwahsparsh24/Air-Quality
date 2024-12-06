@@ -1525,197 +1525,6 @@ Link for the streamlit - https://streamlit-app-681553118721.us-central1.run.app
 <img width="1069" alt="image" src="https://github.com/user-attachments/assets/e4ad3a7a-3668-471f-8e5f-638e3459ca6d">
 
 
-## GitHub repo Folder Structure
-
-```
-airquality
-├── .dvc
-│   ├── cache
-│   │   └── files
-│   │       └── md5
-│   ├── .gitignore
-│   └── config
-├── .github
-│   └── workflows
-│       ├── data_drift_model_decay.yml
-│       ├── docker_run_CI_CD.yml
-│       ├── pipeline.yml
-│       ├── pytest_actions_data_bias.yml
-│       ├── pytest_actions_test_data.yml
-│       └── pytest_actions_train_data.yml
-├── DataPreprocessing
-│   ├── preprocess
-│   ├── src
-│   └── test
-│       ├── .DS_Store
-│       ├── __init__.py
-│       └── feature_eng_train_data.pkl
-├── ModelDevelopment
-│   ├── DataPreprocessing
-│   ├── ModelBias
-│   ├── Training
-│   ├── Validation
-│   ├── Dockerfile
-│   ├── bestmodel.py
-│   └── requirements.txt
-├── application
-│   ├── Dockerfile
-│   ├── requirements.txt
-│   └── streamlit.py
-├── cloud_function
-│   ├── .DS_Store
-│   ├── main.py
-│   └── requirements.txt
-├── cloud_run
-│   ├── .DS_Store
-│   ├── Dockerfile
-│   ├── Model_bias.py
-│   ├── Prophet_Valid.py
-│   ├── Prophet_train.py
-│   ├── RandomForest_Valid.py
-│   ├── XGBoost_train.py
-│   ├── XGBoost_valid.py
-│   ├── bestmodel.py
-│   ├── delete_table.py
-│   ├── random_forest_train.py
-│   ├── requirements.txt
-│   ├── saving_bigquery.py
-│   └── testing.py
-├── dags
-│   ├── DataPreprocessing
-│   ├── ModelDevelopment
-│   ├── artifacts
-│   └── weights
-│       ├── .DS_Store
-│       ├── __init__.py
-│       ├── air_pollution_stats.json
-│       ├── bestmodel.py
-│       ├── custom_schema_generated_from.json
-│       ├── dag_script.py
-│       └── dag_script_model.py
-├── data
-│   ├── .gitignore
-│   └── data_store_pkl_files.dvc
-├── logs
-│   ├── dag_id=datapipeline_new
-│   ├── dag_id=modeling_pipeline
-│   ├── dag_processor_manager
-│   └── scheduler
-├── mlruns
-│   ├── 0
-│   ├── 371188221075429255
-│   ├── 433991511969967091
-│   └── 481589397634862112
-├── terraform
-│   ├── docker-compose.yaml
-│   ├── main.tf
-│   └── variables.tf
-├── test
-│   └── weights_model_model.pkl
-├── weights
-│   ├── lstm_pm25_model.pth
-│   ├── prophet_pm25_model.pth
-│   ├── randomforest_pm25_model.pth
-│   ├── xgboost_pm25_model.pth
-├── .env
-├── .gitattributes
-├── .gitignore
-├── .dvcignore
-├── LICENSE
-├── README.md
-├── docker-compose.yaml
-├── fetch_data.py
-└── requirements.txt
-```
-## GCP Storage Bucket Folder Structure
-
-**Storage Bucket name**: airquality-mlops-rg
-```
-airquality-mlops-rg/
-├── airquality-key.json
-├── api_data/
-│   ├── air_pollution_data_1.csv
-│   ├── air_pollution_data_2022-12-31_2023-01-01.csv
-│   ├── air_pollution_data_2023-01-30_2023-01-31.csv
-│   ├── air_pollution_data_2023-02-16_2023-02-17.csv
-│   ├── air_pollution_data_2023-03-18_2023-03-19.csv
-│   ├── air_pollution_data_2023-04-17_2023-04-18.csv
-│   ├── air_pollution_data_2023-05-17_2023-05-18.csv
-│   ├── air_pollution_data_2023-06-16_2023-06-17.csv
-│   ├── air_pollution_data_2023-07-16_2023-07-17.csv
-│   ├── air_pollution_data_2023-08-15_2023-08-16.csv
-│   ├── drift.txt
-│   └── plot_drift.png
-├── artifacts/
-│   ├── learning_rate_sensitivity_xgboost.png
-│   ├── max_depth_sensitivity_xgboost.png
-│   ├── n_estimators_sensitivity_randomforest.png
-│   ├── n_estimators_sensitivity_xgboost.png
-│   ├── pm25_actual_vs_predicted_RandomForest.png
-│   ├── pm25_actual_vs_predicted_Xgboost.png
-│   ├── shap_summary_actual_prophnet.png
-│   ├── shap_summary_plot_prophnet.png
-│   ├── z_pred_day_of_week_MAE.png
-│   ├── z_pred_day_of_week_MBE.png
-│   ├── z_pred_day_of_week_RMSE.png
-│   ├── z_pred_hour_MAE.png
-│   ├── z_pred_hour_MBE.png
-│   ├── z_pred_hour_RMSE.png
-│   ├── z_pred_month_MAE.png
-│   ├── z_pred_month_MBE.png
-│   ├── z_pred_month_RMSE.png
-│   ├── z_pred_prophet_day_of_week_MAE.png
-│   ├── z_pred_prophet_day_of_week_MBE.png
-│   ├── z_pred_prophet_day_of_week_RMSE.png
-│   ├── z_pred_prophet_hour_MAE.png
-│   ├── z_pred_prophet_hour_MBE.png
-│   ├── z_pred_prophet_hour_RMSE.png
-│   ├── z_pred_prophet_month_MAE.png
-│   ├── z_pred_prophet_month_MBE.png
-│   ├── z_pred_prophet_month_RMSE.png
-│   ├── z_pred_prophet_R2.png
-│   ├── z_pred_prophet_season_MAE.png
-│   ├── z_pred_prophet_season_MBE.png
-│   ├── z_pred_prophet_season_RMSE.png
-│   ├── z_pred_season_MAE.png
-│   ├── z_pred_season_MBE.png
-│   ├── z_pred_season_RMSE.png
-│   └── ... (more files in similar format)
-├── composer_requirements/
-│   └── requirements.txt
-├── processed/
-│   ├── Schema.pkl
-│   ├── Stats.pkl
-│   ├── air_pollution.pkl
-│   ├── resampled_data.pkl
-│   ├── test/
-│   │   ├── anomaly_data.pkl
-│   │   ├── feature_eng_data.pkl
-│   │   ├── missing_val_data.pkl
-│   │   ├── pivot_data.pkl
-│   │   ├── remove_col_data.pkl
-│   │   └── test_data.pkl
-│   └── train/
-│       ├── anamoly_data.pkl
-│       ├── feature_eng_data.pkl
-│       ├── missing_val_data.pkl
-│       ├── output_schema.pkl
-│       ├── output_stats.pkl
-│       ├── pivot_data.pkl
-│       ├── remove_col_data.pkl
-│       └── train_data.pkl
-└── weights/
-    ├── model/
-    │   ├── model.pkl
-    │   └── rmse.txt
-    ├── prophet_pm25_model.pth
-    ├── rf_model.pth
-    └── xgboost_pm25_model.pth
-```
-
-## AIR QUALITY PREDICTION FLOWCHART
-<img width="1069" alt="image" src="https://github.com/user-attachments/assets/4d42d778-4e45-4430-841e-a0d4c0f49c5c">
-
 ## Tools and Technologies Used
 
 | Tool/Technology         | Purpose                                                                                      |
@@ -1737,6 +1546,35 @@ airquality-mlops-rg/
 | Python                  | Core programming language for implementing drift detection, decay handling, and pipeline logic. |
 | Google Cloud Run        | Hosts the Streamlit application for visualizing and monitoring model performance.           |
 
+## Tools and Technologies Used
+
+| Tool/Technology           | Purpose                                                                                      |
+|----------------------------|----------------------------------------------------------------------------------------------|
+| GitHub Actions            | Automates the CI/CD pipeline, including retraining, validation, and notifications.          |
+| Airflow                   | Orchestrates workflows for drift detection and retraining.                                  |
+| BigQuery                  | Stores predictions, input features, and intermediate data for decay and drift detection.    |
+| Evidently AI              | Monitors data drift and generates feature distribution reports.                             |
+| Docker                    | Containerizes the training, validation, and deployment pipelines for consistency.           |
+| GCP Cloud Functions       | Handles decay and drift detection and triggers retraining workflows.                        |
+| Google Cloud Scheduler    | Periodically triggers workflows for decay and drift detection.                              |
+| Google Cloud Monitoring   | Tracks performance metrics like RMSE and accuracy, triggering alerts when thresholds are exceeded. |
+| GCS (Google Cloud Storage) | Stores datasets, drift metrics, historical logs, model artifacts, and drift visualization plots. |
+| Matplotlib                | Visualizes data drift trends and model performance as plots saved in GCS.                   |
+| SMTP Notifications        | Sends email alerts for pipeline progress, retraining triggers, and outcomes.                |
+| Prophet                   | Used for time-series modeling and forecasting as part of the training pipeline.             |
+| Random Forest             | Used as a regression model for predictions and performance validation.                      |
+| XGBoost                   | Used for advanced regression tasks, hyperparameter tuning, and comparative analysis.        |
+| Python                    | Core programming language for implementing drift detection, decay handling, and pipeline logic. |
+| Google Cloud Run          | Hosts the Streamlit application for visualizing and monitoring model performance.           |
+| Pandas                    | Handles data preprocessing and feature engineering.                                         |
+| NumPy                     | Supports numerical computations and feature transformations.                               |
+| SHAP                      | Provides interpretability for model predictions through feature importance visualizations.   |
+| Scikit-learn              | Assists with feature engineering, metrics calculation, and auxiliary machine learning tasks. |
+| DVC (Data Version Control)| Manages data versioning and tracks changes in data and pipelines.                           |
+| MLflow                    | Tracks experiment logs, hyperparameters, performance metrics, and model artifacts.          |
+| Google Cloud Composer     | Supports scheduling and running Airflow workflows in a managed environment.                 |
+| YAML                      | Defines CI/CD workflows and Airflow DAG configurations for automation.                      |
+| OpenAQ API                | Provides historical air quality data for PM2.5 prediction.                                 |
 
 
 
