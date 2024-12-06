@@ -727,8 +727,199 @@ But these files may not be visible when ran through docker as they are executed 
 
 Initially all the tasks in the Data Pipeline and the Model Development pipeline were run locally to get results. During the Deployment phase of the project we have moved these pipelines into the cloud infrastructure along with automating the training, retraining(in case of data drift/model decay) and deployment processes which are explained in the following sections.
 
+## AIR QUALITY PREDICTION FLOWCHART
+<img width="1069" alt="image" src="https://github.com/user-attachments/assets/4d42d778-4e45-4430-841e-a0d4c0f49c5c">
 
-### GitHub Actions automation
+## GitHub repo Folder Structure
+
+```
+airquality
+├── .dvc
+│   ├── cache
+│   │   └── files
+│   │       └── md5
+│   ├── .gitignore
+│   └── config
+├── .github
+│   └── workflows
+│       ├── data_drift_model_decay.yml
+│       ├── docker_run_CI_CD.yml
+│       ├── pipeline.yml
+│       ├── pytest_actions_data_bias.yml
+│       ├── pytest_actions_test_data.yml
+│       └── pytest_actions_train_data.yml
+├── DataPreprocessing
+│   ├── preprocess
+│   ├── src
+│   └── test
+│       ├── .DS_Store
+│       ├── __init__.py
+│       └── feature_eng_train_data.pkl
+├── ModelDevelopment
+│   ├── DataPreprocessing
+│   ├── ModelBias
+│   ├── Training
+│   ├── Validation
+│   ├── Dockerfile
+│   ├── bestmodel.py
+│   └── requirements.txt
+├── application
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   └── streamlit.py
+├── cloud_function
+│   ├── .DS_Store
+│   ├── main.py
+│   └── requirements.txt
+├── cloud_run
+│   ├── .DS_Store
+│   ├── Dockerfile
+│   ├── Model_bias.py
+│   ├── Prophet_Valid.py
+│   ├── Prophet_train.py
+│   ├── RandomForest_Valid.py
+│   ├── XGBoost_train.py
+│   ├── XGBoost_valid.py
+│   ├── bestmodel.py
+│   ├── delete_table.py
+│   ├── random_forest_train.py
+│   ├── requirements.txt
+│   ├── saving_bigquery.py
+│   └── testing.py
+├── dags
+│   ├── DataPreprocessing
+│   ├── ModelDevelopment
+│   ├── artifacts
+│   └── weights
+│       ├── .DS_Store
+│       ├── __init__.py
+│       ├── air_pollution_stats.json
+│       ├── bestmodel.py
+│       ├── custom_schema_generated_from.json
+│       ├── dag_script.py
+│       └── dag_script_model.py
+├── data
+│   ├── .gitignore
+│   └── data_store_pkl_files.dvc
+├── logs
+│   ├── dag_id=datapipeline_new
+│   ├── dag_id=modeling_pipeline
+│   ├── dag_processor_manager
+│   └── scheduler
+├── mlruns
+│   ├── 0
+│   ├── 371188221075429255
+│   ├── 433991511969967091
+│   └── 481589397634862112
+├── terraform
+│   ├── docker-compose.yaml
+│   ├── main.tf
+│   └── variables.tf
+├── test
+│   └── weights_model_model.pkl
+├── weights
+│   ├── lstm_pm25_model.pth
+│   ├── prophet_pm25_model.pth
+│   ├── randomforest_pm25_model.pth
+│   ├── xgboost_pm25_model.pth
+├── .env
+├── .gitattributes
+├── .gitignore
+├── .dvcignore
+├── LICENSE
+├── README.md
+├── docker-compose.yaml
+├── fetch_data.py
+└── requirements.txt
+```
+## GCP Storage Bucket Folder Structure
+
+**Storage Bucket name**: airquality-mlops-rg
+```
+airquality-mlops-rg/
+├── airquality-key.json
+├── api_data/
+│   ├── air_pollution_data_1.csv
+│   ├── air_pollution_data_2022-12-31_2023-01-01.csv
+│   ├── air_pollution_data_2023-01-30_2023-01-31.csv
+│   ├── air_pollution_data_2023-02-16_2023-02-17.csv
+│   ├── air_pollution_data_2023-03-18_2023-03-19.csv
+│   ├── air_pollution_data_2023-04-17_2023-04-18.csv
+│   ├── air_pollution_data_2023-05-17_2023-05-18.csv
+│   ├── air_pollution_data_2023-06-16_2023-06-17.csv
+│   ├── air_pollution_data_2023-07-16_2023-07-17.csv
+│   ├── air_pollution_data_2023-08-15_2023-08-16.csv
+│   ├── drift.txt
+│   └── plot_drift.png
+├── artifacts/
+│   ├── learning_rate_sensitivity_xgboost.png
+│   ├── max_depth_sensitivity_xgboost.png
+│   ├── n_estimators_sensitivity_randomforest.png
+│   ├── n_estimators_sensitivity_xgboost.png
+│   ├── pm25_actual_vs_predicted_RandomForest.png
+│   ├── pm25_actual_vs_predicted_Xgboost.png
+│   ├── shap_summary_actual_prophnet.png
+│   ├── shap_summary_plot_prophnet.png
+│   ├── z_pred_day_of_week_MAE.png
+│   ├── z_pred_day_of_week_MBE.png
+│   ├── z_pred_day_of_week_RMSE.png
+│   ├── z_pred_hour_MAE.png
+│   ├── z_pred_hour_MBE.png
+│   ├── z_pred_hour_RMSE.png
+│   ├── z_pred_month_MAE.png
+│   ├── z_pred_month_MBE.png
+│   ├── z_pred_month_RMSE.png
+│   ├── z_pred_prophet_day_of_week_MAE.png
+│   ├── z_pred_prophet_day_of_week_MBE.png
+│   ├── z_pred_prophet_day_of_week_RMSE.png
+│   ├── z_pred_prophet_hour_MAE.png
+│   ├── z_pred_prophet_hour_MBE.png
+│   ├── z_pred_prophet_hour_RMSE.png
+│   ├── z_pred_prophet_month_MAE.png
+│   ├── z_pred_prophet_month_MBE.png
+│   ├── z_pred_prophet_month_RMSE.png
+│   ├── z_pred_prophet_R2.png
+│   ├── z_pred_prophet_season_MAE.png
+│   ├── z_pred_prophet_season_MBE.png
+│   ├── z_pred_prophet_season_RMSE.png
+│   ├── z_pred_season_MAE.png
+│   ├── z_pred_season_MBE.png
+│   ├── z_pred_season_RMSE.png
+│   └── ... (more files in similar format)
+├── composer_requirements/
+│   └── requirements.txt
+├── processed/
+│   ├── Schema.pkl
+│   ├── Stats.pkl
+│   ├── air_pollution.pkl
+│   ├── resampled_data.pkl
+│   ├── test/
+│   │   ├── anomaly_data.pkl
+│   │   ├── feature_eng_data.pkl
+│   │   ├── missing_val_data.pkl
+│   │   ├── pivot_data.pkl
+│   │   ├── remove_col_data.pkl
+│   │   └── test_data.pkl
+│   └── train/
+│       ├── anamoly_data.pkl
+│       ├── feature_eng_data.pkl
+│       ├── missing_val_data.pkl
+│       ├── output_schema.pkl
+│       ├── output_stats.pkl
+│       ├── pivot_data.pkl
+│       ├── remove_col_data.pkl
+│       └── train_data.pkl
+└── weights/
+    ├── model/
+    │   ├── model.pkl
+    │   └── rmse.txt
+    ├── prophet_pm25_model.pth
+    ├── rf_model.pth
+    └── xgboost_pm25_model.pth
+```
+
+
+## GitHub Actions automation
 
 GitHub Actions is a powerful CI/CD (Continuous Integration/Continuous Deployment) tool that enables automation of workflows directly within your GitHub repository. It allows developers to define custom workflows using YAML files, making it flexible and highly configurable. These workflows can be triggered by various events, such as code pushes, pull requests, or even scheduled timings. The scheduled timings are done  using cron scheduling as per the requirements such as every 30 minutes, 1 hour or daily. 
 
@@ -1245,8 +1436,8 @@ Hence to avoid this limitation, we used the combination of Google cloud function
 
 These are the 2 schedulers used to eliminate the limitation
 
-- ```Trigger``` – It is created to automate the running of data drift YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger.
-- ```Trigger-model-decay``` – It is created to automate the running of model decay YAML file (data_drift_model_decay.yml) every 3rd day of the month at 12:00 AM using the cloud function acting as a trigger. 
+- ```Trigger``` – It is created to automate the running of data drift YAML file (data_drift_model_decay.yml) everyday of the month at 12:00 AM using the cloud function acting as a trigger.
+- ```Trigger-model-decay``` – It is created to automate the running of model decay YAML file (data_drift_model_decay.yml) everyday of the month at 4:00 PM using the cloud function acting as a trigger. 
 
 There are 3 cloud functions used to trigger YAML files
 - ```dfdfg``` - This cloud function is created to detect data drift in the endpoint data. This cloud function associates a code which fetches the latest air quality data from Google Cloud Storage, retrieves new data from an API, detects data drift by comparing new and existing datasets, and stores the results. If the drift exceeds a threshold, it triggers a GitHub Actions workflow. Additionally, it generates and saves a plot of the drift over time.
