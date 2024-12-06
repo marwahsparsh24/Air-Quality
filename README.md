@@ -1557,7 +1557,20 @@ Link for the streamlit - https://streamlit-app-681553118721.us-central1.run.app
 | OpenAQ API                | Provides historical air quality data for PM2.5 prediction.                                 |
 
 
+## Cost and Resource Estimation
 
+| **Service Display Name**        | **Total Cost (USD)** | **Total Usage**              |
+|----------------------------------|----------------------|------------------------------|
+| Instances (Compute Engine)      | $88.85               | 9,520 units                 |
+| Editions (BigQuery)             | $29.95               | 7 units                     |
+| Cloud Storage                   | $19.90               | 1,050 units                 |
+| Artifact Registry               | $10.05               | 110 units                   |
+| Cloud Logging (Cloud Operations)| $3.00                | 350 units                   |
+| Cloud Run Functions             | $2.77 each           | 153,700,900,000 units       |
+| Data Transfer (Networking)      | $0.10                | 6 units                     |
+
+
+Total cost :- $154.62
 
 
 
