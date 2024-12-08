@@ -122,21 +122,32 @@ def generate_time_options():
     return [time(hour=h, minute=0) for h in range(24)]  # Times: 00:00, 01:00, ..., 23:00
 
 def main():
-    min_date = date(2022, 1, 1)
-    st.title("Air Quality Prediction")
+    min_date = date(2022, 1, 1) #change it such that it accepts only correct dates
+    st.title("PM2.5 Prediction for Air Quality")
     st.header("Enter Date and Time for Prediction")
+    st.info("**Disclaimer:** Please select the date from the calendar. If you manually enter an invalid value, it will default to today's date.")
     time_options = generate_time_options()
-    input_date = st.date_input("Select a date for prediction:",min_value=min_date)
+    # input_date = st.date_input("Select a date for prediction:",min_value=min_date)
+    try:
+        input_date = st.date_input("Select a date for prediction:", min_value=min_date,key="date_picker")
+        # If the input is invalid (e.g., entered manually in a wrong format, Streamlit handles this)
+        if input_date < min_date:
+            st.warning("Invalid date entered. Defaulting to today's date.")
+            input_date = date.today()
+    except ValueError:
+        st.warning("Invalid value entered. Defaulting to today's date.")
+        input_date = date.today()
     input_time = st.selectbox("Select a time for prediction:", options=time_options)
+    st.info("**Disclaimer:** Selecting `0` means the prediction will be made for the current date and time. Increasing the value (e.g., `23`) includes the current hour and extends the prediction up to 23 hours ahead.")
     additional_days = st.slider(
-        "Select number of hours for additional predictions (1-24):",
+        "Select number of hours for additional predictions (0-23):",
         min_value=0,
         max_value=23,
         value=0,
     )
     plot_placeholder = st.empty()
     result_placeholder = st.empty()
-    if st.button("Predict Air Quality"):
+    if st.button("Predict PM2.5"):
         plot_placeholder.empty()
         result_placeholder.empty()
         datetime_obj = datetime.combine(input_date, input_time)
@@ -208,7 +219,7 @@ def main():
                 air_quality = "Moderate"
             else:
                 air_quality = "Bad"
-            artistic_description = f"Air Quality: {predicted_value}. The air quality on {datetime_obj.date()} is expected to be '{air_quality}'."
+            artistic_description = f"PM2.5 value: {predicted_value}. The PM2.5 on {datetime_obj.date()} is expected to be '{air_quality}'."
             result_placeholder.write(artistic_description)
         else:
             # Plot results
@@ -226,16 +237,16 @@ def main():
                 good_hours = len(df[df["value"] < 2])
                 moderate_hours = len(df[(df["value"] >= 2) & (df["value"] < 5)])
                 bad_hours = len(df[df["value"] >= 5])
-                st.line_chart(data=df, x="date", y="value")
+                st.line_chart(data=df, x="TIME", y="PM2.5 value")
                 artistic_description = f"""
-                The air quality predictions for the next {additional_days} hours show these trends.
+                The PM2.5 predictions for the next {additional_days} hours show these trends.
                 Here is the summary:
-                - Average air quality value: {average_value:.2f}
+                - Average PM2.5 value: {average_value:.2f}
                 - Minimum value: {min_value:.2f}
                 - Maximum value: {max_value:.2f}
-                - Hours with 'Good' quality (<2): {good_hours}
-                - Hours with 'Moderate' quality (2-5): {moderate_hours}
-                - Hours with 'Bad' quality (>=5): {bad_hours}"""
+                - Hours with 'Good' PM2.5 (<2): {good_hours}
+                - Hours with 'Moderate' PM2.5 (2-5): {moderate_hours}
+                - Hours with 'Bad' PM2.5 (>=5): {bad_hours}"""
                 result_placeholder.write(artistic_description)
     # except Exception as e:
         #     st.error(f"An error occurred: {e}")
