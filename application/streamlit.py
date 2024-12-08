@@ -125,12 +125,15 @@ def main():
     min_date = date(2022, 1, 1) #change it such that it accepts only correct dates
     st.title("PM2.5 Prediction for Air Quality")
     st.header("Enter Date and Time for Prediction")
-    st.info("**Disclaimer:** Please select the date from the calendar. If you manually enter an invalid value, it will default to today's date.")
+    st.info("**Disclaimer:** Please select the date from the calendar. If you manually enter an invalid value, it will default to today's date or the previous date that you have selected in the calender.")
     time_options = generate_time_options()
     # input_date = st.date_input("Select a date for prediction:",min_value=min_date)
     try:
         input_date = st.date_input("Select a date for prediction:", min_value=min_date,key="date_picker")
         # If the input is invalid (e.g., entered manually in a wrong format, Streamlit handles this)
+        if input_date is None:
+            st.warning("Invalid date entered. Defaulting to today's date.")
+            input_date = date.today()
         if input_date < min_date:
             st.warning("Invalid date entered. Defaulting to today's date.")
             input_date = date.today()
@@ -207,7 +210,7 @@ def main():
                 predicted_value = prediction["predictions"][0]
                 predictions.append({"date": current_datetime, "value": predicted_value})
                 predictions_table = "airquality-438719.airqualityuser.predictions"
-                store_in_bigquery(payload["instances"][0], predicted_value, predictions_table, datetime_obj)
+                store_in_bigquery(payload["instances"][0], predicted_value, predictions_table, current_datetime)
             else:
                 result_placeholder.error(f"Error {response.status_code}: {response.text}").error(f"Error {response.status_code}: {response.text}")
 
