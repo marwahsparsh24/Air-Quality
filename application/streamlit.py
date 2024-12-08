@@ -231,14 +231,14 @@ def main():
             with plot_placeholder:
                 # analyse the graph using gpt
                 df = pd.DataFrame(predictions)
-                df["time"] = df["date"].dt.time
+                df["time"] = df["date"].dt.strftime("%H:%M:%S")
                 average_value = df["value"].mean()
                 min_value = df["value"].min()
                 max_value = df["value"].max()
                 good_hours = len(df[df["value"] < 2])
                 moderate_hours = len(df[(df["value"] >= 2) & (df["value"] < 5)])
                 bad_hours = len(df[df["value"] >= 5])
-                st.line_chart(data=df, x="time", y="value")
+                st.line_chart(data=df.set_index("time")[["value"]])
                 artistic_description = f"""
                 The PM2.5 predictions for the next {additional_days} hours show these trends.
                 Here is the summary:
