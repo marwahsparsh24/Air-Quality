@@ -728,7 +728,7 @@ But these files may not be visible when ran through docker as they are executed 
 Initially all the tasks in the Data Pipeline and the Model Development pipeline were run locally to get results. During the Deployment phase of the project we have moved these pipelines into the cloud infrastructure along with automating the training, retraining(in case of data drift/model decay) and deployment processes which are explained in the following sections.
 
 ## AIR QUALITY PREDICTION FLOWCHART
-<img width="1069" alt="image" src="https://github.com/user-attachments/assets/4d42d778-4e45-4430-841e-a0d4c0f49c5c">
+<img width="1342" alt="image" src="https://github.com/user-attachments/assets/c93a37d8-9903-46fc-be18-bd62cfaf9b88">
 
 ## GitHub repo Folder Structure
 
