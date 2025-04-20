@@ -1,4 +1,0 @@
-pandas
-google-cloud-bigquery
-streamlit
-requests
