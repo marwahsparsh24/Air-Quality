@@ -1,0 +1,74 @@
+{
+    "date": {
+        "mean": null,
+        "std_dev": null,
+        "min": "2022-01-01T01:00:00+00:00",
+        "max": "2023-12-31T23:00:00+00:00",
+        "missing_values": 0,
+        "unique_values": 15535
+    },
+    "location": {
+        "mean": null,
+        "std_dev": null,
+        "min": "V_VIEW",
+        "max": "V_VIEW",
+        "missing_values": 0,
+        "unique_values": 1
+    },
+    "parameter": {
+        "mean": null,
+        "std_dev": null,
+        "min": "o3",
+        "max": "pm25",
+        "missing_values": 0,
+        "unique_values": 2
+    },
+    "value": {
+        "mean": 3.3055325618945104,
+        "std_dev": 4.52477815439264,
+        "min": 0.0,
+        "max": 103.8,
+        "missing_values": 0,
+        "unique_values": 380
+    },
+    "unit": {
+        "mean": null,
+        "std_dev": null,
+        "min": "ppm",
+        "max": "\u00b5g/m\u00b3",
+        "missing_values": 0,
+        "unique_values": 2
+    },
+    "latitude": {
+        "mean": 26.07319999999999,
+        "std_dev": 1.0658320301907683e-14,
+        "min": 26.0732,
+        "max": 26.0732,
+        "missing_values": 0,
+        "unique_values": 1
+    },
+    "longitude": {
+        "mean": -80.33860000000001,
+        "std_dev": 1.421109373587691e-14,
+        "min": -80.3386,
+        "max": -80.3386,
+        "missing_values": 0,
+        "unique_values": 1
+    },
+    "city": {
+        "mean": NaN,
+        "std_dev": NaN,
+        "min": NaN,
+        "max": NaN,
+        "missing_values": 29728,
+        "unique_values": 1
+    },
+    "country": {
+        "mean": null,
+        "std_dev": null,
+        "min": "US",
+        "max": "US",
+        "missing_values": 0,
+        "unique_values": 1
+    }
+}
